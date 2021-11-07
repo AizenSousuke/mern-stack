@@ -10,8 +10,12 @@ app.listen(PORT, () => {
 // Connect Database
 connectDB();
 
+// Define routes
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/busstops", require("./routes/api/busstops"));
+
 // Adds middlewares
 
-app.get('/', (req, res) => {
-    res.send(`Server is on port ${PORT}`);
+app.get("/", (req, res) => {
+	res.send(`Server is on port ${PORT}`);
 });
