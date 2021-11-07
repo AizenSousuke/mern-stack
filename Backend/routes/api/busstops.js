@@ -35,7 +35,7 @@ router.post(
 			const busStop = await BusStop.find({ BusStopCode: BusStopCode }).exec();
 			
             if (busStop.length > 0) {
-				res.status(400).json({
+				return res.status(400).json({
 					errors: [{ msg: "Bus Stop already exists" }],
 				});
 			}
