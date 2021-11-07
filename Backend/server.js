@@ -10,11 +10,13 @@ app.listen(PORT, () => {
 // Connect Database
 connectDB();
 
+// Adds middlewares
+app.use(express.json({ extended: false }));
+
 // Define routes
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/users", require("./routes/api/users"));
 app.use("/api/busstops", require("./routes/api/busstops"));
-
-// Adds middlewares
 
 app.get("/", (req, res) => {
 	res.send(`Server is on port ${PORT}`);
