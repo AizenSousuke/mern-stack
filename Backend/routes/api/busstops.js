@@ -29,14 +29,27 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { BusStopCode, RoadName, Description, Longitude = 0, Latitude = 0 } = req.body;
+		const {
+			BusStopCode,
+			RoadName,
+			Description,
+			Longitude = 0,
+			Latitude = 0,
+		} = req.body;
 
 		try {
-			const busStop = await BusStop.find({ BusStopCode: BusStopCode }).exec();
-			
-            if (busStop.length > 0) {
+			const busStop = await BusStop.find({
+				BusStopCode: BusStopCode,
+			}).exec();
+
+			if (busStop.length > 0) {
 				return res.status(400).json({
-					errors: [{ msg: "Bus Stop already exists" }],
+					errors: [
+						{
+							msg: "Bus Stop already exists",
+							busStopCode: BusStopCode,
+						},
+					],
 				});
 			}
 
@@ -48,16 +61,31 @@ router.post(
 				Latitude,
 			});
 
-            await newBusStop.save();
+			await newBusStop.save();
 
-            res.send("Created Bus Stop");
-
+			res.send("Created Bus Stop");
 		} catch (err) {
 			console.error(err);
 			res.status(500).send("Server error");
 		}
 	}
 );
+
+router.get("/:busStopCode", async (req, res) => {
+	const busStopCode = req.params.busStopCode;
+	try {
+		const busStop = await BusStop.findOne({ BusStopCode: busStopCode });
+		if (busStop == null) {
+			return res
+				.status(404)
+				.json({ msg: "No bus stop with that code found" });
+		}
+		res.status(200).json(busStop);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server error");
+	}
+});
 
 // Export the module to be used in the main server js
 module.exports = router;
