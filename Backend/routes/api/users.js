@@ -4,6 +4,8 @@ const { check, validationResult } = require("express-validator");
 const gravatar = require("gravatar");
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 const UserModel = require("../../models/User");
 
@@ -28,11 +30,17 @@ router.post(
 		}
 		const { name, email, password } = req.body;
 
+		// Session
+		const session = await UserModel.startSession();
 		try {
+			// Transaction
+			session.startTransaction();
+
 			// See if user exists
-			let user = await UserModel.findOne({ email });
+			let user = await UserModel.findOne({ email }).session(session);
 
 			if (user) {
+				session.endSession();
 				return res.status(400).json({
 					errors: [{ msg: "User already exists" }],
 				});
@@ -50,13 +58,29 @@ router.post(
 			// Encrypt password
 			const salt = await bcrypt.genSalt(10);
 			user.password = await bcrypt.hash(password, salt);
-			await user.save();
+			await user.save({ session });
 
 			// Return jsonwebtoken (so user can log in straightaway)
-
-			res.send("User registered");
+			const payload = {
+				user: {
+					id: user.id,
+				},
+			};
+			jwt.sign(
+				payload,
+				config.get("jwtSecret"),
+				{ expiresIn: 3600 },
+				(err, token) => {
+					if (err) throw err;
+					res.json({ token });
+				}
+			);
+			session.commitTransaction();
+			session.endSession();
+			return res.send("User registered");
 		} catch (err) {
 			console.error(err.message);
+			session.abortTransaction();
 			res.status(500).send("Server error");
 		}
 	}
