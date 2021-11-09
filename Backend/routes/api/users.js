@@ -77,10 +77,10 @@ router.post(
 			);
 			session.commitTransaction();
 			session.endSession();
-			return res.send("User registered");
 		} catch (err) {
 			console.error(err.message);
 			session.abortTransaction();
+			session.endSession();
 			res.status(500).send("Server error");
 		}
 	}
