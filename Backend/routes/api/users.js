@@ -41,7 +41,7 @@ router.post(
 			let user = await UserModel.findOne({ email }).session(session);
 
 			if (user) {
-				session.endSession();
+				await session.endSession();
 				return res.status(400).json({
 					errors: [{ msg: "User already exists" }],
 				});
@@ -76,15 +76,48 @@ router.post(
 					res.json({ token });
 				}
 			);
-			session.commitTransaction();
-			session.endSession();
+			await session.commitTransaction();
+			await session.endSession();
 		} catch (err) {
 			console.error(err.message);
-			session.abortTransaction();
-			session.endSession();
+			await session.abortTransaction();
+			await session.endSession();
 			res.status(500).send("Server error");
 		}
 	}
 );
+
+router.delete("/", async (req, res) => {
+	const email = req.query.email;
+
+	if (!email) {
+		res.status(422).json({ err: "Invalid email address" });
+	}
+
+	// Session
+	const session = await UserModel.startSession();
+	try {
+		// Transaction
+		session.startTransaction();
+
+		let user = await UserModel.findOne({ email: email }).session(session);
+
+		if (!user) {
+			await session.endSession();
+			return res.status(404).json({ msg: "User not found" });
+		}
+
+		await user.remove({ session });
+
+		await session.commitTransaction();
+		await session.endSession();
+		res.status(200).json({ msg: `Removed user with email: ${email}` });
+	} catch (err) {
+		console.error(err.message);
+		await session.abortTransaction();
+		await session.endSession();
+		res.status(500).send("Server error");
+	}
+});
 
 module.exports = router;
