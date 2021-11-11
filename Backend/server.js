@@ -11,6 +11,7 @@ app.listen(PORT, () => {
 connectDB();
 
 // Adds middlewares
+// Add body-parser middleware
 app.use(express.json({ extended: false }));
 
 // Define routes
