@@ -9,8 +9,9 @@ const jwt = require("jsonwebtoken");
 
 const UserModel = require("../../models/User");
 
-router.get("/", (req, res) => {
-	res.send("Users route");
+router.get("/", async (req, res) => {
+	const users = await UserModel.findOne({});
+	res.send("<p>Users route</p></ br>");
 });
 
 router.post(
@@ -69,7 +70,7 @@ router.post(
 			jwt.sign(
 				payload,
 				config.get("jwtSecret"),
-				{ expiresIn: 3600 },
+				{ expiresIn: 3600000 },
 				(err, token) => {
 					if (err) throw err;
 					res.json({ token });
