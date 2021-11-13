@@ -22,4 +22,4 @@ const SettingsModel = new mongoose.Schema({
     }
 });
 
-module.exports = SettingsModel = mongoose.model('settings', SettingsModel);
+module.exports = Settings = mongoose.model('settings', SettingsModel);
