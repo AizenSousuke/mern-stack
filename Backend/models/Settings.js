@@ -1,0 +1,25 @@
+const mongoose = require('mongoose');
+
+const SettingsModel = new mongoose.Schema({
+    UserId: {
+        // Connect to an Id in another Model
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+    },
+    Settings: {
+        type: String,
+        required: true
+    },
+    DateCreated: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    DateUpdated: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
+});
+
+module.exports = SettingsModel = mongoose.model('settings', SettingsModel);

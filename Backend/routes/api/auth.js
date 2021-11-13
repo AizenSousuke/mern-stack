@@ -46,6 +46,7 @@ router.post(
 			if (!isMatch) {
 				return res.status(400).json({ msg: "Invalid Password" });
 			}
+            
 			// Return jsonwebtoken (so user can log in straightaway)
 			const payload = {
 				user: {

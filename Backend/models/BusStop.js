@@ -23,4 +23,4 @@ const BusStopSchema = mongoose.Schema({
     },
 });
 
-module.exports = BusStop = mongoose.model('BusStop', BusStopSchema);
+module.exports = BusStop = mongoose.model('busstop', BusStopSchema);
