@@ -37,7 +37,7 @@ router.post(
             // Create if it does not exist
             let UpdatedSettings = await Settings.findOneAndUpdate({ UserId: req.user.id }, { Settings: settings, DateUpdated: Date.now() }, { upsert: true, new: true, setDefaultsOnInsert: true });
 
-			return res.status(200).json({ msg: `User settings has been updated at ${UpdatedSettings.DateUpdated.toLocaleDateString("en-US")}.` });
+			return res.status(200).json({ msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.` });
 		} catch (err) {
 			console.error(err);
 			return res.status(500).json({ msg: "Server error" });
