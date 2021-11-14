@@ -66,7 +66,7 @@ router.post(
 			res.send("Created Bus Stop");
 		} catch (err) {
 			console.error(err);
-			res.status(500).send("Server error");
+			return res.status(500).send("Server error");
 		}
 	}
 );
@@ -83,7 +83,7 @@ router.get("/:busStopCode", async (req, res) => {
 		res.status(200).json(busStop);
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).send("Server error");
+		return res.status(500).send("Server error");
 	}
 });
 
