@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
 	}
 });
 
-router.post(
+router.put(
 	"/",
 	[check("settings", "Settings Data Structure is required").notEmpty()],
 	auth,
