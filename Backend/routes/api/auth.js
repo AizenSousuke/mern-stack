@@ -21,7 +21,10 @@ router.get("/", authMiddleware, async (req, res) => {
 router.post(
 	"/signin",
 	[
-		check("email", "Email is required. Please enter a valid email.").isEmail(),
+		check(
+			"email",
+			"Email is required. Please enter a valid email."
+		).isEmail(),
 		check("password", "Password is required").exists(),
 	],
 	async (req, res) => {
@@ -46,11 +49,12 @@ router.post(
 			if (!isMatch) {
 				return res.status(400).json({ msg: "Invalid Password" });
 			}
-            
+
 			// Return jsonwebtoken (so user can log in straightaway)
 			const payload = {
 				user: {
 					id: user.id,
+					isAdmin: user.isAdmin,
 				},
 			};
 
