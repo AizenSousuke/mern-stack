@@ -11,7 +11,7 @@ const UserModel = require("../../models/User");
 
 router.get("/", async (req, res) => {
 	const users = await UserModel.findOne({});
-	res.send("<p>Users route</p></ br>");
+	res.send("<p>Users route</p>");
 });
 
 router.post(
@@ -83,7 +83,7 @@ router.post(
 			console.error(err.message);
 			await session.abortTransaction();
 			await session.endSession();
-			res.status(500).send("Server error");
+			return res.status(500).json({ msg: "Server error" });
 		}
 	}
 );
@@ -112,12 +112,12 @@ router.delete("/", async (req, res) => {
 
 		await session.commitTransaction();
 		await session.endSession();
-		res.status(200).json({ msg: `Removed user with email: ${email}` });
+		return res.status(200).json({ msg: `Removed user with email: ${email}` });
 	} catch (err) {
 		console.error(err.message);
 		await session.abortTransaction();
 		await session.endSession();
-		res.status(500).send("Server error");
+		return res.status(500).json({ msg: "Server error" });
 	}
 });
 
