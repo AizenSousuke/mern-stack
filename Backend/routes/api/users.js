@@ -33,10 +33,9 @@ router.post(
 
 		// Session
 		const session = await UserModel.startSession();
+		// Transaction
+		session.startTransaction();
 		try {
-			// Transaction
-			session.startTransaction();
-
 			// See if user exists
 			let user = await UserModel.findOne({ email }).session(session);
 
@@ -67,7 +66,7 @@ router.post(
 					id: user.id,
 				},
 			};
-			
+
 			jwt.sign(
 				payload,
 				config.get("jwtSecret"),
@@ -112,7 +111,9 @@ router.delete("/", async (req, res) => {
 
 		await session.commitTransaction();
 		await session.endSession();
-		return res.status(200).json({ msg: `Removed user with email: ${email}` });
+		return res
+			.status(200)
+			.json({ msg: `Removed user with email: ${email}` });
 	} catch (err) {
 		console.error(err.message);
 		await session.abortTransaction();
