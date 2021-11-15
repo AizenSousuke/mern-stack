@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Going out renders 2 bus details properly as per snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "padding": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "alignSelf": "center",
+            "color": "black",
+            "fontWeight": "bold",
+            "textAlign": "center",
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+    >
+      911
+    </Text>
+    <View
+      style={
+        Object {
+          "flex": 0.8,
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </Text>
+        <View
+          animated={true}
+          animationConfig={
+            Object {
+              "bounciness": 0,
+            }
+          }
+          animationType="spring"
+          indeterminate={false}
+          indeterminateAnimationDuration={1000}
+          onLayout={[Function]}
+          progress={0.2}
+          style={
+            Array [
+              Object {
+                "backgroundColor": undefined,
+                "borderColor": "green",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "overflow": "hidden",
+                "width": 50,
+              },
+              undefined,
+            ]
+          }
+          useNativeDriver={false}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "green",
+                "height": 6,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateX": -19.2,
+                  },
+                  Object {
+                    "scaleX": 0.20008,
+                  },
+                ],
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          Arrived
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </Text>
+        <View
+          animated={true}
+          animationConfig={
+            Object {
+              "bounciness": 0,
+            }
+          }
+          animationType="spring"
+          indeterminate={false}
+          indeterminateAnimationDuration={1000}
+          onLayout={[Function]}
+          progress={0.2}
+          style={
+            Array [
+              Object {
+                "backgroundColor": undefined,
+                "borderColor": "green",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "overflow": "hidden",
+                "width": 50,
+              },
+              undefined,
+            ]
+          }
+          useNativeDriver={false}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "green",
+                "height": 6,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateX": -19.2,
+                  },
+                  Object {
+                    "scaleX": 0.20008,
+                  },
+                ],
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          Arrived
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </Text>
+        <View
+          animated={true}
+          animationConfig={
+            Object {
+              "bounciness": 0,
+            }
+          }
+          animationType="spring"
+          indeterminate={false}
+          indeterminateAnimationDuration={1000}
+          onLayout={[Function]}
+          progress={0.9}
+          style={
+            Array [
+              Object {
+                "backgroundColor": undefined,
+                "borderColor": "red",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "overflow": "hidden",
+                "width": 50,
+              },
+              undefined,
+            ]
+          }
+          useNativeDriver={false}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "red",
+                "height": 6,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateX": -2.3999999999999986,
+                  },
+                  Object {
+                    "scaleX": 0.90001,
+                  },
+                ],
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          Arrived
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "padding": 5,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "alignSelf": "center",
+            "color": "black",
+            "fontWeight": "bold",
+            "textAlign": "center",
+          },
+          Object {
+            "flex": 0.2,
+          },
+        ]
+      }
+    >
+      912
+    </Text>
+    <View
+      style={
+        Object {
+          "flex": 0.8,
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </Text>
+        <View
+          animated={true}
+          animationConfig={
+            Object {
+              "bounciness": 0,
+            }
+          }
+          animationType="spring"
+          indeterminate={false}
+          indeterminateAnimationDuration={1000}
+          onLayout={[Function]}
+          progress={0.2}
+          style={
+            Array [
+              Object {
+                "backgroundColor": undefined,
+                "borderColor": "green",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "overflow": "hidden",
+                "width": 50,
+              },
+              undefined,
+            ]
+          }
+          useNativeDriver={false}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "green",
+                "height": 6,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateX": -19.2,
+                  },
+                  Object {
+                    "scaleX": 0.20008,
+                  },
+                ],
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          Arrived
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </Text>
+        <View
+          animated={true}
+          animationConfig={
+            Object {
+              "bounciness": 0,
+            }
+          }
+          animationType="spring"
+          indeterminate={false}
+          indeterminateAnimationDuration={1000}
+          onLayout={[Function]}
+          progress={0.2}
+          style={
+            Array [
+              Object {
+                "backgroundColor": undefined,
+                "borderColor": "green",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "overflow": "hidden",
+                "width": 50,
+              },
+              undefined,
+            ]
+          }
+          useNativeDriver={false}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "green",
+                "height": 6,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateX": -19.2,
+                  },
+                  Object {
+                    "scaleX": 0.20008,
+                  },
+                ],
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          Arrived
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </Text>
+        <View
+          animated={true}
+          animationConfig={
+            Object {
+              "bounciness": 0,
+            }
+          }
+          animationType="spring"
+          indeterminate={false}
+          indeterminateAnimationDuration={1000}
+          onLayout={[Function]}
+          progress={0.9}
+          style={
+            Array [
+              Object {
+                "backgroundColor": undefined,
+                "borderColor": "red",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "overflow": "hidden",
+                "width": 50,
+              },
+              undefined,
+            ]
+          }
+          useNativeDriver={false}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "red",
+                "height": 6,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateX": -2.3999999999999986,
+                  },
+                  Object {
+                    "scaleX": 0.90001,
+                  },
+                ],
+              }
+            }
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          Arrived
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
