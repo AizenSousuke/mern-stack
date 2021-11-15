@@ -372,3 +372,14 @@ export const SampleFunctionThatReturnsSomething = (param) => {
 		});
 	});
 };
+
+// Get bus stop list
+export const GetBusStopList = async () => {
+	console.log("Getting bus stop list");
+	const response = await axios.get(`http://10.0.2.2:5000/api/busstops`, {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	return response.data;
+};

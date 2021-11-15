@@ -11,7 +11,7 @@ const UserModel = require("../../models/User");
 
 router.get("/", async (req, res) => {
 	const users = await UserModel.findOne({});
-	res.send("<p>Users route</p>");
+	return res.status(200).json({ msg: JSON.stringify(users) });
 });
 
 router.post(

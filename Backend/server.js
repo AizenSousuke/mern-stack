@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const connectDB = require("./config/db");
+const cors = require("cors");
 app.listen(PORT, () => {
 	console.log("Listening on port %s", PORT);
 });
@@ -13,6 +14,9 @@ connectDB();
 // Adds middlewares
 // Add body-parser middleware
 app.use(express.json({ extended: false }));
+
+// Add CORS
+app.use(cors());
 
 // Define routes
 app.use("/api/auth", require("./routes/api/auth"));

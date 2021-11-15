@@ -9,6 +9,8 @@ import {
 	getLastUpdatedDate,
 	storeData,
 	DeleteTable,
+	GetBusStopList,
+	getBusStops,
 } from "../api/api";
 import BusStopListPureComponent from "../components/BusStopListPureComponent";
 
@@ -28,55 +30,20 @@ export default function GoingOut () {
 			}
 		>
 			{sampleText != null ? (
-				<Text>{sampleText.slice(0, 10000)}</Text>
+				// <Text>{sampleText.slice(0, 10000)}</Text>
+				<Text>{sampleText}</Text>
 			) : (
 				<Text>No Data: {sampleText}</Text>
 			)}
 			<Button
-				title="Get last updated date"
+				title="Get bus stop list data"
 				onPress={() =>
-					getLastUpdatedDate().then((res) => setSampleText(res))
-				}
-			/>
-			<Button
-				title="Get data"
-				onPress={() =>
-					getData().then(
-						(res) => setSampleText(JSON.stringify(res)),
-						(err) => setSampleText("Error getting data")
+					GetBusStopList().then(
+						(res) => setSampleText(res.msg),
+						(err) => setSampleText("Error getting data " + err)
 					)
 				}
 			/>
-			<Button
-				title="Check DB Table"
-				onPress={() =>
-					BusStopTableCheck().then((res) => {
-						setSampleText(res);
-					})
-				}
-			/>
-			<Button
-				title="Store data"
-				onPress={() => storeData("Lorem ipsum")}
-			/>
-			<Button
-				title="Delete data"
-				onPress={() =>
-					DeleteBusStopList().then(
-						() => setSampleText("Deleted data"),
-						() => setSampleText("Error")
-					)
-				}
-			/>
-			<Button
-				title="Delete table"
-				onPress={() =>
-					DeleteTable("BusStopList").then(() =>
-						setSampleText("Deleted tables")
-					)
-				}
-			/>
-			<Text>Add some bus stops</Text>
 		</ScrollView>
 	);
 };

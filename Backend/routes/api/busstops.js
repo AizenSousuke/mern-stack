@@ -6,10 +6,10 @@ const { check, validationResult } = require("express-validator");
 // @route GET api/busstops
 // @desc Bus Stop Route
 // @access Public
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
 	// Gets all the bus stops
-	const busStops = BusStop.find();
-	res.send(busStops.Count);
+	const busStops = await BusStop.find();
+	res.status(200).json({ msg: "Bus Stop: " + busStops.length.toString() });
 });
 
 router.post(
