@@ -1,4 +1,4 @@
-import * as secrets from "../../secrets.json";
+import * as secrets from "../../config/default.json";
 import axios from "axios";
 import * as SQLite from "expo-sqlite";
 
