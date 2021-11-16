@@ -11,6 +11,7 @@ import {
 	DeleteTable,
 	GetBusStopList,
 	getBusStops,
+	GetBusStop,
 } from "../api/api";
 import BusStopListPureComponent from "../components/BusStopListPureComponent";
 
@@ -38,8 +39,8 @@ export default function GoingOut () {
 			<Button
 				title="Get bus stop list data"
 				onPress={() =>
-					GetBusStopList().then(
-						(res) => setSampleText(res.msg),
+					GetBusStop(44229).then(
+						(res) => setSampleText(res.Description),
 						(err) => setSampleText("Error getting data " + err)
 					)
 				}

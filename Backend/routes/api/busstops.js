@@ -3,13 +3,24 @@ const router = express.Router();
 const BusStop = require("../../models/BusStop");
 const { check, validationResult } = require("express-validator");
 
-// @route GET api/busstops
-// @desc Bus Stop Route
-// @access Public
 router.get("/", async (req, res) => {
-	// Gets all the bus stops
-	const busStops = await BusStop.find();
-	res.status(200).json({ msg: "Bus Stop: " + busStops.length.toString() });
+	const code = req.query.code;
+	if (!code) {
+		return res.status(422).json({ msg: "Please add a query for code" });
+	}
+
+	try {
+		const busStop = await BusStop.findOne({ BusStopCode: code });
+		if (busStop == null) {
+			return res
+				.status(404)
+				.json({ msg: "No bus stop with that code found" });
+		}
+		return res.status(200).json(busStop);
+	} catch (err) {
+		console.error(err.message);
+		return res.status(500).send("Server error");
+	}
 });
 
 router.post(
@@ -19,8 +30,8 @@ router.post(
 		check("BusStopCode", "Bus Stop Code is required").not().isEmpty(),
 		check("RoadName", "Road Name is required").not().isEmpty(),
 		check("Description", "Description is required").not().isEmpty(),
-		// check("Longitude", "Longitude is required").not().isEmpty(),
-		// check("Latitude", "Latitude is required").not().isEmpty(),
+		check("Longitude", "Longitude is required").not().isEmpty(),
+		check("Latitude", "Latitude is required").not().isEmpty(),
 	],
 	async (req, res) => {
 		const errors = validationResult(req);
@@ -70,22 +81,6 @@ router.post(
 		}
 	}
 );
-
-router.get("/:busStopCode", async (req, res) => {
-	const busStopCode = req.params.busStopCode;
-	try {
-		const busStop = await BusStop.findOne({ BusStopCode: busStopCode });
-		if (busStop == null) {
-			return res
-				.status(404)
-				.json({ msg: "No bus stop with that code found" });
-		}
-		res.status(200).json(busStop);
-	} catch (err) {
-		console.error(err.message);
-		return res.status(500).send("Server error");
-	}
-});
 
 // Export the module to be used in the main server js
 module.exports = router;

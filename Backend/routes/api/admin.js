@@ -17,7 +17,7 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 		let allBusStops = [];
 		let arrayOfPromises = [];
 
-		for (var pageSearched = 0; pageSearched < 1; pageSearched++) {
+		for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
 			arrayOfPromises.push(
 				await axios
 					.get(
