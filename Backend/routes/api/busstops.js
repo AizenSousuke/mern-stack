@@ -2,6 +2,13 @@ const express = require("express");
 const router = express.Router();
 const BusStop = require("../../models/BusStop");
 const { check, validationResult } = require("express-validator");
+const axios = require("axios");
+const config = require("config");
+
+const header = {
+	Accept: "application/json",
+	AccountKey: config.get("LTADataMallAPI"),
+};
 
 router.get("/", async (req, res) => {
 	const code = req.query.code;
@@ -16,7 +23,16 @@ router.get("/", async (req, res) => {
 				.status(404)
 				.json({ msg: "No bus stop with that code found" });
 		}
-		return res.status(200).json(busStop);
+
+		// Use LTA API to get the buses data
+		const details = await axios.get(
+			"http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2",
+			{ headers: header, params: { BusStopCode: code } }
+		);
+
+		return res
+			.status(200)
+			.json({ msg: busStop, details: details.data });
 	} catch (err) {
 		console.error(err.message);
 		return res.status(500).send("Server error");

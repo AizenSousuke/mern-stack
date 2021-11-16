@@ -40,7 +40,7 @@ export default function GoingOut () {
 				title="Get bus stop list data"
 				onPress={() =>
 					GetBusStop(44229).then(
-						(res) => setSampleText(res.Description),
+						(res) => setSampleText(res.msg.Description),
 						(err) => setSampleText("Error getting data " + err)
 					)
 				}
