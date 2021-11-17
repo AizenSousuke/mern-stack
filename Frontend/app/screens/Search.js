@@ -34,7 +34,11 @@ const Search = () => {
 			// Check if there's data in the db table
 			SearchBusStop(search).then(
 				(res) => {
-					setBusStops(res.details);
+					if (res.details?.length > 0) {
+						setBusStops(res.details);
+					} else {
+						ToastAndroid.show("No results", ToastAndroid.SHORT);
+					}
 				},
 				(rej) => {
 					ToastAndroid.show("Search failed", ToastAndroid.SHORT);
