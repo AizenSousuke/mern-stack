@@ -20,7 +20,13 @@ export const GetBusStop = async (code) => {
 	return response.data;
 };
 
+export const SearchBusStop = async (term) => {
+	const response = await axios.get(`${api}/busstops/search?term=${term}`, header);
+	return response.data;
+};
+
 export const GetBus = async (number) => {
 	const response = await axios.get(`${api}/bus?number=${number}`);
 	return response.data;
-}
+};
+

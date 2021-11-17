@@ -10,29 +10,60 @@ const header = {
 	AccountKey: config.get("LTADataMallAPI"),
 };
 
-router.get("/", async (req, res) => {
-	const code = req.query.code;
-	if (!code) {
-		return res.status(422).json({ msg: "Please add a query for code" });
-	}
+const details = async (stop) => {
+	const data = await axios.get(
+		"http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2",
+		{ headers: header, params: { BusStopCode: stop } }
+	);
+	return data;
+};
 
+router.get("/", async (req, res) => {
 	try {
-		const busStop = await BusStop.findOne({ BusStopCode: code });
+		let code = req.query.code;
+		if (!code) {
+			return res.status(422).json({ msg: "Please add a query for code" });
+		}
+
+		let busStop;
+		busStop = await BusStop.findOne({ BusStopCode: code });
 		if (busStop == null) {
 			return res
 				.status(404)
 				.json({ msg: "No bus stop with that code found" });
 		}
 
-		// Use LTA API to get the buses data
-		const details = await axios.get(
-			"http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2",
-			{ headers: header, params: { BusStopCode: code } }
-		);
+		return res.status(200).json({ busStop: busStop });
+	} catch (err) {
+		console.error(err.message);
+		return res.status(500).send("Server error");
+	}
+});
 
-		return res
-			.status(200)
-			.json({ msg: busStop, details: details.data });
+router.get("/search", async (req, res) => {
+	try {
+		let term = req.query.term.toString();
+		if (!term) {
+			res.status(422).json({ msg: "Must include a term parameter" });
+		}
+
+		let busStops = [];
+		busStops = await BusStop.find({
+			$or: [
+				{ Description: { $regex: term, $options: "i" } },
+				{ RoadName: { $regex: term, $options: "i" } },
+				{ BusStopCode: { $regex: term, $options: "i" } },
+			],
+		});
+
+		if (busStops) {
+			return await res.status(200).json({
+				msg: `Successfully searched and found ${busStops.length} bus stops`,
+				details: busStops,
+			});
+		}
+
+		res.status(404).json({ msg: "No bus stops found" });
 	} catch (err) {
 		console.error(err.message);
 		return res.status(500).send("Server error");
