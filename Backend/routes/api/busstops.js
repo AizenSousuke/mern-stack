@@ -10,12 +10,12 @@ const header = {
 	AccountKey: config.get("LTADataMallAPI"),
 };
 
-const details = async (stop) => {
-	const data = await axios.get(
+const getBusStopDetails = async (stop) => {
+	const res = await axios.get(
 		"http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2",
 		{ headers: header, params: { BusStopCode: stop } }
 	);
-	return data;
+	return res.data;
 };
 
 router.get("/", async (req, res) => {
@@ -64,6 +64,22 @@ router.get("/search", async (req, res) => {
 		}
 
 		res.status(404).json({ msg: "No bus stops found" });
+	} catch (err) {
+		console.error(err.message);
+		return res.status(500).send("Server error");
+	}
+});
+
+router.get("/:code", async (req, res) => {
+	try {
+		const code = req.params.code;
+		if (!code) {
+			return res.status(422).json({ msg: "No bus stop code provided" });
+		}
+
+		const details = await getBusStopDetails(code);
+
+		return res.status(200).json({ data: details });
 	} catch (err) {
 		console.error(err.message);
 		return res.status(500).send("Server error");

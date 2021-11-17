@@ -16,9 +16,14 @@ export const GetBusStopList = async () => {
 };
 
 export const GetBusStop = async (code) => {
-	const response = await axios.get(`${api}/busstops?code=${code}`, header);
+	const response = await axios.get(`${api}/busstops/${code}`, header);
 	return response.data;
 };
+
+export const GetBusStopByCode = async (code) => {
+	const response = await axios.get(`${api}/busstops?code=${code}`, header);
+	return response.data;
+}
 
 export const SearchBusStop = async (term) => {
 	const response = await axios.get(`${api}/busstops/search?term=${term}`, header);

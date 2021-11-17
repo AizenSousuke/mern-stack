@@ -21,7 +21,7 @@ const renderItem = ({ item }) => (
 
 const Search = () => {
 	const [search, updateSearch] = useState("");
-	const [busStops, setbusStops] = useState([]);
+	const [busStops, setBusStops] = useState([]);
 	const searchLength = 1;
 	const pageSearchLength = 11;
 	const limitResultsPerPage = 5;
@@ -32,15 +32,14 @@ const Search = () => {
 		// Search for bus stops
 		if (search.length >= searchLength) {
 			// Check if there's data in the db table
-			SearchBusStop(search).then((res) => {
-				console.log(res);
-				setBusStops(res);
-			}, (rej) => {
-				ToastAndroid.show(
-					"Search failed",
-					ToastAndroid.SHORT
-				);
-			});
+			SearchBusStop(search).then(
+				(res) => {
+					setBusStops(res.details);
+				},
+				(rej) => {
+					ToastAndroid.show("Search failed", ToastAndroid.SHORT);
+				}
+			);
 		} else {
 			ToastAndroid.show(
 				"Enter at least 1 character.",
@@ -61,7 +60,6 @@ const Search = () => {
 				<SearchBar
 					placeholder={"Search for a bus stop"}
 					onChangeText={(value) => {
-						// console.log("Value: " + value);
 						updateSearch(value);
 					}}
 					onSubmitEditing={() => {

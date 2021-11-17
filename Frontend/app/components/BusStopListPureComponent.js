@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { getBusArrival, getData } from "../api/api";
+import { GetBusStop } from "../api/api";
 import { Pressable } from "react-native";
 import { View, Text } from "react-native";
 import Collapsible from "react-native-collapsible";
@@ -20,18 +20,13 @@ export default class BusStopListPureComponent extends PureComponent {
 	}
 
 	getBusStopData() {
-		getBusArrival(this.props.code)
+		GetBusStop(this.props.code)
 			.then((res) => {
 				this.setState(
 					(prevState) => {
-						return { ...prevState, busStopData: res };
+						return { ...prevState, busStopData: res.data };
 					},
 					() => {
-						// console.log("Set bus stop data");
-						// console.log(
-						// 	"state " +
-						// 		JSON.stringify(this.state.busStopData.Services)
-						// );
 					}
 				);
 			})

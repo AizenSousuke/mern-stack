@@ -3,15 +3,7 @@ import { Button } from "react-native";
 import { View, Text, RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import {
-	BusStopTableCheck,
-	DeleteBusStopList,
-	getData,
-	getLastUpdatedDate,
-	storeData,
-	DeleteTable,
-	GetBusStopList,
-	getBusStops,
-	GetBusStop,
+	GetBusStopByCode,
 } from "../api/api";
 import BusStopListPureComponent from "../components/BusStopListPureComponent";
 
@@ -39,7 +31,7 @@ export default function GoingOut () {
 			<Button
 				title="Get bus stop list data"
 				onPress={() =>
-					GetBusStop(44229).then(
+					GetBusStopByCode(44229).then(
 						(res) => setSampleText(res.busStop.Description),
 						(err) => setSampleText("Error getting data " + err)
 					)
