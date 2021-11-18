@@ -29,7 +29,7 @@ router.get("/", auth, async (req, res) => {
 
 router.put(
 	"/",
-	[check("settings", "Settings Data Structure is required").notEmpty()],
+	[check("settings", "Settings data structure is required").notEmpty()],
 	auth,
 	async (req, res) => {
 		try {
@@ -56,5 +56,20 @@ router.put(
 		}
 	}
 );
+
+router.delete("/", auth, async (req, res) => {
+	try {
+		const user = req.user;
+		let settings = await Settings.findOneAndDelete({ UserId: user.id });
+		if (!settings) {
+			return res.status(404).json({ msg: "User settings not found" });
+		}
+
+		return res.status(200).json({ msg: "Successfully deleted settings" });
+	} catch (err) {
+		console.error(err.message);
+		return res.status(500).json({ msg: "Server error" });
+	}
+});
 
 module.exports = router;

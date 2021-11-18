@@ -37,7 +37,7 @@ const Search = () => {
 					if (res.details?.length > 0) {
 						setBusStops(res.details);
 					} else {
-						ToastAndroid.show("No results", ToastAndroid.SHORT);
+						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					}
 				},
 				(rej) => {

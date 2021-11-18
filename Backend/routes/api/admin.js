@@ -4,7 +4,9 @@ const auth = require("../../middleware/auth");
 const axios = require("axios");
 const config = require("config");
 const BusStop = require("../../models/BusStop");
+const User = require("../../models/User");
 const mongoose = require("mongoose");
+const { check, validationResult } = require("express-validator");
 
 router.get("/", (req, res) => {
 	return res.status(200);
@@ -12,6 +14,8 @@ router.get("/", (req, res) => {
 
 router.put("/UpdateBusStopList", auth, async (req, res) => {
 	// Check if logged in user is an admin
+	// Note that auth does not update when admin flag is set in db manually
+	console.log("User is admin: " + req.user.isAdmin);
 	if (req.user.isAdmin) {
 		// Get all the bus stops from LTA
 		let allBusStops = [];
@@ -88,10 +92,44 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 					.json({ msg: "Server error", error: err.message });
 			});
 	} else {
-		return res
-			.status(403)
-			.json({ msg: "You must be an admin to do this" });
+		return res.status(403).json({ msg: "You must be an admin to do this" });
 	}
 });
+
+router.put(
+	"/setAdmin",
+	[
+		check(
+			"email",
+			"Please provide the email address of the user that you want to set an admin as"
+		).isEmail(),
+		check("isAdmin", "Please set true or false").isBoolean(),
+	],
+	auth,
+	async (req, res) => {
+		try {
+			const user = req.user;
+			if (!user.isAdmin) {
+				return res
+					.status(403)
+					.json({ msg: "You must be an admin to do this" });
+			}
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				return res.status(422).json({ msg: errors.array() });
+			}
+			const { email, isAdmin } = req.body;
+			const updatedUser = await User.findOneAndUpdate(
+				{ email: email },
+				{ isAdmin: isAdmin }
+			);
+			if (!updatedUser) {
+				return res.status(404).json({ msg: "No user found" });
+			}
+
+			return res.status(200).json({ msg: "Successfully set admin" });
+		} catch (err) {}
+	}
+);
 
 module.exports = router;
