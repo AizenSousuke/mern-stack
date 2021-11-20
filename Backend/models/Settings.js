@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const SettingsModel = new mongoose.Schema({
+const SettingsSchema = new mongoose.Schema({
     UserId: {
         // Connect to an Id in another Model
         type: mongoose.Schema.Types.ObjectId,
@@ -22,4 +22,4 @@ const SettingsModel = new mongoose.Schema({
     }
 });
 
-module.exports = Settings = mongoose.model('settings', SettingsModel);
+module.exports = Settings = mongoose.model('settings', SettingsSchema);

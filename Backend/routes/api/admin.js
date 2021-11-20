@@ -96,7 +96,7 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 	}
 });
 
-router.put(
+router.patch(
 	"/setAdmin",
 	[
 		check(
