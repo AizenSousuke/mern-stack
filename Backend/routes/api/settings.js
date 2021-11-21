@@ -8,9 +8,10 @@ const isLoggedIn = require("../../middleware/isLoggedIn");
 
 router.get("/", auth, async (req, res) => {
 	try {
-		console.log(`Req User:` + JSON.stringify(req.user));
+		// console.log(`Req User:` + JSON.stringify(req.user));
+		// console.log("Req user Id:" + req.user.Id);
 		const settings = await Settings.findOne({
-			UserId: req.user.id,
+			UserId: req.user.Id,
 		}).populate("UserId", "Name");
 
 		if (!settings) {

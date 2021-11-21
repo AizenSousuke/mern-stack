@@ -76,7 +76,7 @@ router.post(
 			// Return jsonwebtoken (so user can log in straightaway)
 			const payload = {
 				user: {
-					id: user.id,
+					Id: user.id,
 					IsAdmin: user.IsAdmin,
 				},
 			};
