@@ -11,7 +11,7 @@ const passport = require("passport");
 // Using the auth middleware to check the json web token
 router.get("/", authMiddleware, async (req, res) => {
 	try {
-		const user = await UserModel.findById(req.user.id).select("-password");
+		const user = await UserModel.findById(req.user.id).select("-Password");
 		if (!user) {
 			return res.status(401).json({ msg: "No user is logged in" });
 		}
@@ -45,10 +45,10 @@ router.post(
 	"/signin",
 	[
 		check(
-			"email",
+			"Email",
 			"Email is required. Please enter a valid email."
 		).isEmail(),
-		check("password", "Password is required").exists(),
+		check("Password", "Password is required").exists(),
 	],
 	async (req, res) => {
 		try {
@@ -57,17 +57,17 @@ router.post(
 				return res.status(400).json({ msg: errors.array() });
 			}
 
-			const { email, password } = req.body;
+			const { Email, Password } = req.body;
 
 			const user = await UserModel.findOne({
-				email: email,
+				Email: Email,
 			});
 
 			if (!user) {
 				return res.status(400).json({ msg: "Invalid Credentials" });
 			}
 
-			const isMatch = await bcrypt.compare(password, user.password);
+			const isMatch = await bcrypt.compare(Password, user.Password);
 
 			if (!isMatch) {
 				return res.status(400).json({ msg: "Invalid Password" });
@@ -77,7 +77,7 @@ router.post(
 			const payload = {
 				user: {
 					id: user.id,
-					isAdmin: user.isAdmin,
+					IsAdmin: user.IsAdmin,
 				},
 			};
 

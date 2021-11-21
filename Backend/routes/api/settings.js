@@ -3,13 +3,15 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const Settings = require("../../models/Settings");
 const { check, validationResult } = require("express-validator");
+const passport = require("passport");
+const isLoggedIn = require("../../middleware/isLoggedIn");
 
 router.get("/", auth, async (req, res) => {
 	try {
-		console.log(`User Id: ${req.user.id}`);
+		console.log(`Req User:` + JSON.stringify(req.user));
 		const settings = await Settings.findOne({
 			UserId: req.user.id,
-		}).populate("UserId", "name");
+		}).populate("UserId", "Name");
 
 		if (!settings) {
 			return res

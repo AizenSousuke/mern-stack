@@ -15,8 +15,8 @@ router.get("/", (req, res) => {
 router.put("/UpdateBusStopList", auth, async (req, res) => {
 	// Check if logged in user is an admin
 	// Note that auth does not update when admin flag is set in db manually
-	console.log("User is admin: " + req.user.isAdmin);
-	if (req.user.isAdmin) {
+	console.log("User is admin: " + req.user.IsAdmin);
+	if (req.user.IsAdmin) {
 		// Get all the bus stops from LTA
 		let allBusStops = [];
 		let arrayOfPromises = [];
@@ -100,16 +100,16 @@ router.patch(
 	"/setAdmin",
 	[
 		check(
-			"email",
+			"Email",
 			"Please provide the email address of the user that you want to set an admin as"
 		).isEmail(),
-		check("isAdmin", "Please set true or false").isBoolean(),
+		check("IsAdmin", "Please set true or false").isBoolean(),
 	],
 	auth,
 	async (req, res) => {
 		try {
 			const user = req.user;
-			if (!user.isAdmin) {
+			if (!user.IsAdmin) {
 				return res
 					.status(403)
 					.json({ msg: "You must be an admin to do this" });
@@ -118,10 +118,10 @@ router.patch(
 			if (!errors.isEmpty()) {
 				return res.status(422).json({ msg: errors.array() });
 			}
-			const { email, isAdmin } = req.body;
+			const { Email, IsAdmin } = req.body;
 			const updatedUser = await User.findOneAndUpdate(
-				{ email: email },
-				{ isAdmin: isAdmin }
+				{ Email: Email },
+				{ IsAdmin: IsAdmin }
 			);
 			if (!updatedUser) {
 				return res.status(404).json({ msg: "No user found" });

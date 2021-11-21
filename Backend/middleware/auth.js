@@ -1,14 +1,19 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const passport = require("passport");
 
 module.exports = (req, res, next) => {
+	if (req.user) {
+		next();
+		return res.status(200);
+	}
+
 	// Get token from headers
 	const token = req.header("x-auth-token");
 
 	// Check if no token is provided
 	if (!token) {
 		console.log("No token");
+
 		return res
 			.status(401)
 			.json({ msg: "No token provided. Authorization denied." });

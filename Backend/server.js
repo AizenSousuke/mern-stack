@@ -6,8 +6,9 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 const config = require("config");
 const UserModel = require("./models/User");
+const session = require("express-session");
 
-// Passport 
+// Passport
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 
@@ -20,20 +21,24 @@ passport.use(
 			profileFields: ["id", "emails", "name"],
 		},
 		async (accessToken, refreshToken, profile, cb) => {
-			// console.log("Profile: " + JSON.stringify(profile));
+			console.log("Profile: " + JSON.stringify(profile));
 			const user = await UserModel.findOne({
-				email: profile.emails[0].value,
-			});
+				Email: profile.emails[0].value,
+			}).select("-Password");
 			if (!user) {
 				const newUser = new User({
-					userid: profile.id,
-					name: profile.name.givenName,
-					email: profile.emails[0].value,
+					UserId: profile.id,
+					Name: profile.name.givenName,
+					Email: profile.emails[0].value,
 				});
 
 				await newUser.save();
-				return cb(null, newUser);
+
+				const user = await User.findOne({Email: profile.emails[0].value}).select("-Password");
+				console.log("User in facebook: " + JSON.stringify(user));
+				return cb(null, user);
 			} else {
+				console.log("User in facebook 2: " + JSON.stringify(user));
 				return cb(null, user);
 			}
 		}
@@ -45,9 +50,8 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-	done(null, { id: user.id, name: user.name, email: user.email });
+	done(null, { Id: user._id, UserId: user.UserId, Name: user.Name, Email: user.Email });
 });
-
 
 app.listen(PORT, () => {
 	console.log("Listening on port %s", PORT);
@@ -59,7 +63,9 @@ connectDB();
 // Adds middlewares
 // Add body-parser middleware
 app.use(express.json({ extended: false }));
+app.use(session({ secret: config.get("jwtSecret") }));
 app.use(passport.initialize("facebook"));
+app.use(passport.session());
 
 // Add CORS
 app.use(cors());

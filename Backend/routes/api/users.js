@@ -17,10 +17,10 @@ router.get("/", async (req, res) => {
 router.post(
 	"/",
 	[
-		check("name", "Name is required").not().isEmpty(),
-		check("email", "Please include a valid email").isEmail(),
+		check("Name", "Name is required").not().isEmpty(),
+		check("Email", "Please include a valid email").isEmail(),
 		check(
-			"password",
+			"Password",
 			"Please enter a password with 6 or more characters"
 		).isLength({ min: 6 }),
 	],
@@ -29,7 +29,7 @@ router.post(
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
-		const { name, email, password } = req.body;
+		const { Name, Email, Password } = req.body;
 
 		// Session
 		const session = await UserModel.startSession();
@@ -37,7 +37,7 @@ router.post(
 		session.startTransaction();
 		try {
 			// See if user exists
-			let user = await UserModel.findOne({ email }).session(session);
+			let user = await UserModel.findOne({ Email }).session(session);
 
 			if (user) {
 				await session.endSession();
@@ -47,17 +47,17 @@ router.post(
 			}
 
 			// Get users gravatar
-			const avatar = gravatar.url(email, {
+			const Avatar = gravatar.url(Email, {
 				s: "200",
 				r: "pg",
 				d: "mm",
 			});
 
-			user = new User({ name, email, avatar, password });
+			user = new User({ Name, Email, Avatar, Password });
 
 			// Encrypt password
 			const salt = await bcrypt.genSalt(10);
-			user.password = await bcrypt.hash(password, salt);
+			user.Password = await bcrypt.hash(Password, salt);
 			await user.save({ session });
 
 			// Return jsonwebtoken (so user can log in straightaway)
@@ -88,7 +88,7 @@ router.post(
 );
 
 router.delete("/", async (req, res) => {
-	const email = req.query.email;
+	const Email = req.query.Email;
 
 	if (!email) {
 		res.status(422).json({ err: "Invalid email address" });
@@ -100,7 +100,7 @@ router.delete("/", async (req, res) => {
 		// Transaction
 		session.startTransaction();
 
-		let user = await UserModel.findOne({ email: email }).session(session);
+		let user = await UserModel.findOne({ Email: Email }).session(session);
 
 		if (!user) {
 			await session.endSession();
@@ -113,7 +113,7 @@ router.delete("/", async (req, res) => {
 		await session.endSession();
 		return res
 			.status(200)
-			.json({ msg: `Removed user with email: ${email}` });
+			.json({ msg: `Removed user with email: ${Email}` });
 	} catch (err) {
 		console.error(err.message);
 		await session.abortTransaction();
