@@ -26,8 +26,7 @@ export default class BusStopListPureComponent extends PureComponent {
 					(prevState) => {
 						return { ...prevState, busStopData: res.data };
 					},
-					() => {
-					}
+					() => {}
 				);
 			})
 			.catch((err) => console.log(err));
@@ -107,6 +106,7 @@ export default class BusStopListPureComponent extends PureComponent {
 														console.log(
 															"Adding to Going Out List"
 														);
+														
 													}
 												);
 											}}

@@ -23,9 +23,7 @@ const Search = () => {
 	const [search, updateSearch] = useState("");
 	const [busStops, setBusStops] = useState([]);
 	const searchLength = 1;
-	const pageSearchLength = 11;
 	const limitResultsPerPage = 5;
-	const limitResults = 10;
 
 	const searchForBusStops = () => {
 		console.log("Searching for bus stops");
