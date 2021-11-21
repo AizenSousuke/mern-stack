@@ -3,6 +3,7 @@ const config = require("config");
 
 module.exports = (req, res, next) => {
 	if (req.user) {
+		// Facebook login
 		next();
 		return res.status(200);
 	}

@@ -63,7 +63,7 @@ connectDB();
 // Adds middlewares
 // Add body-parser middleware
 app.use(express.json({ extended: false }));
-app.use(session({ secret: config.get("jwtSecret") }));
+app.use(session({ secret: config.get("jwtSecret"), saveUninitialized: false, resave: false }));
 app.use(passport.initialize("facebook"));
 app.use(passport.session());
 
