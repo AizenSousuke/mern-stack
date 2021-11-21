@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const passport = require("passport");
 
 module.exports = (req, res, next) => {
 	// Get token from headers
@@ -7,6 +8,7 @@ module.exports = (req, res, next) => {
 
 	// Check if no token is provided
 	if (!token) {
+		console.log("No token");
 		return res
 			.status(401)
 			.json({ msg: "No token provided. Authorization denied." });
@@ -18,6 +20,6 @@ module.exports = (req, res, next) => {
 		req.user = decoded.user;
 		next();
 	} catch (err) {
-		res.status(401).json({ msg: "Token is not valid" });
+		return res.status(401).json({ msg: "Token is not valid" });
 	}
 };

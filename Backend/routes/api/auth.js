@@ -32,7 +32,7 @@ router.get(
 	"/facebook/callback",
 	passport.authenticate("facebook", {
 		scope: ["email"],
-		failureRedirect: "/",
+		failureRedirect: "/"
 	}),
 	(req, res) => {
 		return res
