@@ -36,6 +36,7 @@ router.put(
 	auth,
 	async (req, res) => {
 		try {
+			console.log("Body:" + JSON.stringify(req.body));
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
 				res.status(422).json({ msg: errors.array() });
@@ -45,8 +46,8 @@ router.put(
 
 			// Create if it does not exist
 			let UpdatedSettings = await Settings.findOneAndUpdate(
-				{ UserId: req.user.id },
-				{ Settings: settings, DateUpdated: Date.now() },
+				{ UserId: req.user.Id },
+				{ Settings: JSON.stringify(settings), DateUpdated: Date.now() },
 				{ upsert: true, new: true, setDefaultsOnInsert: true }
 			);
 
