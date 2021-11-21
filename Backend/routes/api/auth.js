@@ -6,17 +6,40 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
+const passport = require("passport");
 
 // Using the auth middleware to check the json web token
 router.get("/", authMiddleware, async (req, res) => {
 	try {
 		const user = await UserModel.findById(req.user.id).select("-password");
-		res.status(200).json({ msg: user });
+		if (!user) {
+			return res.status(401).json({ msg: "No user is logged in" });
+		}
+
+		return res.status(200).json({ msg: user });
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ msg: "Server error" });
 	}
 });
+
+router.get(
+	"/facebook",
+	passport.authenticate("facebook", { scope: ["email"] })
+);
+
+router.get(
+	"/facebook/callback",
+	passport.authenticate("facebook", {
+		scope: ["email"],
+		failureRedirect: "/",
+	}),
+	(req, res) => {
+		return res
+			.status(200)
+			.json({ msg: "Logged in to Facebook successfully" });
+	}
+);
 
 router.post(
 	"/signin",
@@ -61,7 +84,7 @@ router.post(
 			jwt.sign(
 				payload,
 				config.get("jwtSecret"),
-				{ expiresIn: 3600000 },
+				{ expiresIn: 3600 },
 				(err, token) => {
 					if (err) throw err;
 					return res.json({ token });
