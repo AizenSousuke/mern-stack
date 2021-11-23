@@ -103,11 +103,7 @@ export default class BusStopListPureComponent extends PureComponent {
 															!state.overlayVisible,
 													}),
 													() => {
-														console.log(
-															"Adding to Going Out List"
-														);
 														SaveSettings(code);
-														
 													}
 												);
 											}}
@@ -124,8 +120,9 @@ export default class BusStopListPureComponent extends PureComponent {
 															!state.overlayVisible,
 													}),
 													() => {
-														console.log(
-															"Adding to Going Home List"
+														SaveSettings(
+															code,
+															false
 														);
 													}
 												);
@@ -153,7 +150,6 @@ export default class BusStopListPureComponent extends PureComponent {
 						</Pressable>
 					)}
 				</ListItem>
-				{/* <Text>{JSON.stringify(this.state.busStopData)}</Text> */}
 				<Collapsible collapsed={this.state.isCollapsed}>
 					{this.state.busStopData != null ? (
 						<BusStop busStopData={this.state.busStopData} />

@@ -76,3 +76,8 @@ export const SaveSettings = async (code, GoingOut = true) => {
 		return response.data;
 	}
 };
+
+export const SignIn = async () => {
+	const result = await axios.get(`${api}/auth/facebook`, header);
+	return result.data;
+}

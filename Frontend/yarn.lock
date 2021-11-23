@@ -1995,6 +1995,13 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
+"@react-native-async-storage/async-storage@^1.15.11":
+  version "1.15.11"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.15.11.tgz#da625b906529076414c32fd337d813b565149858"
+  integrity sha512-l/I+PK+lh5M25QSdk44aX+UR63ian2d2CSx6WbydwU+RUZmKP7eOEPe+OeaTWgfOFSVtlEqEcP2AbW2YM7ukMA==
+  dependencies:
+    merge-options "^3.0.4"
+
 "@react-native-community/art@^1.1.2":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/art/-/art-1.2.0.tgz#386d95393f6042d9006f9d4bc6063fb898794460"
@@ -7234,7 +7241,7 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -7546,6 +7553,11 @@ is-path-inside@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-3.0.3.tgz#d231362e53a07ff2b0e0ea7fed049161ffd16283"
   integrity sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==
+
+is-plain-obj@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-2.1.0.tgz#45e42e37fccf1f40da8e5f76ee21515840c09287"
+  integrity sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==
 
 is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   version "2.0.4"
@@ -8930,6 +8942,13 @@ merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
   integrity sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
+
+merge-options@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/merge-options/-/merge-options-3.0.4.tgz#84709c2aa2a4b24c1981f66c179fe5565cc6dbb7"
+  integrity sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==
+  dependencies:
+    is-plain-obj "^2.1.0"
 
 merge-stream@^1.0.1:
   version "1.0.1"
@@ -11321,6 +11340,11 @@ react-native-collapsible@^1.6.0:
   resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-1.6.0.tgz#ca261ffff16914f872059bb0972e3a78c4b37f9c"
   integrity sha512-beZjdgbT9Y/Pg591Xy5XkKG20HffJiVad4n9bfcUF/f783A+tvOVXnqvbS58Lkaym93mi4jcDPMuW9Vc1t6rqg==
 
+react-native-config@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.5.tgz#6fe5895410b75e44fe4f4bf00caaf894a0981f3a"
+  integrity sha512-5oiAsoW88SOYDg/0cleJ2vJDqv98FJUbFQYEnH4sdMtEn3AAT3lb7BkTGW8HO/t3Vk9VOruwxUUnO4tzuxzCsw==
+
 react-native-elements@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-3.4.2.tgz#66602be9c5e0e0a2a831913adec80ff6518d1ee2"
@@ -11433,6 +11457,14 @@ react-native-web@~0.13.12:
     normalize-css-color "^1.0.2"
     prop-types "^15.6.0"
     react-timer-mixin "^0.13.4"
+
+react-native-webview@^11.14.3:
+  version "11.14.3"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.14.3.tgz#31da92b8fd21f4d1192e057867478598153a6f5d"
+  integrity sha512-y/+7mE6by/uLGSIVmlp1xpJvL37rAuOL90EWTJYKZWL5iM8lN+pQkj/zwcPcGu4zNmuHdXXUk/cMR8hE89mNYg==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
 
 "react-native@https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz":
   version "0.63.2"
