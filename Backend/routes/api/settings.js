@@ -16,7 +16,7 @@ router.get("/", auth, async (req, res) => {
 
 		if (!settings) {
 			return res
-				.status(400)
+				.status(404)
 				.json({ msg: "There is no settings for this user" });
 		}
 
@@ -32,7 +32,10 @@ router.get("/", auth, async (req, res) => {
 
 router.put(
 	"/",
-	[check("settings", "Settings data structure is required").notEmpty()],
+	[
+		check("settings", "Settings data structure is required")
+			.notEmpty()
+	],
 	auth,
 	async (req, res) => {
 		try {
@@ -47,7 +50,7 @@ router.put(
 			// Create if it does not exist
 			let UpdatedSettings = await Settings.findOneAndUpdate(
 				{ UserId: req.user.Id },
-				{ Settings: JSON.stringify(settings), DateUpdated: Date.now() },
+				{ Settings: settings, DateUpdated: Date.now() },
 				{ upsert: true, new: true, setDefaultsOnInsert: true }
 			);
 
@@ -64,7 +67,7 @@ router.put(
 router.delete("/", auth, async (req, res) => {
 	try {
 		const user = req.user;
-		let settings = await Settings.findOneAndDelete({ UserId: user.id });
+		let settings = await Settings.findOneAndDelete({ UserId: user.Id });
 		if (!settings) {
 			return res.status(404).json({ msg: "User settings not found" });
 		}

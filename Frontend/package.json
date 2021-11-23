@@ -21,6 +21,7 @@
 		"expo-sqlite": "~9.2.1",
 		"expo-status-bar": "~1.0.4",
 		"fuse.js": "^6.4.6",
+		"lodash": "^4.17.21",
 		"moment": "^2.29.1",
 		"react": "16.13.1",
 		"react-dom": "16.13.1",

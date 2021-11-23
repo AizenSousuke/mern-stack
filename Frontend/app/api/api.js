@@ -10,6 +10,10 @@ const header = {
 	Accept: "application/json",
 };
 
+// Set default headers
+axios.defaults.headers.common["X-Auth-Token"] =
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7IklkIjoiNjE5YTBjMDhlMzE1ZGJkOGEzMDJjMDVlIiwiSXNBZG1pbiI6ZmFsc2V9LCJpYXQiOjE2Mzc1ODc1MzYsImV4cCI6MTY3MzU4NzUzNn0.uclLp8k7_18f1nrVH9LFwsfETT1ZRv6yJ55NALIM1O0";
+
 export const GetBusStopList = async () => {
 	const response = await axios.get(`${api}/busstops`, header);
 	return response.data;
@@ -23,10 +27,13 @@ export const GetBusStop = async (code) => {
 export const GetBusStopByCode = async (code) => {
 	const response = await axios.get(`${api}/busstops?code=${code}`, header);
 	return response.data;
-}
+};
 
 export const SearchBusStop = async (term) => {
-	const response = await axios.get(`${api}/busstops/search?term=${term}`, header);
+	const response = await axios.get(
+		`${api}/busstops/search?term=${term}`,
+		header
+	);
 	return response.data;
 };
 
@@ -35,3 +42,37 @@ export const GetBus = async (number) => {
 	return response.data;
 };
 
+export const SaveSettings = async (code, GoingOut = true) => {
+	const prevSettings = await axios
+		.get(`${api}/settings`, header)
+		.then((response) => {
+			return response.data.settings.Settings;
+		})
+		.catch((err) => {
+			return { GoingOut: [], GoingHome: [] };
+		});
+
+	if (GoingOut) {
+		const newSettings = Object.assign({}, prevSettings, {
+			GoingOut: [
+				...prevSettings.GoingOut.filter((c) => c !== code),
+				code,
+			],
+		});
+		const response = await axios.put(`${api}/settings`, {
+			settings: newSettings,
+		});
+		return response.data;
+	} else {
+		const newSettings = Object.assign({}, prevSettings, {
+			GoingHome: [
+				...prevSettings.GoingHome.filter((c) => c !== code),
+				code,
+			],
+		});
+		const response = await axios.put(`${api}/settings`, {
+			settings: newSettings,
+		});
+		return response.data;
+	}
+};

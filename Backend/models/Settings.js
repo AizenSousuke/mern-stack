@@ -7,8 +7,9 @@ const SettingsSchema = new mongoose.Schema({
         ref: 'user',
     },
     Settings: {
-        type: String,
-        required: true
+        type: Object,
+        required: true,
+        default: new Object
     },
     DateCreated: {
         type: Date,

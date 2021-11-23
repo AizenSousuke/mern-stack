@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { GetBusStop } from "../api/api";
+import { GetBusStop, SaveSettings } from "../api/api";
 import { Pressable } from "react-native";
 import { View, Text } from "react-native";
 import Collapsible from "react-native-collapsible";
@@ -106,6 +106,7 @@ export default class BusStopListPureComponent extends PureComponent {
 														console.log(
 															"Adding to Going Out List"
 														);
+														SaveSettings(code);
 														
 													}
 												);
