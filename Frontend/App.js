@@ -52,11 +52,9 @@ const Home = ({ navigation }) => {
 	);
 };
 
-const _handleURL = (event) => {
-	console.log("Handling URL: " + event.url);
-};
-
 export default function App() {
+	const [authToken, setAuthToken] = useState(null);
+
 	useEffect(() => {
 		Linking.addEventListener("url", _handleURL);
 		console.log("added event listener");
@@ -66,6 +64,14 @@ export default function App() {
 			console.log("removed event listener");
 		};
 	});
+
+	const _handleURL = (event) => {
+		console.log("Handling URL into app: " + event.url);
+		const token = (event.url.split("token=")[1]).split("#_=_")[0];
+		console.log("token " + token);
+		// Save token
+		setAuthToken(token);
+	};
 
 	return (
 		<NavigationContainer>

@@ -35,14 +35,14 @@ router.get(
 		failureRedirect: "/api/auth/facebook",
 	}),
 	(req, res) => {
-		console.log(req.headers);
+		// console.log(req.user.token);
 		return res
 			.status(302)
 			// .json({
 			// 	msg: "Logged in to Facebook successfully",
 			// 	data: req.user,
 			// })
-			.redirect("exp://192.168.68.117:19000");
+			.redirect("exp://192.168.68.117:19000" + `?token=${req.user.token}`);
 	}
 );
 
