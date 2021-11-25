@@ -34,12 +34,19 @@ passport.use(
 
 				await newUser.save();
 
-				const user = await User.findOne({Email: profile.emails[0].value}).select("-Password");
-				console.log("User in facebook: " + JSON.stringify(user));
-				return cb(null, user);
+				const user = await User.findOne({
+					Email: profile.emails[0].value,
+				}).select("-Password");
+				// console.log(
+				// 	"User in facebook after creating: " + JSON.stringify(user)
+				// );
+				return cb(null, { token: accessToken, user: user });
 			} else {
-				console.log("User in facebook 2: " + JSON.stringify(user));
-				return cb(null, user);
+				// console.log(
+				// 	"User in facebook after reading from db: " +
+				// 		JSON.stringify(user)
+				// );
+				return cb(null, { token: accessToken, user: user });
 			}
 		}
 	)
@@ -50,7 +57,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-	done(null, { Id: user._id, UserId: user.UserId, Name: user.Name, Email: user.Email });
+	done(null, {
+		Id: user._id,
+		UserId: user.UserId,
+		Name: user.Name,
+		Email: user.Email,
+	});
 });
 
 app.listen(PORT, () => {
@@ -63,16 +75,25 @@ connectDB();
 // Adds middlewares
 // Add body-parser middleware
 app.use(express.json({ extended: false }));
-app.use(session({ secret: config.get("jwtSecret"), saveUninitialized: false, resave: false }));
+app.use(
+	session({
+		secret: config.get("jwtSecret"),
+		saveUninitialized: false,
+		resave: false,
+	})
+);
 app.use(passport.initialize("facebook"));
 app.use(passport.session());
 
 // Add CORS
 app.use(cors());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	);
+	next();
 });
 
 // Define routes

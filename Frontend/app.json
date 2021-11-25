@@ -28,6 +28,7 @@
 		"web": {
 			"favicon": "./assets/favicon.png"
 		},
-		"description": "Yet Another SG Bus App for Singapore Buses"
+		"description": "Yet Another SG Bus App for Singapore Buses",
+		"scheme": "yasgba"
 	}
 }

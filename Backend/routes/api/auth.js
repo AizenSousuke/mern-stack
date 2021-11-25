@@ -32,12 +32,17 @@ router.get(
 	"/facebook/callback",
 	passport.authenticate("facebook", {
 		scope: ["email"],
-		failureRedirect: "/"
+		failureRedirect: "/api/auth/facebook",
 	}),
 	(req, res) => {
+		console.log(req.headers);
 		return res
-			.status(200)
-			.json({ msg: "Logged in to Facebook successfully" });
+			.status(302)
+			// .json({
+			// 	msg: "Logged in to Facebook successfully",
+			// 	data: req.user,
+			// })
+			.redirect("exp://192.168.68.117:19000");
 	}
 );
 
