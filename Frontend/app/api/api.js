@@ -44,6 +44,14 @@ export const GetBus = async (number) => {
 	return response.data;
 };
 
+export const GetSettings = async () => {
+	const settings = await axios.get(`${api}/settings`, header);
+	if (settings) {
+		return settings.data.settings.Settings;
+	}
+	return null;
+}
+
 export const SaveSettings = async (code, GoingOut = true) => {
 	const prevSettings = await axios
 		.get(`${api}/settings`, header)

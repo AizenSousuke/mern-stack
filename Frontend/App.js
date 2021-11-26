@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Header } from "react-native-elements";
+import { GetSettings } from "./app/api/api";
 import SearchButton from "./app/components/SearchButton";
 import TabNavigator from "./app/components/TabNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,7 +13,7 @@ import * as WebBrowser from "expo-web-browser";
 
 const Stack = createStackNavigator();
 
-/// Don't move or it will cause issues with Tab Navigator
+// Don't move or it will cause issues with Tab Navigator
 const Home = ({ navigation }) => {
 	return (
 		<View style={{ flex: 1 }}>
@@ -53,7 +54,8 @@ const Home = ({ navigation }) => {
 };
 
 export default function App() {
-	const [authToken, setAuthToken] = useState(null);
+	const AuthContext = React.createContext(null);
+	const DataContext = React.createContext(null);
 
 	useEffect(() => {
 		Linking.addEventListener("url", _handleURL);
@@ -67,26 +69,34 @@ export default function App() {
 
 	const _handleURL = (event) => {
 		console.log("Handling URL into app: " + event.url);
-		const token = (event.url.split("token=")[1]).split("#_=_")[0];
+		const token = event.url.split("token=")[1].split("#_=_")[0];
 		console.log("token " + token);
 		// Save token
-		setAuthToken(token);
+		AuthContext.value = token;
+		_getData();
 	};
 
+	const _getData = async () => {		
+		const settings = await GetSettings();
+		console.log(settings);
+	}
+
 	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen
-					name="Home"
-					component={Home}
-					options={{ headerShown: false }}
-				/>
-				<Stack.Screen
-					name="Search"
-					component={Search}
-					options={{ headerShown: true }}
-				/>
-			</Stack.Navigator>
-		</NavigationContainer>
+		<AuthContext.Provider>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="Home"
+						component={Home}
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen
+						name="Search"
+						component={Search}
+						options={{ headerShown: true }}
+					/>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</AuthContext.Provider>
 	);
 }
