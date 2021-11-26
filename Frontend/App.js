@@ -81,7 +81,7 @@ export default function App() {
 	};
 
 	return (
-		<AuthProvider _token={authToken}>
+		<AuthProvider value={authToken}>
 			<NavigationContainer>
 				<Stack.Navigator>
 					<Stack.Screen
