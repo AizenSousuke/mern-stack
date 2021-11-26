@@ -10,6 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Search from "./app/screens/Search";
 import * as config from "./config/default.json";
 import * as WebBrowser from "expo-web-browser";
+import { AuthProvider } from "./app/auth/AuthContext";
 
 const Stack = createStackNavigator();
 
@@ -54,9 +55,7 @@ const Home = ({ navigation }) => {
 };
 
 export default function App() {
-	const AuthContext = React.createContext(null);
-	const DataContext = React.createContext(null);
-
+	const [authToken, setAuthToken] = useState(null);
 	useEffect(() => {
 		Linking.addEventListener("url", _handleURL);
 		console.log("added event listener");
@@ -72,17 +71,17 @@ export default function App() {
 		const token = event.url.split("token=")[1].split("#_=_")[0];
 		console.log("token " + token);
 		// Save token
-		AuthContext.value = token;
+		setAuthToken(token);
 		_getData();
 	};
 
-	const _getData = async () => {		
+	const _getData = async () => {
 		const settings = await GetSettings();
 		console.log(settings);
-	}
+	};
 
 	return (
-		<AuthContext.Provider>
+		<AuthProvider _token={authToken}>
 			<NavigationContainer>
 				<Stack.Navigator>
 					<Stack.Screen
@@ -97,6 +96,6 @@ export default function App() {
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
-		</AuthContext.Provider>
+		</AuthProvider>
 	);
 }

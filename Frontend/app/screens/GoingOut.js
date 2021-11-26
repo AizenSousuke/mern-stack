@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import Consumer from "../auth/AuthContext";
 
 export default function GoingOut() {
 	const [refreshing, setRefreshing] = useState(false);
@@ -13,6 +14,13 @@ export default function GoingOut() {
 					onRefresh={() => {}}
 				></RefreshControl>
 			}
-		></ScrollView>
+		>
+			<Consumer>
+				{(ctx) => {
+					console.log(ctx);
+					return <Text>{JSON.stringify(ctx)}</Text>
+				}}
+			</Consumer>
+		</ScrollView>
 	);
 }
