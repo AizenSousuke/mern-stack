@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { View, Linking } from "react-native";
+import { View, Linking, ToastAndroid } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Header } from "react-native-elements";
-import { GetSettings } from "./app/api/api";
+import { GetSettings, CheckToken } from "./app/api/api";
 import SearchButton from "./app/components/SearchButton";
 import TabNavigator from "./app/components/TabNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,6 +11,7 @@ import Search from "./app/screens/Search";
 import * as config from "./config/default.json";
 import * as WebBrowser from "expo-web-browser";
 import { AuthProvider } from "./app/context/AuthContext";
+import { SettingsProvider } from "./app/context/SettingsContext";
 
 const Stack = createStackNavigator();
 
@@ -28,7 +29,21 @@ const Home = ({ navigation }) => {
 					icon: "login",
 					color: "white",
 					onPress: async () => {
-						const result = await AsyncStorage.getItem(config.TOKEN);
+						var result = await AsyncStorage.getItem(config.TOKEN);
+
+						if (result) {
+							console.log(
+								"Getting token from async storage " + result
+							);
+
+							// Check if token is still valid
+							const valid = await CheckToken();
+							result = valid.data;
+							if (result) {
+								ToastAndroid.show("You are already logged in", 1000);
+							}
+						}
+
 						if (!result) {
 							// Get new token
 							console.log("Signing in");
@@ -67,10 +82,14 @@ export default function App() {
 		};
 	});
 
-	const _handleURL = (event) => {
+	const _handleURL = async (event) => {
 		console.log("Handling URL into app: " + event.url);
 		const token = event.url.split("token=")[1].split("#_=_")[0];
 		console.log("token " + token);
+		console.log("Saving token to async storage");
+		await AsyncStorage.setItem(config.TOKEN.toString(), token, (error) => {
+			console.error(error);
+		});
 		// Save token
 		setAuthToken(token);
 		_getData();
@@ -80,25 +99,26 @@ export default function App() {
 		const settings = await GetSettings();
 		console.log(settings);
 		setSettings(settings);
-
 	};
 
 	return (
 		<AuthProvider value={authToken}>
-			<NavigationContainer>
-				<Stack.Navigator>
-					<Stack.Screen
-						name="Home"
-						component={Home}
-						options={{ headerShown: false }}
-					/>
-					<Stack.Screen
-						name="Search"
-						component={Search}
-						options={{ headerShown: true }}
-					/>
-				</Stack.Navigator>
-			</NavigationContainer>
+			<SettingsProvider value={settings}>
+				<NavigationContainer>
+					<Stack.Navigator>
+						<Stack.Screen
+							name="Home"
+							component={Home}
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name="Search"
+							component={Search}
+							options={{ headerShown: true }}
+						/>
+					</Stack.Navigator>
+				</NavigationContainer>
+			</SettingsProvider>
 		</AuthProvider>
 	);
 }

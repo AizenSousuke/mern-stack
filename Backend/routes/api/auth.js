@@ -7,6 +7,8 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
+const https = require("https");
+const auth = require("../../middleware/auth");
 
 // Using the auth middleware to check the json web token
 router.get("/", authMiddleware, async (req, res) => {
@@ -38,13 +40,17 @@ router.get(
 		// console.log(req.user.token);
 		return res
 			.status(302)
-			// .json({
-			// 	msg: "Logged in to Facebook successfully",
-			// 	data: req.user,
-			// })
-			.redirect("exp://192.168.68.117:19000" + `?token=${req.user.token}`);
+			.redirect(
+				"exp://192.168.68.117:19000" + `?token=${req.user.token}`
+			);
 	}
 );
+
+router.get("/facebook/checkToken", auth, (req, res) => {
+	console.log("Hitting facebook/login");	
+	console.log(JSON.stringify(req.user));
+	return res.status(200).json({ data: req.isAuthenticated() });
+});
 
 router.post(
 	"/signin",

@@ -1,13 +1,13 @@
-import { useContext } from "react";
+import React, { createContext } from "react";
 
-const { Provider, Consumer } = useContext(null);
+const { Provider, Consumer } = createContext(null);
 
-const SettingsContext = (props) => {
+const SettingsProvider = (props) => {
 	return (
 		<Provider value={{ settings: props.value }}>{props.children}</Provider>
 	);
 };
 
-export { SettingsContext };
+export { SettingsProvider };
 
 export default Consumer;

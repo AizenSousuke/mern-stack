@@ -91,3 +91,8 @@ export const SignIn = async () => {
 	const result = await axios.get(`${api}/auth/facebook`, header);
 	return result.data;
 };
+
+export const CheckToken = async () => {
+	const result = await axios.get(`${api}/auth/facebook/checkToken`, header);
+	return result.data;
+}
