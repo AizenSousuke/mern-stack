@@ -2,6 +2,11 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 module.exports = (req, res, next) => {
+	if (!req.user) {
+		console.log("No user");
+		return res.status(401).json({ error: "No user" });
+	}
+
 	if (req.user) {
 		// Facebook login
 		next();

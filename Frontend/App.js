@@ -37,10 +37,22 @@ const Home = ({ navigation }) => {
 							);
 
 							// Check if token is still valid
-							const valid = await CheckToken();
+							const valid = await CheckToken().catch((error) => {
+								console.error(error);
+								return false;
+							});
+							if (!valid) {
+								ToastAndroid.show(
+									"Token is not valid. Please relogin.",
+									1000
+								);
+							}
 							result = valid.data;
 							if (result) {
-								ToastAndroid.show("You are already logged in", 1000);
+								ToastAndroid.show(
+									"You are already logged in",
+									1000
+								);
 							}
 						}
 
@@ -53,7 +65,9 @@ const Home = ({ navigation }) => {
 								URL
 							);
 							if (result) {
-								console.log(result);
+								console.log(
+									"Result: " + JSON.stringify(result)
+								);
 							}
 						}
 					},

@@ -47,6 +47,7 @@ router.get(
 );
 
 router.get("/facebook/checkToken", auth, (req, res) => {
+	// If there is a req.user
 	console.log("Hitting facebook/login");	
 	console.log(JSON.stringify(req.user));
 	return res.status(200).json({ data: req.isAuthenticated() });

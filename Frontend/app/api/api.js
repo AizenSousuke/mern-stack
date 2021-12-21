@@ -12,7 +12,7 @@ const header = {
 };
 
 // Set default headers
-axios.defaults.headers.common["X-Auth-Token"] =
+// axios.defaults.headers.common["X-Auth-Token"] =
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7IklkIjoiNjE5YTBjMDhlMzE1ZGJkOGEzMDJjMDVlIiwiSXNBZG1pbiI6ZmFsc2V9LCJpYXQiOjE2Mzc1ODc1MzYsImV4cCI6MTY3MzU4NzUzNn0.uclLp8k7_18f1nrVH9LFwsfETT1ZRv6yJ55NALIM1O0";
 // axios.defaults.headers.common["Referer"] = "exp://192.168.68.117:19000";
 

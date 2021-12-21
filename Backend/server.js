@@ -40,13 +40,13 @@ passport.use(
 				// console.log(
 				// 	"User in facebook after creating: " + JSON.stringify(user)
 				// );
-				return cb(null, { token: accessToken, user: user });
+				return cb(null, { accessToken: accessToken, refreshToken: refreshToken, user: user });
 			} else {
 				// console.log(
 				// 	"User in facebook after reading from db: " +
 				// 		JSON.stringify(user)
 				// );
-				return cb(null, { token: accessToken, user: user });
+				return cb(null, { accessToken: accessToken, refreshToken: refreshToken, user: user });
 			}
 		}
 	)

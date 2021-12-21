@@ -11,7 +11,9 @@ export default function GoingOut() {
 			refreshControl={
 				<RefreshControl
 					refreshing={refreshing}
-					onRefresh={() => {}}
+					onRefresh={() => {
+						console.log("Refreshing");
+					}}
 				></RefreshControl>
 			}
 		>
