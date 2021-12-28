@@ -7,63 +7,12 @@ const cors = require("cors");
 const config = require("config");
 const UserModel = require("./models/User");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 // Passport
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 
-passport.use(
-	new FacebookStrategy(
-		{
-			clientID: config.FACEBOOK_APP_ID,
-			clientSecret: config.FACEBOOK_APP_SECRET,
-			callbackURL: config.FACEBOOK_CALLBACK_URL,
-			profileFields: ["id", "emails", "name"],
-		},
-		async (accessToken, refreshToken, profile, cb) => {
-			console.log("Profile: " + JSON.stringify(profile));
-			const user = await UserModel.findOne({
-				Email: profile.emails[0].value,
-			}).select("-Password");
-			if (!user) {
-				const newUser = new User({
-					UserId: profile.id,
-					Name: profile.name.givenName,
-					Email: profile.emails[0].value,
-				});
-
-				await newUser.save();
-
-				const user = await User.findOne({
-					Email: profile.emails[0].value,
-				}).select("-Password");
-				// console.log(
-				// 	"User in facebook after creating: " + JSON.stringify(user)
-				// );
-				return cb(null, { accessToken: accessToken, refreshToken: refreshToken, user: user });
-			} else {
-				// console.log(
-				// 	"User in facebook after reading from db: " +
-				// 		JSON.stringify(user)
-				// );
-				return cb(null, { accessToken: accessToken, refreshToken: refreshToken, user: user });
-			}
-		}
-	)
-);
-
-passport.serializeUser((user, done) => {
-	done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-	done(null, {
-		Id: user._id,
-		UserId: user.UserId,
-		Name: user.Name,
-		Email: user.Email,
-	});
-});
 
 app.listen(PORT, () => {
 	console.log("Listening on port %s", PORT);
@@ -82,8 +31,60 @@ app.use(
 		resave: false,
 	})
 );
+app.use(cookieParser());
+// Passport.js
 app.use(passport.initialize("facebook"));
 app.use(passport.session());
+
+passport.use(
+	new FacebookStrategy(
+		{
+			clientID: config.FACEBOOK_APP_ID,
+			clientSecret: config.FACEBOOK_APP_SECRET,
+			callbackURL: config.FACEBOOK_CALLBACK_URL,
+			profileFields: ["id", "emails", "name"],
+		},
+		async (accessToken, refreshToken, profile, cb) => {
+			// Save the accessToken and refreshToken if you need to call facebook apis later on
+			console.log("Profile: " + JSON.stringify(profile));
+			console.log("Access Token: " + accessToken);
+			const user = await UserModel.findOne({
+				Email: profile.emails[0].value,
+			}).select("-Password");
+			if (!user) {
+				const newUser = new User({
+					UserId: profile.id,
+					Name: profile.name.givenName,
+					Email: profile.emails[0].value,
+					FacebookToken: accessToken
+				});
+
+				await newUser.save();
+
+				const user = await User.findOne({
+					Email: profile.emails[0].value,
+				}).select("-Password");
+				return cb(null, user);
+			} else {
+				// Save new accessToken
+				user.FacebookToken = accessToken;
+				await user.save();
+				return cb(null, user);
+			}
+		}
+	)
+);
+
+passport.serializeUser((user, done) => {
+	done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+	// Return user from mongoose database
+	UserModel.findById(user.Id, null, null, (err, user) => {
+		done(err, user);
+	});
+});
 
 // Add CORS
 app.use(cors());

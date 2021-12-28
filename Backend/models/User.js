@@ -27,6 +27,11 @@ const UserSchema = new mongoose.Schema({
 		required: false,
 		default: false,
 	},
+	FacebookToken: {
+		type: String,
+		required: false,
+		default: null
+	},
 	DateModified: {
 		type: Date,
 		default: Date.now,

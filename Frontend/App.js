@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Linking, ToastAndroid } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Header } from "react-native-elements";
-import { GetSettings, CheckToken } from "./app/api/api";
+import { GetSettings, CheckToken, LogOut } from "./app/api/api";
 import SearchButton from "./app/components/SearchButton";
 import TabNavigator from "./app/components/TabNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -21,6 +21,17 @@ const Home = ({ navigation }) => {
 		<View style={{ flex: 1 }}>
 			<Header
 				placement={"center"}
+				leftComponent={{
+					icon: "logout",
+					color: "white",
+					onPress: async () => {
+						await AsyncStorage.setItem(config.TOKEN, "", (error) => {
+							ToastAndroid.show(error, 1000);
+						});
+						const result = await LogOut();
+						console.log("Logged out: " + result);
+					}
+				}}
 				centerComponent={{
 					text: "Yet Another SG Bus App",
 					style: { color: "white", fontSize: 18 },
@@ -29,46 +40,26 @@ const Home = ({ navigation }) => {
 					icon: "login",
 					color: "white",
 					onPress: async () => {
-						var result = await AsyncStorage.getItem(config.TOKEN);
+						result = await AsyncStorage.getItem(config.TOKEN);
 
-						if (result) {
-							console.log(
-								"Getting token from async storage " + result
-							);
-
-							// Check if token is still valid
-							const valid = await CheckToken().catch((error) => {
-								console.error(error);
-								return false;
-							});
-							if (!valid) {
-								ToastAndroid.show(
-									"Token is not valid. Please relogin.",
-									1000
-								);
-							}
-							result = valid.data;
-							if (result) {
-								ToastAndroid.show(
-									"You are already logged in",
-									1000
-								);
-							}
-						}
+						console.log("Result: " + JSON.stringify(result));
 
 						if (!result) {
 							// Get new token
 							console.log("Signing in");
 							const URL = `${config.BACKEND_API}/auth/facebook`;
 
-							const result = await WebBrowser.openBrowserAsync(
+							const fblogin = await WebBrowser.openBrowserAsync(
 								URL
 							);
-							if (result) {
+							if (fblogin) {
 								console.log(
-									"Result: " + JSON.stringify(result)
+									"Result: " + JSON.stringify(fblogin)
 								);
 							}
+						}
+						else {
+							ToastAndroid.show("You have already logged in", 1000);
 						}
 					},
 				}}
@@ -97,21 +88,23 @@ export default function App() {
 	});
 
 	const _handleURL = async (event) => {
+		console.log("event" + JSON.stringify(event));
 		console.log("Handling URL into app: " + event.url);
 		const token = event.url.split("token=")[1].split("#_=_")[0];
-		console.log("token " + token);
+		console.log("Going to save the token: " + token);
 		console.log("Saving token to async storage");
-		await AsyncStorage.setItem(config.TOKEN.toString(), token, (error) => {
+		await AsyncStorage.setItem(config.TOKEN, token.toString(), (error) => {
 			console.error(error);
 		});
-		// Save token
-		setAuthToken(token);
-		_getData();
+
+		// // Save token
+		// setAuthToken(token);
+		await _getData();
 	};
 
 	const _getData = async () => {
 		const settings = await GetSettings();
-		console.log(settings);
+		console.log("Settings: " + JSON.stringify(settings));
 		setSettings(settings);
 	};
 

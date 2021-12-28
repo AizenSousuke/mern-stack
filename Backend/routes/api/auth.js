@@ -34,23 +34,32 @@ router.get(
 	"/facebook/callback",
 	passport.authenticate("facebook", {
 		scope: ["email"],
-		failureRedirect: "/api/auth/facebook",
 	}),
 	(req, res) => {
-		// console.log(req.user.token);
-		return res
-			.status(302)
-			.redirect(
-				"exp://192.168.68.117:19000" + `?token=${req.user.token}`
-			);
+		console.log(
+			"Req user from facebook callback: " + JSON.stringify(req.user)
+		);
+		console.log(
+			"Req isAuthenticated from facebook callback: " +
+				req.isAuthenticated()
+		);
+		return res.status(302).redirect(
+			// Redirect back to app
+			config.FRONTEND_LINK + `?token=${req.user.FacebookToken}`
+		);
 	}
 );
 
 router.get("/facebook/checkToken", auth, (req, res) => {
 	// If there is a req.user
-	console.log("Hitting facebook/login");	
+	console.log("Hitting facebook/login");
 	console.log(JSON.stringify(req.user));
 	return res.status(200).json({ data: req.isAuthenticated() });
+});
+
+router.get("/logout", (req, res) => {
+	req.logout();
+	res.status(200).json(true);
 });
 
 router.post(

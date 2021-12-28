@@ -2,9 +2,17 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 module.exports = (req, res, next) => {
+	console.log("Req isAuthenticated from auth middleware: " + req.isAuthenticated());
+	console.log("Cookies: " + JSON.stringify(req.cookies));
+	console.log("Signed Cookies: " + JSON.stringify(req.signedCookies));
+
+	if (req.isAuthenticated()) {
+		return next();
+	}
+
 	if (!req.user) {
-		console.log("No user");
-		return res.status(401).json({ error: "No user" });
+		console.log("No facebook req.user user");
+		return res.status(401).json({ msg: "No user" });
 	}
 
 	if (req.user) {

@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/auth");
+const authMiddleware = require("../../middleware/auth");
 const Settings = require("../../models/Settings");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const isLoggedIn = require("../../middleware/isLoggedIn");
 
-router.get("/", auth, async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
 	try {
-		// console.log(`Req User:` + JSON.stringify(req.user));
+		console.log(`Req User in GET settings:` + JSON.stringify(req.user));
 		// console.log("Req user Id:" + req.user.Id);
 		const settings = await Settings.findOne({
 			UserId: req.user.Id,
@@ -32,11 +32,8 @@ router.get("/", auth, async (req, res) => {
 
 router.put(
 	"/",
-	[
-		check("settings", "Settings data structure is required")
-			.notEmpty()
-	],
-	auth,
+	[check("settings", "Settings data structure is required").notEmpty()],
+	authMiddleware,
 	async (req, res) => {
 		try {
 			console.log("Body:" + JSON.stringify(req.body));
@@ -64,7 +61,7 @@ router.put(
 	}
 );
 
-router.delete("/", auth, async (req, res) => {
+router.delete("/", authMiddleware, async (req, res) => {
 	try {
 		const user = req.user;
 		let settings = await Settings.findOneAndDelete({ UserId: user.Id });

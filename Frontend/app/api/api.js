@@ -47,6 +47,7 @@ export const GetBus = async (number) => {
 export const GetSettings = async () => {
 	const settings = await axios.get(`${api}/settings`, header);
 	if (settings) {
+		// console.log("Settings: " + JSON.stringify(settings));
 		return settings.data.settings.Settings;
 	}
 	return null;
@@ -91,6 +92,12 @@ export const SignIn = async () => {
 	const result = await axios.get(`${api}/auth/facebook`, header);
 	return result.data;
 };
+
+export const LogOut = async () => {
+	const result = await axios.get(`${api}/auth/logout`, header);
+	// bool
+	return result.data;
+}
 
 export const CheckToken = async () => {
 	const result = await axios.get(`${api}/auth/facebook/checkToken`, header);
