@@ -24,9 +24,10 @@ module.exports = async (req, res, next) => {
 			if (user.TokenExpiryDate > Date.now()) {
 				console.log("Setting request user");
 				req.user = user;
-				next();
+				return next();
 			}
 			// If expired, get new token by redirecting user to login page
+			console.warn("Expired token");
 			return res.redirect("/auth/facebook");
 		}
 		return res

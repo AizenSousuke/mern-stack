@@ -110,18 +110,28 @@ export default function App() {
 	};
 
 	const _getData = async (token = null) => {
-		await GetSettings(token ?? authToken).then(
-			(res) => {
-				// console.log("Settings: " + JSON.stringify(res));
-				setSettings(res.data.settings);
-			},
-			(rej) => {
-				// console.log(JSON.stringify(rej));
-				ToastAndroid.show("There are no settings for this user.", 1000);
-			}
-		).catch(err => {
-			ToastAndroid.show(err, 1000);
-		});
+		try {
+			console.log("Token in _getData: " + token);
+			await GetSettings(token ?? authToken)
+				.then(
+					(res) => {
+						// console.log("Settings: " + JSON.stringify(res));
+						setSettings(res.data.settings);
+					},
+					(rej) => {
+						console.log("Rej: " + JSON.stringify(rej));
+						ToastAndroid.show(
+							"There are no settings for this user.",
+							1000
+						);
+					}
+				)
+				.catch((error) => {
+					console.error(error);
+				});
+		} catch (error) {
+			ToastAndroid.show(error, 1000);
+		}
 	};
 
 	return (
