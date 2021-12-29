@@ -91,11 +91,11 @@ export default function App() {
 		console.log("event" + JSON.stringify(event));
 		console.log("Handling URL into app: " + event.url);
 		const token = event.url.split("token=")[1].split("#_=_")[0];
-		console.log("Going to save the token: " + token);
-		console.log("Saving token to async storage");
-		await AsyncStorage.setItem(config.TOKEN, token.toString(), (error) => {
-			console.error(error);
-		});
+		// console.log("Going to save the token: " + token);
+		// console.log("Saving token to async storage");
+		// await AsyncStorage.setItem(config.TOKEN, token.toString(), (error) => {
+		// 	console.error(error);
+		// });
 
 		// // Save token
 		// setAuthToken(token);

@@ -13,7 +13,6 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 
-
 app.listen(PORT, () => {
 	console.log("Listening on port %s", PORT);
 });
@@ -33,7 +32,7 @@ app.use(
 );
 app.use(cookieParser());
 // Passport.js
-app.use(passport.initialize("facebook"));
+app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(
@@ -48,15 +47,21 @@ passport.use(
 			// Save the accessToken and refreshToken if you need to call facebook apis later on
 			console.log("Profile: " + JSON.stringify(profile));
 			console.log("Access Token: " + accessToken);
+			// FB does not provide refresh token. So it should be undefined.
+			console.log("Refresh Token: " + refreshToken);
 			const user = await UserModel.findOne({
 				Email: profile.emails[0].value,
 			}).select("-Password");
 			if (!user) {
+				var date = new Date(Date.now());
+				var expiryDate = date.setDate(date.getDate() + config.get("TOKEN_EXPIRY_DAYS"));
 				const newUser = new User({
 					UserId: profile.id,
 					Name: profile.name.givenName,
 					Email: profile.emails[0].value,
-					FacebookToken: accessToken
+					Token: accessToken,
+					RefreshToken: refreshToken,
+					TokenExpiryDate: expiryDate
 				});
 
 				await newUser.save();
@@ -67,7 +72,11 @@ passport.use(
 				return cb(null, user);
 			} else {
 				// Save new accessToken
-				user.FacebookToken = accessToken;
+				user.Token = accessToken;
+				user.RefreshToken = refreshToken;
+				var date = new Date(Date.now());
+				var expiryDate = date.setDate(date.getDate() + config.get("TOKEN_EXPIRY_DAYS"));
+				user.TokenExpiryDate = expiryDate;
 				await user.save();
 				return cb(null, user);
 			}

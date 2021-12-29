@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 module.exports = (req, res, next) => {
+	console.log("Req session in auth middleware: " + JSON.stringify(req.session));
 	console.log("Req isAuthenticated from auth middleware: " + req.isAuthenticated());
 	console.log("Cookies: " + JSON.stringify(req.cookies));
 	console.log("Signed Cookies: " + JSON.stringify(req.signedCookies));

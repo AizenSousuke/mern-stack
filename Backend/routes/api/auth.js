@@ -43,10 +43,18 @@ router.get(
 			"Req isAuthenticated from facebook callback: " +
 				req.isAuthenticated()
 		);
-		return res.status(302).redirect(
-			// Redirect back to app
-			config.FRONTEND_LINK + `?token=${req.user.FacebookToken}`
-		);
+		// req.session.user = req.user;
+		// console.log("Req.session: " + JSON.stringify(req.session));
+		req.session.save((err) => {
+			return res.status(302).redirect(
+				// Redirect back to app
+				config.FRONTEND_LINK + `?token=${req.user.Token}`
+			);
+		});
+		// return res.status(302).redirect(
+		// 	// Redirect back to app
+		// 	config.FRONTEND_LINK + `?token=${req.user.Token}`
+		// );
 	}
 );
 
