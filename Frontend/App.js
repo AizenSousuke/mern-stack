@@ -25,12 +25,16 @@ const Home = ({ navigation }) => {
 					icon: "logout",
 					color: "white",
 					onPress: async () => {
-						await AsyncStorage.setItem(config.TOKEN, "", (error) => {
-							ToastAndroid.show(error, 1000);
-						});
+						await AsyncStorage.setItem(
+							config.TOKEN,
+							"",
+							(error) => {
+								ToastAndroid.show(error, 1000);
+							}
+						);
 						const result = await LogOut();
 						console.log("Logged out: " + result);
-					}
+					},
 				}}
 				centerComponent={{
 					text: "Yet Another SG Bus App",
@@ -57,9 +61,11 @@ const Home = ({ navigation }) => {
 									"Result: " + JSON.stringify(fblogin)
 								);
 							}
-						}
-						else {
-							ToastAndroid.show("You have already logged in", 1000);
+						} else {
+							ToastAndroid.show(
+								"You have already logged in",
+								1000
+							);
 						}
 					},
 				}}
@@ -91,21 +97,31 @@ export default function App() {
 		console.log("event" + JSON.stringify(event));
 		console.log("Handling URL into app: " + event.url);
 		const token = event.url.split("token=")[1].split("#_=_")[0];
-		// console.log("Going to save the token: " + token);
-		// console.log("Saving token to async storage");
+		console.log("Going to save the token: " + token);
+		console.log("Saving token to async storage");
 		// await AsyncStorage.setItem(config.TOKEN, token.toString(), (error) => {
 		// 	console.error(error);
 		// });
 
-		// // Save token
-		// setAuthToken(token);
-		await _getData();
+		// Save token
+		setAuthToken(token);
+		// Get settings data
+		await _getData(token);
 	};
 
-	const _getData = async () => {
-		const settings = await GetSettings();
-		console.log("Settings: " + JSON.stringify(settings));
-		setSettings(settings);
+	const _getData = async (token = null) => {
+		await GetSettings(token ?? authToken).then(
+			(res) => {
+				// console.log("Settings: " + JSON.stringify(res));
+				setSettings(res.data.settings);
+			},
+			(rej) => {
+				// console.log(JSON.stringify(rej));
+				ToastAndroid.show("There are no settings for this user.", 1000);
+			}
+		).catch(err => {
+			ToastAndroid.show(err, 1000);
+		});
 	};
 
 	return (

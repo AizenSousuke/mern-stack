@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GoingHome from "../screens/GoingHome";
 import { Icon } from "react-native-elements";
 import GoingOut from "../screens/GoingOut";
-import SearchButton from "./SearchButton";
 
 const Tab = createBottomTabNavigator();
 

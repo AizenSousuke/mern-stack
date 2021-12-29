@@ -20,7 +20,7 @@ export default function GoingOut() {
 			<Consumer>
 				{(ctx) => {
 					console.log(ctx);
-					return <Text>{JSON.stringify(ctx)}</Text>
+					return <Text>Token: {JSON.stringify(ctx)}</Text>
 				}}
 			</Consumer>
 		</ScrollView>

@@ -1,45 +1,49 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const User = require("../models/User");
 
-module.exports = (req, res, next) => {
-	console.log("Req session in auth middleware: " + JSON.stringify(req.session));
-	console.log("Req isAuthenticated from auth middleware: " + req.isAuthenticated());
-	console.log("Cookies: " + JSON.stringify(req.cookies));
-	console.log("Signed Cookies: " + JSON.stringify(req.signedCookies));
+module.exports = async (req, res, next) => {
+	console.log("Running middleware");
+	try {
+		// Get token from headers
+		const token = req.header("x-auth-token");
 
-	if (req.isAuthenticated()) {
-		return next();
-	}
+		// Check if no token is provided
+		if (!token) {
+			console.log("No token was provided in x-auth-token header.");
 
-	if (!req.user) {
-		console.log("No facebook req.user user");
-		return res.status(401).json({ msg: "No user" });
-	}
+			return res
+				.status(401)
+				.json({ msg: "No token provided. Authorization denied." });
+		}
 
-	if (req.user) {
-		// Facebook login
-		next();
-		return res.status(200);
-	}
-
-	// Get token from headers
-	const token = req.header("x-auth-token");
-
-	// Check if no token is provided
-	if (!token) {
-		console.log("No token");
-
+		// Get user whose token match in mongo
+		const user = await User.findOne({ Token: token }).select("-Password");
+		if (user) {
+			// Check token has not expired
+			if (user.TokenExpiryDate > Date.now()) {
+				console.log("Setting request user");
+				req.user = user;
+				next();
+			}
+			// If expired, get new token by redirecting user to login page
+			return res.redirect("/auth/facebook");
+		}
+		return res
+			.status(500)
+			.json({ msg: "There is some issue with the request." });
+	} catch (err) {
 		return res
 			.status(401)
-			.json({ msg: "No token provided. Authorization denied." });
+			.json({ msg: "Token is not valid. " + err.message });
 	}
 
 	// Verify token
-	try {
-		const decoded = jwt.verify(token, config.get("jwtSecret"));
-		req.user = decoded.user;
-		next();
-	} catch (err) {
-		return res.status(401).json({ msg: "Token is not valid" });
-	}
+	// try {
+	// 	const decoded = jwt.verify(token, config.get("jwtSecret"));
+	// 	req.user = decoded.user;
+	// 	next();
+	// } catch (err) {
+	// 	return res.status(401).json({ msg: "Token is not valid" });
+	// }
 };

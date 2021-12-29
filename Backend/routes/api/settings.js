@@ -2,24 +2,26 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../../middleware/auth");
 const Settings = require("../../models/Settings");
+const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const isLoggedIn = require("../../middleware/isLoggedIn");
 
 router.get("/", authMiddleware, async (req, res) => {
 	try {
-		console.log(`Req User in GET settings:` + JSON.stringify(req.user));
-		// console.log("Req user Id:" + req.user.Id);
+		console.log("Req user: " + JSON.stringify(req.user));
 		const settings = await Settings.findOne({
-			UserId: req.user.Id,
+			UserId: req.user.Id
 		}).populate("UserId", "Name");
+		// console.log("Settings: " + JSON.stringify(settings));
 
 		if (!settings) {
+			console.log("No settings");
 			return res
 				.status(404)
 				.json({ msg: "There is no settings for this user" });
 		}
-
+		console.log("Successfully loaded settings");
 		return res.status(200).json({
 			msg: "Successfully loaded settings",
 			settings: settings,
