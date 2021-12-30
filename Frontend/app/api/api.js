@@ -10,7 +10,8 @@ const data = {
 	withCredentials: true,
 	crossdomain: true,
 	headers: {
-		Accept: "*/*",
+		Accept: "application/json",
+		'Content-Type': 'application/json',
 		"X-Auth-Token": null,
 	},
 };
@@ -50,7 +51,7 @@ export const GetSettings = async (token) => {
 	return await axios
 		.get(`${api}/settings`, data)
 		.then((res) => {
-			console.log("Res data in api: " + JSON.stringify(res.data));
+			console.log("Res in api: " + JSON.stringify(res));
 			return res.data;
 		})
 		.catch((err) => {

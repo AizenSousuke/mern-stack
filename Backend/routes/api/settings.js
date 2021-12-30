@@ -4,32 +4,52 @@ const authMiddleware = require("../../middleware/auth");
 const Settings = require("../../models/Settings");
 const { check, validationResult } = require("express-validator");
 
+// router.get("/", authMiddleware, async (req, res) => {
+// 	try {
+// 		console.log("Request headers: " + JSON.stringify(req.headers));
+// 		console.log("Request url: " + req.url);
+// 		console.log("Req user: " + JSON.stringify(req.user));
+// 		const settings = await Settings.findOne({
+// 			UserId: req.user.Id,
+// 		}).populate("UserId", "Name");
+// 		console.log("Settings: " + JSON.stringify(settings));
+
+// 		if (!settings) {
+// 			console.log("No settings");
+// 			return res
+// 				.status(200)
+// 				.json({ msg: "There are no settings for this user." });
+// 		}
+
+// 		console.log("Successfully loaded settings");
+// 		return res.status(200).json({
+// 			msg: "Successfully loaded settings",
+// 			settings: settings,
+// 		});
+// 	} catch (error) {
+// 		console.error("Error: " + error);
+// 		return res.status(500).json({ msg: "Server error" });
+// 	}
+// });
+
 router.get("/", authMiddleware, async (req, res) => {
-	try {
-		console.log("Request headers: " + JSON.stringify(req.headers));
-		console.log("Request url: " + req.url);
-		console.log("Req user: " + JSON.stringify(req.user));
-		const settings = await Settings.findOne({
-			UserId: req.user.Id,
-		}).populate("UserId", "Name");
-		console.log("Settings: " + JSON.stringify(settings));
+	const settings = await Settings.findOne({
+		UserId: req.user.Id,
+	}).populate("UserId", "Name");
+	console.log("Settings: " + JSON.stringify(settings));
 
-		if (!settings) {
-			console.log("No settings");
-			return res
-				.status(200)
-				.json({ msg: "There are no settings for this user." });
-		}
-
-		console.log("Successfully loaded settings");
-		return res.status(200).json({
-			msg: "Successfully loaded settings",
-			settings: settings,
-		});
-	} catch (error) {
-		console.error("Error: " + error);
-		return res.status(500).json({ msg: "Server error" });
+	if (!settings) {
+		console.log("No settings for user: " + req.user.Name);
+		return res
+			.status(200)
+			.json({ msg: "There are no settings for this user." });
 	}
+
+	console.log("Successfully loaded settings");
+	return res.status(200).json({
+		msg: "Successfully loaded settings",
+		settings: settings,
+	});
 });
 
 router.put(

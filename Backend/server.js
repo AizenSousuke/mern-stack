@@ -9,13 +9,30 @@ const UserModel = require("./models/User");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
+// Add self signed key for https
+const https = require("https");
+const fs = require("fs");
+var key = fs.readFileSync(__dirname + '/config/selfsigned.key');
+var cert = fs.readFileSync(__dirname + '/config/selfsigned.crt');
+var options = {
+  key: key,
+  cert: cert
+};
+
 // Passport
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 
-app.listen(PORT, () => {
-	console.log("Listening on port %s", PORT);
-});
+// To get HTTPS
+var server = https.createServer(options, app);
+server.listen(PORT, (err, result) => {
+	console.log(`HTTPS Server started on port ${PORT}`);
+})
+
+// Normal way to get http
+// app.listen(PORT, () => {
+// 	console.log("Listening on port %s", PORT);
+// });
 
 // Connect Database
 connectDB();
@@ -33,10 +50,11 @@ app.use(
 app.use(cookieParser());
 
 // Add CORS
-app.use(cors({
-	credentials: true,
-	origin: config.get("FRONTEND_LINK")
-}));
+// app.use(cors({
+// 	credentials: true,
+// 	origin: config.get("FRONTEND_LINK")
+// }));
+app.use(cors());
 
 // Passport.js
 app.use(passport.initialize());
