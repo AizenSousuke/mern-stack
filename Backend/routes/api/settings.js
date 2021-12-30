@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../../middleware/auth");
 const Settings = require("../../models/Settings");
-const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
-const passport = require("passport");
 
 router.get("/", authMiddleware, async (req, res) => {
 	try {
+		console.log("Request headers: " + JSON.stringify(req.headers));
+		console.log("Request url: " + req.url);
 		console.log("Req user: " + JSON.stringify(req.user));
 		const settings = await Settings.findOne({
 			UserId: req.user.Id,
@@ -17,7 +17,7 @@ router.get("/", authMiddleware, async (req, res) => {
 		if (!settings) {
 			console.log("No settings");
 			return res
-				.status(404)
+				.status(200)
 				.json({ msg: "There are no settings for this user." });
 		}
 
@@ -27,7 +27,7 @@ router.get("/", authMiddleware, async (req, res) => {
 			settings: settings,
 		});
 	} catch (error) {
-		console.error(error);
+		console.error("Error: " + error);
 		return res.status(500).json({ msg: "Server error" });
 	}
 });

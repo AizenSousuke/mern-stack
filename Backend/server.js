@@ -31,6 +31,13 @@ app.use(
 	})
 );
 app.use(cookieParser());
+
+// Add CORS
+app.use(cors({
+	credentials: true,
+	origin: config.get("FRONTEND_LINK")
+}));
+
 // Passport.js
 app.use(passport.initialize());
 app.use(passport.session());
@@ -94,17 +101,6 @@ passport.deserializeUser((user, done) => {
 		done(err, user);
 	});
 });
-
-// Add CORS
-app.use(cors());
-// app.use((req, res, next) => {
-// 	res.header("Access-Control-Allow-Origin", "*");
-// 	res.header(
-// 		"Access-Control-Allow-Headers",
-// 		"Origin, X-Requested-With, Content-Type, Accept"
-// 	);
-// 	next();
-// });
 
 // Define routes
 app.use("/api/auth", require("./routes/api/auth"));

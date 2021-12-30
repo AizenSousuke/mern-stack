@@ -1,15 +1,16 @@
 // import { Linking } from "react-native";
 import axios from "axios";
-const api = process.env.API ?? "http://10.0.2.2:5000/api";
-
-// const originalURL = await Linking.getInitialURL();
+import * as config from "../../config/default.json";
+const api = process.env.API ?? config.BACKEND_API;
 
 /**
  * Data to be set for the requests
  */
 const data = {
+	withCredentials: true,
+	crossdomain: true,
 	headers: {
-		"Accept": "application/json",
+		Accept: "*/*",
 		"X-Auth-Token": null,
 	},
 };
@@ -45,12 +46,17 @@ export const GetBus = async (number) => {
 export const GetSettings = async (token) => {
 	console.log("Token is: " + token);
 	data.headers["X-Auth-Token"] = token;
-	const settings = await axios.get(`${api}/settings`, data);
-	if (settings) {
-		// console.log("Settings: " + JSON.stringify(settings));
-		return settings.data.settings.Settings;
-	}
-	return null;
+	console.log("Api is: " + api);
+	return await axios
+		.get(`${api}/settings`, data)
+		.then((res) => {
+			console.log("Res data in api: " + JSON.stringify(res.data));
+			return res.data;
+		})
+		.catch((err) => {
+			console.error("Error in API: " + err);
+			return null;
+		});
 };
 
 export const SaveSettings = async (code, GoingOut = true) => {

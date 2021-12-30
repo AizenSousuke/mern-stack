@@ -113,21 +113,11 @@ export default function App() {
 		try {
 			console.log("Token in _getData: " + token);
 			await GetSettings(token ?? authToken)
-				.then(
-					(res) => {
-						// console.log("Settings: " + JSON.stringify(res));
-						setSettings(res.data.settings);
-					},
-					(rej) => {
-						console.log("Rej: " + JSON.stringify(rej));
-						ToastAndroid.show(
-							"There are no settings for this user.",
-							1000
-						);
-					}
-				)
-				.catch((error) => {
-					console.error(error);
+				.then((res) => {
+					console.log("Res in _getData: " + JSON.stringify(res));
+				})
+				.catch((err) => {
+					ToastAndroid.show(err.message, 1000);
 				});
 		} catch (error) {
 			ToastAndroid.show(error, 1000);
