@@ -12,11 +12,11 @@ const cookieParser = require("cookie-parser");
 // Add self signed key for https
 const https = require("https");
 const fs = require("fs");
-var key = fs.readFileSync(__dirname + '/config/selfsigned.key');
-var cert = fs.readFileSync(__dirname + '/config/selfsigned.crt');
+var key = fs.readFileSync(__dirname + "/config/selfsigned.key");
+var cert = fs.readFileSync(__dirname + "/config/selfsigned.crt");
 var options = {
-  key: key,
-  cert: cert
+	key: key,
+	cert: cert,
 };
 
 // Passport
@@ -27,7 +27,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 var server = https.createServer(options, app);
 server.listen(PORT, (err, result) => {
 	console.log(`HTTPS Server started on port ${PORT}`);
-})
+});
 
 // Normal way to get http
 // app.listen(PORT, () => {
@@ -55,6 +55,10 @@ app.use(cookieParser());
 // 	origin: config.get("FRONTEND_LINK")
 // }));
 app.use(cors());
+// app.use((req, res, next) => {
+// 	res.header('Access-Control-Allow-Origin', config.get("FRONTEND_LINK"));
+// 	next();
+// })
 
 // Passport.js
 app.use(passport.initialize());
@@ -79,14 +83,16 @@ passport.use(
 			}).select("-Password");
 			if (!user) {
 				var date = new Date(Date.now());
-				var expiryDate = date.setDate(date.getDate() + config.get("TOKEN_EXPIRY_DAYS"));
+				var expiryDate = date.setDate(
+					date.getDate() + config.get("TOKEN_EXPIRY_DAYS")
+				);
 				const newUser = new User({
 					UserId: profile.id,
 					Name: profile.name.givenName,
 					Email: profile.emails[0].value,
 					Token: accessToken,
 					RefreshToken: refreshToken,
-					TokenExpiryDate: expiryDate
+					TokenExpiryDate: expiryDate,
 				});
 
 				await newUser.save();
@@ -100,7 +106,9 @@ passport.use(
 				user.Token = accessToken;
 				user.RefreshToken = refreshToken;
 				var date = new Date(Date.now());
-				var expiryDate = date.setDate(date.getDate() + config.get("TOKEN_EXPIRY_DAYS"));
+				var expiryDate = date.setDate(
+					date.getDate() + config.get("TOKEN_EXPIRY_DAYS")
+				);
 				user.TokenExpiryDate = expiryDate;
 				await user.save();
 				return cb(null, user);

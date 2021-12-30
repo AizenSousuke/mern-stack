@@ -13,6 +13,8 @@ const data = {
 		Accept: "application/json",
 		'Content-Type': 'application/json',
 		"X-Auth-Token": null,
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Headers': '*',
 	},
 };
 
