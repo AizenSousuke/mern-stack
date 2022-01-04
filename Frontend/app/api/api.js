@@ -66,6 +66,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 	try {
 		console.log("Token in SaveSettings is: " + token);
 		data.headers["X-Auth-Token"] = token;
+		console.log("X-Auth-Token in data is: " + JSON.stringify(data));
 		const prevSettings = await axios
 			.get(`${api}/settings`, data)
 			.then((response) => {
@@ -78,7 +79,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 				}
 			})
 			.catch((err) => {
-				console.error(err);
+				console.warn("Error in API. Defaulting value: " + err);
 				return { GoingOut: [], GoingHome: [] };
 			});
 
@@ -97,11 +98,11 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 			};
 			console.log("New data: " + JSON.stringify(data));
 			return await axios
-				.put(`${api}/settings`, data)
+				.put(`${api}/settings`, data.body, data)
 				.then((res) => {
 					return res.data;
 				})
-				.catch((error) => console.error(error));
+				.catch((error) => console.error("Error in API: " + error));
 		} else {
 			const newSettings = Object.assign({}, prevSettings, {
 				GoingHome: [
@@ -115,11 +116,11 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 			};
 			console.log("New data: " + JSON.stringify(data));
 			return await axios
-				.put(`${api}/settings`, data)
+				.put(`${api}/settings`, data.body, data)
 				.then((res) => {
 					return res.data;
 				})
-				.catch((error) => console.error(error));
+				.catch((error) => console.error("Error in API: " + error));
 		}
 	} catch (error) {
 		console.error(error);

@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
 	try {
 		// Get token from headers
 		const token = req.header("X-Auth-Token");
-		console.log("Token: " + JSON.stringify(token));
+		console.log("Token in req header: " + JSON.stringify(token));
 
 		// Check if no token is provided
 		if (!token) {
