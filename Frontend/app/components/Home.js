@@ -21,11 +21,22 @@ export const Home = ({ navigation }) => {
 							config.TOKEN,
 							"",
 							(error) => {
-								ToastAndroid.show(error, ToastAndroid.SHORT);
+								if (error) {
+									ToastAndroid.show(
+										error,
+										ToastAndroid.SHORT
+									);
+								} else {
+									ToastAndroid.show(
+										"Logged out",
+										ToastAndroid.SHORT
+									);
+								}
 							}
 						);
-						const result = await LogOut();
-						console.log("Logged out: " + result);
+						await LogOut().then(res => {
+                            console.log("Logged out");  
+                        });
 					},
 				}}
 				centerComponent={{
@@ -36,7 +47,7 @@ export const Home = ({ navigation }) => {
 					icon: "login",
 					color: "white",
 					onPress: async () => {
-						result = await AsyncStorage.getItem(config.TOKEN);
+						let result = await AsyncStorage.getItem(config.TOKEN);
 
 						console.log("Result: " + JSON.stringify(result));
 
@@ -48,10 +59,11 @@ export const Home = ({ navigation }) => {
 							const fblogin = await WebBrowser.openBrowserAsync(
 								URL
 							);
-                            
+
 							if (fblogin) {
 								console.log(
-									"Logged in with FACEBOOK: " + JSON.stringify(fblogin)
+									"Logged in with FACEBOOK: " +
+										JSON.stringify(fblogin)
 								);
 							}
 						} else {
