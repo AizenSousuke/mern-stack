@@ -1,4 +1,3 @@
-// import { Linking } from "react-native";
 import axios from "axios";
 import * as config from "../../config/default.json";
 const api = process.env.API ?? config.BACKEND_API;

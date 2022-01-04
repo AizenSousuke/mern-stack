@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
-import { GetBusStop, SaveSettings } from "../api/api";
-import { Pressable } from "react-native";
-import { View, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Icon, ListItem, Overlay } from "react-native-elements";
-import BusStop from "./BusStop";
+import { GetBusStop, SaveSettings } from "../api/api";
 import AuthConsumer from "../context/AuthContext";
+import BusStop from "./BusStop";
 
 export default class BusStopListPureComponent extends PureComponent {
 	constructor(props) {

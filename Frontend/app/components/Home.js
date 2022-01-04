@@ -1,12 +1,12 @@
-import React from "react";
-import { View, ToastAndroid } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as WebBrowser from "expo-web-browser";
+import React from "react";
+import { ToastAndroid, View } from "react-native";
 import { Header } from "react-native-elements";
+import * as config from "../../config/default.json";
 import { LogOut } from "../api/api";
 import SearchButton from "../components/SearchButton";
 import TabNavigator from "../components/TabNavigator";
-import * as config from "../../config/default.json";
-import * as WebBrowser from "expo-web-browser";
 
 export const Home = ({ navigation }) => {
 	return (

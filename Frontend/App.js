@@ -1,18 +1,14 @@
-import { NavigationContainer } from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
-import { View, Linking, ToastAndroid } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Header } from "react-native-elements";
-import { GetSettings, CheckToken, LogOut } from "./app/api/api";
-import SearchButton from "./app/components/SearchButton";
-import TabNavigator from "./app/components/TabNavigator";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Search from "./app/screens/Search";
-import * as config from "./config/default.json";
-import * as WebBrowser from "expo-web-browser";
+import React, { useEffect, useState } from "react";
+import { Linking, ToastAndroid } from "react-native";
+import { GetSettings } from "./app/api/api";
+import Home from "./app/components/Home";
 import { AuthProvider } from "./app/context/AuthContext";
 import { SettingsProvider } from "./app/context/SettingsContext";
-import Home from "./app/components/Home";
+import Search from "./app/screens/Search";
+import * as config from "./config/default.json";
 
 const Stack = createStackNavigator();
 
@@ -36,7 +32,7 @@ export default function App() {
 			console.log("_loadToken: " + error + "|" + result);
 			setAuthToken(result);
 		});
-	}
+	};
 
 	const _handleURL = async (event) => {
 		console.log("event" + JSON.stringify(event));
@@ -44,9 +40,13 @@ export default function App() {
 		const token = event.url.split("token=")[1].split("#_=_")[0];
 		console.log("Going to save the token: " + token);
 		console.log("Saving token to async storage");
-		await AsyncStorage.setItem(config.TOKEN, token.toString(), (error, result) => {
-			console.log("Saving new token: " + error + "|" + result);
-		});
+		await AsyncStorage.setItem(
+			config.TOKEN,
+			token.toString(),
+			(error, result) => {
+				console.log("Saving new token: " + error + "|" + result);
+			}
+		);
 
 		// Save token
 		setAuthToken(token);
@@ -60,7 +60,9 @@ export default function App() {
 			console.log("Token in _getData: " + token);
 			await GetSettings(token ?? authToken)
 				.then((res) => {
-					console.log("Settings res in _getData: " + JSON.stringify(res));
+					console.log(
+						"Settings res in _getData: " + JSON.stringify(res)
+					);
 					// Save settings here
 					if (res.settings?.Settings) {
 						setSettings(JSON.parse(res.settings?.Settings));
@@ -79,7 +81,10 @@ export default function App() {
 
 	return (
 		<AuthProvider value={authToken}>
-			<SettingsProvider value={settings} updateSettings={() => _getData(authToken)}>
+			<SettingsProvider
+				value={settings}
+				updateSettings={() => _getData(authToken)}
+			>
 				<NavigationContainer>
 					<Stack.Navigator>
 						<Stack.Screen

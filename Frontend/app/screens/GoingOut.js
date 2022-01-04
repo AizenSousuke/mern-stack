@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RefreshControl, Text } from "react-native";
+import { RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import BusStopSaved from "../components/BusStopSaved";
 

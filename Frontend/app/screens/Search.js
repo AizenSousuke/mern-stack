@@ -1,9 +1,7 @@
-import { ToastAndroid } from "react-native";
 import React, { useState } from "react";
+import { FlatList, ToastAndroid } from "react-native";
 import { SearchBar } from "react-native-elements";
-import { SearchBusStop, getBusStops, getData, storeData } from "../api/api";
-import { FlatList } from "react-native";
-import Fuse from "fuse.js";
+import { SearchBusStop } from "../api/api";
 import BusStopListPureComponent from "../components/BusStopListPureComponent";
 
 const options = {
