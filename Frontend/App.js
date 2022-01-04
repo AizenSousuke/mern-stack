@@ -114,8 +114,9 @@ export default function App() {
 			console.log("Token in _getData: " + token);
 			await GetSettings(token ?? authToken)
 				.then((res) => {
-					console.log("Res in _getData: " + JSON.stringify(res));
+					console.log("Settings res in _getData: " + JSON.stringify(res));
 					// Save settings here
+					setSettings(res.Settings);
 				})
 				.catch((err) => {
 					ToastAndroid.show(err.message, ToastAndroid.SHORT);

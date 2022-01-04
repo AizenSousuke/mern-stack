@@ -10,7 +10,7 @@ router.get("/", authMiddleware, async (req, res) => {
 	console.log("Req user: " + JSON.stringify(req.user));
 	const settings = await Settings.findOne({
 		UserId: req.user.UserId,
-	}).populate("UserId", "Name");
+	});
 	console.log("Settings: " + JSON.stringify(settings));
 
 	if (!settings) {
