@@ -8,6 +8,7 @@ const config = require("config");
 const UserModel = require("./models/User");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
 
 // Add self signed key for https
 const https = require("https");
@@ -72,6 +73,7 @@ passport.use(
 			console.log("Refresh Token: " + refreshToken);
 			const user = await UserModel.findOne({
 				Email: profile.emails[0].value,
+				SocialId: profile.id
 			}).select("-Password");
 			if (!user) {
 				var date = new Date(Date.now());
@@ -79,7 +81,8 @@ passport.use(
 					date.getDate() + config.get("TOKEN_EXPIRY_DAYS")
 				);
 				const newUser = new User({
-					UserId: profile.id,
+					// Add social id
+					SocialId: profile.id,
 					Name: profile.name.givenName,
 					Email: profile.emails[0].value,
 					Token: accessToken,
@@ -115,7 +118,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user, done) => {
 	// Return user from mongoose database
-	UserModel.findById(user.Id, null, null, (err, user) => {
+	UserModel.findById(user.UserId, null, null, (err, user) => {
 		done(err, user);
 	});
 });

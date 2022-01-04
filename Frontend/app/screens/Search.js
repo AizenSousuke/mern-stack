@@ -56,7 +56,6 @@ const Search = () => {
 	};
 
 	const viewabilityConfig = {
-		// itemVisiblePercentThreshold: 100,
 		minimumViewTime: 1000,
 	};
 

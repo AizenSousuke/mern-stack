@@ -20,6 +20,7 @@ module.exports = async (req, res, next) => {
 
 		// Get user whose token match in mongo
 		const user = await User.findOne({ Token: token }).select("-Password");
+		console.log("User: " + JSON.stringify(user));
 		if (user) {
 			// Check token has not expired
 			if (user.TokenExpiryDate > Date.now()) {

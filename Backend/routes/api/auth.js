@@ -13,7 +13,7 @@ const auth = require("../../middleware/auth");
 // Using the auth middleware to check the json web token
 router.get("/", authMiddleware, async (req, res) => {
 	try {
-		const user = await UserModel.findById(req.user.id).select("-Password");
+		const user = await UserModel.findById(req.user.UserId).select("-Password");
 		if (!user) {
 			return res.status(401).json({ msg: "No user is logged in" });
 		}
@@ -105,7 +105,7 @@ router.post(
 			// Return jsonwebtoken (so user can log in straightaway)
 			const payload = {
 				user: {
-					Id: user.id,
+					Id: user.UserId,
 					IsAdmin: user.IsAdmin,
 				},
 			};

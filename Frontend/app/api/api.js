@@ -53,7 +53,7 @@ export const GetSettings = async (token) => {
 	return await axios
 		.get(`${api}/settings`, data)
 		.then((res) => {
-			console.log("Res in api: " + JSON.stringify(res));
+			// console.log("Res in api: " + JSON.stringify(res));
 			return res.data;
 		})
 		.catch((err) => {
@@ -72,7 +72,8 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 			.then((response) => {
 				// If there is a setting
 				if (response.data?.settings) {
-					return response.data.settings.Settings;
+					console.log("Settings found: " + JSON.stringify(response.data?.settings));
+					return JSON.parse(response.data.settings.Settings);
 				} else {
 					console.log("No settings. Creating new ones.");
 					return { GoingOut: [], GoingHome: [] };
@@ -83,6 +84,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 				return { GoingOut: [], GoingHome: [] };
 			});
 
+		console.log("prevSettings: " + JSON.stringify(prevSettings));
 		console.log("Token is still: " + data.headers["X-Auth-Token"]);
 
 		if (GoingOut) {

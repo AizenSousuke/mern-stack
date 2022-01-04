@@ -9,7 +9,7 @@ router.get("/", authMiddleware, async (req, res) => {
 	console.log("Request url: " + req.url);
 	console.log("Req user: " + JSON.stringify(req.user));
 	const settings = await Settings.findOne({
-		UserId: req.user.Id,
+		UserId: req.user.UserId,
 	}).populate("UserId", "Name");
 	console.log("Settings: " + JSON.stringify(settings));
 
@@ -46,7 +46,7 @@ router.put(
 
 			// Create if it does not exist
 			let UpdatedSettings = await Settings.findOneAndUpdate(
-				{ UserId: req.user.Id },
+				{ UserId: req.user.UserId },
 				{ Settings: settings, DateUpdated: Date.now() },
 				{ upsert: true, new: true, setDefaultsOnInsert: true }
 			);
@@ -64,7 +64,7 @@ router.put(
 router.delete("/", authMiddleware, async (req, res) => {
 	try {
 		const user = req.user;
-		let settings = await Settings.findOneAndDelete({ UserId: user.Id });
+		let settings = await Settings.findOneAndDelete({ UserId: user.UserId });
 		if (!settings) {
 			return res.status(404).json({ msg: "User settings not found" });
 		}

@@ -2,9 +2,14 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
 	UserId: {
-		type: String,
+		type: mongoose.Types.ObjectId,
 		required: true,
 		default: new mongoose.Types.ObjectId()
+	},
+	// For facebook\google ids
+	SocialId: {
+		type: String,
+		default: null
 	},
 	Name: {
 		type: String,
