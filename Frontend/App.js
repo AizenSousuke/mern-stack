@@ -44,8 +44,8 @@ export default function App() {
 		const token = event.url.split("token=")[1].split("#_=_")[0];
 		console.log("Going to save the token: " + token);
 		console.log("Saving token to async storage");
-		await AsyncStorage.setItem(config.TOKEN, token.toString(), (error) => {
-			console.error(error);
+		await AsyncStorage.setItem(config.TOKEN, token.toString(), (error, result) => {
+			console.log("Saving new token: " + error + "|" + result);
 		});
 
 		// Save token
