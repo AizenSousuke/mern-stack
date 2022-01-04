@@ -6,7 +6,8 @@ module.exports = async (req, res, next) => {
 	console.log("Running middleware");
 	try {
 		// Get token from headers
-		const token = req.header("x-auth-token");
+		const token = req.header("X-Auth-Token");
+		console.log("Token: " + JSON.stringify(token));
 
 		// Check if no token is provided
 		if (!token) {

@@ -6,15 +6,15 @@ const api = process.env.API ?? config.BACKEND_API;
 /**
  * Data to be set for the requests
  */
-const data = {
+var data = {
 	withCredentials: true,
 	crossdomain: true,
 	headers: {
 		Accept: "application/json",
-		'Content-Type': 'application/json',
+		"Content-Type": "application/json",
 		"X-Auth-Token": null,
-		'Access-Control-Allow-Origin': '*',
-		'Access-Control-Allow-Headers': '*',
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Headers": "*",
 	},
 };
 
@@ -62,38 +62,67 @@ export const GetSettings = async (token) => {
 		});
 };
 
-export const SaveSettings = async (code, GoingOut = true) => {
-	const prevSettings = await axios
-		.get(`${api}/settings`, data)
-		.then((response) => {
-			return response.data.settings.Settings;
-		})
-		.catch((err) => {
-			return { GoingOut: [], GoingHome: [] };
-		});
+export const SaveSettings = async (token, code, GoingOut = true) => {
+	try {
+		console.log("Token in SaveSettings is: " + token);
+		data.headers["X-Auth-Token"] = token;
+		const prevSettings = await axios
+			.get(`${api}/settings`, data)
+			.then((response) => {
+				// If there is a setting
+				if (response.data?.settings) {
+					return response.data.settings.Settings;
+				} else {
+					console.log("No settings. Creating new ones.");
+					return { GoingOut: [], GoingHome: [] };
+				}
+			})
+			.catch((err) => {
+				console.error(err);
+				return { GoingOut: [], GoingHome: [] };
+			});
 
-	if (GoingOut) {
-		const newSettings = Object.assign({}, prevSettings, {
-			GoingOut: [
-				...prevSettings.GoingOut.filter((c) => c !== code),
-				code,
-			],
-		});
-		const response = await axios.put(`${api}/settings`, {
-			settings: newSettings,
-		});
-		return response.data;
-	} else {
-		const newSettings = Object.assign({}, prevSettings, {
-			GoingHome: [
-				...prevSettings.GoingHome.filter((c) => c !== code),
-				code,
-			],
-		});
-		const response = await axios.put(`${api}/settings`, {
-			settings: newSettings,
-		});
-		return response.data;
+		console.log("Token is still: " + data.headers["X-Auth-Token"]);
+
+		if (GoingOut) {
+			const newSettings = Object.assign({}, prevSettings, {
+				GoingOut: [
+					...prevSettings.GoingOut.filter((c) => c !== code),
+					code,
+				],
+			});
+
+			data.body = {
+				settings: JSON.stringify(newSettings),
+			};
+			console.log("New data: " + JSON.stringify(data));
+			return await axios
+				.put(`${api}/settings`, data)
+				.then((res) => {
+					return res.data;
+				})
+				.catch((error) => console.error(error));
+		} else {
+			const newSettings = Object.assign({}, prevSettings, {
+				GoingHome: [
+					...prevSettings.GoingHome.filter((c) => c !== code),
+					code,
+				],
+			});
+
+			data.body = {
+				settings: JSON.stringify(newSettings),
+			};
+			console.log("New data: " + JSON.stringify(data));
+			return await axios
+				.put(`${api}/settings`, data)
+				.then((res) => {
+					return res.data;
+				})
+				.catch((error) => console.error(error));
+		}
+	} catch (error) {
+		console.error(error);
 	}
 };
 

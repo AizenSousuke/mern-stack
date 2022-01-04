@@ -19,12 +19,12 @@ export default function GoingOut() {
 				></RefreshControl>
 			}
 		>
-			<Consumer>
+			{/* <Consumer>
 				{(ctx) => {
 					console.log(ctx);
 					return <Text>Token: {JSON.stringify(ctx)}</Text>;
 				}}
-			</Consumer>
+			</Consumer> */}
 			<Button onPress={async () => {
 				console.log("GET");
 				await GetBusStop(44229).then(res => {

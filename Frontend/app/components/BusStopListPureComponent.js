@@ -5,6 +5,7 @@ import { View, Text } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Icon, ListItem, Overlay } from "react-native-elements";
 import BusStop from "./BusStop";
+import Consumer from "../context/AuthContext";
 
 export default class BusStopListPureComponent extends PureComponent {
 	constructor(props) {
@@ -89,50 +90,62 @@ export default class BusStopListPureComponent extends PureComponent {
 										}))
 									}
 								>
-									<View>
-										<ListItem>
-											<ListItem.Title>
-												Add to:
-											</ListItem.Title>
-										</ListItem>
-										<ListItem
-											onPress={() => {
-												this.setState(
-													(state) => ({
-														overlayVisible:
-															!state.overlayVisible,
-													}),
-													() => {
-														SaveSettings(code);
-													}
-												);
-											}}
-										>
-											<ListItem.Subtitle>
-												Going Out
-											</ListItem.Subtitle>
-										</ListItem>
-										<ListItem
-											onPress={() => {
-												this.setState(
-													(state) => ({
-														overlayVisible:
-															!state.overlayVisible,
-													}),
-													() => {
-														SaveSettings(
-															code,
-															false
-														);
-													}
-												);
-											}}
-										>
-											<ListItem.Subtitle>
-												Going Home
-											</ListItem.Subtitle>
-										</ListItem>
-									</View>
+									<Consumer>
+										{(auth) => {
+											console.log("Auth: " + JSON.stringify(auth));
+											console.log("Auth token: " + JSON.stringify(auth.token));
+											return (
+												<View>
+													<ListItem>
+														<ListItem.Title>
+															Add to:
+														</ListItem.Title>
+													</ListItem>
+													<ListItem
+														onPress={() => {
+															this.setState(
+																(state) => ({
+																	overlayVisible:
+																		!state.overlayVisible,
+																}),
+																() => {
+																	SaveSettings(
+																		auth.token,
+																		code
+																	);
+																}
+															);
+														}}
+													>
+														<ListItem.Subtitle>
+															Going Out
+														</ListItem.Subtitle>
+													</ListItem>
+													<ListItem
+														onPress={() => {
+															this.setState(
+																(state) => ({
+																	overlayVisible:
+																		!state.overlayVisible,
+																}),
+																() => {
+																	SaveSettings(
+																		auth.token,
+																		code,
+																		false
+																	);
+																}
+															);
+														}}
+													>
+														<ListItem.Subtitle>
+															Going Home
+														</ListItem.Subtitle>
+													</ListItem>
+												</View>
+											);
+										}}
+									</Consumer>
 								</Overlay>
 							</View>
 						</Pressable>

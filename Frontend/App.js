@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
 							config.TOKEN,
 							"",
 							(error) => {
-								ToastAndroid.show(error, 1000);
+								ToastAndroid.show(error, ToastAndroid.SHORT);
 							}
 						);
 						const result = await LogOut();
@@ -115,12 +115,13 @@ export default function App() {
 			await GetSettings(token ?? authToken)
 				.then((res) => {
 					console.log("Res in _getData: " + JSON.stringify(res));
+					// Save settings here
 				})
 				.catch((err) => {
-					ToastAndroid.show(err.message, 1000);
+					ToastAndroid.show(err.message, ToastAndroid.SHORT);
 				});
 		} catch (error) {
-			ToastAndroid.show(error, 1000);
+			ToastAndroid.show(error, ToastAndroid.SHORT);
 		}
 	};
 

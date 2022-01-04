@@ -30,18 +30,23 @@ const Search = () => {
 		// Search for bus stops
 		if (search.length >= searchLength) {
 			// Check if there's data in the db table
-			SearchBusStop(search).then(
-				(res) => {
-					if (res.details?.length > 0) {
-						setBusStops(res.details);
-					} else {
-						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+			SearchBusStop(search)
+				.then(
+					(res) => {
+						if (res.details?.length > 0) {
+							setBusStops(res.details);
+						} else {
+							ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+						}
+					},
+					(rej) => {
+						ToastAndroid.show("Search failed", ToastAndroid.SHORT);
 					}
-				},
-				(rej) => {
-					ToastAndroid.show("Search failed", ToastAndroid.SHORT);
-				}
-			);
+				)
+				.catch((error) => {
+					console.error(error);
+					ToastAndroid.show("Error in SearchBusStop: " + error, ToastAndroid.SHORT);
+				});
 		} else {
 			ToastAndroid.show(
 				"Enter at least 1 character.",
