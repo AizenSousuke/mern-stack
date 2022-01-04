@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { RefreshControl } from "react-native";
+import { RefreshControl, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import BusStopSaved from "../components/BusStopSaved";
 
 export const GoingOut = (props) => {
 	const [refreshing, setRefreshing] = useState(false);
@@ -16,8 +17,9 @@ export const GoingOut = (props) => {
 				></RefreshControl>
 			}
 		>
+			{props.settings?.GoingOut?.map((busStop, index) => <BusStopSaved key={index} code={busStop}  />)}
 		</ScrollView>
 	);
-}
+};
 
 export default GoingOut;

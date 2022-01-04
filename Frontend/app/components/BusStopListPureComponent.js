@@ -5,7 +5,7 @@ import { View, Text } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Icon, ListItem, Overlay } from "react-native-elements";
 import BusStop from "./BusStop";
-import Consumer from "../context/AuthContext";
+import AuthConsumer from "../context/AuthContext";
 
 export default class BusStopListPureComponent extends PureComponent {
 	constructor(props) {
@@ -30,7 +30,7 @@ export default class BusStopListPureComponent extends PureComponent {
 					() => {}
 				);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.error(err));
 	}
 
 	componentWillUnmount() {
@@ -90,7 +90,7 @@ export default class BusStopListPureComponent extends PureComponent {
 										}))
 									}
 								>
-									<Consumer>
+									<AuthConsumer>
 										{(auth) => {
 											console.log("Auth: " + JSON.stringify(auth));
 											console.log("Auth token: " + JSON.stringify(auth.token));
@@ -145,7 +145,7 @@ export default class BusStopListPureComponent extends PureComponent {
 												</View>
 											);
 										}}
-									</Consumer>
+									</AuthConsumer>
 								</Overlay>
 							</View>
 						</Pressable>

@@ -105,6 +105,7 @@ export default function App() {
 
 		// Save token
 		setAuthToken(token);
+
 		// Get settings data
 		await _getData(token);
 	};
@@ -116,7 +117,12 @@ export default function App() {
 				.then((res) => {
 					console.log("Settings res in _getData: " + JSON.stringify(res));
 					// Save settings here
-					setSettings(res.Settings);
+					if (res.settings.Settings) {
+						setSettings(JSON.parse(res.settings.Settings));
+						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+					} else {
+						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+					}
 				})
 				.catch((err) => {
 					ToastAndroid.show(err.message, ToastAndroid.SHORT);

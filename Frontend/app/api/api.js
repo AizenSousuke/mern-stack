@@ -53,7 +53,6 @@ export const GetSettings = async (token) => {
 	return await axios
 		.get(`${api}/settings`, data)
 		.then((res) => {
-			// console.log("Res in api: " + JSON.stringify(res));
 			return res.data;
 		})
 		.catch((err) => {

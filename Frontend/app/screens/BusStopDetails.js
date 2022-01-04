@@ -7,7 +7,6 @@ const BusStopDetails = () => {
 	return (
 		<View>
 			<Text style={styles.busStopDetails}>Bus Stop Details</Text>
-			<BusStop code={44229} />
 		</View>
 	);
 };
