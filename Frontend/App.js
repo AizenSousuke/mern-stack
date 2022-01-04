@@ -25,13 +25,23 @@ export default function App() {
 			Linking.removeAllListeners("url");
 			console.log("removed event listener");
 		};
-	});
+	}, []);
 
 	const _loadToken = async () => {
-		await AsyncStorage.getItem(config.TOKEN, (error, result) => {
-			console.log("_loadToken: " + error + "|" + result);
-			setAuthToken(result);
-		});
+		if (authToken === null) {
+			await AsyncStorage.getItem(config.TOKEN, (error, result) => {
+				console.log("_loadToken: " + error + "|" + result);
+				setAuthToken(result);
+				console.log("Attempting to load settings");
+				_loadSettings(result);
+			});
+		}
+	};
+
+	const _loadSettings = async (token) => {
+		if (settings === null) {
+			await _getData(token);
+		}
 	};
 
 	const _handleURL = async (event) => {
