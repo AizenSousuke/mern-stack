@@ -117,8 +117,8 @@ export default function App() {
 				.then((res) => {
 					console.log("Settings res in _getData: " + JSON.stringify(res));
 					// Save settings here
-					if (res.settings.Settings) {
-						setSettings(JSON.parse(res.settings.Settings));
+					if (res.settings?.Settings) {
+						setSettings(JSON.parse(res.settings?.Settings));
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					} else {
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
@@ -134,7 +134,7 @@ export default function App() {
 
 	return (
 		<AuthProvider value={authToken}>
-			<SettingsProvider value={settings}>
+			<SettingsProvider value={settings} updateSettings={() => _getData(authToken)}>
 				<NavigationContainer>
 					<Stack.Navigator>
 						<Stack.Screen

@@ -13,11 +13,14 @@ export const GoingOut = (props) => {
 					refreshing={refreshing}
 					onRefresh={() => {
 						console.log("Refreshing");
+						props.updateSettings();
 					}}
 				></RefreshControl>
 			}
 		>
-			{props.settings?.GoingOut?.map((busStop, index) => <BusStopSaved key={index} code={busStop}  />)}
+			{props.settings?.GoingOut?.map((busStop, index) => (
+				<BusStopSaved key={index} code={busStop} />
+			))}
 		</ScrollView>
 	);
 };

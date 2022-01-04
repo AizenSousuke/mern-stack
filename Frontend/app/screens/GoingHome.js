@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import BusStopSaved from "../components/BusStopSaved";
 
 export const GoingHome = (props) => {
 	const [refreshing, setRefreshing] = useState(false);
@@ -12,10 +13,15 @@ export const GoingHome = (props) => {
 					refreshing={refreshing}
 					onRefresh={() => {
 						console.log("Refreshing");
+						props.updateSettings();
 					}}
 				></RefreshControl>
 			}
-		></ScrollView>
+		>
+			{props.settings?.GoingHome?.map((busStop, index) => (
+				<BusStopSaved key={index} code={busStop} />
+			))}
+		</ScrollView>
 	);
 };
 
