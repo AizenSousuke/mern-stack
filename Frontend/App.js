@@ -30,11 +30,15 @@ export default function App() {
 	const _loadToken = async () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(config.TOKEN, (error, result) => {
-				console.log("_loadToken: " + error + "|" + result);
-				setAuthToken(result);
-				console.log("Attempting to load settings");
-				// Passing token because setAuthToken is async and updates according to react
-				_loadSettings(result);
+				if (result) {
+					console.log("_loadToken: " + error + "|" + result);
+					setAuthToken(result);
+					console.log("Attempting to load settings");
+					// Passing token because setAuthToken is async and updates according to react
+					_loadSettings(result);
+				} else {
+					console.log("No token found in Async Storage");
+				}
 			});
 		}
 	};
