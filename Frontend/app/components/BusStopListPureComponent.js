@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, ToastAndroid, View } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Icon, ListItem, Overlay } from "react-native-elements";
 import { GetBusStop, SaveSettings } from "../api/api";
@@ -111,7 +111,9 @@ export default class BusStopListPureComponent extends PureComponent {
 																	SaveSettings(
 																		auth.token,
 																		code
-																	);
+																	).then(res => {
+																		ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+																	});
 																}
 															);
 														}}
@@ -132,7 +134,9 @@ export default class BusStopListPureComponent extends PureComponent {
 																		auth.token,
 																		code,
 																		false
-																	);
+																	).then(res => {
+																		ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+																	});
 																}
 															);
 														}}
