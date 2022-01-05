@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, ToastAndroid, View } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Icon, ListItem, Overlay } from "react-native-elements";
-import { GetBusStop, GetBusStopByCode } from "../api/api";
+import {
+	GetBusStop,
+	GetBusStopByCode,
+	RemoveCodeFromSettings,
+} from "../api/api";
 import { Pressable } from "react-native";
 import BusStop from "./BusStop";
 import AuthConsumer from "../context/AuthContext";
 
-export const BusStopSaved = ({ code }) => {
+export const BusStopSaved = ({ code, GoingOut }) => {
 	const [busStop, setBusStop] = useState(null);
 	const [busStopData, setBusStopData] = useState(null);
 	const [isCollapsed, setIsCollapsed] = useState(true);
@@ -49,9 +53,7 @@ export const BusStopSaved = ({ code }) => {
 				/>
 				<ListItem.Content>
 					<ListItem.Title>
-						{busStop
-							? busStop.Description
-							: "Bus Stop Name"}
+						{busStop ? busStop.Description : "Bus Stop Name"}
 					</ListItem.Title>
 					<ListItem.Subtitle>
 						{busStop ? busStop.RoadName : "Address"} (
@@ -75,52 +77,25 @@ export const BusStopSaved = ({ code }) => {
 									{(auth) => {
 										return (
 											<View>
-												{/* <ListItem>
+												<ListItem>
 													<ListItem.Title>
-														Add to:
+														What do you want to do?
 													</ListItem.Title>
 												</ListItem>
 												<ListItem
-													onPress={() => {
-														this.setState(
-															(state) => ({
-																overlayVisible:
-																	!state.overlayVisible,
-															}),
-															() => {
-																SaveSettings(
-																	auth.token,
-																	code
-																);
-															}
-														);
+													onPress={async () => {
+														setOverlayVisible(!overlayVisible);
+														await RemoveCodeFromSettings(auth.token, code, GoingOut).then(res => {
+															// Refresh state
+														}).catch(error => {
+															ToastAndroid.show(error, ToastAndroid.SHORT);	
+														});
 													}}
 												>
 													<ListItem.Subtitle>
-														Going Out
+														Delete
 													</ListItem.Subtitle>
 												</ListItem>
-												<ListItem
-													onPress={() => {
-														this.setState(
-															(state) => ({
-																overlayVisible:
-																	!state.overlayVisible,
-															}),
-															() => {
-																SaveSettings(
-																	auth.token,
-																	code,
-																	false
-																);
-															}
-														);
-													}}
-												>
-													<ListItem.Subtitle>
-														Going Home
-													</ListItem.Subtitle>
-												</ListItem> */}
 											</View>
 										);
 									}}

@@ -84,7 +84,7 @@ export default function App() {
 					);
 					// Save settings here
 					if (res.settings?.Settings) {
-						setSettings(JSON.parse(res.settings?.Settings));
+						setSettings(res.settings?.Settings);
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					} else {
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);

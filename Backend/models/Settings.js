@@ -9,7 +9,7 @@ const SettingsSchema = new mongoose.Schema({
     Settings: {
         type: Object,
         required: true,
-        default: new Object
+        default: null
     },
     DateCreated: {
         type: Date,

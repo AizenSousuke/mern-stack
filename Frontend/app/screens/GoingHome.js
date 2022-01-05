@@ -19,7 +19,7 @@ export const GoingHome = (props) => {
 			}
 		>
 			{props.settings?.GoingHome?.map((busStop, index) => (
-				<BusStopSaved key={index} code={busStop} />
+				<BusStopSaved key={index} code={busStop} GoingOut={false} />
 			))}
 		</ScrollView>
 	);

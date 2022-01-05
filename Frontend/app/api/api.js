@@ -74,7 +74,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 						"Settings found: " +
 							JSON.stringify(response.data?.settings)
 					);
-					return JSON.parse(response.data.settings.Settings);
+					return response.data.settings.Settings;
 				} else {
 					console.log("No settings. Creating new ones.");
 					return { GoingOut: [], GoingHome: [] };
@@ -97,7 +97,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 			});
 
 			data.body = {
-				settings: JSON.stringify(newSettings),
+				settings: newSettings,
 			};
 			console.log("New data: " + JSON.stringify(data));
 			return await axios
@@ -115,7 +115,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 			});
 
 			data.body = {
-				settings: JSON.stringify(newSettings),
+				settings: newSettings,
 			};
 			console.log("New data: " + JSON.stringify(data));
 			return await axios

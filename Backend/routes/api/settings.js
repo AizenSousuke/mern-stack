@@ -54,8 +54,8 @@ router.put(
 			return res.status(200).json({
 				msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.`,
 			});
-		} catch (err) {
-			console.error(err);
+		} catch (error) {
+			console.error(error);
 			return res.status(500).json({ msg: "Server error" });
 		}
 	}
@@ -88,11 +88,40 @@ router.put(
 				});
 			}
 
+			let settings = await Settings.findOne({
+				UserId: req.user.UserId,
+			});
+
+			if (!settings) {
+				return res.status(404).json({
+					msg: "There are no settings found.",
+				});
+			}
+
+			console.log("Settings: " + JSON.stringify(settings));
+
+			// Delete items from settings
+			let newSettings = null;
+			if (GoingOut) {
+				newSettings = Object.assign({}, {
+					GoingOut: settings.Settings.GoingOut.filter((c) => c !== code),
+					GoingHome: settings.Settings.GoingHome,
+				});
+			}
+
+			console.log("New Settings after deleting: " + JSON.stringify(newSettings));
+
+			let UpdatedSettings = await Settings.findOneAndUpdate(
+				{ UserId: req.user.UserId },
+				{ Settings: newSettings, DateUpdated: Date.now() },
+				{ upsert: true, new: true, setDefaultsOnInsert: true }
+			);
+
 			return res.status(200).json({
 				msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.`,
 			});
 		} catch (error) {
-			console.error(err);
+			console.error(error);
 			return res.status(500).json({ msg: "Server error" });
 		}
 	}
