@@ -118,7 +118,11 @@ export default function App() {
 						<Stack.Screen
 							name="Search"
 							component={Search}
-							options={{ headerShown: true }}
+							options={{
+								headerShown: true,
+								headerTintColor: "white",
+								headerStyle: {backgroundColor: "black"},
+							}}
 						/>
 					</Stack.Navigator>
 				</NavigationContainer>
