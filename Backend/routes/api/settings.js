@@ -27,6 +27,16 @@ router.get("/", authMiddleware, async (req, res) => {
 	});
 });
 
+// router.put("/", authMiddleware, async (req, res) => {
+// 	try {
+		
+// 	} catch (error) {
+// 		console.error(error);
+// 		return res.status(500).json({ msg: "Server error" });
+// 	}
+// })
+
+// To refactor to handle business logic on backend instead of frontend
 router.put(
 	"/",
 	[check("settings", "Settings data structure is required").notEmpty()],
