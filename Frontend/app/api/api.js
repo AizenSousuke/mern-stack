@@ -70,7 +70,10 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 			.then((response) => {
 				// If there is a setting
 				if (response.data?.settings) {
-					console.log("Settings found: " + JSON.stringify(response.data?.settings));
+					console.log(
+						"Settings found: " +
+							JSON.stringify(response.data?.settings)
+					);
 					return JSON.parse(response.data.settings.Settings);
 				} else {
 					console.log("No settings. Creating new ones.");
@@ -122,6 +125,23 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 				})
 				.catch((error) => console.error("Error in API: " + error));
 		}
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const RemoveCodeFromSettings = async (token, code, GoingOut = true) => {
+	try {
+		console.log("Token in SaveSettings is: " + token);
+		data.headers["X-Auth-Token"] = token;
+		return await axios
+			.put(`${api}/settings/update`, { code: code, GoingOut: GoingOut }, data)
+			.then((res) => {
+				return res.data;
+			})
+			.catch((error) => {
+				console.error("Error in API: " + error);
+			});
 	} catch (error) {
 		console.error(error);
 	}

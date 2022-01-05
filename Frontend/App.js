@@ -33,6 +33,7 @@ export default function App() {
 				console.log("_loadToken: " + error + "|" + result);
 				setAuthToken(result);
 				console.log("Attempting to load settings");
+				// Passing token because setAuthToken is async and updates according to react
 				_loadSettings(result);
 			});
 		}
@@ -45,24 +46,32 @@ export default function App() {
 	};
 
 	const _handleURL = async (event) => {
-		console.log("event" + JSON.stringify(event));
-		console.log("Handling URL into app: " + event.url);
-		const token = event.url.split("token=")[1].split("#_=_")[0];
-		console.log("Going to save the token: " + token);
-		console.log("Saving token to async storage");
-		await AsyncStorage.setItem(
-			config.TOKEN,
-			token.toString(),
-			(error, result) => {
-				console.log("Saving new token: " + error + "|" + result);
+		try {
+			console.log("event" + JSON.stringify(event));
+			console.log("Handling URL into app: " + event.url);
+			const token = event.url.split("token=")[1].split("#_=_")[0];
+			if (token) {
+				console.log("Going to save the token: " + token);
+				console.log("Saving token to async storage");
+				await AsyncStorage.setItem(
+					config.TOKEN,
+					token.toString(),
+					(error, result) => {
+						console.log(
+							"Saving new token: " + error + "|" + result
+						);
+					}
+				);
+
+				// Save token
+				setAuthToken(token);
+
+				// Get settings data
+				await _getData(token);
 			}
-		);
-
-		// Save token
-		setAuthToken(token);
-
-		// Get settings data
-		await _getData(token);
+		} catch (error) {
+			ToastAndroid.show(error, ToastAndroid.SHORT);
+		}
 	};
 
 	const _getData = async (token = null) => {
