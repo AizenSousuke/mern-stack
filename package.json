@@ -7,7 +7,7 @@
     "scripts": {
         "start": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && yarn start\"",
         "backend": "concurrently \"cd backend && nodemon server.js\"",
-        "frontend": "cd frontend && yarn start"
+        "frontend": "adb reverse tcp:8080 tcp:8080 && cd frontend && yarn start"
     },
     "devDependencies": {
         "concurrently": "^6.4.0"

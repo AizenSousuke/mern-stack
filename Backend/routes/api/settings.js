@@ -39,7 +39,7 @@ router.put(
 			console.log("Body:" + JSON.stringify(req.body));
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
-				res.status(422).json({ msg: errors.array() });
+				res.status(422).json({ errors: errors.array() });
 			}
 
 			const { settings } = req.body;
@@ -55,6 +55,43 @@ router.put(
 				msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.`,
 			});
 		} catch (err) {
+			console.error(err);
+			return res.status(500).json({ msg: "Server error" });
+		}
+	}
+);
+
+router.put(
+	"/update",
+	[
+		check("code", "Code is required").notEmpty(),
+		check("GoingOut", "GoingOut boolean property is required").notEmpty(),
+	],
+	authMiddleware,
+	async (req, res) => {
+		try {
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				res.status(422).json({ errors: errors.array() });
+			}
+
+			const code = req.body.code;
+			const GoingOut = req.body.GoingOut;
+			if (!code) {
+				return res.status(422).json({
+					msg: "There is no code provided. Settings not updated. ",
+				});
+			}
+			if (!GoingOut) {
+				return res.status(422).json({
+					msg: "There is no GoingOut boolean property provided. Settings not updated. ",
+				});
+			}
+
+			return res.status(200).json({
+				msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.`,
+			});
+		} catch (error) {
 			console.error(err);
 			return res.status(500).json({ msg: "Server error" });
 		}
