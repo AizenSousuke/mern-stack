@@ -26,7 +26,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 
 // To get HTTPS
 // var server = https.createServer(options, app);
-// server.listen(PORT, (err, result) => {
+// server.listen(PORT, (error, result) => {
 // 	console.log(`HTTPS Server started on port ${PORT}`);
 // });
 
@@ -118,8 +118,8 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user, done) => {
 	// Return user from mongoose database
-	UserModel.findById(user.UserId, null, null, (err, user) => {
-		done(err, user);
+	UserModel.findById(user.UserId, null, null, (error, user) => {
+		done(error, user);
 	});
 });
 

@@ -28,12 +28,12 @@ export const BusStopSaved = ({ code, GoingOut }) => {
 			.then((res) => {
 				setBusStop(res.busStop);
 			})
-			.catch((err) => console.error(err));
+			.catch((error) => console.error(error));
 		GetBusStop(code)
 			.then((res) => {
 				setBusStopData(res.data);
 			})
-			.catch((err) => console.error(err));
+			.catch((error) => console.error(error));
 	};
 
 	return (

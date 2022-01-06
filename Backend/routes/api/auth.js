@@ -19,8 +19,8 @@ router.get("/", authMiddleware, async (req, res) => {
 		}
 
 		return res.status(200).json({ msg: user });
-	} catch (err) {
-		console.log(err);
+	} catch (error) {
+		console.log(error);
 		res.status(500).json({ msg: "Server error" });
 	}
 });
@@ -45,7 +45,7 @@ router.get(
 		);
 		// req.session.user = req.user;
 		// console.log("Req.session: " + JSON.stringify(req.session));
-		req.session.save((err) => {
+		req.session.save((error) => {
 			return res.status(302).redirect(
 				// Redirect back to app
 				config.FRONTEND_LINK + `?token=${req.user.Token}`
@@ -114,13 +114,13 @@ router.post(
 				payload,
 				config.get("jwtSecret"),
 				{ expiresIn: 36000000 },
-				(err, token) => {
-					if (err) throw err;
+				(error, token) => {
+					if (error) throw err;
 					return res.json({ token });
 				}
 			);
-		} catch (err) {
-			console.log(err);
+		} catch (error) {
+			console.log(error);
 			return res.status(500).json({ msg: "Server error" });
 		}
 	}

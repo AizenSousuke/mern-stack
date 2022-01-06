@@ -34,14 +34,18 @@ router.get("/", async (req, res) => {
 		}
 
 		return res.status(200).json({ busStop: busStop });
-	} catch (err) {
-		console.error(err.message);
+	} catch (error) {
+		console.error(error.message);
 		return res.status(500).send("Server error");
 	}
 });
 
 router.get("/search", async (req, res) => {
 	try {
+		if (!req.query.term) {
+			res.status(422).json({ msg: "Must include a term parameter" });
+		}
+
 		let term = req.query.term.toString();
 		if (!term) {
 			res.status(422).json({ msg: "Must include a term parameter" });
@@ -64,8 +68,8 @@ router.get("/search", async (req, res) => {
 		}
 
 		res.status(404).json({ msg: "No bus stops found" });
-	} catch (err) {
-		console.error(err.message);
+	} catch (error) {
+		console.error(error.message);
 		return res.status(500).send("Server error");
 	}
 });
@@ -80,8 +84,8 @@ router.get("/:code", async (req, res) => {
 		const details = await getBusStopDetails(code);
 
 		return res.status(200).json({ data: details });
-	} catch (err) {
-		console.error(err.message);
+	} catch (error) {
+		console.error(error.message);
 		return res.status(500).send("Server error");
 	}
 });
@@ -138,8 +142,8 @@ router.post(
 			await newBusStop.save();
 
 			res.send("Created Bus Stop");
-		} catch (err) {
-			console.error(err);
+		} catch (error) {
+			console.error(error);
 			return res.status(500).send("Server error");
 		}
 	}

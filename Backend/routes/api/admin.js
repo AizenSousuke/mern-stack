@@ -40,8 +40,8 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 							allBusStops.push(stops);
 						});
 					})
-					.catch((err) => {
-						return res.status(500).json({ error: err.message });
+					.catch((error) => {
+						return res.status(500).json({ error: error.message });
 					})
 			);
 		}
@@ -78,18 +78,18 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 						msg: "Successfully updated bus stop list",
 						length: allBusStops.length,
 					});
-				} catch (err) {
+				} catch (error) {
 					await session.abortTransaction();
 					await session.endSession();
 					return res
 						.status(500)
-						.json({ msg: "Server error", error: err.message });
+						.json({ msg: "Server error", error: error.message });
 				}
 			})
-			.catch((err) => {
+			.catch((error) => {
 				return res
 					.status(500)
-					.json({ msg: "Server error", error: err.message });
+					.json({ msg: "Server error", error: error.message });
 			});
 	} else {
 		return res.status(403).json({ msg: "You must be an admin to do this" });
@@ -128,7 +128,7 @@ router.patch(
 			}
 
 			return res.status(200).json({ msg: "Successfully set admin" });
-		} catch (err) {}
+		} catch (error) {}
 	}
 );
 

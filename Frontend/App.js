@@ -94,8 +94,8 @@ export default function App() {
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					}
 				})
-				.catch((err) => {
-					ToastAndroid.show(err.message, ToastAndroid.SHORT);
+				.catch((error) => {
+					ToastAndroid.show(error.message, ToastAndroid.SHORT);
 				});
 		} catch (error) {
 			ToastAndroid.show(error, ToastAndroid.SHORT);

@@ -54,7 +54,7 @@ export const GetSettings = async (token) => {
 		.then((res) => {
 			return res.data;
 		})
-		.catch((err) => {
+		.catch((error) => {
 			console.error("Error in API: " + err);
 			return null;
 		});
@@ -80,7 +80,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 					return { GoingOut: [], GoingHome: [] };
 				}
 			})
-			.catch((err) => {
+			.catch((error) => {
 				console.warn("Error in API. Defaulting value: " + err);
 				return { GoingOut: [], GoingHome: [] };
 			});

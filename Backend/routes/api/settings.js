@@ -146,8 +146,8 @@ router.delete("/", authMiddleware, async (req, res) => {
 		}
 
 		return res.status(200).json({ msg: "Successfully deleted settings" });
-	} catch (err) {
-		console.error(err.message);
+	} catch (error) {
+		console.error(error.message);
 		return res.status(500).json({ msg: "Server error" });
 	}
 });

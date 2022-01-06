@@ -29,7 +29,7 @@ export default class BusStopListPureComponent extends PureComponent {
 					() => {}
 				);
 			})
-			.catch((err) => console.error(err));
+			.catch((error) => console.error(error));
 	}
 
 	componentWillUnmount() {

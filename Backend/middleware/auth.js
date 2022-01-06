@@ -35,10 +35,10 @@ module.exports = async (req, res, next) => {
 		return res
 			.status(500)
 			.json({ msg: "There is some issue with the request." });
-	} catch (err) {
+	} catch (error) {
 		return res
 			.status(401)
-			.json({ msg: err.message });
+			.json({ msg: error.message });
 	}
 
 	// Verify token
@@ -46,7 +46,7 @@ module.exports = async (req, res, next) => {
 	// 	const decoded = jwt.verify(token, config.get("jwtSecret"));
 	// 	req.user = decoded.user;
 	// 	next();
-	// } catch (err) {
+	// } catch (error) {
 	// 	return res.status(401).json({ msg: "Token is not valid" });
 	// }
 };

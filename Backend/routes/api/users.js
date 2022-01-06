@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 			.status(200)
 			.json({ msg: "Successfully got the user", user: user });
 	} catch (error) {
-		console.log(JSON.stringify(error));
+		console.log(error.message);
 		return res.status(500).json({ msg: "Server error" });
 	}
 });
@@ -80,15 +80,15 @@ router.post(
 				payload,
 				config.get("jwtSecret"),
 				{ expiresIn: 3600000 },
-				(err, token) => {
-					if (err) throw err;
+				(error, token) => {
+					if (error) throw err;
 					res.json({ token });
 				}
 			);
 			await session.commitTransaction();
 			await session.endSession();
-		} catch (err) {
-			console.error(err.message);
+		} catch (error) {
+			console.error(error.message);
 			await session.abortTransaction();
 			await session.endSession();
 			return res.status(500).json({ msg: "Server error" });
@@ -123,8 +123,8 @@ router.delete("/", async (req, res) => {
 		return res
 			.status(200)
 			.json({ msg: `Removed user with email: ${Email}` });
-	} catch (err) {
-		console.error(err.message);
+	} catch (error) {
+		console.error(error.message);
 		await session.abortTransaction();
 		await session.endSession();
 		return res.status(500).json({ msg: "Server error" });
