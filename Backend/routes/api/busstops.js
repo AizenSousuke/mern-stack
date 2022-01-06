@@ -70,7 +70,7 @@ router.get("/search", async (req, res) => {
 		res.status(404).json({ msg: "No bus stops found" });
 	} catch (error) {
 		console.error(error.message);
-		return res.status(500).send("Server error");
+		return res.status(500).json({ msg: "Server Error" });
 	}
 });
 
@@ -86,7 +86,27 @@ router.get("/:code", async (req, res) => {
 		return res.status(200).json({ data: details });
 	} catch (error) {
 		console.error(error.message);
-		return res.status(500).send("Server error");
+		return res.status(500).json({ msg: "Server Error" });
+	}
+});
+
+router.get("/nearest", async (req, res) => {
+	try {
+		if (!req.query.latitude || !req.query.longitude) {
+			return res
+				.status(422)
+				.json({ msg: "Must provide both latitude and longitude" });
+		}
+
+		// Search for bus stops nearby
+		// TODO: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
+		const busStopsNearby = await BusStop.find({
+			Longitude: req.query.longitude,
+			Latitude: req.query.latitude,
+		});
+	} catch (error) {
+		console.error(error.message);
+		return res.status(500).json({ msg: "Server Error" });
 	}
 });
 
@@ -143,8 +163,8 @@ router.post(
 
 			res.send("Created Bus Stop");
 		} catch (error) {
-			console.error(error);
-			return res.status(500).send("Server error");
+			console.error(error.message);
+			return res.status(500).json({ msg: "Server Error" });
 		}
 	}
 );
