@@ -38,7 +38,7 @@ module.exports = async (req, res, next) => {
 	} catch (err) {
 		return res
 			.status(401)
-			.json({ msg: "Token is not valid. " + err.message });
+			.json({ msg: err.message });
 	}
 
 	// Verify token

@@ -11,14 +11,14 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 
 // Add self signed key for https
-const https = require("https");
-const fs = require("fs");
-var key = fs.readFileSync(__dirname + "/config/selfsigned.key");
-var cert = fs.readFileSync(__dirname + "/config/selfsigned.crt");
-var options = {
-	key: key,
-	cert: cert,
-};
+// const https = require("https");
+// const fs = require("fs");
+// var key = fs.readFileSync(__dirname + "/config/selfsigned.key");
+// var cert = fs.readFileSync(__dirname + "/config/selfsigned.crt");
+// var options = {
+// 	key: key,
+// 	cert: cert,
+// };
 
 // Passport
 const passport = require("passport");

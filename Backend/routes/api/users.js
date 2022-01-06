@@ -10,8 +10,17 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../../models/User");
 
 router.get("/", async (req, res) => {
-	const users = await UserModel.findOne({});
-	return res.status(200).json({ msg: JSON.stringify(users) });
+	try {
+		const user = await UserModel.findOne({}).catch((error) => {
+			return res.status(404).json({ msg: "No user found", error: error });
+		});
+		return res
+			.status(200)
+			.json({ msg: "Successfully got the user", user: user });
+	} catch (error) {
+		console.log(JSON.stringify(error));
+		return res.status(500).json({ msg: "Server error" });
+	}
 });
 
 router.post(
