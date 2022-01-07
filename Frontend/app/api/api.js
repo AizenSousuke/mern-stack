@@ -55,7 +55,7 @@ export const GetSettings = async (token) => {
 			return res.data;
 		})
 		.catch((error) => {
-			console.error("Error in API: " + err);
+			console.error("Error in API: " + error);
 			return null;
 		});
 };
@@ -81,7 +81,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 				}
 			})
 			.catch((error) => {
-				console.warn("Error in API. Defaulting value: " + err);
+				console.warn("Error in API. Defaulting value: " + error);
 				return { GoingOut: [], GoingHome: [] };
 			});
 
@@ -135,7 +135,11 @@ export const RemoveCodeFromSettings = async (token, code, GoingOut = true) => {
 		console.log("Token in SaveSettings is: " + token);
 		data.headers["X-Auth-Token"] = token;
 		return await axios
-			.put(`${api}/settings/update`, { code: code, GoingOut: GoingOut }, data)
+			.put(
+				`${api}/settings/update`,
+				{ code: code, GoingOut: GoingOut },
+				data
+			)
 			.then((res) => {
 				return res.data;
 			})

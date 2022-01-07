@@ -95,10 +95,13 @@ export default function App() {
 					}
 				})
 				.catch((error) => {
-					ToastAndroid.show(error.message, ToastAndroid.SHORT);
+					ToastAndroid.show(
+						"Failed to get settings",
+						ToastAndroid.SHORT
+					);
 				});
 		} catch (error) {
-			ToastAndroid.show(error, ToastAndroid.SHORT);
+			ToastAndroid.show("Failed to get data", ToastAndroid.SHORT);
 		}
 	};
 
@@ -121,7 +124,7 @@ export default function App() {
 							options={{
 								headerShown: true,
 								headerTintColor: "white",
-								headerStyle: {backgroundColor: "black"},
+								headerStyle: { backgroundColor: "black" },
 							}}
 						/>
 					</Stack.Navigator>
