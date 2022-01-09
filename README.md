@@ -33,3 +33,6 @@ adb kill-server
 - Settings page
   - Force download\upload of json data
 - Redux as state management
+- Bus Alerts
+- Bus Route modal
+- Location Map
