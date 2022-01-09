@@ -46,23 +46,19 @@ router.get(
 			"Req isAuthenticated from facebook callback: " +
 				req.isAuthenticated()
 		);
-		// req.session.user = req.user;
-		// console.log("Req.session: " + JSON.stringify(req.session));
 		req.session.save((error) => {
 			return res.status(302).redirect(
 				// Redirect back to app
 				config.FRONTEND_LINK + `?token=${req.user.Token}`
 			);
 		});
-		// return res.status(302).redirect(
-		// 	// Redirect back to app
-		// 	config.FRONTEND_LINK + `?token=${req.user.Token}`
-		// );
 	}
 );
 
 router.get("/checkTokenExpiry", async (req, res) => {
-	console.log("X-Auth-Token: " + req.header("X-Auth-Token"));
+	console.log(
+		"Checking Token Expiry for X-Auth-Token: " + req.header("X-Auth-Token")
+	);
 	if (!req.header("X-Auth-Token")) {
 		return res
 			.status(200)
@@ -72,11 +68,11 @@ router.get("/checkTokenExpiry", async (req, res) => {
 	const user = await User.findOne({
 		Token: req.header("X-Auth-Token"),
 	}).select("-Password");
-	console.log("User with Token Expiry Date: " + user.TokenExpiryDate);
 	if (!user) {
 		return res.status(200).json({ msg: "Cannot find user", expired: true });
 	}
 
+	console.log("User with Token Expiry Date: " + user.TokenExpiryDate);
 	const DateToday = new Date(Date.now());
 	console.log("Date today: " + DateToday);
 	const ExpiryDate = new Date(user.TokenExpiryDate);
