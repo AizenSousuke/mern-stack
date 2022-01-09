@@ -106,30 +106,41 @@ export default function App() {
 		}
 	};
 
-	const updateToken = async (token = "") => {
-		await AsyncStorage.setItem(config.TOKEN, token, (error) => {
-			if (error) {
-				ToastAndroid.show(error, ToastAndroid.SHORT);
-			} else {
-				// Update state
-				setAuthToken(token);
-				if (token != "") {
-					ToastAndroid.show(
-						"Successfully updated token",
-						ToastAndroid.SHORT
-					);
+	const updateToken = async (token = null) => {
+		// Remove
+		if (!token) {
+			await AsyncStorage.removeItem(config.TOKEN, (error) => {
+				if (error) {
+					ToastAndroid.show(error, ToastAndroid.SHORT);
 				} else {
+					// Update state
+					setAuthToken(null);
 					ToastAndroid.show(
 						"Successfully cleared token and logged out",
 						ToastAndroid.SHORT
 					);
 				}
-			}
-		});
+			});
+		} else {
+			await AsyncStorage.setItem(config.TOKEN, token, (error) => {
+				if (error) {
+					ToastAndroid.show(error, ToastAndroid.SHORT);
+				} else {
+					// Update state
+					setAuthToken(token);
+					if (token != "") {
+						ToastAndroid.show(
+							"Successfully updated token",
+							ToastAndroid.SHORT
+						);
+					}
+				}
+			});
+		}
 	};
 
 	return (
-		<AuthProvider value={authToken} updateToken={() => updateToken()}>
+		<AuthProvider value={authToken} updateToken={() => updateToken(null)}>
 			<SettingsProvider
 				value={settings}
 				updateSettings={() => _getData(authToken)}

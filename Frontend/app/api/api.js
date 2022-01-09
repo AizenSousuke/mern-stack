@@ -141,7 +141,12 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 
 export const RemoveCodeFromSettings = async (token, code, GoingOut = true) => {
 	try {
-		console.log("Token in SaveSettings is: " + token);
+		if (!token) {
+			console.error("No token provided");
+			return null;
+		}
+
+		console.log("Token in RemoveCodeFromSettings is: " + token);
 		data.headers["X-Auth-Token"] = token;
 		return await axios
 			.put(
