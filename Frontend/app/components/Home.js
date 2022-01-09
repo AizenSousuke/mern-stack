@@ -22,26 +22,6 @@ export const Home = ({ navigation }) => {
 								icon: "logout",
 								color: "white",
 								onPress: async () => {
-									// await AsyncStorage.setItem(
-									// 	config.TOKEN,
-									// 	"",
-									// 	(error) => {
-									// 		if (error) {
-									// 			ToastAndroid.show(
-									// 				error,
-									// 				ToastAndroid.SHORT
-									// 			);
-									// 		} else {
-									// 			// Remove state
-
-									// 			ToastAndroid.show(
-									// 				"Logged out",
-									// 				ToastAndroid.SHORT
-									// 			);
-									// 		}
-									// 	}
-									// );
-
 									await auth.updateToken();
 
 									await LogOut().then((res) => {
@@ -54,7 +34,7 @@ export const Home = ({ navigation }) => {
 								style: { color: "white", fontSize: 18 },
 							}}
 							rightComponent={{
-								icon: "login",
+								icon: auth.token ? "person" : "login",
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
