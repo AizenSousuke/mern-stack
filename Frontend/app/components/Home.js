@@ -8,6 +8,7 @@ import { LogOut } from "../api/api";
 import SearchButton from "../components/SearchButton";
 import TabNavigator from "../components/TabNavigator";
 import AuthConsumer from "../context/AuthContext";
+import { CheckTokenExpiry } from "../api/api";
 
 export const Home = ({ navigation }) => {
 	return (
@@ -59,6 +60,11 @@ export const Home = ({ navigation }) => {
 
 									console.log(
 										"Result: " + JSON.stringify(result)
+									);
+
+									// Check if the token has expired on the server end
+									const tokenExpiry = await CheckTokenExpiry(
+										result
 									);
 
 									if (!result) {

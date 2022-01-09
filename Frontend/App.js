@@ -95,6 +95,7 @@ export default function App() {
 					}
 				})
 				.catch((error) => {
+					console.error(error.msg);
 					ToastAndroid.show(
 						"Failed to get settings",
 						ToastAndroid.SHORT

@@ -52,11 +52,12 @@ export const GetSettings = async (token) => {
 	return await axios
 		.get(`${api}/settings`, data)
 		.then((res) => {
+			console.log(JSON.stringify(res));
 			return res.data;
 		})
 		.catch((error) => {
 			console.error("Error in API: " + error);
-			return null;
+			return { msg: error.message };
 		});
 };
 
@@ -162,7 +163,13 @@ export const LogOut = async () => {
 	return result.data;
 };
 
-export const CheckToken = async () => {
-	const result = await axios.get(`${api}/auth/facebook/checkToken`, data);
+export const CheckTokenExpiry = async (token) => {
+	console.log("Checking token expiry:" + token);
+	data.headers["X-Auth-Token"] = token;
+	if (!token) {
+		console.log("Default token has expired");
+		return { msg: "Token was not provided.", expired: true };
+	}
+	const result = await axios.get(`${api}/auth/checkTokenExpiry`, data);
 	return result.data;
 };

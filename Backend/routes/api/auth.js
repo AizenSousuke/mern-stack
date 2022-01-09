@@ -9,11 +9,14 @@ const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const https = require("https");
 const auth = require("../../middleware/auth");
+const User = require("../../models/User");
 
 // Using the auth middleware to check the json web token
 router.get("/", authMiddleware, async (req, res) => {
 	try {
-		const user = await UserModel.findById(req.user.UserId).select("-Password");
+		const user = await UserModel.findById(req.user.UserId).select(
+			"-Password"
+		);
 		if (!user) {
 			return res.status(401).json({ msg: "No user is logged in" });
 		}
@@ -58,11 +61,37 @@ router.get(
 	}
 );
 
-router.get("/facebook/checkToken", auth, (req, res) => {
-	// If there is a req.user
-	console.log("Hitting facebook/login");
-	console.log(JSON.stringify(req.user));
-	return res.status(200).json({ data: req.isAuthenticated() });
+router.get("/checkTokenExpiry", async (req, res) => {
+	console.log("X-Auth-Token: " + req.header("X-Auth-Token"));
+	if (!req.header("X-Auth-Token")) {
+		return res
+			.status(200)
+			.json({ msg: "Token has expired", expired: true });
+	}
+
+	const user = await User.findOne({
+		Token: req.header("X-Auth-Token"),
+	}).select("-Password");
+	console.log("User with Token Expiry Date: " + user.TokenExpiryDate);
+	if (!user) {
+		return res.status(200).json({ msg: "Cannot find user", expired: true });
+	}
+
+	const DateToday = new Date(Date.now());
+	console.log("Date today: " + DateToday);
+	const ExpiryDate = new Date(user.TokenExpiryDate);
+	console.log("Expiry Date: " + ExpiryDate);
+	if (DateToday > ExpiryDate) {
+		console.log("Token has expired");
+		return res
+			.status(200)
+			.json({ msg: "Token has expired", expired: true });
+	}
+
+	console.log("Token has not expired");
+	return res
+		.status(200)
+		.json({ msg: "Token has not expired", expired: false });
 });
 
 router.get("/logout", (req, res) => {

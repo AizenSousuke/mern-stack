@@ -23,22 +23,21 @@ module.exports = async (req, res, next) => {
 		console.log("User: " + JSON.stringify(user));
 		if (user) {
 			// Check token has not expired
+			console.log("Date today: " + Date.now());
 			if (user.TokenExpiryDate > Date.now()) {
 				console.log("Setting request user");
 				req.user = user;
 				return next();
 			}
-			// If expired, get new token by redirecting user to login page
+			// If expired
 			console.warn("Expired token");
-			return res.redirect("/auth/facebook");
+			return res.status(401).json({ msg: "Token has expired. Please re-login." });
 		}
 		return res
 			.status(500)
 			.json({ msg: "There is some issue with the request." });
 	} catch (error) {
-		return res
-			.status(401)
-			.json({ msg: error.message });
+		return res.status(401).json({ msg: error.message });
 	}
 
 	// Verify token
