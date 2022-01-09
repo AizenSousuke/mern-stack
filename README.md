@@ -36,3 +36,5 @@ adb kill-server
 - Bus Alerts
 - Bus Route modal
 - Location Map
+- Upload backend to Netlify\Azure
+- Upload frontend to Netlify\APK
