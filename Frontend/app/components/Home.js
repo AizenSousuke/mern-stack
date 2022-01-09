@@ -65,9 +65,11 @@ export const Home = ({ navigation }) => {
 									// Check if the token has expired on the server end
 									const tokenExpiry = await CheckTokenExpiry(
 										result
-									);
+									).catch(error => {
+										ToastAndroid.show("Error: " + error, ToastAndroid.SHORT);
+									});
 
-									if (!result) {
+									if (!result || tokenExpiry.expired == true) {
 										// Get new token
 										console.log("Signing in");
 										const URL = `${config.BACKEND_API}/auth/facebook`;
