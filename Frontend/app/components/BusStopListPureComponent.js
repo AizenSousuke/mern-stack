@@ -113,6 +113,8 @@ export default class BusStopListPureComponent extends PureComponent {
 																		code
 																	).then(res => {
 																		ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+																	}).catch(error => {
+																		ToastAndroid.show("Error when saving setting", ToastAndroid.SHORT);
 																	});
 																}
 															);
@@ -136,7 +138,9 @@ export default class BusStopListPureComponent extends PureComponent {
 																		false
 																	).then(res => {
 																		ToastAndroid.show(res.msg, ToastAndroid.SHORT);
-																	});
+																	}).catch(error => {
+																		ToastAndroid.show("Error when saving setting", ToastAndroid.SHORT);
+																	});;
 																}
 															);
 														}}

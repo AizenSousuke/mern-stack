@@ -36,7 +36,10 @@ export const SearchBusStop = async (term) => {
 	const response = await axios.get(
 		`${api}/busstops/search?term=${term}`,
 		data
-	);
+	).catch(error => {
+		console.error("Error in API: " + error);
+		return null;
+	});
 	return response.data;
 };
 
@@ -63,6 +66,11 @@ export const GetSettings = async (token) => {
 
 export const SaveSettings = async (token, code, GoingOut = true) => {
 	try {
+		if (!token) {
+			console.error("No token provided");
+			return null;
+		}
+
 		console.log("Token in SaveSettings is: " + token);
 		data.headers["X-Auth-Token"] = token;
 		console.log("X-Auth-Token in data is: " + JSON.stringify(data));
