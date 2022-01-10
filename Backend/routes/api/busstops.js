@@ -78,6 +78,43 @@ router.get("/search", async (req, res) => {
 	}
 });
 
+router.get("/nearest", async (req, res) => {
+	try {
+		if (!req.query.latitude || !req.query.longitude) {
+			return res
+				.status(422)
+				.json({ msg: "Must provide both latitude and longitude" });
+		}
+
+		console.log("Longitude: " + req.query.longitude);
+		console.log("Latitude: " + req.query.latitude);
+		console.log("Max Distance: " + req.query.maxDistance);
+
+		// Search for bus stops nearby
+		// TODO: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
+		const busStopsNearby = await BusStop.find({
+			Location: {
+				$near: {
+					$geometry: {
+						type: "Point",
+						coordinates: [req.query.longitude, req.query.latitude],
+					},
+					$minDistance: 0,
+					$maxDistance: req.query.maxDistance ? req.query.maxDistance : 200,
+				},
+			},
+		});
+
+		if (busStopsNearby) {
+			return res.status(200).json({ busStopsNearby: busStopsNearby });
+		}
+		return res.status(404).json({ msg: "No bus stops nearby" });
+	} catch (error) {
+		console.error(error.message);
+		return res.status(500).json({ msg: "Server Error" });
+	}
+});
+
 router.get("/:code", async (req, res) => {
 	try {
 		const code = req.params.code;
@@ -88,25 +125,6 @@ router.get("/:code", async (req, res) => {
 		const details = await getBusStopDetails(code);
 
 		return res.status(200).json({ data: details });
-	} catch (error) {
-		console.error(error.message);
-		return res.status(500).json({ msg: "Server Error" });
-	}
-});
-
-router.get("/nearest", async (req, res) => {
-	try {
-		if (!req.query.latitude || !req.query.longitude) {
-			return res
-				.status(422)
-				.json({ msg: "Must provide both latitude and longitude" });
-		}
-
-		// Search for bus stops nearby
-		// TODO: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
-		const busStopsNearby = await BusStop.find({
-			Location: [req.query.longitude, req.query.latitude],
-		});
 	} catch (error) {
 		console.error(error.message);
 		return res.status(500).json({ msg: "Server Error" });
