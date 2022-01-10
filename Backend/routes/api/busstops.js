@@ -43,12 +43,16 @@ router.get("/", async (req, res) => {
 router.get("/search", async (req, res) => {
 	try {
 		if (!req.query.term) {
-			return res.status(422).json({ msg: "Must include a term parameter" });
+			return res
+				.status(422)
+				.json({ msg: "Must include a term parameter" });
 		}
 
 		let term = req.query.term.toString();
 		if (!term) {
-			return res.status(422).json({ msg: "Must include a term parameter" });
+			return res
+				.status(422)
+				.json({ msg: "Must include a term parameter" });
 		}
 
 		let busStops = [];
@@ -101,8 +105,7 @@ router.get("/nearest", async (req, res) => {
 		// Search for bus stops nearby
 		// TODO: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
 		const busStopsNearby = await BusStop.find({
-			Longitude: req.query.longitude,
-			Latitude: req.query.latitude,
+			Location: [req.query.longitude, req.query.latitude],
 		});
 	} catch (error) {
 		console.error(error.message);

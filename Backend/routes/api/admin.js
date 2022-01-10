@@ -64,8 +64,7 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 							{
 								RoadName: stop.RoadName,
 								Description: stop.Description,
-								Latitude: stop.Latitude,
-								Longitude: stop.Longitude,
+								Location: [stop.Longitude, stop.Latitude],
 							},
 							{ upsert: true }
 						).session(session);
