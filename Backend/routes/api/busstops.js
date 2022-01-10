@@ -91,7 +91,7 @@ router.get("/nearest", async (req, res) => {
 		console.log("Max Distance: " + req.query.maxDistance);
 
 		// Search for bus stops nearby
-		// TODO: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
+		// Reference: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
 		const busStopsNearby = await BusStop.find({
 			Location: {
 				$near: {
@@ -100,11 +100,14 @@ router.get("/nearest", async (req, res) => {
 						coordinates: [req.query.longitude, req.query.latitude],
 					},
 					$minDistance: 0,
-					$maxDistance: req.query.maxDistance ? req.query.maxDistance : 200,
+					$maxDistance: req.query.maxDistance
+						? req.query.maxDistance
+						: 200,
 				},
 			},
 		});
 
+		// Nearest bus stop is the first one in the list
 		if (busStopsNearby) {
 			return res.status(200).json({ busStopsNearby: busStopsNearby });
 		}
