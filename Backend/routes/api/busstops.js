@@ -43,12 +43,12 @@ router.get("/", async (req, res) => {
 router.get("/search", async (req, res) => {
 	try {
 		if (!req.query.term) {
-			res.status(422).json({ msg: "Must include a term parameter" });
+			return res.status(422).json({ msg: "Must include a term parameter" });
 		}
 
 		let term = req.query.term.toString();
 		if (!term) {
-			res.status(422).json({ msg: "Must include a term parameter" });
+			return res.status(422).json({ msg: "Must include a term parameter" });
 		}
 
 		let busStops = [];
@@ -61,13 +61,13 @@ router.get("/search", async (req, res) => {
 		});
 
 		if (busStops) {
-			return await res.status(200).json({
+			return res.status(200).json({
 				msg: `Successfully searched and found ${busStops.length} bus stops`,
 				details: busStops,
 			});
 		}
 
-		res.status(404).json({ msg: "No bus stops found" });
+		return res.status(404).json({ msg: "No bus stops found" });
 	} catch (error) {
 		console.error(error.message);
 		return res.status(500).json({ msg: "Server Error" });
