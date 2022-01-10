@@ -2,15 +2,16 @@ import React from "react";
 import { Icon } from "react-native-elements";
 import { FloatingAction } from "react-native-floating-action";
 
-export const SearchButton = ({ onPress }) => {
+export const LocationButton = ({ onPress }) => {
 	return (
 		<FloatingAction
+			color="darkred"
 			showBackground={false}
-			distanceToEdge={{ horizontal: 15, vertical: 80 }}
+			distanceToEdge={{ horizontal: 15, vertical: 150 }}
 			onPressMain={onPress}
-			floatingIcon={<Icon name="search" color={"white"} />}
+			floatingIcon={<Icon name="gps-fixed" color={"white"} />}
 		/>
 	);
 };
 
-export default SearchButton;
+export default LocationButton;

@@ -7,6 +7,7 @@ import { GetSettings } from "./app/api/api";
 import Home from "./app/components/Home";
 import { AuthProvider } from "./app/context/AuthContext";
 import { SettingsProvider } from "./app/context/SettingsContext";
+import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import * as config from "./config/default.json";
 
@@ -157,8 +158,20 @@ export default function App() {
 							component={Search}
 							options={{
 								headerShown: true,
-								headerTintColor: "white",
-								headerStyle: { backgroundColor: "black" },
+								// headerTintColor: "white",
+								// headerStyle: { backgroundColor: "black" },
+							}}
+						/>
+						<Stack.Screen
+							name="Location"
+							component={LocationModal}
+							options={{
+								// headerShown: true,
+								// headerTintColor: "white",
+								// headerStyle: { backgroundColor: "black" },
+								cardStyle: {
+									backgroundColor: "transparent",
+								},
 							}}
 						/>
 					</Stack.Navigator>

@@ -9,6 +9,7 @@ import SearchButton from "../components/SearchButton";
 import TabNavigator from "../components/TabNavigator";
 import AuthConsumer from "../context/AuthContext";
 import { CheckTokenExpiry } from "../api/api";
+import LocationButton from "./LocationButton";
 
 export const Home = ({ navigation }) => {
 	return (
@@ -48,11 +49,17 @@ export const Home = ({ navigation }) => {
 									// Check if the token has expired on the server end
 									const tokenExpiry = await CheckTokenExpiry(
 										result
-									).catch(error => {
-										ToastAndroid.show("Error: " + error, ToastAndroid.SHORT);
+									).catch((error) => {
+										ToastAndroid.show(
+											"Error: " + error,
+											ToastAndroid.SHORT
+										);
 									});
 
-									if (!result || tokenExpiry.expired == true) {
+									if (
+										!result ||
+										tokenExpiry.expired == true
+									) {
 										// Get new token
 										console.log("Signing in");
 										const URL = `${config.BACKEND_API}/auth/facebook`;
@@ -81,6 +88,11 @@ export const Home = ({ navigation }) => {
 				}}
 			</AuthConsumer>
 			<TabNavigator />
+			<LocationButton
+				onPress={() => {
+					navigation.navigate("Location");
+				}}
+			/>
 			<SearchButton
 				onPress={() => {
 					navigation.navigate("Search");
