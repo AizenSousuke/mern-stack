@@ -29,7 +29,6 @@
 			"favicon": "./assets/favicon.png"
 		},
 		"description": "Yet Another SG Bus App for Singapore Buses",
-		"scheme": "yasgba",
-		"plugins": ["@react-native-mapbox-gl/maps"]
+		"scheme": "yasgba"
 	}
 }
