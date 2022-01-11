@@ -32,14 +32,32 @@ export const GetBusStopByCode = async (code) => {
 	return response.data;
 };
 
+export const GetNearbyBusStop = async (longitude, latitude) => {
+	if (!longitude || !latitude) {
+		console.error("Latitude or longitude not provided");
+		return {
+			msg: "Please provide a longitude and latitude in the JSON body",
+		};
+	}
+	const response = await axios
+		.get(
+			`${api}/busstops/nearest?longitude=${longitude}&latitude=${latitude}`
+		)
+		.catch((error) => {
+			console.error("Error in API: " + error);
+			return { msg: error };
+		});
+	// console.log("Nearest bus stop: " + JSON.stringify(response.data));
+	return response.data;
+};
+
 export const SearchBusStop = async (term) => {
-	const response = await axios.get(
-		`${api}/busstops/search?term=${term}`,
-		data
-	).catch(error => {
-		console.error("Error in API: " + error);
-		return null;
-	});
+	const response = await axios
+		.get(`${api}/busstops/search?term=${term}`, data)
+		.catch((error) => {
+			console.error("Error in API: " + error);
+			return null;
+		});
 	return response.data;
 };
 

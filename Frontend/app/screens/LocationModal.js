@@ -5,47 +5,76 @@ import * as config from "../../config/default.json";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { ToastAndroid } from "react-native";
+import * as API from "../api/api";
+import BusStopListPureComponent from "../components/BusStopListPureComponent";
 
 export const LocationModal = () => {
 	const [location, setLocation] = useState({
 		latitude: 1.3,
 		longitude: 103.7,
-		latitudeDelta: 1,
-		longitudeDelta: 1,
+		latitudeDelta: 0.01,
+		longitudeDelta: 0.01,
 	});
+	const [nearbyBusStops, setNearbyBusStops] = useState([]);
 
 	const mapRef = useRef(null);
 
 	useEffect(() => {
 		(async () => {
-			await GetLocation();
+			await GetLocation().then(async (loc) => {
+				if (loc) {
+					// console.log("Loc: " + JSON.stringify(loc));
+					// console.log("Getting nearby bus stops");
+					// Get nearby bus stops
+					const stops = await API.GetNearbyBusStop(
+						loc.longitude,
+						loc.latitude
+					);
+
+					if (stops.busStopsNearby) {
+						// console.log(
+						// 	"There are nearby bus stops: " +
+						// 		stops.busStopsNearby.length
+						// );
+						setNearbyBusStops(stops.busStopsNearby);
+					}
+				}
+			});
 		})();
 	}, []);
 
 	const GetLocation = async () => {
-		// console.log(Object.keys(mapRef.current));
-		// console.log(
-		// 	"mapRef.current.animateToRegion => ",
-		// 	typeof mapRef.current.animateToRegion
-		// );
-
 		let { status } = await Location.requestForegroundPermissionsAsync();
 		if (status !== "granted") {
 			ToastAndroid.show("Unable to access location", ToastAndroid.SHORT);
 			return;
 		}
 
-		await Location.getCurrentPositionAsync({}).then((loc) => {
-			setLocation(loc);
-			mapRef.current?.animateToRegion({
-				latitude: loc.coords.latitude,
-				longitude: loc.coords.longitude,
-				latitudeDelta: 0.01,
-				longitudeDelta: 0.01,
-			});
+		const region = await Location.getCurrentPositionAsync({}).then(
+			(loc) => {
+				setLocation({
+					latitude: loc.coords?.latitude,
+					longitude: loc.coords?.longitude,
+					latitudeDelta: 0.01,
+					longitudeDelta: 0.01,
+				});
+				mapRef.current?.animateToRegion({
+					latitude: loc.coords?.latitude,
+					longitude: loc.coords?.longitude,
+					latitudeDelta: 0.01,
+					longitudeDelta: 0.01,
+				});
 
-			console.log("Location set: " + JSON.stringify(loc));
-		});
+				// console.log("Location set: " + JSON.stringify(loc));
+				return {
+					latitude: loc.coords?.latitude,
+					longitude: loc.coords?.longitude,
+					latitudeDelta: 0.01,
+					longitudeDelta: 0.01,
+				};
+			}
+		);
+		return region;
 	};
 
 	return (
@@ -66,6 +95,16 @@ export const LocationModal = () => {
 			) : (
 				<Text>No map loaded. {errorMsg}</Text>
 			)}
+			{nearbyBusStops.length > 0
+				? nearbyBusStops.map((stop, key) => (
+						<BusStopListPureComponent
+							key={key}
+							name={stop.Description}
+							address={stop.RoadName}
+							code={stop.BusStopCode}
+						/>
+				  ))
+				: null}
 		</ScrollView>
 	);
 };
