@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import * as config from "../../config/default.json";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
+import { ToastAndroid } from "react-native";
 
 export const LocationModal = () => {
 	const [location, setLocation] = useState({
@@ -12,7 +13,6 @@ export const LocationModal = () => {
 		latitudeDelta: 1,
 		longitudeDelta: 1,
 	});
-	const [errorMsg, setErrorMsg] = useState(null);
 
 	const mapRef = useRef(null);
 
@@ -31,7 +31,7 @@ export const LocationModal = () => {
 
 		let { status } = await Location.requestForegroundPermissionsAsync();
 		if (status !== "granted") {
-			setErrorMsg("Permission to access location was denied");
+			ToastAndroid.show("Unable to access location", ToastAndroid.SHORT);
 			return;
 		}
 
