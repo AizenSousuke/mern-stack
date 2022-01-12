@@ -35,6 +35,8 @@ emulator @Pixel_4_API_30
 and save it as a batch file.
 
 ## Todo:
+- Add overlay settings page
+- Clean code and set up unit tests
 - Auth (Clear states i.e, Auth, Settings when logging out. Use local async storage settings instead to load\save settings and offer a way to update the settings on the server when logged in.)
 - Settings (Update the date modified for any updates)
 - Settings page
