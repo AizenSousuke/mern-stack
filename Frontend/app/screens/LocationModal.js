@@ -86,7 +86,7 @@ export const LocationModal = () => {
 						ref={mapRef}
 						provider={PROVIDER_GOOGLE}
 						style={{
-							height: 300,
+							height: 250,
 							width: 400,
 							justifyContent: "flex-end",
 							alignItems: "center",

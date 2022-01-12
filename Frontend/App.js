@@ -10,6 +10,7 @@ import { SettingsProvider } from "./app/context/SettingsContext";
 import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import * as config from "./config/default.json";
+import * as colourScheme from "./app/settings/colourScheme.json";
 
 const Stack = createStackNavigator();
 
@@ -158,7 +159,7 @@ export default function App() {
 							component={Search}
 							options={{
 								headerShown: true,
-								// headerTintColor: "white",
+								// headerTintColor: colourScheme.secondary,
 								// headerStyle: { backgroundColor: "black" },
 							}}
 						/>
