@@ -1,8 +1,11 @@
 # Yet Another SG Bus App
-![Image](https://i.imgur.com/vTFjIeU.png)
-![Image](https://i.imgur.com/WvHurAC.png)
-![Image](https://i.imgur.com/ev4KjpL.png)
-SG Bus alternative application for my own use, without the ads. Created as a side project outside working hours to pursue a career as a ReactJS Developer. 
+| | | |
+|-|-|-|
+| ![Image](https://i.imgur.com/vTFjIeU.png) | ![Image](https://i.imgur.com/WvHurAC.png) | ![Image](https://i.imgur.com/ev4KjpL.png) |
+
+
+### SG Bus alternative application for my own use, without the ads. Created as a side project outside working hours to pursue a career as a ReactJS Developer. 
+
 
 ## Running the App
 Ensure that the android emulator with expo installed is running already.
