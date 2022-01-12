@@ -2,7 +2,7 @@ import React, { useState, useEffect, createRef, useRef } from "react";
 import { View, Text, Modal } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import * as config from "../../config/default.json";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { ToastAndroid } from "react-native";
 import * as API from "../api/api";
@@ -91,7 +91,18 @@ export const LocationModal = () => {
 					}}
 					region={location}
 					showsUserLocation={true}
-				></MapView>
+				>
+					{nearbyBusStops &&
+						nearbyBusStops.map((marker, index) => (
+							<Marker
+								key={index}
+								coordinate={{
+									longitude: marker.Location[0],
+									latitude: marker.Location[1],
+								}}
+							/>
+						))}
+				</MapView>
 			) : (
 				<Text>No map loaded. {errorMsg}</Text>
 			)}

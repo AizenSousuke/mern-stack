@@ -53,7 +53,7 @@ export default class BusStopListPureComponent extends PureComponent {
 						}), () => {
 							// For use in Location page
 							if (!this.state.isCollapsed && this.props.CollapseEvent) {
-								console.log("Firing CollapseEvent event");
+								// console.log("Firing CollapseEvent event");
 								this.props.CollapseEvent(this.props.code);
 							}
 						});
