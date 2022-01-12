@@ -1,15 +1,16 @@
 {
-    "name": "mern",
-    "description": "Default package json",
-    "authors": "author",
-    "version": "1.0.0",
-    "main": "\\backend\\server.js",
-    "scripts": {
-        "start": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && yarn start\"",
-        "backend": "concurrently \"cd backend && nodemon server.js\"",
-        "frontend": "adb reverse tcp:8080 tcp:8080 && cd frontend && yarn start"
-    },
-    "devDependencies": {
-        "concurrently": "^6.4.0"
-    }
+	"name": "mern",
+	"description": "Default package json",
+	"authors": "author",
+	"version": "1.0.0",
+	"main": "\\backend\\server.js",
+	"scripts": {
+		"start": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && yarn start\"",
+		"backend": "concurrently \"cd backend && nodemon server.js\"",
+		"frontend": "adb reverse tcp:8080 tcp:8080 && cd frontend && yarn start",
+		"emulator": "cd frontend/config && Emulator.bat"
+	},
+	"devDependencies": {
+		"concurrently": "^6.4.0"
+	}
 }
