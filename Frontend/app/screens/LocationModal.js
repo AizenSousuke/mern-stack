@@ -102,6 +102,9 @@ export const LocationModal = () => {
 							name={stop.Description}
 							address={stop.RoadName}
 							code={stop.BusStopCode}
+							CollapseEvent={(code) => {
+								// console.log(code);
+							}}
 						/>
 				  ))
 				: null}

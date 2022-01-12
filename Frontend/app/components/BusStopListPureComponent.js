@@ -50,7 +50,13 @@ export default class BusStopListPureComponent extends PureComponent {
 					onPress={() => {
 						this.setState((state) => ({
 							isCollapsed: !state.isCollapsed,
-						}));
+						}), () => {
+							// For use in Location page
+							if (!this.state.isCollapsed && this.props.CollapseEvent) {
+								console.log("Firing CollapseEvent event");
+								this.props.CollapseEvent(this.props.code);
+							}
+						});
 						this.setState((state) => ({ arrow: !state.arrow }));
 					}}
 				>
