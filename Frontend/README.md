@@ -1,6 +1,11 @@
+# Yet Another SG Bus App
+![Image](https://i.imgur.com/vTFjIeU.png)
+![Image](https://i.imgur.com/WvHurAC.png)
+![Image](https://i.imgur.com/ev4KjpL.png)
+
 # Deploying
 ```
-yarn build
+To be updated once the architecture has been set up
 ```
 
 # Devtools
