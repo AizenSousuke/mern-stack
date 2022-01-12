@@ -86,59 +86,63 @@ export const LocationModal = () => {
 	};
 
 	return (
-		<ScrollView>
-			{location ? (
-				<MapView
-					ref={mapRef}
-					provider={PROVIDER_GOOGLE}
-					style={{
-						height: 300,
-						width: 400,
-						justifyContent: "flex-end",
-						alignItems: "center",
-					}}
-					region={location}
-					showsUserLocation={true}
-					maxZoomLevel={17}
-				>
-					{nearbyBusStops &&
-						nearbyBusStops.map((marker, index) => (
-							<Marker
-								key={index}
-								identifier={marker.Description}
-								ref={elem =>
-									(markerRef.current[index] = elem)
-								}
-								title={marker.Description}
-								coordinate={{
-									longitude: marker.Location[0],
-									latitude: marker.Location[1],
+		<>
+			<View>
+				{location ? (
+					<MapView
+						ref={mapRef}
+						provider={PROVIDER_GOOGLE}
+						style={{
+							height: 300,
+							width: 400,
+							justifyContent: "flex-end",
+							alignItems: "center",
+						}}
+						region={location}
+						showsUserLocation={true}
+						maxZoomLevel={17}
+					>
+						{nearbyBusStops &&
+							nearbyBusStops.map((marker, index) => (
+								<Marker
+									key={index}
+									identifier={marker.Description}
+									ref={(elem) =>
+										(markerRef.current[index] = elem)
+									}
+									title={marker.Description}
+									coordinate={{
+										longitude: marker.Location[0],
+										latitude: marker.Location[1],
+									}}
+								/>
+							))}
+					</MapView>
+				) : (
+					<Text>No map loaded. {errorMsg}</Text>
+				)}
+			</View>
+			<ScrollView>
+				{nearbyBusStops.length > 0
+					? nearbyBusStops.map((stop, key) => (
+							<BusStopListPureComponent
+								key={key}
+								name={stop.Description}
+								address={stop.RoadName}
+								code={stop.BusStopCode}
+								CollapseEvent={(code) => {
+									// console.log("Collapse event triggered: " + stop.Description);
+									mapRef.current?.fitToSuppliedMarkers(
+										[stop.Description],
+										{ edgePadding: EDGE_PADDING }
+									);
+									markerRef.current[key].showCallout();
 								}}
 							/>
-						))}
-				</MapView>
-			) : (
-				<Text>No map loaded. {errorMsg}</Text>
-			)}
-			{nearbyBusStops.length > 0
-				? nearbyBusStops.map((stop, key) => (
-						<BusStopListPureComponent
-							key={key}
-							name={stop.Description}
-							address={stop.RoadName}
-							code={stop.BusStopCode}
-							CollapseEvent={(code) => {
-								// console.log("Collapse event triggered: " + stop.Description);
-								mapRef.current?.fitToSuppliedMarkers(
-									[stop.Description],
-									{ edgePadding: EDGE_PADDING }
-								);
-								markerRef.current[key].showCallout();
-							}}
-						/>
-				  ))
-				: null}
-		</ScrollView>
+					  ))
+					: null}
+			</ScrollView>
+		</>
 	);
 };
 
