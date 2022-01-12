@@ -19,6 +19,13 @@ export const LocationModal = () => {
 
 	const mapRef = useRef(null);
 
+	const EDGE_PADDING = {
+		top: 100,
+		right: 100,
+		bottom: 100,
+		left: 100,
+	};
+
 	useEffect(() => {
 		(async () => {
 			await GetLocation().then(async (loc) => {
@@ -91,11 +98,14 @@ export const LocationModal = () => {
 					}}
 					region={location}
 					showsUserLocation={true}
+					maxZoomLevel={17}
 				>
 					{nearbyBusStops &&
 						nearbyBusStops.map((marker, index) => (
 							<Marker
 								key={index}
+								identifier={marker.Description}
+								title={marker.Description}
 								coordinate={{
 									longitude: marker.Location[0],
 									latitude: marker.Location[1],
@@ -114,7 +124,11 @@ export const LocationModal = () => {
 							address={stop.RoadName}
 							code={stop.BusStopCode}
 							CollapseEvent={(code) => {
-								// console.log(code);
+								// console.log("Collapse event triggered: " + stop.Description);
+								mapRef.current?.fitToSuppliedMarkers(
+									[stop.Description],
+									{ edgePadding: EDGE_PADDING }
+								);
 							}}
 						/>
 				  ))
