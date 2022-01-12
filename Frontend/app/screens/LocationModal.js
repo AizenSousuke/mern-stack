@@ -18,6 +18,7 @@ export const LocationModal = () => {
 	const [nearbyBusStops, setNearbyBusStops] = useState([]);
 
 	const mapRef = useRef(null);
+	const markerRef = useRef([]);
 
 	const EDGE_PADDING = {
 		top: 100,
@@ -105,6 +106,9 @@ export const LocationModal = () => {
 							<Marker
 								key={index}
 								identifier={marker.Description}
+								ref={elem =>
+									(markerRef.current[index] = elem)
+								}
 								title={marker.Description}
 								coordinate={{
 									longitude: marker.Location[0],
@@ -129,6 +133,7 @@ export const LocationModal = () => {
 									[stop.Description],
 									{ edgePadding: EDGE_PADDING }
 								);
+								markerRef.current[key].showCallout();
 							}}
 						/>
 				  ))
