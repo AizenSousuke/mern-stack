@@ -20,13 +20,6 @@ export const LocationModal = () => {
 	const mapRef = useRef(null);
 	const markerRef = useRef([]);
 
-	const EDGE_PADDING = {
-		top: 100,
-		right: 100,
-		bottom: 100,
-		left: 100,
-	};
-
 	useEffect(() => {
 		(async () => {
 			await GetLocation().then(async (loc) => {
@@ -133,8 +126,7 @@ export const LocationModal = () => {
 								CollapseEvent={(code) => {
 									// console.log("Collapse event triggered: " + stop.Description);
 									mapRef.current?.fitToSuppliedMarkers(
-										[stop.Description],
-										{ edgePadding: EDGE_PADDING }
+										[stop.Description]
 									);
 									markerRef.current[key].showCallout();
 								}}
