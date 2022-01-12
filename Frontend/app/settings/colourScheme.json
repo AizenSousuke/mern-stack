@@ -1,5 +1,10 @@
 {
     "primary" : "blue",
+    "primaryVariant": "darkblue",
     "secondary" : "red",
-    "background" : "white"
+    "secondaryVariant": "darkred",
+    "accent" : "orange",
+    "background" : "white",
+    "surface" : "black",
+    "error" : "red"
 }
