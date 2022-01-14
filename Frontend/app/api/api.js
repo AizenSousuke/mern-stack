@@ -32,7 +32,7 @@ export const GetBusStopByCode = async (code) => {
 	return response.data;
 };
 
-export const GetNearbyBusStop = async (longitude, latitude) => {
+export const GetNearbyBusStop = async (longitude, latitude, maxDistance = config.MAX_DISTANCE_IN_METRES ?? 100) => {
 	if (!longitude || !latitude) {
 		console.error("Latitude or longitude not provided");
 		return {
@@ -41,7 +41,7 @@ export const GetNearbyBusStop = async (longitude, latitude) => {
 	}
 	const response = await axios
 		.get(
-			`${api}/busstops/nearest?longitude=${longitude}&latitude=${latitude}`
+			`${api}/busstops/nearest?longitude=${longitude}&latitude=${latitude}&maxDistance=${maxDistance}`
 		)
 		.catch((error) => {
 			console.error("Error in API: " + error);

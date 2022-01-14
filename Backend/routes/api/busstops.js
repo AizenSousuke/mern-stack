@@ -102,7 +102,7 @@ router.get("/nearest", async (req, res) => {
 					$minDistance: 0,
 					$maxDistance: req.query.maxDistance
 						? req.query.maxDistance
-						: 200,
+						: config.MAX_DISTANCE_IN_METRES,
 				},
 			},
 		});
