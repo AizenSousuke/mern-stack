@@ -47,6 +47,7 @@ export default function App() {
 
 	const _loadSettings = async (token) => {
 		if (settings === null) {
+			console.log("Loading settings");
 			await _getData(token);
 		}
 	};

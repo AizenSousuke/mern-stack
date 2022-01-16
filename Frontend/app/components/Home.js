@@ -54,11 +54,13 @@ export const Home = ({ navigation }) => {
 											"Error: " + error,
 											ToastAndroid.SHORT
 										);
+
+										return null;
 									});
 
 									if (
 										!result ||
-										tokenExpiry.expired == true
+										tokenExpiry?.expired == true
 									) {
 										// Get new token
 										console.log("Signing in");
