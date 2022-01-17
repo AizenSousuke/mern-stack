@@ -31,9 +31,9 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 // });
 
 // Normal way to get http
-app.listen(PORT, () => {
-	console.log("Listening on port %s", PORT);
-});
+// app.listen(PORT, () => {
+// 	console.log("Listening on port %s", PORT);
+// });
 
 // Connect Database
 connectDB();
@@ -73,7 +73,7 @@ passport.use(
 			console.log("Refresh Token: " + refreshToken);
 			const user = await UserModel.findOne({
 				Email: profile.emails[0].value,
-				SocialId: profile.id
+				SocialId: profile.id,
 			}).select("-Password");
 			if (!user) {
 				var date = new Date(Date.now());
@@ -134,3 +134,5 @@ app.use("/api/admin", require("./routes/api/admin"));
 app.get("/", (req, res) => {
 	res.send(`Server is on port ${PORT}`);
 });
+
+module.exports = app;
