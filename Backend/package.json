@@ -15,6 +15,17 @@
     "passport-facebook": "^3.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.14",
+    "supertest": "^6.2.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "scripts": {
+    "test": "jest --watch --detectOpenHandles"
   }
 }
