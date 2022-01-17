@@ -11,29 +11,22 @@ describe("/BusStops Test", () => {
 			.expect(200)
 			.end((err, res) => {
                 if (err) {
-                    done(err);
+                    return done(err);
                 }
 				expect(res.body).toHaveProperty("busStop");
-				done();
+				return done();
 			});
 	});
 
-	it("should return 404 when there is no code query string provided", (done) => {
+	it("should return 422 when there is no code query string provided", (done) => {
 		request(app)
 			.get("/api/BusStops")
-			.expect(404)
+			.expect(422)
 			.end((err, res) => {
                 if (err) {
-                    done(err);
+                    return done(err);
                 }
-				done();
+				return done();
 			});
-	});
-});
-
-afterAll((done) => {
-	app.close(() => {
-		console.log("Closing server");
-		done();
 	});
 });

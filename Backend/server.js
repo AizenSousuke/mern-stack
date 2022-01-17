@@ -31,9 +31,9 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 // });
 
 // Normal way to get http
-const server = app.listen(PORT, () => {
-	console.log("Listening on port %s", PORT);
-});
+// app.listen(PORT, () => {
+// 	console.log("Listening on port %s", PORT);
+// });
 
 // Connect Database
 connectDB();
@@ -135,4 +135,4 @@ app.get("/", (req, res) => {
 	res.send(`Server is on port ${PORT}`);
 });
 
-module.exports = server;
+module.exports = app;
