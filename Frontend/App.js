@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import { Linking, ToastAndroid } from "react-native";
-import { GetSettings } from "./app/api/api";
+import { GetSettings, CheckTokenExpiry } from "./app/api/api";
 import Home from "./app/components/Home";
 import { AuthProvider } from "./app/context/AuthContext";
 import { SettingsProvider } from "./app/context/SettingsContext";
@@ -29,15 +29,38 @@ export default function App() {
 		};
 	}, []);
 
+	const _checkTokenExpiry = async (token) => {
+		return await CheckTokenExpiry(token)
+			.then((res) => {
+				if (res.expired) {
+					console.log("CheckTokenExpiry: Token has expired");
+					return true;
+				}
+
+				return false;
+			})
+			.catch((error) => {
+				console.error(error);
+				return true;
+			});
+	};
+
 	const _loadToken = async () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(config.TOKEN, (error, result) => {
 				if (result) {
 					console.log("_loadToken: " + error + "|" + result);
-					setAuthToken(result);
-					console.log("Attempting to load settings");
-					// Passing token because setAuthToken is async and updates according to react
-					_loadSettings(result);
+					if (_checkTokenExpiry(result)) {
+						setAuthToken(result);
+						console.log("Attempting to load settings");
+						// Passing token instead of authToken because setAuthToken is async and updates according to react
+						_loadSettings(result);
+						return;
+					}
+
+					console.warn("Token has expired");
+					// Ask to re-login to renew token and reload settings
+					ToastAndroid.show("Please re-login.", ToastAndroid.SHORT);
 				} else {
 					console.log("No token found in Async Storage");
 				}

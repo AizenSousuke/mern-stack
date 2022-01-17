@@ -125,9 +125,9 @@ export const LocationModal = () => {
 								code={stop.BusStopCode}
 								CollapseEvent={(code) => {
 									// console.log("Collapse event triggered: " + stop.Description);
-									mapRef.current?.fitToSuppliedMarkers(
-										[stop.Description]
-									);
+									mapRef.current?.fitToSuppliedMarkers([
+										stop.Description,
+									]);
 									markerRef.current[key].showCallout();
 								}}
 							/>
