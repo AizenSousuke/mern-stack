@@ -68,6 +68,9 @@ export default StyleSheet.create({
 		textTransform: "uppercase",
 		letterSpacing: 3,
 	},
+	headerAlternative: {
+		backgroundColor: "#f78383",
+	},
 	busStop: {
 		backgroundColor: "white",
 	},
