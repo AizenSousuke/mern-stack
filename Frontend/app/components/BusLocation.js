@@ -14,12 +14,10 @@ const BusLocation = ({ busNumber, nextBus }) => {
 		longitudeDelta: 0.01,
 	});
 	const mapRef = useRef(null);
-	const markerRef = useRef([]);
 
 	useEffect(() => {
 		(async () => {
-			// Set the marker refs
-			markerRef["nextBus"] = nextBus;
+            
 		})();
 	}, []);
 
@@ -48,7 +46,6 @@ const BusLocation = ({ busNumber, nextBus }) => {
 				}}
 				region={busRegion}
 			>
-                {/* Getting warning here */}
 				<Marker
 					coordinate={busRegion}
 				></Marker>
