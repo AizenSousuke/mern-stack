@@ -4,22 +4,81 @@
 | ![Image](https://i.imgur.com/vTFjIeU.png) | ![Image](https://i.imgur.com/WvHurAC.png) | ![Image](https://i.imgur.com/ev4KjpL.png) |
 
 
-### SG Bus alternative application for my own use, without the ads. Created as a side project outside working hours to pursue a career as a ReactJS Developer. 
+> ### SG Bus alternative android application for my own use, without the ads. Created as a side project outside working hours to pursue a career as a ReactJS (Mobile) Developer. 
 
+---
 
 ## Running the App
+
+Config files to create:
+
+Backend\config\db.js
+```
+const mongoose = require("mongoose");
+const config = require("config");
+const db = config.get("mongoURI");
+
+const connectDB = async () => {
+	try {
+		await mongoose.connect(db);
+		console.log("MongoDB Connected...");
+	} catch (err) {
+		console.error(err.message);
+		// Exit process with failure
+		process.exit(1);
+	}
+};
+
+module.exports = connectDB;
+```
+Backend\config\default.json
+```
+{
+    "mongoURI" : "mongodb+srv://username:password@database01cluster.pqete.mongodb.net/database?retryWrites=true&w=majority",
+    "jwtSecret" : "mysecrettoken",
+    "LTADataMallAPI" : "",
+    "FACEBOOK_APP_ID" : "",
+    "FACEBOOK_APP_SECRET" : "",
+    "FACEBOOK_CALLBACK_URL" : "http://localhost:8080/api/auth/facebook/callback",
+    "FRONTEND_LINK" : "exp://<LOCAL_IP>:19000",
+    "TOKEN_EXPIRY_DAYS" : 1,
+    "MAX_DISTANCE_IN_METRES": 300
+}
+```
+Backend\config\test.json
+```
+{}
+```
+Frontend\config\default.json
+```
+{
+    "LTADataMallAPI" : "",
+    "TOKEN": "TOKEN",
+    "BACKEND_API": "http://localhost:8080/api",
+    "MAPBOX": "<MAPBOX_API_KEY>",
+    "MAX_DISTANCE_IN_METRES": 300
+}
+```
+Frontend\config\test.json
+```
+{}
+```
+Frontend\config\Emulator.bat
+
 Ensure that the android emulator with expo installed is running already.
 Open up terminal in the application's root directory and run the following commands:
 
-Frontend
+## Frontend
 ```
 yarn frontend
 ```
 
-Backend
+## Backend
 ```
 yarn backend
 ```
+
+---
 
 # Deploying
 ```
@@ -27,6 +86,7 @@ To be updated once the architecture has been set up
 ```
 
 # Devtools
+Start dev tools using the command:
 ```
 react-devtools
 ```

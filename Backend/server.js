@@ -24,16 +24,18 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 
-// To get HTTPS
-// var server = https.createServer(options, app);
-// server.listen(PORT, (error, result) => {
-// 	console.log(`HTTPS Server started on port ${PORT}`);
-// });
+if (process.env.NODE_ENV !== "test") {
+	// To get HTTPS
+	// var server = https.createServer(options, app);
+	// server.listen(PORT, (error, result) => {
+	// 	console.log(`HTTPS Server started on port ${PORT}`);
+	// });
 
-// Normal way to get http
-// app.listen(PORT, () => {
-// 	console.log("Listening on port %s", PORT);
-// });
+	// Normal way to get http
+	app.listen(PORT, () => {
+		console.log("Listening on port %s", PORT);
+	});
+}
 
 // Connect Database
 connectDB();
