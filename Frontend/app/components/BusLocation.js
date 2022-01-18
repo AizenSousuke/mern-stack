@@ -13,7 +13,6 @@ const BusLocation = ({ busNumber, nextBus }) => {
 		latitudeDelta: 0.01,
 		longitudeDelta: 0.01,
 	});
-	const mapRef = useRef(null);
 
 	useEffect(() => {
 		(async () => {
@@ -38,7 +37,6 @@ const BusLocation = ({ busNumber, nextBus }) => {
 				}
 			></Header>
 			<MapView
-				ref={mapRef}
 				provider={PROVIDER_GOOGLE}
 				style={{
 					height: 250,
