@@ -60,5 +60,5 @@
 		  "/node_modules/"
 		]
 	},
-	"proxy": "https://192.168.68.117:5000"
+	"proxy": "https://localhost:5000"
 }
