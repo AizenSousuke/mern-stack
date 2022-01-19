@@ -8,6 +8,21 @@
 
 ---
 
+# *Disclaimer*
+```
+All the data are derived from the LTA DataMall API. We apologize if there any  discrepancies in the data provided and we will try our best to fix it on our end or through a data patch as soon as possible. Live data is purely dependent on LTA's backend and we are not responsible for the accuracy or availability of the data. This
+
+By using this application you agree to not held us responsible for your bus not arriving on time.
+```
+
+---
+
+## Features
+- Ads free application
+- Easy to use GUI
+
+---
+
 ## Running the App
 
 Config files to create:
