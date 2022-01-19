@@ -7,7 +7,7 @@
 		"web": "expo start --web",
 		"build": "expo build:android -t apk",
 		"eject": "expo eject",
-		"test": "jest --watch --detectOpenHandles --all"
+		"test": "jest --watch --all --detectOpenHandles"
 	},
 	"dependencies": {
 		"@react-native-async-storage/async-storage": "^1.15.11",
