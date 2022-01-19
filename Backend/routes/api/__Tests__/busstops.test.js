@@ -64,4 +64,71 @@ describe("/BusStops Test", () => {
 				done();
 			});
 	});
+
+	it("should search for the correct bus stops given the correct term", (done) => {
+		api.get("/api/BusStops/search")
+			.query({ term: "pending" })
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				expect(res.body.details).toBeTruthy();
+				done();
+			});
+	});
+
+	it("should give a 422 error when no term is given to a search", (done) => {
+		api.get("/api/BusStops/search").end((err, res) => {
+			if (err) {
+				return done(err);
+			}
+			expect(res.status).toBe(422);
+			done();
+		});
+	});
+
+	it("should give an empty list when the bus stop is not found", (done) => {
+		api.get("/api/BusStops/search")
+			.query({ term: "not existing bus stops" })
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				expect(res.status).toBe(200);
+				expect(res.body.details.length).toBe(0);
+				done();
+			});
+	});
+
+	it("should return a bus stop with the code provided", (done) => {
+		api.get("/api/BusStops/44229").end((err, res) => {
+			if (err) {
+				return done(err);
+			}
+			expect(res.status).toBe(200);
+			expect(res.body.data).toBeTruthy();
+			done();
+		});
+	});
+
+	it("should return no bus stop with the wrong code provided", (done) => {
+		api.get("/api/BusStops/12345").end((err, res) => {
+			if (err) {
+				return done(err);
+			}
+			expect(res.status).toBe(200);
+			expect(res.body.data).toBeTruthy();
+			done();
+		});
+	});
+
+	it("should return a 422 with no code provided", (done) => {
+		api.get("/api/BusStops/").end((err, res) => {
+			if (err) {
+				return done(err);
+			}
+			expect(res.status).toBe(422);
+			done();
+		});
+	});
 });
