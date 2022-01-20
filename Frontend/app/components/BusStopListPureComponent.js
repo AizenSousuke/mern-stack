@@ -43,7 +43,7 @@ export default class BusStopListPureComponent extends PureComponent {
 		const { name, address, code } = this.props;
 
 		return (
-			<View>
+			<>
 				<ListItem
 					topDivider
 					bottomDivider
@@ -183,7 +183,7 @@ export default class BusStopListPureComponent extends PureComponent {
 						<Text>No Data</Text>
 					)}
 				</Collapsible>
-			</View>
+			</>
 		);
 	}
 }

@@ -26,6 +26,6 @@
     ]
   },
   "scripts": {
-    "test": "jest --watch --detectOpenHandles"
+    "test": "jest --watch --all --detectOpenHandles"
   }
 }

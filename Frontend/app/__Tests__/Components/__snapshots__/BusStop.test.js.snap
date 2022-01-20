@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Going out renders 2 bus details properly as per snapshot 1`] = `
+exports[`Going out renders bus details properly as per the snapshot 1`] = `
 <View
   style={
     Object {
@@ -9,520 +9,936 @@ exports[`Going out renders 2 bus details properly as per snapshot 1`] = `
   }
 >
   <View
-    style={
-      Object {
-        "backgroundColor": "white",
-        "flexDirection": "row",
-        "padding": 5,
-      }
-    }
+    accessible={true}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "alignSelf": "center",
-            "color": "black",
-            "fontWeight": "bold",
-            "textAlign": "center",
+    <Modal
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      theme={
+        Object {
+          "colors": Object {
+            "black": "#242424",
+            "disabled": "hsl(208, 8%, 90%)",
+            "divider": "#bcbbc1",
+            "error": "#ff190c",
+            "grey0": "#393e42",
+            "grey1": "#43484d",
+            "grey2": "#5e6977",
+            "grey3": "#86939e",
+            "grey4": "#bdc6cf",
+            "grey5": "#e1e8ee",
+            "greyOutline": "#bbb",
+            "platform": Object {
+              "android": Object {
+                "error": "#f44336",
+                "grey": "rgba(0, 0, 0, 0.54)",
+                "primary": "#2196f3",
+                "searchBg": "#dcdce1",
+                "secondary": "#9C27B0",
+                "success": "#4caf50",
+                "warning": "#ffeb3b",
+              },
+              "default": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "ios": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "web": Object {
+                "error": "#ff190c",
+                "grey": "#393e42",
+                "primary": "#2089dc",
+                "searchBg": "#303337",
+                "secondary": "#ca71eb",
+                "success": "#52c41a",
+                "warning": "#faad14",
+              },
+            },
+            "primary": "#2089dc",
+            "searchBg": "#303337",
+            "secondary": "#ca71eb",
+            "success": "#52c41a",
+            "warning": "#faad14",
+            "white": "#ffffff",
           },
-          Object {
-            "flex": 0.2,
-          },
-        ]
+        }
       }
+      transparent={true}
+      visible={false}
     >
-      911
-    </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(0, 0, 0, .4)",
+            "height": "100%",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          }
+        }
+        testID="RNE__Overlay__backdrop"
+      />
+      <View
+        pointerEvents="box-none"
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderRadius": 3,
+              "padding": 10,
+              "shadowColor": "rgba(0, 0, 0, .3)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "shadowRadius": 4,
+            }
+          }
+        >
+          <RNCSafeAreaView>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#f78383",
+                  "borderBottomColor": "#f2f2f2",
+                  "borderBottomWidth": 0.5,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 10,
+                  "paddingVertical": 10,
+                }
+              }
+              testID="headerContainer"
+            >
+              <RNCSafeAreaView
+                edges={
+                  Array [
+                    "left",
+                    "top",
+                    "right",
+                  ]
+                }
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 3,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "fontWeight": "bold",
+                      }
+                    }
+                  >
+                    Oi, where is Bus 
+                    911
+                     leh?
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-end",
+                      "flex": 1,
+                    }
+                  }
+                />
+              </RNCSafeAreaView>
+            </View>
+            <View>
+              <View />
+            </View>
+          </RNCSafeAreaView>
+        </View>
+      </View>
+    </Modal>
     <View
       style={
         Object {
-          "flex": 0.8,
+          "backgroundColor": "white",
           "flexDirection": "row",
-          "justifyContent": "space-around",
+          "padding": 5,
         }
       }
     >
+      <Text
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "color": "black",
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "flex": 0.2,
+            },
+          ]
+        }
+      >
+        911
+      </Text>
       <View
         style={
           Object {
-            "flexDirection": "column",
+            "flex": 0.8,
+            "flexDirection": "row",
+            "justifyContent": "space-around",
           }
         }
       >
-        <Text
-          style={
-            Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        >
-          
-        </Text>
         <View
-          animated={true}
-          animationConfig={
+          style={
             Object {
-              "bounciness": 0,
+              "flexDirection": "column",
             }
           }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.2}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "green",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
         >
-          <View
+          <Text
             style={
               Object {
-                "backgroundColor": "green",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -19.2,
-                  },
-                  Object {
-                    "scaleX": 0.20008,
-                  },
-                ],
+                "fontSize": 10,
+                "textAlign": "center",
               }
             }
-          />
-        </View>
-        <Text
-          style={
-            Object {
-              "textAlign": "center",
-            }
-          }
-        >
-          Arrived
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        >
-          
-        </Text>
-        <View
-          animated={true}
-          animationConfig={
-            Object {
-              "bounciness": 0,
-            }
-          }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.2}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "green",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
-        >
+          >
+            
+          </Text>
           <View
+            animated={true}
+            animationConfig={
+              Object {
+                "bounciness": 0,
+              }
+            }
+            animationType="spring"
+            indeterminate={false}
+            indeterminateAnimationDuration={1000}
+            onLayout={[Function]}
+            progress={0.2}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": undefined,
+                  "borderColor": "green",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "overflow": "hidden",
+                  "width": 50,
+                },
+                undefined,
+              ]
+            }
+            useNativeDriver={false}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "green",
+                  "height": 6,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": -19.2,
+                    },
+                    Object {
+                      "scaleX": 0.20008,
+                    },
+                  ],
+                }
+              }
+            />
+          </View>
+          <Text
             style={
               Object {
-                "backgroundColor": "green",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -19.2,
-                  },
-                  Object {
-                    "scaleX": 0.20008,
-                  },
-                ],
+                "textAlign": "center",
               }
             }
-          />
+          >
+            Arrived
+          </Text>
         </View>
-        <Text
-          style={
-            Object {
-              "textAlign": "center",
-            }
-          }
-        >
-          Arrived
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        >
-          
-        </Text>
         <View
-          animated={true}
-          animationConfig={
+          style={
             Object {
-              "bounciness": 0,
+              "flexDirection": "column",
             }
           }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.9}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "red",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
         >
-          <View
+          <Text
             style={
               Object {
-                "backgroundColor": "red",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -2.3999999999999986,
-                  },
-                  Object {
-                    "scaleX": 0.90001,
-                  },
-                ],
+                "fontSize": 10,
+                "textAlign": "center",
               }
             }
-          />
+          >
+            
+          </Text>
+          <View
+            animated={true}
+            animationConfig={
+              Object {
+                "bounciness": 0,
+              }
+            }
+            animationType="spring"
+            indeterminate={false}
+            indeterminateAnimationDuration={1000}
+            onLayout={[Function]}
+            progress={0.2}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": undefined,
+                  "borderColor": "green",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "overflow": "hidden",
+                  "width": 50,
+                },
+                undefined,
+              ]
+            }
+            useNativeDriver={false}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "green",
+                  "height": 6,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": -19.2,
+                    },
+                    Object {
+                      "scaleX": 0.20008,
+                    },
+                  ],
+                }
+              }
+            />
+          </View>
+          <Text
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Arrived
+          </Text>
         </View>
-        <Text
+        <View
           style={
             Object {
-              "textAlign": "center",
+              "flexDirection": "column",
             }
           }
         >
-          Arrived
-        </Text>
+          <Text
+            style={
+              Object {
+                "fontSize": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            
+          </Text>
+          <View
+            animated={true}
+            animationConfig={
+              Object {
+                "bounciness": 0,
+              }
+            }
+            animationType="spring"
+            indeterminate={false}
+            indeterminateAnimationDuration={1000}
+            onLayout={[Function]}
+            progress={0.9}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": undefined,
+                  "borderColor": "red",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "overflow": "hidden",
+                  "width": 50,
+                },
+                undefined,
+              ]
+            }
+            useNativeDriver={false}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "red",
+                  "height": 6,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": -2.3999999999999986,
+                    },
+                    Object {
+                      "scaleX": 0.90001,
+                    },
+                  ],
+                }
+              }
+            />
+          </View>
+          <Text
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Arrived
+          </Text>
+        </View>
       </View>
     </View>
   </View>
   <View
-    style={
-      Object {
-        "backgroundColor": "white",
-        "flexDirection": "row",
-        "padding": 5,
-      }
-    }
+    accessible={true}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "alignSelf": "center",
-            "color": "black",
-            "fontWeight": "bold",
-            "textAlign": "center",
+    <Modal
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      theme={
+        Object {
+          "colors": Object {
+            "black": "#242424",
+            "disabled": "hsl(208, 8%, 90%)",
+            "divider": "#bcbbc1",
+            "error": "#ff190c",
+            "grey0": "#393e42",
+            "grey1": "#43484d",
+            "grey2": "#5e6977",
+            "grey3": "#86939e",
+            "grey4": "#bdc6cf",
+            "grey5": "#e1e8ee",
+            "greyOutline": "#bbb",
+            "platform": Object {
+              "android": Object {
+                "error": "#f44336",
+                "grey": "rgba(0, 0, 0, 0.54)",
+                "primary": "#2196f3",
+                "searchBg": "#dcdce1",
+                "secondary": "#9C27B0",
+                "success": "#4caf50",
+                "warning": "#ffeb3b",
+              },
+              "default": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "ios": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "web": Object {
+                "error": "#ff190c",
+                "grey": "#393e42",
+                "primary": "#2089dc",
+                "searchBg": "#303337",
+                "secondary": "#ca71eb",
+                "success": "#52c41a",
+                "warning": "#faad14",
+              },
+            },
+            "primary": "#2089dc",
+            "searchBg": "#303337",
+            "secondary": "#ca71eb",
+            "success": "#52c41a",
+            "warning": "#faad14",
+            "white": "#ffffff",
           },
-          Object {
-            "flex": 0.2,
-          },
-        ]
+        }
       }
+      transparent={true}
+      visible={false}
     >
-      912
-    </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(0, 0, 0, .4)",
+            "height": "100%",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          }
+        }
+        testID="RNE__Overlay__backdrop"
+      />
+      <View
+        pointerEvents="box-none"
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "white",
+              "borderRadius": 3,
+              "padding": 10,
+              "shadowColor": "rgba(0, 0, 0, .3)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 0,
+              },
+              "shadowRadius": 4,
+            }
+          }
+        >
+          <RNCSafeAreaView>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#f78383",
+                  "borderBottomColor": "#f2f2f2",
+                  "borderBottomWidth": 0.5,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingHorizontal": 10,
+                  "paddingVertical": 10,
+                }
+              }
+              testID="headerContainer"
+            >
+              <RNCSafeAreaView
+                edges={
+                  Array [
+                    "left",
+                    "top",
+                    "right",
+                  ]
+                }
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "width": "100%",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 3,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "fontWeight": "bold",
+                      }
+                    }
+                  >
+                    Oi, where is Bus 
+                    912
+                     leh?
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-end",
+                      "flex": 1,
+                    }
+                  }
+                />
+              </RNCSafeAreaView>
+            </View>
+            <View>
+              <View />
+            </View>
+          </RNCSafeAreaView>
+        </View>
+      </View>
+    </Modal>
     <View
       style={
         Object {
-          "flex": 0.8,
+          "backgroundColor": "white",
           "flexDirection": "row",
-          "justifyContent": "space-around",
+          "padding": 5,
         }
       }
     >
+      <Text
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "color": "black",
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "flex": 0.2,
+            },
+          ]
+        }
+      >
+        912
+      </Text>
       <View
         style={
           Object {
-            "flexDirection": "column",
+            "flex": 0.8,
+            "flexDirection": "row",
+            "justifyContent": "space-around",
           }
         }
       >
-        <Text
-          style={
-            Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        >
-          
-        </Text>
         <View
-          animated={true}
-          animationConfig={
+          style={
             Object {
-              "bounciness": 0,
+              "flexDirection": "column",
             }
           }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.2}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "green",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
         >
-          <View
+          <Text
             style={
               Object {
-                "backgroundColor": "green",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -19.2,
-                  },
-                  Object {
-                    "scaleX": 0.20008,
-                  },
-                ],
+                "fontSize": 10,
+                "textAlign": "center",
               }
             }
-          />
-        </View>
-        <Text
-          style={
-            Object {
-              "textAlign": "center",
-            }
-          }
-        >
-          Arrived
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        >
-          
-        </Text>
-        <View
-          animated={true}
-          animationConfig={
-            Object {
-              "bounciness": 0,
-            }
-          }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.2}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "green",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
-        >
+          >
+            
+          </Text>
           <View
+            animated={true}
+            animationConfig={
+              Object {
+                "bounciness": 0,
+              }
+            }
+            animationType="spring"
+            indeterminate={false}
+            indeterminateAnimationDuration={1000}
+            onLayout={[Function]}
+            progress={0.2}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": undefined,
+                  "borderColor": "green",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "overflow": "hidden",
+                  "width": 50,
+                },
+                undefined,
+              ]
+            }
+            useNativeDriver={false}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "green",
+                  "height": 6,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": -19.2,
+                    },
+                    Object {
+                      "scaleX": 0.20008,
+                    },
+                  ],
+                }
+              }
+            />
+          </View>
+          <Text
             style={
               Object {
-                "backgroundColor": "green",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -19.2,
-                  },
-                  Object {
-                    "scaleX": 0.20008,
-                  },
-                ],
+                "textAlign": "center",
               }
             }
-          />
+          >
+            Arrived
+          </Text>
         </View>
-        <Text
-          style={
-            Object {
-              "textAlign": "center",
-            }
-          }
-        >
-          Arrived
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        >
-          
-        </Text>
         <View
-          animated={true}
-          animationConfig={
+          style={
             Object {
-              "bounciness": 0,
+              "flexDirection": "column",
             }
           }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.9}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "red",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
         >
-          <View
+          <Text
             style={
               Object {
-                "backgroundColor": "red",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -2.3999999999999986,
-                  },
-                  Object {
-                    "scaleX": 0.90001,
-                  },
-                ],
+                "fontSize": 10,
+                "textAlign": "center",
               }
             }
-          />
+          >
+            
+          </Text>
+          <View
+            animated={true}
+            animationConfig={
+              Object {
+                "bounciness": 0,
+              }
+            }
+            animationType="spring"
+            indeterminate={false}
+            indeterminateAnimationDuration={1000}
+            onLayout={[Function]}
+            progress={0.2}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": undefined,
+                  "borderColor": "green",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "overflow": "hidden",
+                  "width": 50,
+                },
+                undefined,
+              ]
+            }
+            useNativeDriver={false}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "green",
+                  "height": 6,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": -19.2,
+                    },
+                    Object {
+                      "scaleX": 0.20008,
+                    },
+                  ],
+                }
+              }
+            />
+          </View>
+          <Text
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Arrived
+          </Text>
         </View>
-        <Text
+        <View
           style={
             Object {
-              "textAlign": "center",
+              "flexDirection": "column",
             }
           }
         >
-          Arrived
-        </Text>
+          <Text
+            style={
+              Object {
+                "fontSize": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            
+          </Text>
+          <View
+            animated={true}
+            animationConfig={
+              Object {
+                "bounciness": 0,
+              }
+            }
+            animationType="spring"
+            indeterminate={false}
+            indeterminateAnimationDuration={1000}
+            onLayout={[Function]}
+            progress={0.9}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": undefined,
+                  "borderColor": "red",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "overflow": "hidden",
+                  "width": 50,
+                },
+                undefined,
+              ]
+            }
+            useNativeDriver={false}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "red",
+                  "height": 6,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": -2.3999999999999986,
+                    },
+                    Object {
+                      "scaleX": 0.90001,
+                    },
+                  ],
+                }
+              }
+            />
+          </View>
+          <Text
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Arrived
+          </Text>
+        </View>
       </View>
     </View>
   </View>
