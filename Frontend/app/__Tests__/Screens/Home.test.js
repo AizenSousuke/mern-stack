@@ -3,10 +3,6 @@ import { render } from "@testing-library/react-native";
 import React from "react";
 import GoingHome from "../../screens/GoingHome";
 
-// jest.mock("react-navigation", () => ({
-// 	NavigationEvents: "mockNavigationEvents",
-// }));
-
 jest.mock("react-native-gesture-handler", () => {
 	// eslint-disable-next-line global-require
 	const View = require("react-native/Libraries/Components/View/View");
@@ -14,6 +10,7 @@ jest.mock("react-native-gesture-handler", () => {
 		Swipeable: View,
 		DrawerLayout: View,
 		State: {},
+		// This is needed to not error out below in the tests
 		ScrollView: View,
 		Slider: View,
 		Switch: View,
@@ -46,7 +43,9 @@ describe("Home", () => {
 	it("renders properly", () => {
 		// const testRenderer = ReactTestRenderer.create(<GoingHome />);
 		// expect(testRenderer.toJSON()).toMatchSnapshot();
-		// render(<GoingHome />)
+		
+		// expect(render(<GoingHome />).toJSON()).toMatchSnapshot();
+
 		let root = create(<GoingHome />);
 		expect(root.toJSON()).toMatchSnapshot();
 	});
