@@ -146,7 +146,7 @@ export const LocationModal = () => {
 						}}
 					/>
 				)}
-				ListEmptyComponent={<Text style={{ textAlign: "center" }}>There are no bus stops nearby</Text>}
+				ListEmptyComponent={<Text style={{ textAlign: "center" }}>There are no bus stops nearby. Please set the location in the map and swipe down to refresh the list.</Text>}
 			/>
 		</SafeAreaView>
 	);
