@@ -69,7 +69,7 @@ Frontend\config\default.json
 {
     "LTADataMallAPI" : "",
     "TOKEN": "TOKEN",
-    "BACKEND_API": "http://localhost:8080/api",
+    "BACKEND_API": "http://10.0.2.2:8080/api",
     "MAPBOX": "<MAPBOX_API_KEY>",
     "MAX_DISTANCE_IN_METRES": 300
 }
@@ -155,3 +155,7 @@ and save it as a batch file.
 - Use an online DB like Mongo DB to store data and retrieve data instead [Done]
   - Have a job on the db server to parse new data from LTA and massage it every week
   - Locally store user's data and cached data from Mongo
+
+
+## Known issues
+- Facebook login doesn't work suddenly when using http
