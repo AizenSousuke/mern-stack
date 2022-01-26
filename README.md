@@ -158,4 +158,5 @@ and save it as a batch file.
 
 
 ## Known issues
-- Facebook login doesn't work suddenly when using http
+- Facebook login doesn't work suddenly when using http. 
+  - Fix is to change to https then back to http using the config json and server.js in backend.
