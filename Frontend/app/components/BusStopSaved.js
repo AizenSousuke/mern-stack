@@ -119,7 +119,7 @@ export const BusStopSaved = ({ code, GoingOut }) => {
 			</ListItem>
 			<Collapsible collapsed={isCollapsed}>
 				{busStopData != null ? (
-					<BusStop busStopData={busStopData} />
+					<BusStop busStop={busStop} busStopData={busStopData} />
 				) : (
 					<Text>No Data</Text>
 				)}

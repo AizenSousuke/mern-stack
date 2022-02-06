@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Header, Text } from "react-native-elements";
+import { Header, Image, Text } from "react-native-elements";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
 import * as Location from "expo-location";
 import { Button } from "react-native-elements/dist/buttons/Button";
 
-const BusLocation = ({ busNumber, nextBus }) => {
+const BusLocation = ({ busNumber, nextBus, busStop }) => {
 	const [busRegion, setBusRegion] = useState({
 		latitude: nextBus !== null ? parseFloat(nextBus.Latitude) : 1,
 		longitude: nextBus !== null ? parseFloat(nextBus.Longitude) : 100,
@@ -15,9 +15,7 @@ const BusLocation = ({ busNumber, nextBus }) => {
 	});
 
 	useEffect(() => {
-		(async () => {
-            
-		})();
+		(async () => {})();
 	}, []);
 
 	return (
@@ -44,9 +42,23 @@ const BusLocation = ({ busNumber, nextBus }) => {
 				}}
 				region={busRegion}
 			>
+				<Marker coordinate={busRegion}>
+					<Image
+						source={require("../../assets/bus.png")}
+						style={{ height: 30, width: 30, tintColor: "red" }}
+					/>
+				</Marker>
 				<Marker
-					coordinate={busRegion}
-				></Marker>
+					coordinate={{
+						latitude: busStop ? busStop.Location[1] ?? 0 : 0,
+						longitude: busStop ? busStop.Location[0] ?? 0 : 0,
+					}}
+				>
+					<Image
+						source={require("../../assets/person.png")}
+						style={{ height: 30, width: 30, tintColor: "red" }}
+					/>
+				</Marker>
 			</MapView>
 		</SafeAreaView>
 	);
