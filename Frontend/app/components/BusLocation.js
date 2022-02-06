@@ -34,32 +34,36 @@ const BusLocation = ({ busNumber, nextBus, busStop }) => {
 					</Text>
 				}
 			></Header>
-			<MapView
-				provider={PROVIDER_GOOGLE}
-				style={{
-					height: 250,
-					width: 400,
-				}}
-				region={busRegion}
-			>
-				<Marker coordinate={busRegion}>
-					<Image
-						source={require("../../assets/bus.png")}
-						style={{ height: 30, width: 30, tintColor: "red" }}
-					/>
-				</Marker>
-				<Marker
-					coordinate={{
-						latitude: busStop ? busStop.Location[1] ?? 0 : 0,
-						longitude: busStop ? busStop.Location[0] ?? 0 : 0,
+			{busRegion.latitude == 0 && busRegion.longitude == 0 ? (
+				<Text style={{alignSelf: "center"}}>No data found from LTA's API. Please check another time.</Text>
+			) : (
+				<MapView
+					provider={PROVIDER_GOOGLE}
+					style={{
+						height: 250,
+						width: 400,
 					}}
+					region={busRegion}
 				>
-					<Image
-						source={require("../../assets/person.png")}
-						style={{ height: 30, width: 30, tintColor: "red" }}
-					/>
-				</Marker>
-			</MapView>
+					<Marker coordinate={busRegion}>
+						<Image
+							source={require("../../assets/bus.png")}
+							style={{ height: 30, width: 30, tintColor: "red" }}
+						/>
+					</Marker>
+					<Marker
+						coordinate={{
+							latitude: busStop ? busStop.Location[1] ?? 0 : 0,
+							longitude: busStop ? busStop.Location[0] ?? 0 : 0,
+						}}
+					>
+						<Image
+							source={require("../../assets/person.png")}
+							style={{ height: 30, width: 30, tintColor: "red" }}
+						/>
+					</Marker>
+				</MapView>
+			)}
 		</SafeAreaView>
 	);
 };
