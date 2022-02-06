@@ -23,6 +23,11 @@ By using this application you agree to not held us responsible for your bus not 
 
 ---
 
+## Screenshots
+![Image](https://i.imgur.com/wv7KKv8.gif)
+
+---
+
 ## Running the App
 
 Config files to create:
