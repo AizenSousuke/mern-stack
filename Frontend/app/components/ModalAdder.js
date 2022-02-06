@@ -4,13 +4,14 @@ import { Overlay, Text } from "react-native-elements";
 
 /**
  * This component, on press will pop out a modal */
-const ModalAdder = ({ children, modalElement }) => {
+const ModalAdder = ({ children, modalElement, style }) => {
 	const [modalOpened, setModalOpened] = useState(false);
 	return (
 		<Pressable
 			onPress={() => {
 				setModalOpened(true);
 			}}
+			style={style}
 		>
 			<Overlay
 				isVisible={modalOpened}

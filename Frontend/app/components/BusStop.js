@@ -12,18 +12,18 @@ const BusStop = ({ busStop, busStopData }) => {
 				busStopData.Services?.sort((a) => a.ServiceNo).map(
 					(service, key) => {
 						return (
-							<ModalAdder key={key} modalElement={<BusLocation busStop={busStop} busNumber={service.ServiceNo} nextBus={service.NextBus} busStopLocation={busStopData.Location} />}>
-								<BusDetails
-									key={key}
-									busNumber={service.ServiceNo}
-									details={service}
-								/>
-							</ModalAdder>
+							<BusDetails
+								key={key}
+								busNumber={service.ServiceNo}
+								details={service}
+								busStopData={busStopData}
+								busStop={busStop}
+							/>
 						);
 					}
 				)
 			) : (
-				<Text>No bus stop data found</Text>
+				<Text>No bus stop data found from LTA's API</Text>
 			)}
 		</View>
 	);

@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import * as Progress from "react-native-progress";
 import styles from "../../assets/css/AppStyles";
+import BusLocation from "./BusLocation";
+import ModalAdder from "./ModalAdder";
 
 const GetValueForLoad = (load) => {
 	switch (load) {
@@ -42,7 +44,7 @@ const GetEstimatedArrivalMinute = (estimatedArrivalTime) => {
 	}
 };
 
-const BusDetails = ({ busNumber, details }) => {
+const BusDetails = ({ key, busStop, busStopData, busNumber, details }) => {
 	// console.log("Details: " + JSON.stringify(details));
 
 	const [number, setNumber] = useState(busNumber);
@@ -56,7 +58,16 @@ const BusDetails = ({ busNumber, details }) => {
 	return (
 		<View style={styles.busDetails}>
 			<Text style={[styles.busNumber, { flex: 0.2 }]}>{number}</Text>
-			<View
+			<ModalAdder
+				key={key}
+				modalElement={
+					<BusLocation
+						busStop={busStop}
+						busNumber={details.ServiceNo}
+						nextBus={details.NextBus}
+						busStopLocation={busStopData.Location}
+					/>
+				}
 				style={{
 					flex: 0.8,
 					flexDirection: "row",
@@ -91,9 +102,7 @@ const BusDetails = ({ busNumber, details }) => {
 								{data.NextBus2.Type == "DD" ? "Double" : ""}
 							</Text>
 							<Progress.Bar
-								progress={GetValueForLoad(
-									data.NextBus2.Load
-								)}
+								progress={GetValueForLoad(data.NextBus2.Load)}
 								color={GetColorForLoad(data.NextBus2.Load)}
 								width={50}
 							/>
@@ -114,9 +123,7 @@ const BusDetails = ({ busNumber, details }) => {
 								{data.NextBus2.Type == "DD" ? "Double" : ""}
 							</Text>
 							<Progress.Bar
-								progress={GetValueForLoad(
-									data.NextBus3.Load
-								)}
+								progress={GetValueForLoad(data.NextBus3.Load)}
 								color={GetColorForLoad(data.NextBus3.Load)}
 								width={50}
 							/>
@@ -130,7 +137,7 @@ const BusDetails = ({ busNumber, details }) => {
 						<Text style={styles.noData}>No Data</Text>
 					)}
 				</View>
-			</View>
+			</ModalAdder>
 		</View>
 	);
 };
