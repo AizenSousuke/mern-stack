@@ -22,7 +22,7 @@ const BusRoutesSchema = mongoose.Schema({
         required: true
     },
     Distance: {
-        type: Number,
+        type: Integer128,
         required: true
     },
     WD_FirstBus: {
