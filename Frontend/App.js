@@ -32,6 +32,7 @@ export default function App() {
 	const _checkTokenExpiry = async (token) => {
 		return await CheckTokenExpiry(token)
 			.then((res) => {
+				console.log("Res in _checkTokenExpiry:" + JSON.stringify(res));
 				if (res.expired) {
 					console.log("CheckTokenExpiry: Token has expired");
 					return true;
@@ -40,17 +41,17 @@ export default function App() {
 				return false;
 			})
 			.catch((error) => {
-				console.error(error);
+				console.error("_checkTokenExpiry: " + error);
 				return true;
 			});
 	};
 
 	const _loadToken = async () => {
 		if (authToken === null) {
-			await AsyncStorage.getItem(config.TOKEN, (error, result) => {
+			await AsyncStorage.getItem(config.TOKEN, async (error, result) => {
 				if (result) {
 					console.log("_loadToken: " + error + "|" + result);
-					if (_checkTokenExpiry(result)) {
+					if (!await _checkTokenExpiry(result)) {
 						setAuthToken(result);
 						console.log("Attempting to load settings");
 						// Passing token instead of authToken because setAuthToken is async and updates according to react
