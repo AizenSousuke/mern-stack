@@ -44,7 +44,7 @@ const GetEstimatedArrivalMinute = (estimatedArrivalTime) => {
 	}
 };
 
-const BusDetails = ({ key, busStop, busStopData, busNumber, details }) => {
+const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 	// console.log("Details: " + JSON.stringify(details));
 
 	const [number, setNumber] = useState(busNumber);
@@ -59,7 +59,6 @@ const BusDetails = ({ key, busStop, busStopData, busNumber, details }) => {
 		<View style={styles.busDetails}>
 			<Text style={[styles.busNumber, { flex: 0.2 }]}>{number}</Text>
 			<ModalAdder
-				key={key}
 				modalElement={
 					<BusLocation
 						busStop={busStop}

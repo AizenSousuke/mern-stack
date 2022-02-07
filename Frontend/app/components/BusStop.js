@@ -14,6 +14,7 @@ const BusStop = ({ busStop, busStopData }) => {
 						return (
 							<BusDetails
 								key={key}
+								modalKey={key}
 								busNumber={service.ServiceNo}
 								details={service}
 								busStopData={busStopData}
