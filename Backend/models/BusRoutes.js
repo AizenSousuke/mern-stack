@@ -18,35 +18,35 @@ const BusRoutesSchema = mongoose.Schema({
         required: true
     },
     BusStopCode: {
-        type: Number,
+        type: String,
         required: true
     },
     Distance: {
-        type: Integer128,
+        type: Number,
         required: true
     },
     WD_FirstBus: {
-        type: Number,
+        type: String,
         required: true
     },
     WD_LastBus: {
-        type: Number,
+        type: String,
         required: true
     },
     SAT_FirstBus: {
-        type: Number,
+        type: String,
         required: true
     },
     SAT_LastBus: {
-        type: Number,
+        type: String,
         required: true
     },
     SUN_FirstBus: {
-        type: Number,
+        type: String,
         required: true
     },
     SUN_LastBus: {
-        type: Number,
+        type: String,
         required: true
     }
 });
