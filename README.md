@@ -139,6 +139,7 @@ and save it as a batch file.
 - Clean code and set up unit tests
 
 ## Todo:
+- Bus Information page with First Bus, Last Bus and Bus Route 
 - Add overlay settings page
 - Auth (Clear states i.e, Auth, Settings when logging out. Use local async storage settings instead to load\save settings and offer a way to update the settings on the server when logged in.)
 - Settings (Update the date modified for any updates)
