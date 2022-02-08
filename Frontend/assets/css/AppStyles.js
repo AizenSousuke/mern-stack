@@ -1,8 +1,5 @@
 import { StyleSheet, StatusBar, Platform } from "react-native";
-
-export const Color = {
-	linkColor: "#1989e6"
-}
+import ColourScheme from "../../app/settings/colourScheme.json";
 
 export default StyleSheet.create({
 	background: {
@@ -78,6 +75,12 @@ export default StyleSheet.create({
 	busStop: {
 		backgroundColor: "white",
 	},
+	busStopName: {
+		color: ColourScheme.secondary,
+	},
+	busStopRoadName: {
+		color: ColourScheme.secondaryVariant,
+	},
 	busStopDetails: {
 		color: "black",
 	},
@@ -90,7 +93,7 @@ export default StyleSheet.create({
 	busNumber: {
 		alignSelf: "center",
 		textAlign: "center",
-		color: Color.linkColor,
+		color: ColourScheme.link,
 		fontWeight: "bold",
 		fontSize: 20,
 	},
@@ -106,16 +109,14 @@ export default StyleSheet.create({
 		color: "black",
 	},
 	estimatedArrival: {
-		textAlign: "center"
+		textAlign: "center",
 	},
 	busType: {
 		fontSize: 10,
-		textAlign: "center"
+		textAlign: "center",
 	},
 	noData: {
 		paddingTop: 8,
 	},
-	buttonGroupStyle: {
-		
-	}
+	buttonGroupStyle: {},
 });

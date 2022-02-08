@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Pressable, Text, ToastAndroid, View } from "react-native";
 import Collapsible from "react-native-collapsible";
 import { Icon, ListItem, Overlay } from "react-native-elements";
+import AppStyles from "../../assets/css/AppStyles";
 import { GetBusStop, SaveSettings } from "../api/api";
 import AuthConsumer from "../context/AuthContext";
 import BusStop from "./BusStop";
@@ -48,15 +49,21 @@ export default class BusStopListPureComponent extends PureComponent {
 					topDivider
 					bottomDivider
 					onPress={() => {
-						this.setState((state) => ({
-							isCollapsed: !state.isCollapsed,
-						}), () => {
-							// For use in Location page
-							if (!this.state.isCollapsed && this.props.CollapseEvent) {
-								// console.log("Firing CollapseEvent event");
-								this.props.CollapseEvent(this.props.code);
+						this.setState(
+							(state) => ({
+								isCollapsed: !state.isCollapsed,
+							}),
+							() => {
+								// For use in Location page
+								if (
+									!this.state.isCollapsed &&
+									this.props.CollapseEvent
+								) {
+									// console.log("Firing CollapseEvent event");
+									this.props.CollapseEvent(this.props.code);
+								}
 							}
-						});
+						);
 						this.setState((state) => ({ arrow: !state.arrow }));
 					}}
 				>
@@ -69,10 +76,15 @@ export default class BusStopListPureComponent extends PureComponent {
 					/>
 					<ListItem.Content>
 						<ListItem.Title>
-							{name ?? "Bus Stop Name"}
+							<Text style={AppStyles.busStopName}>
+								{name ?? "Bus Stop Name"}
+							</Text>
 						</ListItem.Title>
 						<ListItem.Subtitle>
-							{address ?? "Address"} ({code ?? "Bus Stop Code"})
+							<Text style={AppStyles.busStopRoadName}>
+								{address ?? "Address"} (
+								{code ?? "Bus Stop Code"})
+							</Text>
 						</ListItem.Subtitle>
 					</ListItem.Content>
 					{this.state.isCollapsed ? (
@@ -97,8 +109,13 @@ export default class BusStopListPureComponent extends PureComponent {
 								>
 									<AuthConsumer>
 										{(auth) => {
-											console.log("Auth: " + JSON.stringify(auth));
-											console.log("Auth token: " + JSON.stringify(auth.token));
+											console.log(
+												"Auth: " + JSON.stringify(auth)
+											);
+											console.log(
+												"Auth token: " +
+													JSON.stringify(auth.token)
+											);
 											return (
 												<View>
 													<ListItem>
@@ -117,11 +134,27 @@ export default class BusStopListPureComponent extends PureComponent {
 																	SaveSettings(
 																		auth.token,
 																		code
-																	).then(res => {
-																		ToastAndroid.show(res.msg, ToastAndroid.SHORT);
-																	}).catch(error => {
-																		ToastAndroid.show("Error when saving setting", ToastAndroid.SHORT);
-																	});
+																	)
+																		.then(
+																			(
+																				res
+																			) => {
+																				ToastAndroid.show(
+																					res.msg,
+																					ToastAndroid.SHORT
+																				);
+																			}
+																		)
+																		.catch(
+																			(
+																				error
+																			) => {
+																				ToastAndroid.show(
+																					"Error when saving setting",
+																					ToastAndroid.SHORT
+																				);
+																			}
+																		);
 																}
 															);
 														}}
@@ -142,11 +175,27 @@ export default class BusStopListPureComponent extends PureComponent {
 																		auth.token,
 																		code,
 																		false
-																	).then(res => {
-																		ToastAndroid.show(res.msg, ToastAndroid.SHORT);
-																	}).catch(error => {
-																		ToastAndroid.show("Error when saving setting", ToastAndroid.SHORT);
-																	});;
+																	)
+																		.then(
+																			(
+																				res
+																			) => {
+																				ToastAndroid.show(
+																					res.msg,
+																					ToastAndroid.SHORT
+																				);
+																			}
+																		)
+																		.catch(
+																			(
+																				error
+																			) => {
+																				ToastAndroid.show(
+																					"Error when saving setting",
+																					ToastAndroid.SHORT
+																				);
+																			}
+																		);
 																}
 															);
 														}}

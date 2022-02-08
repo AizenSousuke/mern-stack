@@ -1,10 +1,11 @@
 {
-    "primary" : "blue",
-    "primaryVariant": "darkblue",
-    "secondary" : "red",
-    "secondaryVariant": "darkred",
+    "primary" : "#4fa4e9",
+    "primaryVariant": "#185e96",
+    "secondary" : "#af0d0d",
+    "secondaryVariant": "#dd2d2d",
     "accent" : "orange",
     "background" : "white",
     "surface" : "black",
-    "error" : "red"
+    "error" : "red",
+    "link": "#1989e6"
 }

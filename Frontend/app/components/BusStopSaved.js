@@ -10,6 +10,7 @@ import {
 import { Pressable } from "react-native";
 import BusStop from "./BusStop";
 import AuthConsumer from "../context/AuthContext";
+import AppStyles from "../../assets/css/AppStyles";
 
 export const BusStopSaved = ({ code, GoingOut }) => {
 	const [busStop, setBusStop] = useState(null);
@@ -53,11 +54,15 @@ export const BusStopSaved = ({ code, GoingOut }) => {
 				/>
 				<ListItem.Content>
 					<ListItem.Title>
-						{busStop ? busStop.Description : "Bus Stop Name"}
+						<Text style={AppStyles.busStopName}>
+							{busStop ? busStop.Description : "Bus Stop Name"}
+						</Text>
 					</ListItem.Title>
 					<ListItem.Subtitle>
-						{busStop ? busStop.RoadName : "Address"} (
-						{code ?? "Bus Stop Code"})
+						<Text style={AppStyles.busStopRoadName}>
+							{busStop ? busStop.RoadName : "Address"} (
+							{code ?? "Bus Stop Code"})
+						</Text>
 					</ListItem.Subtitle>
 				</ListItem.Content>
 				{isCollapsed ? (
@@ -84,12 +89,23 @@ export const BusStopSaved = ({ code, GoingOut }) => {
 												</ListItem>
 												<ListItem
 													onPress={async () => {
-														setOverlayVisible(!overlayVisible);
-														await RemoveCodeFromSettings(auth.token, code, GoingOut).then(res => {
-															// Refresh state
-														}).catch(error => {
-															ToastAndroid.show(error, ToastAndroid.SHORT);	
-														});
+														setOverlayVisible(
+															!overlayVisible
+														);
+														await RemoveCodeFromSettings(
+															auth.token,
+															code,
+															GoingOut
+														)
+															.then((res) => {
+																// Refresh state
+															})
+															.catch((error) => {
+																ToastAndroid.show(
+																	error,
+																	ToastAndroid.SHORT
+																);
+															});
 													}}
 												>
 													<ListItem.Subtitle>
