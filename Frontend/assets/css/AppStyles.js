@@ -118,5 +118,8 @@ export default StyleSheet.create({
 	noData: {
 		paddingTop: 8,
 	},
-	buttonGroupStyle: {},
+	buttonGroupTextStyle: {},
+	buttonGroupStyle: {
+		backgroundColor: ColourScheme.link
+	},
 });
