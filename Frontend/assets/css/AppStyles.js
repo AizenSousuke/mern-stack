@@ -1,5 +1,9 @@
 import { StyleSheet, StatusBar, Platform } from "react-native";
 
+export const Color = {
+	linkColor: "#1989e6"
+}
+
 export default StyleSheet.create({
 	background: {
 		flex: 1,
@@ -78,8 +82,7 @@ export default StyleSheet.create({
 		color: "black",
 	},
 	busDetails: {
-		// Disabled because it causes issues
-		// flex: 1,
+		justifyContent: "space-evenly",
 		flexDirection: "row",
 		backgroundColor: "white",
 		padding: 5,
@@ -87,8 +90,16 @@ export default StyleSheet.create({
 	busNumber: {
 		alignSelf: "center",
 		textAlign: "center",
-		color: "black",
+		color: Color.linkColor,
 		fontWeight: "bold",
+		fontSize: 20,
+	},
+	busRouteNumber: {
+		alignSelf: "center",
+		textAlign: "center",
+		color: "white",
+		fontWeight: "bold",
+		fontSize: 20,
 	},
 	busTiming: {
 		paddingRight: 5,
@@ -103,5 +114,8 @@ export default StyleSheet.create({
 	},
 	noData: {
 		paddingTop: 8,
+	},
+	buttonGroupStyle: {
+		
 	}
 });

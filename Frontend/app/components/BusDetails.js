@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import * as Progress from "react-native-progress";
 import styles from "../../assets/css/AppStyles";
 import BusLocation from "./BusLocation";
+import BusInformation from "./BusInformation";
 import ModalAdder from "./ModalAdder";
 
 const GetValueForLoad = (load) => {
@@ -57,7 +58,13 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 
 	return (
 		<View style={styles.busDetails}>
-			<Text style={[styles.busNumber, { flex: 0.2 }]}>{number}</Text>
+			<ModalAdder modalElement={<BusInformation busNumber={number} />}>
+				<View style={{ flexDirection: "row", flex: 1 }}>
+					<Text style={[styles.busNumber]}>
+						{number}
+					</Text>
+				</View>
+			</ModalAdder>
 			<ModalAdder
 				modalElement={
 					<BusLocation
