@@ -85,7 +85,7 @@ export default StyleSheet.create({
 		color: "black",
 	},
 	busDetails: {
-		justifyContent: "space-evenly",
+		justifyContent: "space-around",
 		flexDirection: "row",
 		backgroundColor: "white",
 		padding: 5,

@@ -58,11 +58,14 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 
 	return (
 		<View style={AppStyles.busDetails}>
-			<ModalAdder modalElement={<BusInformation busNumber={number} />}>
-				<View style={{ flexDirection: "row", flex: 1 }}>
-					<Text style={[AppStyles.busNumber]}>
-						{number}
-					</Text>
+			<ModalAdder
+				modalElement={<BusInformation busNumber={number} />}
+				style={{
+					flex: 0.2,
+				}}
+			>
+				<View style={{ flexDirection: "column" }}>
+					<Text style={[AppStyles.busNumber]}>{number}</Text>
 				</View>
 			</ModalAdder>
 			<ModalAdder
@@ -77,7 +80,7 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 				style={{
 					flex: 0.8,
 					flexDirection: "row",
-					justifyContent: "space-around",
+					justifyContent: "space-evenly",
 				}}
 			>
 				<View style={{ flexDirection: "column" }}>
