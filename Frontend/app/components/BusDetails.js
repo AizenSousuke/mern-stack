@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import * as Progress from "react-native-progress";
-import styles from "../../assets/css/AppStyles";
+import AppStyles from "../../assets/css/AppStyles";
 import BusLocation from "./BusLocation";
 import BusInformation from "./BusInformation";
 import ModalAdder from "./ModalAdder";
@@ -57,10 +57,10 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 	}, [busNumber, details]);
 
 	return (
-		<View style={styles.busDetails}>
+		<View style={AppStyles.busDetails}>
 			<ModalAdder modalElement={<BusInformation busNumber={number} />}>
 				<View style={{ flexDirection: "row", flex: 1 }}>
-					<Text style={[styles.busNumber]}>
+					<Text style={[AppStyles.busNumber]}>
 						{number}
 					</Text>
 				</View>
@@ -83,7 +83,7 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 				<View style={{ flexDirection: "column" }}>
 					{data.NextBus.Load !== "" ? (
 						<>
-							<Text style={styles.busType}>
+							<Text style={AppStyles.busType}>
 								{data.NextBus.Type == "DD" ? "Double" : ""}
 							</Text>
 							<Progress.Bar
@@ -91,20 +91,20 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 								color={GetColorForLoad(data.NextBus.Load)}
 								width={50}
 							/>
-							<Text style={styles.estimatedArrival}>
+							<Text style={AppStyles.estimatedArrival}>
 								{GetEstimatedArrivalMinute(
 									data.NextBus.EstimatedArrival
 								).toString()}
 							</Text>
 						</>
 					) : (
-						<Text style={styles.noData}>No Data</Text>
+						<Text style={AppStyles.noData}>No Data</Text>
 					)}
 				</View>
 				<View style={{ flexDirection: "column" }}>
 					{data.NextBus2.Load !== "" ? (
 						<>
-							<Text style={styles.busType}>
+							<Text style={AppStyles.busType}>
 								{data.NextBus2.Type == "DD" ? "Double" : ""}
 							</Text>
 							<Progress.Bar
@@ -112,20 +112,20 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 								color={GetColorForLoad(data.NextBus2.Load)}
 								width={50}
 							/>
-							<Text style={styles.estimatedArrival}>
+							<Text style={AppStyles.estimatedArrival}>
 								{GetEstimatedArrivalMinute(
 									data.NextBus2.EstimatedArrival
 								).toString()}
 							</Text>
 						</>
 					) : (
-						<Text style={styles.noData}>No Data</Text>
+						<Text style={AppStyles.noData}>No Data</Text>
 					)}
 				</View>
 				<View style={{ flexDirection: "column" }}>
 					{data.NextBus3.Load !== "" ? (
 						<>
-							<Text style={styles.busType}>
+							<Text style={AppStyles.busType}>
 								{data.NextBus2.Type == "DD" ? "Double" : ""}
 							</Text>
 							<Progress.Bar
@@ -133,14 +133,14 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 								color={GetColorForLoad(data.NextBus3.Load)}
 								width={50}
 							/>
-							<Text style={styles.estimatedArrival}>
+							<Text style={AppStyles.estimatedArrival}>
 								{GetEstimatedArrivalMinute(
 									data.NextBus3.EstimatedArrival
 								).toString()}
 							</Text>
 						</>
 					) : (
-						<Text style={styles.noData}>No Data</Text>
+						<Text style={AppStyles.noData}>No Data</Text>
 					)}
 				</View>
 			</ModalAdder>

@@ -1,11 +1,15 @@
 {
-    "primary" : "#4fa4e9",
-    "primaryVariant": "#185e96",
-    "secondary" : "#af0d0d",
-    "secondaryVariant": "#dd2d2d",
-    "accent" : "orange",
-    "background" : "white",
-    "surface" : "black",
-    "error" : "red",
-    "link": "#1989e6"
+    "primary" : "#fcd5ce",
+    "primaryVariant": "#fec5bb",
+    "secondary" : "#F48C06",
+    "secondaryVariant": "#E85D04",
+    "accent" : "#db7412",
+    "background" : "#FFBA08",
+    "surface" : "#000000",
+    "error" : "#9D0208",
+    "text": "#03071E",
+    "textSecondary": "#414833",
+    "link": "#370617",
+    "black": "#000000",
+    "header": "#DC2F02"
 }

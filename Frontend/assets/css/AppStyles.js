@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar, Platform } from "react-native";
-import ColourScheme from "../../app/settings/colourScheme.json";
+import ColourScheme from "../../app/settings/ColourScheme.json";
 
 export default StyleSheet.create({
 	background: {
@@ -73,13 +73,13 @@ export default StyleSheet.create({
 		backgroundColor: "#f78383",
 	},
 	busStop: {
-		backgroundColor: "white",
+		backgroundColor: ColourScheme.white,
 	},
 	busStopName: {
-		color: ColourScheme.secondary,
+		color: ColourScheme.text,
 	},
 	busStopRoadName: {
-		color: ColourScheme.secondaryVariant,
+		color: ColourScheme.textSecondary,
 	},
 	busStopDetails: {
 		color: "black",

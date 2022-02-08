@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from "react-native";
 import BusDetails from "./BusDetails";
-import styles from "../../assets/css/AppStyles";
+import AppStyles from "../../assets/css/AppStyles";
 import ModalAdder from "./ModalAdder";
 import BusLocation from "./BusLocation";
 
 const BusStop = ({ busStop, busStopData }) => {
 	return (
-		<View style={styles.busStop}>
+		<View style={AppStyles.busStop}>
 			{busStopData != null ? (
 				busStopData.Services?.sort((a) => a.ServiceNo).map(
 					(service, key) => {

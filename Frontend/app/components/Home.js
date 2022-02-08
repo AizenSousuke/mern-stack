@@ -10,6 +10,7 @@ import TabNavigator from "../components/TabNavigator";
 import AuthConsumer from "../context/AuthContext";
 import { CheckTokenExpiry } from "../api/api";
 import LocationButton from "./LocationButton";
+import ColourScheme from "../settings/ColourScheme.json";
 
 export const Home = ({ navigation }) => {
 	return (
@@ -18,6 +19,7 @@ export const Home = ({ navigation }) => {
 				{(auth) => {
 					return (
 						<Header
+							backgroundColor={ColourScheme.header}
 							placement={"center"}
 							leftComponent={{
 								icon: "logout",

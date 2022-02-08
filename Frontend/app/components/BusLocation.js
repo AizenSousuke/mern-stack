@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
 import * as Location from "expo-location";
 import { Button } from "react-native-elements/dist/buttons/Button";
+import ColourScheme from "../settings/ColourScheme.json";
 
 const BusLocation = ({ busNumber, nextBus, busStop }) => {
 	const [busRegion, setBusRegion] = useState({
@@ -21,7 +22,7 @@ const BusLocation = ({ busNumber, nextBus, busStop }) => {
 	return (
 		<SafeAreaView>
 			<Header
-				backgroundColor={AppStyles.headerAlternative.backgroundColor}
+				backgroundColor={ColourScheme.header}
 				centerComponent={
 					<Text
 						style={{
@@ -35,7 +36,9 @@ const BusLocation = ({ busNumber, nextBus, busStop }) => {
 				}
 			></Header>
 			{busRegion.latitude == 0 && busRegion.longitude == 0 ? (
-				<Text style={{alignSelf: "center"}}>No data found from LTA's API. Please check another time.</Text>
+				<Text style={{ alignSelf: "center" }}>
+					No data found from LTA's API. Please check another time.
+				</Text>
 			) : (
 				<MapView
 					provider={PROVIDER_GOOGLE}

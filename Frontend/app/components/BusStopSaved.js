@@ -11,6 +11,7 @@ import { Pressable } from "react-native";
 import BusStop from "./BusStop";
 import AuthConsumer from "../context/AuthContext";
 import AppStyles from "../../assets/css/AppStyles";
+import ColourScheme from "../settings/ColourScheme.json";
 
 export const BusStopSaved = ({ code, GoingOut }) => {
 	const [busStop, setBusStop] = useState(null);
@@ -40,6 +41,7 @@ export const BusStopSaved = ({ code, GoingOut }) => {
 	return (
 		<View>
 			<ListItem
+				containerStyle={{ backgroundColor: ColourScheme.primary }}
 				topDivider
 				bottomDivider
 				onPress={() => {

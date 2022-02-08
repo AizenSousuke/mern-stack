@@ -8,7 +8,7 @@ import {
 	Text,
 } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
-import styles from "../../assets/css/AppStyles";
+import AppStyles from "../../assets/css/AppStyles";
 
 const BusInformation = ({ busNumber }) => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
@@ -16,13 +16,13 @@ const BusInformation = ({ busNumber }) => {
 		<SafeAreaView>
 			<Header
 				centerComponent={
-					<Text style={styles.busRouteNumber}>
+					<Text style={AppStyles.busRouteNumber}>
 						Bus {busNumber} Information
 					</Text>
 				}
 			/>
 			<ButtonGroup
-				buttonStyle={styles.buttonGroupStyle}
+				buttonStyle={AppStyles.buttonGroupStyle}
 				buttons={["Information", "Bus Route"]}
 				selectedIndex={selectedIndex}
 				onPress={(index) => {
