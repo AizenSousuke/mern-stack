@@ -63,6 +63,87 @@ router.post("/update", auth, async (req, res) => {
 
 		console.log("Is admin");
 
+		// Using this method will result in Cannot set headers after they are sent to the client errors
+		// let anyMoreDataToParse = true;
+		// let skip = 0;
+		// let skipBy = 500;
+		// let dataToParse = [];
+		// while (anyMoreDataToParse) {
+		// 	console.log("Getting bus routes at skip: " + skip);
+		// 	// Check if there are bus routes in the next step
+		// 	await getBusRoutes(skip)
+		// 		.then((data) => {
+		// 			try {
+		// 				console.log("Length of data: " + data.value.length);
+
+		// 				// If there are no more data, break out
+		// 				if (data.value.length == 0) {
+		// 					anyMoreDataToParse = false;
+		// 					console.log("Finish getting data at skip: " + skip);
+		// 				}
+
+		// 				data.value.forEach((item) => {
+		// 					dataToParse.push(item);
+		// 				});
+
+		// 				skip += skipBy;
+		// 			} catch (error) {
+		// 				return res.status(500).json({
+		// 					msg: "Server error",
+		// 					error: error.message + " at skip:" + skip,
+		// 				});
+		// 			}
+		// 		})
+		// 		.catch((error) => {
+		// 			console.error("Error in getBusRoutes: " + error);
+		// 			return res
+		// 				.status(500)
+		// 				.json({ msg: "Server error", error: error.message });
+		// 		});
+		// }
+
+		// // Save the routes to mongo and contra them
+		// const session = await mongoose.startSession();
+		// try {
+		// 	session.startTransaction();
+
+		// 	for (const service of dataToParse) {
+		// 		// Only update\add if there are missing items
+		// 		await BusRoutes.findOneAndUpdate(
+		// 			{
+		// 				ServiceNo: service.ServiceNo,
+		// 				Operator: service.Operator,
+		// 				Direction: service.Direction,
+		// 				StopSequence: service.StopSequence,
+		// 				BusStopCode: service.BusStopCode,
+		// 				Distance: service.Distance,
+		// 			},
+		// 			{
+		// 				ServiceNo: service.ServiceNo,
+		// 				Operator: service.Operator,
+		// 				Direction: service.Direction,
+		// 				StopSequence: service.StopSequence,
+		// 				BusStopCode: service.BusStopCode,
+		// 				Distance: service.Distance,
+		// 				WD_FirstBus: service.WD_FirstBus,
+		// 				WD_LastBus: service.WD_LastBus,
+		// 				SAT_FirstBus: service.SAT_FirstBus,
+		// 				SAT_LastBus: service.SAT_LastBus,
+		// 				SUN_FirstBus: service.SUN_FirstBus,
+		// 				SUN_LastBus: service.SUN_LastBus,
+		// 			},
+		// 			{ upsert: true }
+		// 		).session(session);
+		// 	}
+
+		// 	await session.commitTransaction();
+		// 	await session.endSession();
+		// } catch (error) {
+		// 	await session.abortTransaction();
+		// 	await session.endSession();
+		// 	CatchError(error, res);
+		// }
+
 		let anyMoreDataToParse = true;
 		let skip = 0;
 		let skipBy = 500;
@@ -70,135 +151,77 @@ router.post("/update", auth, async (req, res) => {
 			console.log("Getting bus routes at skip: " + skip);
 			// Check if there are bus routes in the next step
 			await getBusRoutes(skip)
-			.then(async (data) => {
-				// Save the routes to mongo and contra them
-				const session = await mongoose.startSession();
-				try {
-					session.startTransaction();
-					console.log("Length of transaction: " + data.value.length);
+				.then(async (data) => {
+					// Save the routes to mongo and contra them
+					const session = await mongoose.startSession();
+					try {
+						session.startTransaction();
+						console.log(
+							"Length of transaction: " + data.value.length
+						);
 
-					// Drop table
-					// await BusRoutes.deleteMany({}).session(session);
+						// Drop table
+						// await BusRoutes.deleteMany({}).session(session);
 
-					// If there are no more data, break out 
-					if (data.value.length == 0) {
-						anyMoreDataToParse = false;
-						console.log("Finish getting data at skip: " + skip);
+						// If there are no more data, break out
+						if (data.value.length == 0) {
+							anyMoreDataToParse = false;
+							console.log("Finish getting data at skip: " + skip);
+						}
+
+						for (const service of data.value) {
+							// Only update\add if there are missing items
+							await BusRoutes.findOneAndUpdate(
+								{
+									ServiceNo: service.ServiceNo,
+									Operator: service.Operator,
+									Direction: service.Direction,
+									StopSequence: service.StopSequence,
+									BusStopCode: service.BusStopCode,
+									Distance: service.Distance,
+								},
+								{
+									ServiceNo: service.ServiceNo,
+									Operator: service.Operator,
+									Direction: service.Direction,
+									StopSequence: service.StopSequence,
+									BusStopCode: service.BusStopCode,
+									Distance: service.Distance,
+									WD_FirstBus: service.WD_FirstBus,
+									WD_LastBus: service.WD_LastBus,
+									SAT_FirstBus: service.SAT_FirstBus,
+									SAT_LastBus: service.SAT_LastBus,
+									SUN_FirstBus: service.SUN_FirstBus,
+									SUN_LastBus: service.SUN_LastBus,
+								},
+								{ upsert: true }
+							).session(session);
+						}
+
+						await session.commitTransaction();
+						await session.endSession();
+
+						skip += skipBy;
+					} catch (error) {
+						await session.abortTransaction();
+						await session.endSession();
+						return res.status(500).json({
+							msg: "Server error",
+							error: error.message,
+						});
 					}
-
-					for (const service of data.value) {
-						// Only update\add if there are missing items
-						await BusRoutes.findOneAndUpdate(
-							{
-								ServiceNo: service.ServiceNo,
-								Operator: service.Operator,
-								Direction: service.Direction,
-								StopSequence: service.StopSequence,
-								BusStopCode: service.BusStopCode,
-								Distance: service.Distance,
-							},
-							{
-								ServiceNo: service.ServiceNo,
-								Operator: service.Operator,
-								Direction: service.Direction,
-								StopSequence: service.StopSequence,
-								BusStopCode: service.BusStopCode,
-								Distance: service.Distance,
-								WD_FirstBus: service.WD_FirstBus,
-								WD_LastBus: service.WD_LastBus,
-								SAT_FirstBus: service.SAT_FirstBus,
-								SAT_LastBus: service.SAT_LastBus,
-								SUN_FirstBus: service.SUN_FirstBus,
-								SUN_LastBus: service.SUN_LastBus,
-							},
-							{ upsert: true }
-						).session(session);
-					}
-
-					await session.commitTransaction();
-					await session.endSession();
-
-					skip += skipBy;
-				} catch (error) {
-					await session.abortTransaction();
-					await session.endSession();
+				})
+				.catch((error) => {
+					console.error("Error in getBusRoutes: " + error);
 					return res
 						.status(500)
 						.json({ msg: "Server error", error: error.message });
-				}
-			})
-			.catch((error) => {
-				console.error("Error in getBusRoutes: " + error);
-				return res
-					.status(500)
-					.json({ msg: "Server error", error: error.message });
-			});
+				});
 		}
 
 		return res.status(200).json({
 			msg: "Successfully updated bus stop routes",
 		});
-
-		// getBusRoutes()
-		// 	.then(async (data) => {
-		// 		// Save the routes to mongo and contra them
-		// 		const session = await mongoose.startSession();
-		// 		try {
-		// 			session.startTransaction();
-		// 			console.log("Length of transaction: " + data.value.length);
-
-		// 			// Drop table
-		// 			// await BusRoutes.deleteMany({}).session(session);
-
-		// 			for (const service of data.value) {
-		// 				// Only update\add if there are missing items
-		// 				await BusRoutes.findOneAndUpdate(
-		// 					{
-		// 						ServiceNo: service.ServiceNo,
-		// 						Operator: service.Operator,
-		// 						Direction: service.Direction,
-		// 						StopSequence: service.StopSequence,
-		// 						BusStopCode: service.BusStopCode,
-		// 						Distance: service.Distance,
-		// 					},
-		// 					{
-		// 						ServiceNo: service.ServiceNo,
-		// 						Operator: service.Operator,
-		// 						Direction: service.Direction,
-		// 						StopSequence: service.StopSequence,
-		// 						BusStopCode: service.BusStopCode,
-		// 						Distance: service.Distance,
-		// 						WD_FirstBus: service.WD_FirstBus,
-		// 						WD_LastBus: service.WD_LastBus,
-		// 						SAT_FirstBus: service.SAT_FirstBus,
-		// 						SAT_LastBus: service.SAT_LastBus,
-		// 						SUN_FirstBus: service.SUN_FirstBus,
-		// 						SUN_LastBus: service.SUN_LastBus,
-		// 					},
-		// 					{ upsert: true }
-		// 				).session(session);
-		// 			}
-
-		// 			await session.commitTransaction();
-		// 			await session.endSession();
-
-		// 			return res.status(200).json({
-		// 				msg: "Successfully updated bus stop routes",
-		// 			});
-		// 		} catch (error) {
-		// 			await session.abortTransaction();
-		// 			await session.endSession();
-		// 			return res
-		// 				.status(500)
-		// 				.json({ msg: "Server error", error: error.message });
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error("Error in getBusRoutes: " + error);
-		// 		return res
-		// 			.status(500)
-		// 			.json({ msg: "Server error", error: error.message });
-		// 	});
 	} catch (error) {
 		CatchError(error, res);
 	}
