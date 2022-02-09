@@ -33,6 +33,35 @@ router.get("/", async (req, res) => {
 	}
 });
 
+router.get("/:serviceNo/:busStopCode", async (req, res) => {
+	try {
+		if (!req.params.serviceNo || !req.params.busStopCode) {
+			return res
+				.status(422)
+				.json({ msg: "No serviceNo nor busStopCode param found" });
+		}
+
+		const routes = await BusRoutes.find({
+			ServiceNo: req.params.serviceNo,
+		}).sort({ Distance: "asc" });
+
+		if (!routes) {
+			return res
+				.status(404)
+				.json({ msg: "No routes or information found" });
+		}
+
+		// Note: May return 2
+		return res.status(200).json({
+			routes: routes.filter(
+				(service) => service.BusStopCode === req.params.busStopCode
+			),
+		});
+	} catch (error) {
+		CatchError(error, res);
+	}
+});
+
 router.get("/:serviceNo", async (req, res) => {
 	try {
 		if (!req.params.serviceNo) {
