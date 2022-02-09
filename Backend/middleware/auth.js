@@ -21,6 +21,14 @@ module.exports = async (req, res, next) => {
 		// Get user whose token match in mongo
 		const user = await User.findOne({ Token: token }).select("-Password");
 		console.log("User: " + JSON.stringify(user));
+		if (!user) {
+			return res
+				.status(401)
+				.json({
+					msg: "Token is not valid. It might have expired. Please relogin.",
+				});
+		}
+
 		if (user) {
 			// Check token has not expired
 			console.log("Date today: " + Date.now());
@@ -31,7 +39,9 @@ module.exports = async (req, res, next) => {
 			}
 			// If expired
 			console.warn("Expired token");
-			return res.status(401).json({ msg: "Token has expired. Please re-login." });
+			return res
+				.status(401)
+				.json({ msg: "Token has expired. Please re-login." });
 		}
 		return res
 			.status(500)

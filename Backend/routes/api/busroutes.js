@@ -19,7 +19,7 @@ const getBusRoutes = async () => {
 	return res.data;
 };
 
-router.get("/", auth, (req, res) => {
+router.post("/update", auth, (req, res) => {
 	try {
 		if (!req.user.IsAdmin) {
 			console.warn("Is not an admin");
