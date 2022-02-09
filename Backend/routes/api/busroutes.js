@@ -39,9 +39,18 @@ router.get("/:serviceNo", async (req, res) => {
 			return res.status(422).json({ msg: "No serviceNo param found" });
 		}
 
-		const routes = await BusRoutes.find({
-			ServiceNo: req.params.serviceNo,
-		});
+		// const routes = await BusRoutes.find({
+		// 	ServiceNo: req.params.serviceNo,
+		// }).sort({ Distance: "asc" });
+
+		const routes = await BusRoutes.aggregate([
+			{
+				$match: {
+					ServiceNo: req.params.serviceNo,
+				},
+			},
+		]);
+
 		if (!routes) {
 			return res.status(404).json({ msg: "No routes found" });
 		}
