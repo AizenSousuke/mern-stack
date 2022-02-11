@@ -12,6 +12,11 @@ const header = {
 	AccountKey: config.get("LTADataMallAPI"),
 };
 
+/**
+ * 
+ * @param {number} skip Number of results to skip as the API ony allows 500 results to be displayed at maximum
+ * @returns List of routes
+ */
 const getBusRoutes = async (skip = null) => {
 	const res = await axios.get(
 		"http://datamall2.mytransport.sg/ltaodataservice/BusRoutes",
@@ -19,19 +24,6 @@ const getBusRoutes = async (skip = null) => {
 	);
 	return res.data;
 };
-
-router.get("/", async (req, res) => {
-	try {
-		const routes = await BusRoutes.find({});
-		if (!routes) {
-			return res.status(404).json({ msg: "No routes found" });
-		}
-
-		return res.status(200).json({ routes: routes });
-	} catch (error) {
-		CatchError(error, res);
-	}
-});
 
 router.get("/:serviceNo/:busStopCode", async (req, res) => {
 	try {
@@ -260,6 +252,19 @@ router.post("/update", auth, async (req, res) => {
 		return res.status(200).json({
 			msg: "Successfully updated bus stop routes",
 		});
+	} catch (error) {
+		CatchError(error, res);
+	}
+});
+
+router.get("/", async (req, res) => {
+	try {
+		const routes = await BusRoutes.find({});
+		if (!routes) {
+			return res.status(404).json({ msg: "No routes found" });
+		}
+
+		return res.status(200).json({ routes: routes });
 	} catch (error) {
 		CatchError(error, res);
 	}
