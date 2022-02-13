@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import {
 	Button,
@@ -12,9 +12,23 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
+import { GetBusData } from "../api/api";
+import Table from "./Table";
 
-const BusInformation = ({ busNumber }) => {
+const BusInformation = ({ busNumber, busStopCode }) => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [information, setInformation] = useState(null);
+
+	useEffect(() => {
+		(async () => {
+			console.log("Getting bus data for bus number", busNumber, "and bus stop code", busStopCode);
+			const data = await GetBusData(busNumber, busStopCode);
+			if (data) {
+				setInformation(data);
+			}
+		})();
+	}, []);
+
 	return (
 		<SafeAreaView>
 			<Header
@@ -38,6 +52,7 @@ const BusInformation = ({ busNumber }) => {
 				<Card>
 					<Card.Title>Information</Card.Title>
 					<Card.Divider width={1} />
+					<Table data={information} />
 				</Card>
 			)}
 			{selectedIndex === 1 && (

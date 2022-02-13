@@ -17,6 +17,13 @@ var data = {
 	},
 };
 
+export const GetBusData = async (busNumber, busStopCode) => {
+	const response = await axios.get(
+		`${api}/busroutes/${busNumber}/${busStopCode}`
+	);
+	return response.data;
+};
+
 export const GetBusStopList = async () => {
 	const response = await axios.get(`${api}/busstops`, data);
 	return response.data;
@@ -32,7 +39,11 @@ export const GetBusStopByCode = async (code) => {
 	return response.data;
 };
 
-export const GetNearbyBusStop = async (longitude, latitude, maxDistance = config.MAX_DISTANCE_IN_METRES ?? 100) => {
+export const GetNearbyBusStop = async (
+	longitude,
+	latitude,
+	maxDistance = config.MAX_DISTANCE_IN_METRES ?? 100
+) => {
 	if (!longitude || !latitude) {
 		console.error("Latitude or longitude not provided");
 		return {
