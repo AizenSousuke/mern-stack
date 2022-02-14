@@ -130,6 +130,7 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/busstops", require("./routes/api/busstops"));
 app.use("/api/busroutes", require("./routes/api/busroutes"));
+app.use("/api/busservices", require("./routes/api/busservices"));
 app.use("/api/bus", require("./routes/api/bus"));
 app.use("/api/settings", require("./routes/api/settings"));
 app.use("/api/admin", require("./routes/api/admin"));
