@@ -50,7 +50,9 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
 ```
+\config\default.json <-- This is for heroku
 Backend\config\default.json
 ```
 {
