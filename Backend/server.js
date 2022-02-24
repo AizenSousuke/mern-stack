@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
-const connectDB = require("./config/db");
+const connectDB = require("./db");
 const cors = require("cors");
 const config = require("config");
 const UserModel = require("./models/User");
