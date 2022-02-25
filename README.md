@@ -52,7 +52,7 @@ const connectDB = async () => {
 module.exports = connectDB;
 
 ```
-\config\default.json <-- This is for heroku
+\config\default.json <-- This file is for heroku to make sure that the application does not error out. It doesn't do anything as you get the settings from process.env.xxx in heroku config.
 Backend\config\default.json
 ```
 {
@@ -142,21 +142,23 @@ and save it as a batch file.
 
 ## Todo:
 - Bus Information page with First Bus, Last Bus and Bus Route 
+  - Bus Route modal 
+  - Information modal
+  - Bus Location [Done]
 - Add overlay settings page
-- Auth (Clear states i.e, Auth, Settings when logging out. Use local async storage settings instead to load\save settings and offer a way to update the settings on the server when logged in.)
+- Auth (Clear states i.e, Auth, Settings when logging out. Use local async storage settings instead to load\save settings and offer a way to update the settings on the server when logged in.) [Done]
 - Settings (Update the date modified for any updates)
 - Settings page
   - Force download\upload of json data
 - Redux as state management
 - Bus Alerts
-- Bus Route modal
-- Location Map
-- Upload backend to Netlify\Azure
+- Location Map [Done]
+- Upload backend to Netlify\Azure\Heroku
 - Upload frontend to Netlify\APK
 - Save all bus stops to database and set the last updated time
   - To compare the last updated time from the server\current time and if it is later than the one in DB, drop the db and repopulate it again based on the latest data. To use 1 week for now (update weekly).
   - Remember to update \ delta the data for any fixes since LTA might be wrong.
-- User Login using Firebase Login
+- User Login using Passport JS and Mongo DB [Done]
   - Store user data on their device (bus stop list and favourites)
 - Save the startup page accordingly in db settings
 - Location based bus stop search [Done]
