@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as config from "../../config/default.json";
-const api = process.env.API ?? config.BACKEND_API;
+const api = process.env.BACKEND_API ?? config.BACKEND_API;
 
 /**
  * Data to be set for the requests

@@ -9,7 +9,7 @@ const auth = require("../../middleware/auth");
 
 const header = {
 	Accept: "application/json",
-	AccountKey: config.get("LTADataMallAPI"),
+	AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
 };
 
 const getBusServices = async (skip = null) => {

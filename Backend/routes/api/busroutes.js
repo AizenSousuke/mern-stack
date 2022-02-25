@@ -9,7 +9,7 @@ const { CatchError } = require("../../util/ErrorUtil");
 
 const header = {
 	Accept: "application/json",
-	AccountKey: config.get("LTADataMallAPI"),
+	AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
 };
 
 /**

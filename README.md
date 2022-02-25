@@ -32,7 +32,7 @@ By using this application you agree to not held us responsible for your bus not 
 
 Config files to create:
 
-Backend\config\db.js
+Backend\db.js
 ```
 const mongoose = require("mongoose");
 const config = require("config");

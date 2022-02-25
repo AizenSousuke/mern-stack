@@ -28,7 +28,7 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 						"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
 						{
 							headers: {
-								AccountKey: config.get("LTADataMallAPI"),
+								AccountKey: process.env.LTADataMallAPI ?? get("LTADataMallAPI"),
 							},
 							params: {
 								$skip: pageSearched * 500,

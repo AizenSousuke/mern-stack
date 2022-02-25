@@ -45,7 +45,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 app.use(
 	session({
-		secret: config.get("jwtSecret"),
+		secret: process.env.jwtSecret ?? config.get("jwtSecret"),
 		saveUninitialized: false,
 		resave: false,
 	})
@@ -62,9 +62,9 @@ app.use(passport.session());
 passport.use(
 	new FacebookStrategy(
 		{
-			clientID: config.FACEBOOK_APP_ID,
-			clientSecret: config.FACEBOOK_APP_SECRET,
-			callbackURL: config.FACEBOOK_CALLBACK_URL,
+			clientID: process.env.FACEBOOK_APP_ID ?? config.FACEBOOK_APP_ID,
+			clientSecret: process.env.FACEBOOK_APP_SECRET ?? config.FACEBOOK_APP_SECRET,
+			callbackURL: process.env.FACEBOOK_CALLBACK_URL ?? config.FACEBOOK_CALLBACK_URL,
 			profileFields: ["id", "emails", "name"],
 		},
 		async (accessToken, refreshToken, profile, cb) => {
@@ -80,7 +80,7 @@ passport.use(
 			if (!user) {
 				var date = new Date(Date.now());
 				var expiryDate = date.setDate(
-					date.getDate() + config.get("TOKEN_EXPIRY_DAYS")
+					date.getDate() + process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS")
 				);
 				const newUser = new User({
 					// Add social id
@@ -104,7 +104,7 @@ passport.use(
 				user.RefreshToken = refreshToken;
 				var date = new Date(Date.now());
 				var expiryDate = date.setDate(
-					date.getDate() + config.get("TOKEN_EXPIRY_DAYS")
+					date.getDate() + process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS")
 				);
 				user.TokenExpiryDate = expiryDate;
 				await user.save();

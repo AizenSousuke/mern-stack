@@ -7,7 +7,7 @@ const config = require("config");
 
 const header = {
 	Accept: "application/json",
-	AccountKey: config.get("LTADataMallAPI"),
+	AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
 };
 
 const getBusStopDetails = async (stop) => {
