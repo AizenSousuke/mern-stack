@@ -47,7 +47,7 @@ export default function App() {
 
 	const _loadToken = async () => {
 		if (authToken === null) {
-			await AsyncStorage.getItem(config.TOKEN, async (error, result) => {
+			await AsyncStorage.getItem(process.env.TOKEN ?? config.TOKEN, async (error, result) => {
 				if (result) {
 					console.log("_loadToken: " + error + "|" + result);
 					if (!await _checkTokenExpiry(result)) {
@@ -84,7 +84,7 @@ export default function App() {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
 				await AsyncStorage.setItem(
-					config.TOKEN,
+					process.env.TOKEN ?? config.TOKEN,
 					token.toString(),
 					(error, result) => {
 						console.log(
@@ -135,7 +135,7 @@ export default function App() {
 	const updateToken = async (token = null) => {
 		// Remove
 		if (!token) {
-			await AsyncStorage.removeItem(config.TOKEN, (error) => {
+			await AsyncStorage.removeItem(process.env.TOKEN ?? TOKEN, (error) => {
 				if (error) {
 					ToastAndroid.show(error, ToastAndroid.SHORT);
 				} else {

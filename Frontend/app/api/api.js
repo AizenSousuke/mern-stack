@@ -42,7 +42,7 @@ export const GetBusStopByCode = async (code) => {
 export const GetNearbyBusStop = async (
 	longitude,
 	latitude,
-	maxDistance = config.MAX_DISTANCE_IN_METRES ?? 100
+	maxDistance = process.env.MAX_DISTANCE_IN_METRES ?? config.MAX_DISTANCE_IN_METRES ?? 100
 ) => {
 	if (!longitude || !latitude) {
 		console.error("Latitude or longitude not provided");

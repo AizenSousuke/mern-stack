@@ -41,7 +41,7 @@ export const Home = ({ navigation }) => {
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
-										config.TOKEN
+										process.env.TOKEN ?? config.TOKEN
 									);
 
 									console.log(
@@ -66,7 +66,7 @@ export const Home = ({ navigation }) => {
 									) {
 										// Get new token
 										console.log("Signing in");
-										const URL = `${config.BACKEND_API}/auth/facebook`;
+										const URL = `${process.env.BACKEND_API ?? config.BACKEND_API}/auth/facebook`;
 
 										const fblogin =
 											await WebBrowser.openBrowserAsync(

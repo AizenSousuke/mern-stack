@@ -80,7 +80,7 @@ passport.use(
 			if (!user) {
 				var date = new Date(Date.now());
 				var expiryDate = date.setDate(
-					date.getDate() + process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS")
+					date.getDate() + (process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS"))
 				);
 				const newUser = new User({
 					// Add social id
@@ -104,7 +104,7 @@ passport.use(
 				user.RefreshToken = refreshToken;
 				var date = new Date(Date.now());
 				var expiryDate = date.setDate(
-					date.getDate() + process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS")
+					date.getDate() + (process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS"))
 				);
 				user.TokenExpiryDate = expiryDate;
 				await user.save();

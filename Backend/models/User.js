@@ -44,7 +44,7 @@ const UserSchema = new mongoose.Schema({
 	},
 	TokenExpiryDate: {
 		type: Date,
-		requried: false,
+		required: false,
 		default: null
 	},
 	DateModified: {
