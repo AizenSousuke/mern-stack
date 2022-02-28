@@ -74,7 +74,6 @@ Backend\config\test.json
 Frontend\config\default.json
 ```
 {
-    "LTADataMallAPI" : "",
     "TOKEN": "TOKEN",
     "BACKEND_API": "http://10.0.2.2:8080/api",
     "MAPBOX": "<MAPBOX_API_KEY>",
