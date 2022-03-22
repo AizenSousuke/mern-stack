@@ -67,7 +67,7 @@ export const Home = ({ navigation }) => {
 										// Get new token
 										console.log("Signing in");
 										const URL = `${process.env.BACKEND_API ?? Constants.manifest.extra.BACKEND_API}/auth/facebook`;
-
+										console.log("URL: " + URL);
 										const fblogin =
 											await WebBrowser.openBrowserAsync(
 												URL

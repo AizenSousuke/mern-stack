@@ -49,7 +49,8 @@ router.get(
 		req.session.save((error) => {
 			return res.status(302).redirect(
 				// Redirect back to app
-				config.FRONTEND_LINK + `?token=${req.user.Token}`
+				(process.env.FRONTEND_LINK ?? config.FRONTEND_LINK) +
+					`?token=${req.user.Token}`
 			);
 		});
 	}
