@@ -1,6 +1,6 @@
 # Yet Another SG Bus App
-| | | |
-|-|-|-|
+|                                           |                                           |                                           |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | ![Image](https://i.imgur.com/vTFjIeU.png) | ![Image](https://i.imgur.com/WvHurAC.png) | ![Image](https://i.imgur.com/ev4KjpL.png) |
 
 
@@ -71,6 +71,42 @@ Backend\config\test.json
 ```
 {}
 ```
+
+Frontend\app.config.json
+```
+module.exports = () => {
+	if (process.env.NODE_ENV === "production") {
+		// Production
+		return {
+			extra: {
+				TOKEN: "TOKEN",
+				BACKEND_API: "",
+				MAPBOX: "",
+				MAX_DISTANCE_IN_METRES: 300,
+			},
+		};
+	} else {
+		// Development
+		return {
+			extra: {
+				TOKEN: "TOKEN",
+				BACKEND_API: "http://10.0.2.2:8080/api",
+				MAPBOX: "",
+				MAX_DISTANCE_IN_METRES: 300,
+			},
+		};
+	}
+};
+```
+Frontend\config\Emulator.bat
+```
+cd /d C:\Users\%username%\AppData\Local\Android\sdk\emulator
+emulator @Pixel_4_API_30
+```
+
+<details>
+<summary>Obsolete Step</summary>
+
 Frontend\config\default.json
 ```
 {
@@ -84,8 +120,9 @@ Frontend\config\test.json
 ```
 {}
 ```
-Frontend\config\Emulator.bat
+</details>
 
+### Note
 Ensure that the android emulator with expo installed is running already.
 Open up terminal in the application's root directory and run the following commands:
 

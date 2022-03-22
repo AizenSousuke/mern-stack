@@ -31,7 +31,6 @@
 		"react-dom": "16.13.1",
 		"react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
 		"react-native-collapsible": "^1.6.0",
-		"react-native-config": "^1.4.5",
 		"react-native-elements": "^3.4.2",
 		"react-native-floating-action": "^1.21.0",
 		"react-native-gesture-handler": "~1.10.2",
@@ -58,7 +57,7 @@
 		"preset": "jest-expo",
 		"testEnvironment": "node",
 		"coveragePathIgnorePatterns": [
-		  "/node_modules/"
+			"/node_modules/"
 		]
 	},
 	"proxy": "https://localhost:5000"

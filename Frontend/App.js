@@ -9,8 +9,7 @@ import { AuthProvider } from "./app/context/AuthContext";
 import { SettingsProvider } from "./app/context/SettingsContext";
 import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
-import * as Config from "./config/default.json";
-// import Config from "react-native-config";
+import Constants from "expo-constants";
 
 const Stack = createStackNavigator();
 
@@ -49,7 +48,7 @@ export default function App() {
 	const _loadToken = async () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(
-				process.env.TOKEN ?? Config.TOKEN,
+				process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
 				async (error, result) => {
 					if (result) {
 						console.log("_loadToken: " + error + "|" + result);
@@ -91,7 +90,7 @@ export default function App() {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
 				await AsyncStorage.setItem(
-					process.env.TOKEN ?? Config.TOKEN,
+					process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
 					token.toString(),
 					(error, result) => {
 						console.log(
@@ -143,7 +142,7 @@ export default function App() {
 		// Remove
 		if (!token) {
 			await AsyncStorage.removeItem(
-				process.env.TOKEN ?? TOKEN,
+				process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
 				(error) => {
 					if (error) {
 						ToastAndroid.show(error, ToastAndroid.SHORT);
@@ -158,7 +157,7 @@ export default function App() {
 				}
 			);
 		} else {
-			await AsyncStorage.setItem(Config.TOKEN, token, (error) => {
+			await AsyncStorage.setItem(process.env.TOKEN ?? Constants.manifest.extra.TOKEN, token, (error) => {
 				if (error) {
 					ToastAndroid.show(error, ToastAndroid.SHORT);
 				} else {
