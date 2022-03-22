@@ -60,7 +60,7 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 		<View style={AppStyles.busDetails}>
 			<ModalAdder
 				modalElement={
-					<BusInformation busNumber={number} busStopCode={busStop.BusStopCode} />
+					<BusInformation busNumber={number} busStopCode={busStop?.BusStopCode} />
 				}
 				style={{
 					flex: 0.2,
