@@ -8,10 +8,12 @@
 		"start": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && yarn start\"",
 		"backend": "concurrently \"cd backend && nodemon server.js\"",
 		"frontend": "adb reverse tcp:8080 tcp:8080 && cd frontend && yarn start",
+		"frontend-production": "cd frontend && yarn production",
 		"emulator": "cd frontend/config && Emulator.bat",
 		"testbackend": "cd backend && yarn test",
 		"testfrontend": "cd frontend && yarn test",
-		"test": "concurrently \"cd backend && yarn test\" \"cd frontend && yarn test\""
+		"test": "concurrently \"cd backend && yarn test\" \"cd frontend && yarn test\"",
+		"postinstall": "cd Backend && yarn install"
 	},
 	"devDependencies": {
 		"concurrently": "^6.4.0"

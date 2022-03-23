@@ -17,14 +17,14 @@ import Table from "./Table";
 
 const BusInformation = ({ busNumber, busStopCode }) => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
-	const [information, setInformation] = useState(null);
+	const [information, setInformation] = useState([{}]);
 
 	useEffect(() => {
 		(async () => {
 			console.log("Getting bus data for bus number", busNumber, "and bus stop code", busStopCode);
 			const data = await GetBusData(busNumber, busStopCode);
 			if (data) {
-				setInformation(data);
+				setInformation(data.routes);
 			}
 		})();
 	}, []);
@@ -52,7 +52,7 @@ const BusInformation = ({ busNumber, busStopCode }) => {
 				<Card>
 					<Card.Title>Information</Card.Title>
 					<Card.Divider width={1} />
-					<Table data={information} />
+					<Table information={information} />
 				</Card>
 			)}
 			{selectedIndex === 1 && (

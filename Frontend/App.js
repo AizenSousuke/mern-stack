@@ -9,7 +9,7 @@ import { AuthProvider } from "./app/context/AuthContext";
 import { SettingsProvider } from "./app/context/SettingsContext";
 import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
-import * as config from "./config/default.json";
+import Constants from "expo-constants";
 
 const Stack = createStackNavigator();
 
@@ -47,24 +47,30 @@ export default function App() {
 
 	const _loadToken = async () => {
 		if (authToken === null) {
-			await AsyncStorage.getItem(config.TOKEN, async (error, result) => {
-				if (result) {
-					console.log("_loadToken: " + error + "|" + result);
-					if (!await _checkTokenExpiry(result)) {
-						setAuthToken(result);
-						console.log("Attempting to load settings");
-						// Passing token instead of authToken because setAuthToken is async and updates according to react
-						_loadSettings(result);
-						return;
-					}
+			await AsyncStorage.getItem(
+				process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
+				async (error, result) => {
+					if (result) {
+						console.log("_loadToken: " + error + "|" + result);
+						if (!(await _checkTokenExpiry(result))) {
+							setAuthToken(result);
+							console.log("Attempting to load settings");
+							// Passing token instead of authToken because setAuthToken is async and updates according to react
+							_loadSettings(result);
+							return;
+						}
 
-					console.warn("Token has expired");
-					// Ask to re-login to renew token and reload settings
-					ToastAndroid.show("Please re-login.", ToastAndroid.SHORT);
-				} else {
-					console.log("No token found in Async Storage");
+						console.warn("Token has expired");
+						// Ask to re-login to renew token and reload settings
+						ToastAndroid.show(
+							"Please re-login.",
+							ToastAndroid.SHORT
+						);
+					} else {
+						console.log("No token found in Async Storage");
+					}
 				}
-			});
+			);
 		}
 	};
 
@@ -84,7 +90,7 @@ export default function App() {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
 				await AsyncStorage.setItem(
-					config.TOKEN,
+					process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
 					token.toString(),
 					(error, result) => {
 						console.log(
@@ -135,20 +141,23 @@ export default function App() {
 	const updateToken = async (token = null) => {
 		// Remove
 		if (!token) {
-			await AsyncStorage.removeItem(config.TOKEN, (error) => {
-				if (error) {
-					ToastAndroid.show(error, ToastAndroid.SHORT);
-				} else {
-					// Update state
-					setAuthToken(null);
-					ToastAndroid.show(
-						"Successfully cleared token and logged out",
-						ToastAndroid.SHORT
-					);
+			await AsyncStorage.removeItem(
+				process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
+				(error) => {
+					if (error) {
+						ToastAndroid.show(error, ToastAndroid.SHORT);
+					} else {
+						// Update state
+						setAuthToken(null);
+						ToastAndroid.show(
+							"Successfully cleared token and logged out",
+							ToastAndroid.SHORT
+						);
+					}
 				}
-			});
+			);
 		} else {
-			await AsyncStorage.setItem(config.TOKEN, token, (error) => {
+			await AsyncStorage.setItem(process.env.TOKEN ?? Constants.manifest.extra.TOKEN, token, (error) => {
 				if (error) {
 					ToastAndroid.show(error, ToastAndroid.SHORT);
 				} else {
