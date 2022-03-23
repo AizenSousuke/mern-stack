@@ -5,20 +5,18 @@ import AppStyles from "../../assets/css/AppStyles";
 import ModalAdder from "./ModalAdder";
 import BusLocation from "./BusLocation";
 
-const BusStop = ({ busStop, busStopData }) => {
+const BusStop = ({ busStopData }: { busStopData: any }) => {
 	return (
 		<View style={AppStyles.busStop}>
 			{busStopData != null ? (
-				busStopData.Services?.sort((a) => a.ServiceNo).map(
-					(service, key) => {
+				busStopData.Services?.sort((a: any) => a.ServiceNo).map(
+					(service: any, key: number) => {
 						return (
 							<BusDetails
 								key={key}
-								modalKey={key}
 								busNumber={service.ServiceNo}
 								details={service}
 								busStopData={busStopData}
-								busStop={busStop}
 							/>
 						);
 					}

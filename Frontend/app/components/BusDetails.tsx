@@ -7,7 +7,7 @@ import BusLocation from "./BusLocation";
 import BusInformation from "./BusInformation";
 import ModalAdder from "./ModalAdder";
 
-const GetValueForLoad = (load) => {
+const GetValueForLoad = (load: string) => {
 	switch (load) {
 		case "SEA":
 			return 0.2;
@@ -18,7 +18,7 @@ const GetValueForLoad = (load) => {
 	}
 };
 
-const GetColorForLoad = (load) => {
+const GetColorForLoad = (load: string) => {
 	switch (load) {
 		case "SEA":
 			return "green";
@@ -29,23 +29,31 @@ const GetColorForLoad = (load) => {
 	}
 };
 
-const GetEstimatedArrivalMinute = (estimatedArrivalTime) => {
+const GetEstimatedArrivalMinute = (estimatedArrivalTime: string) => {
 	var timeNow = moment().utcOffset("+08:00").format();
 	var time1 = moment(timeNow);
 	var time2 = moment(estimatedArrivalTime);
 	// console.log("Time now: " + timeNow);
 	// console.log("Time bus is reaching: " + estimatedArrivalTime);
-	var timeEstimatedArrival = time2.diff(time1, "minutes");
+	var timeEstimatedArrival: number = time2.diff(time1, "minutes");
 	// console.log("Time estimated arrival: " + timeEstimatedArrival);
 
-	if (parseInt(timeEstimatedArrival) > 2) {
+	if (parseInt(timeEstimatedArrival.toString()) > 2) {
 		return timeEstimatedArrival + " min";
 	} else {
 		return "Arrived";
 	}
 };
 
-const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
+const BusDetails = ({
+	busStopData,
+	busNumber,
+	details,
+}: {
+	busStopData: any;
+	busNumber: string;
+	details: any;
+}) => {
 	// console.log("Details: " + JSON.stringify(details));
 
 	const [number, setNumber] = useState(busNumber);
@@ -60,7 +68,10 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 		<View style={AppStyles.busDetails}>
 			<ModalAdder
 				modalElement={
-					<BusInformation busNumber={number} busStopCode={busStop?.BusStopCode} />
+					<BusInformation
+						busNumber={number}
+						busStopCode={busStopData?.BusStopCode}
+					/>
 				}
 				style={{
 					flex: 0.2,
@@ -73,10 +84,10 @@ const BusDetails = ({ busStop, busStopData, busNumber, details }) => {
 			<ModalAdder
 				modalElement={
 					<BusLocation
-						busStop={busStop}
+						busStop={busStopData}
 						busNumber={details.ServiceNo}
 						nextBus={details.NextBus}
-						busStopLocation={busStopData.Location}
+						// busStopLocation={busStopData.Location}
 					/>
 				}
 				style={{

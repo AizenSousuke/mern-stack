@@ -15,13 +15,24 @@ import ColourScheme from "../settings/ColourScheme.json";
 import { GetBusData } from "../api/api";
 import Table from "./Table";
 
-const BusInformation = ({ busNumber, busStopCode }) => {
+const BusInformation = ({
+	busNumber,
+	busStopCode,
+}: {
+	busNumber: string;
+	busStopCode: string;
+}) => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [information, setInformation] = useState([{}]);
 
 	useEffect(() => {
 		(async () => {
-			console.log("Getting bus data for bus number", busNumber, "and bus stop code", busStopCode);
+			console.log(
+				"Getting bus data for bus number",
+				busNumber,
+				"and bus stop code",
+				busStopCode
+			);
 			const data = await GetBusData(busNumber, busStopCode);
 			if (data) {
 				setInformation(data.routes);

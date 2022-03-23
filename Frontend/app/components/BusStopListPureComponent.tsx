@@ -7,8 +7,25 @@ import { GetBusStop, SaveSettings } from "../api/api";
 import AuthConsumer from "../context/AuthContext";
 import BusStop from "./BusStop";
 
-export default class BusStopListPureComponent extends PureComponent {
-	constructor(props) {
+interface Props {
+	name: string;
+	address: string;
+	code: string;
+	CollapseEvent: (code: string) => any;
+}
+
+interface State {
+	isCollapsed: boolean;
+	arrow: boolean;
+	overlayVisible: boolean;
+	busStopData: any;
+}
+
+export default class BusStopListPureComponent extends PureComponent<
+	Props,
+	State
+> {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			arrow: false,
@@ -66,6 +83,8 @@ export default class BusStopListPureComponent extends PureComponent {
 						);
 						this.setState((state) => ({ arrow: !state.arrow }));
 					}}
+					hasTVPreferredFocus={undefined}
+					tvParallaxProperties={undefined}
 				>
 					<Icon
 						name={
@@ -73,6 +92,7 @@ export default class BusStopListPureComponent extends PureComponent {
 								? "keyboard-arrow-down"
 								: "keyboard-arrow-right"
 						}
+						tvParallaxProperties={undefined}
 					/>
 					<ListItem.Content>
 						<ListItem.Title>
@@ -97,7 +117,10 @@ export default class BusStopListPureComponent extends PureComponent {
 							android_ripple={{ borderless: true }}
 						>
 							<View>
-								<Icon name="more-vert" />
+								<Icon
+									name="more-vert"
+									tvParallaxProperties={undefined}
+								/>
 								<Overlay
 									isVisible={this.state.overlayVisible}
 									onBackdropPress={() =>
@@ -118,7 +141,14 @@ export default class BusStopListPureComponent extends PureComponent {
 											);
 											return (
 												<View>
-													<ListItem>
+													<ListItem
+														hasTVPreferredFocus={
+															undefined
+														}
+														tvParallaxProperties={
+															undefined
+														}
+													>
 														<ListItem.Title>
 															Add to:
 														</ListItem.Title>
@@ -158,6 +188,12 @@ export default class BusStopListPureComponent extends PureComponent {
 																}
 															);
 														}}
+														hasTVPreferredFocus={
+															undefined
+														}
+														tvParallaxProperties={
+															undefined
+														}
 													>
 														<ListItem.Subtitle>
 															Going Out
@@ -199,6 +235,12 @@ export default class BusStopListPureComponent extends PureComponent {
 																}
 															);
 														}}
+														hasTVPreferredFocus={
+															undefined
+														}
+														tvParallaxProperties={
+															undefined
+														}
 													>
 														<ListItem.Subtitle>
 															Going Home
@@ -220,7 +262,10 @@ export default class BusStopListPureComponent extends PureComponent {
 							android_ripple={{ borderless: true }}
 						>
 							<View>
-								<Icon name="refresh" />
+								<Icon
+									name="refresh"
+									tvParallaxProperties={undefined}
+								/>
 							</View>
 						</Pressable>
 					)}

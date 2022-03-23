@@ -7,7 +7,17 @@ import * as Location from "expo-location";
 import { Button } from "react-native-elements/dist/buttons/Button";
 import ColourScheme from "../settings/ColourScheme.json";
 
-const BusLocation = ({ busNumber, nextBus, busStop }) => {
+const BusLocation = ({
+	busNumber,
+	nextBus,
+	busStop,
+	busStopLocation,
+}: {
+	busNumber: string;
+	nextBus: any;
+	busStop: any;
+	busStopLocation?: any;
+}) => {
 	const [busRegion, setBusRegion] = useState({
 		latitude: nextBus !== null ? parseFloat(nextBus.Latitude) : 1,
 		longitude: nextBus !== null ? parseFloat(nextBus.Longitude) : 100,
@@ -52,6 +62,8 @@ const BusLocation = ({ busNumber, nextBus, busStop }) => {
 						<Image
 							source={require("../../assets/bus.png")}
 							style={{ height: 30, width: 30, tintColor: "red" }}
+							height={30}
+							width={30}
 						/>
 					</Marker>
 					<Marker
@@ -63,6 +75,8 @@ const BusLocation = ({ busNumber, nextBus, busStop }) => {
 						<Image
 							source={require("../../assets/person.png")}
 							style={{ height: 30, width: 30, tintColor: "red" }}
+							height={30}
+							width={30}
 						/>
 					</Marker>
 				</MapView>
