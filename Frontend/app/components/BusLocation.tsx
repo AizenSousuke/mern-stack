@@ -10,13 +10,11 @@ import ColourScheme from "../settings/ColourScheme.json";
 const BusLocation = ({
 	busNumber,
 	nextBus,
-	busStop,
 	busStopLocation,
 }: {
 	busNumber: string;
 	nextBus: any;
-	busStop: any;
-	busStopLocation?: any;
+	busStopLocation: any;
 }) => {
 	const [busRegion, setBusRegion] = useState({
 		latitude: nextBus !== null ? parseFloat(nextBus.Latitude) : 1,
@@ -27,6 +25,7 @@ const BusLocation = ({
 
 	useEffect(() => {
 		(async () => {})();
+		console.log("busStopLocation " + JSON.stringify(busStopLocation));
 	}, []);
 
 	return (
@@ -68,8 +67,16 @@ const BusLocation = ({
 					</Marker>
 					<Marker
 						coordinate={{
-							latitude: busStop ? busStop.Location[1] ?? 0 : 0,
-							longitude: busStop ? busStop.Location[0] ?? 0 : 0,
+							latitude: busStopLocation
+								? busStopLocation.Location?.length > 0
+									? busStopLocation.Location[1] ?? 0
+									: 0
+								: 0,
+							longitude: busStopLocation
+								? busStopLocation.Location?.length > 0
+									? busStopLocation.Location[0] ?? 0
+									: 0
+								: 0,
 						}}
 					>
 						<Image

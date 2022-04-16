@@ -49,13 +49,13 @@ const BusDetails = ({
 	busStopData,
 	busNumber,
 	details,
+	busStopLocation
 }: {
 	busStopData: any;
 	busNumber: string;
 	details: any;
+	busStopLocation: any;
 }) => {
-	// console.log("Details: " + JSON.stringify(details));
-
 	const [number, setNumber] = useState(busNumber);
 	const [data, setData] = useState(details);
 
@@ -84,10 +84,9 @@ const BusDetails = ({
 			<ModalAdder
 				modalElement={
 					<BusLocation
-						busStop={busStopData}
 						busNumber={details.ServiceNo}
 						nextBus={details.NextBus}
-						// busStopLocation={busStopData.Location}
+						busStopLocation={busStopLocation}
 					/>
 				}
 				style={{

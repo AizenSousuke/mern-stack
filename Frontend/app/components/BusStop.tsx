@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Button } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text } from "react-native";
 import BusDetails from "./BusDetails";
 import AppStyles from "../../assets/css/AppStyles";
-import ModalAdder from "./ModalAdder";
-import BusLocation from "./BusLocation";
+import { GetBusStopByCode } from "../api/api";
 
 const BusStop = ({ busStopData }: { busStopData: any }) => {
+	const [busStopLocation, setBusStopLocation] = useState({ Location: [] });
+
+	useEffect(() => {
+		(async () => {
+			GetBusStopByCode(busStopData?.BusStopCode).then((result) => {
+				setBusStopLocation({ Location: result.busStop?.Location });
+			});
+		})();
+	}, []);
+
 	return (
 		<View style={AppStyles.busStop}>
 			{busStopData != null ? (
@@ -17,6 +26,7 @@ const BusStop = ({ busStopData }: { busStopData: any }) => {
 								busNumber={service.ServiceNo}
 								details={service}
 								busStopData={busStopData}
+								busStopLocation={busStopLocation}
 							/>
 						);
 					}
