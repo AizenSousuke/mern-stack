@@ -4,7 +4,15 @@ import { Overlay, Text } from "react-native-elements";
 
 /**
  * This component, on press will pop out a modal */
-const ModalAdder = ({ children, modalElement, style }) => {
+const ModalAdder = ({
+	children,
+	modalElement,
+	style,
+}: {
+	children: any;
+	modalElement: any;
+	style: any;
+}) => {
 	const [modalOpened, setModalOpened] = useState(false);
 	return (
 		<Pressable

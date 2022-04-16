@@ -4,20 +4,20 @@ import BusStop from "../../components/BusStop";
 
 // Mock the module as it is rendering a native element
 // See: https://github.com/react-native-maps/react-native-maps/issues/2918
-jest.mock('react-native-maps', () => {
-	const { View } = require('react-native');
+jest.mock("react-native-maps", () => {
+	const { View } = require("react-native");
 	const MockMapView = (props) => {
-	  return <View>{props.children}</View>;
+		return <View>{props.children}</View>;
 	};
 	const MockMarker = (props) => {
-	  return <View>{props.children}</View>;
+		return <View>{props.children}</View>;
 	};
 	return {
-	  __esModule: true,
-	  default: MockMapView,
-	  Marker: MockMarker,
+		__esModule: true,
+		default: MockMapView,
+		Marker: MockMarker,
 	};
-  });
+});
 
 describe("Going out", () => {
 	const data = {

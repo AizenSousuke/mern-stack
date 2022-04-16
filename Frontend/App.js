@@ -67,7 +67,7 @@ export default function App() {
 							ToastAndroid.SHORT
 						);
 					} else {
-						console.log("No token found in Async Storage");
+						console.log("No token found in Async Storage.");
 					}
 				}
 			);
