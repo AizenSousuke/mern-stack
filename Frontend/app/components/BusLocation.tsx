@@ -1,10 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Header, Image, Text } from "react-native-elements";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AppStyles from "../../assets/css/AppStyles";
-import * as Location from "expo-location";
-import { Button } from "react-native-elements/dist/buttons/Button";
 import ColourScheme from "../settings/ColourScheme.json";
 
 const BusLocation = ({
@@ -23,9 +20,24 @@ const BusLocation = ({
 		longitudeDelta: 0.01,
 	});
 
+	const map = React.createRef();
+
 	useEffect(() => {
 		(async () => {})();
-		console.log("busStopLocation " + JSON.stringify(busStopLocation));
+		setTimeout(() => {
+			// Animate to bus stop location if possible
+			if (busStopLocation && map) {
+				map?.current?.animateToRegion(
+					{
+						latitude: busStopLocation.Location[1],
+						longitude: busStopLocation.Location[0],
+						latitudeDelta: 0.01,
+						longitudeDelta: 0.01,
+					},
+					1000
+				);
+			}
+		}, 2000);
 	}, []);
 
 	return (
@@ -56,6 +68,7 @@ const BusLocation = ({
 						width: 400,
 					}}
 					region={busRegion}
+					ref={map}
 				>
 					<Marker coordinate={busRegion}>
 						<Image
