@@ -3,7 +3,7 @@ import { Icon } from "react-native-elements";
 import { FloatingAction } from "react-native-floating-action";
 import ColourScheme from "../settings/ColourScheme.json";
 
-export const SearchButton = ({ onPress }) => {
+export const SearchButton = ({ onPress }: { onPress: () => void }) => {
 	return (
 		<FloatingAction
 			color={ColourScheme.secondary}

@@ -4,15 +4,15 @@ import React from "react";
 import { ToastAndroid, View } from "react-native";
 import { Header } from "react-native-elements";
 import { LogOut } from "../api/api";
-import SearchButton from "../components/SearchButton";
-import TabNavigator from "../components/TabNavigator";
+import SearchButton from "./SearchButton";
+import TabNavigator from "./TabNavigator";
 import AuthConsumer from "../context/AuthContext";
 import { CheckTokenExpiry } from "../api/api";
 import LocationButton from "./LocationButton";
 import ColourScheme from "../settings/ColourScheme.json";
 import Constants from "expo-constants";
 
-export const Home = ({ navigation }) => {
+export const Home = ({ navigation }: { navigation: any }) => {
 	return (
 		<View style={{ flex: 1 }}>
 			<AuthConsumer>
@@ -41,7 +41,8 @@ export const Home = ({ navigation }) => {
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
-										process.env.TOKEN ?? Constants.manifest.extra.TOKEN
+										process.env.TOKEN ??
+											Constants?.manifest?.extra?.TOKEN
 									);
 
 									console.log(
@@ -66,7 +67,10 @@ export const Home = ({ navigation }) => {
 									) {
 										// Get new token
 										console.log("Signing in");
-										const URL = `${process.env.BACKEND_API ?? Constants.manifest.extra.BACKEND_API}/auth/facebook`;
+										const URL = `${
+											process.env.BACKEND_API ??
+											Constants?.manifest?.extra?.BACKEND_API
+										}/auth/facebook`;
 										console.log("URL: " + URL);
 										const fblogin =
 											await WebBrowser.openBrowserAsync(

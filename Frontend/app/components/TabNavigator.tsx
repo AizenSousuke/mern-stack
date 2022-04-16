@@ -22,7 +22,7 @@ function TabNavigator() {
 					>
 						<Tab.Screen
 							name="Going Out"
-							children={(navigation, route) => <GoingOut navigation={navigation} route={route} {...settings} />}
+							children={(navigation: any, route: any) => <GoingOut navigation={navigation} route={route} {...settings} />}
 							options={{
 								tabBarIcon: () => {
 									return <Icon name="directions-run" />;
@@ -31,7 +31,7 @@ function TabNavigator() {
 						></Tab.Screen>
 						<Tab.Screen
 							name="Going Home"
-							children={(navigation, route) => <GoingHome navigation={navigation} route={route} {...settings} />}
+							children={(navigation: any, route: any) => <GoingHome navigation={navigation} route={route} {...settings} />}
 							options={{
 								tabBarIcon: () => {
 									return <Icon name="home" />;

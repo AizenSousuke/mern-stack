@@ -122,4 +122,21 @@ export default StyleSheet.create({
 	buttonGroupStyle: {
 		backgroundColor: ColourScheme.link
 	},
+	tableInformationStyle: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	tableRowInformationStyle: {
+		display: "flex",
+		flex: 1,
+		justifyContent: "flex-start",
+		borderColor: "#eeeeee",
+		borderWidth: 1,
+		padding: 5,
+	},
+	tableTextStyle: {
+		margin: 2,
+		fontSize: 12
+	}
 });
