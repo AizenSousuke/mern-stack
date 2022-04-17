@@ -28,7 +28,7 @@ export default function App() {
 		};
 	}, []);
 
-	const _checkTokenExpiry = async (token) => {
+	const _checkTokenExpiry = async (token: string) => {
 		return await CheckTokenExpiry(token)
 			.then((res) => {
 				console.log("Res in _checkTokenExpiry:" + JSON.stringify(res));
@@ -48,7 +48,7 @@ export default function App() {
 	const _loadToken = async () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(
-				process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
+				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
 				async (error, result) => {
 					if (result) {
 						console.log("_loadToken: " + error + "|" + result);
@@ -74,14 +74,14 @@ export default function App() {
 		}
 	};
 
-	const _loadSettings = async (token) => {
+	const _loadSettings = async (token: string) => {
 		if (settings === null) {
 			console.log("Loading settings");
 			await _getData(token);
 		}
 	};
 
-	const _handleURL = async (event) => {
+	const _handleURL = async (event: any) => {
 		try {
 			console.log("event" + JSON.stringify(event));
 			console.log("Handling URL into app: " + event.url);
@@ -90,11 +90,11 @@ export default function App() {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
 				await AsyncStorage.setItem(
-					process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
+					process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
 					token.toString(),
-					(error, result) => {
+					(error) => {
 						console.log(
-							"Saving new token: " + error + "|" + result
+							"Saving new token: " + error + "|" + token
 						);
 					}
 				);
@@ -110,7 +110,7 @@ export default function App() {
 		}
 	};
 
-	const _getData = async (token = null) => {
+	const _getData = async (token: string | null = null) => {
 		try {
 			console.log("Token in _getData: " + token);
 			await GetSettings(token ?? authToken)
@@ -142,7 +142,7 @@ export default function App() {
 		// Remove
 		if (!token) {
 			await AsyncStorage.removeItem(
-				process.env.TOKEN ?? Constants.manifest.extra.TOKEN,
+				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
 				(error) => {
 					if (error) {
 						ToastAndroid.show(error, ToastAndroid.SHORT);
@@ -157,7 +157,7 @@ export default function App() {
 				}
 			);
 		} else {
-			await AsyncStorage.setItem(process.env.TOKEN ?? Constants.manifest.extra.TOKEN, token, (error) => {
+			await AsyncStorage.setItem(process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN, token, (error) => {
 				if (error) {
 					ToastAndroid.show(error, ToastAndroid.SHORT);
 				} else {

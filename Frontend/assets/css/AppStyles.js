@@ -131,12 +131,15 @@ export default StyleSheet.create({
 		display: "flex",
 		flex: 1,
 		justifyContent: "flex-start",
-		borderColor: "#eeeeee",
+		borderColor: "#ffbaba",
 		borderWidth: 1,
 		padding: 5,
 	},
 	tableTextStyle: {
 		margin: 2,
 		fontSize: 12
+	},
+	dark: {
+		backgroundColor: "#ffbaba"
 	}
 });

@@ -14,7 +14,7 @@ const Table = ({ information }: { information: any }) => {
 						}}
 						key={key}
 					>
-						<View style={AppStyles.tableInformationStyle}>
+						<View style={[AppStyles.tableInformationStyle, AppStyles.dark]}>
 							<View style={AppStyles.tableRowInformationStyle}>
 								<Text style={AppStyles.tableTextStyle}>
 									First Bus
