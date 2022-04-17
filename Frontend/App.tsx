@@ -13,7 +13,7 @@ import Constants from "expo-constants";
 
 const Stack = createStackNavigator();
 
-export default function App() {
+const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
 	useEffect(() => {
@@ -214,3 +214,5 @@ export default function App() {
 		</AuthProvider>
 	);
 }
+
+export default App;
