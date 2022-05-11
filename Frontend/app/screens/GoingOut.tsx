@@ -3,7 +3,7 @@ import { RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import BusStopSaved from "../components/BusStopSaved";
 
-export const GoingOut = (props) => {
+export const GoingOut = (props: any) => {
 	const [refreshing, setRefreshing] = useState(false);
 
 	return (
@@ -18,7 +18,7 @@ export const GoingOut = (props) => {
 				></RefreshControl>
 			}
 		>
-			{props.settings?.GoingOut?.map((busStop, index) => (
+			{props.settings?.GoingOut?.map((busStop: any, index: any) => (
 				<BusStopSaved key={index} code={busStop} GoingOut={true} />
 			))}
 		</ScrollView>

@@ -89,7 +89,7 @@ export const LocationModal = () => {
 					maxZoomLevel={17}
 				>
 					{nearbyBusStops &&
-						nearbyBusStops.map((marker, index) => (
+						nearbyBusStops.map((marker: any, index: number) => (
 							<Marker
 								key={index}
 								identifier={marker.Description}
@@ -106,7 +106,7 @@ export const LocationModal = () => {
 						))}
 				</MapView>
 			) : (
-				<Text>No map loaded. {errorMsg}</Text>
+				<Text>No map loaded.</Text>
 			)}
 			<FlatList
 				keyExtractor={(item, index) => index.toString()}
@@ -133,7 +133,7 @@ export const LocationModal = () => {
 					></RefreshControl>
 				}
 				data={nearbyBusStops}
-				renderItem={({ item }) => (
+				renderItem={({ item }: { item: any }) => (
 					<BusStopListPureComponent
 						name={item.Description}
 						address={item.RoadName}
@@ -146,7 +146,12 @@ export const LocationModal = () => {
 						}}
 					/>
 				)}
-				ListEmptyComponent={<Text style={{ textAlign: "center" }}>There are no bus stops nearby. Please set the location in the map and swipe down to refresh the list.</Text>}
+				ListEmptyComponent={
+					<Text style={{ textAlign: "center" }}>
+						There are no bus stops nearby. Please set the location
+						in the map and swipe down to refresh the list.
+					</Text>
+				}
 			/>
 		</SafeAreaView>
 	);
