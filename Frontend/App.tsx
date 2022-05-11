@@ -61,6 +61,7 @@ const App = () => {
 						}
 
 						console.warn("Token has expired");
+						updateToken(null);
 						// Ask to re-login to renew token and reload settings
 						ToastAndroid.show(
 							"Please re-login.",
@@ -139,6 +140,7 @@ const App = () => {
 	};
 
 	const updateToken = async (token = null) => {
+		console.log("Update token check");
 		// Remove
 		if (!token) {
 			await AsyncStorage.removeItem(
@@ -150,7 +152,7 @@ const App = () => {
 						// Update state
 						setAuthToken(null);
 						ToastAndroid.show(
-							"Successfully cleared token and logged out",
+							"You have been logged out.",
 							ToastAndroid.SHORT
 						);
 					}
