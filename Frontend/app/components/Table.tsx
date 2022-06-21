@@ -14,7 +14,12 @@ const Table = ({ information }: { information: any }) => {
 						}}
 						key={key}
 					>
-						<View style={[AppStyles.tableInformationStyle, AppStyles.dark]}>
+						<View
+							style={[
+								AppStyles.tableInformationStyle,
+								AppStyles.dark,
+							]}
+						>
 							<View style={AppStyles.tableRowInformationStyle}>
 								<Text style={AppStyles.tableTextStyle}>
 									First Bus
@@ -28,38 +33,80 @@ const Table = ({ information }: { information: any }) => {
 						</View>
 						<View style={AppStyles.tableInformationStyle}>
 							<View style={AppStyles.tableRowInformationStyle}>
-								<Text style={AppStyles.tableTextStyle}>
-									WD: {info.WD_FirstBus} hrs
-								</Text>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										WEEKDAY
+									</Text>
+								</View>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										{info.WD_FirstBus} hrs
+									</Text>
+								</View>
 							</View>
 							<View style={AppStyles.tableRowInformationStyle}>
-								<Text style={AppStyles.tableTextStyle}>
-									WD: {info.WD_LastBus} hrs
-								</Text>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										WEEKDAY
+									</Text>
+								</View>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										{info.WD_LastBus} hrs
+									</Text>
+								</View>
 							</View>
 						</View>
 						<View style={AppStyles.tableInformationStyle}>
 							<View style={AppStyles.tableRowInformationStyle}>
-								<Text style={AppStyles.tableTextStyle}>
-									SAT: {info.SAT_FirstBus} hrs
-								</Text>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										SAT
+									</Text>
+								</View>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										{info.SAT_FirstBus} hrs
+									</Text>
+								</View>
 							</View>
 							<View style={AppStyles.tableRowInformationStyle}>
-								<Text style={AppStyles.tableTextStyle}>
-									SAT: {info.SAT_LastBus} hrs
-								</Text>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										SAT
+									</Text>
+								</View>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										{info.SAT_LastBus} hrs
+									</Text>
+								</View>
 							</View>
 						</View>
 						<View style={AppStyles.tableInformationStyle}>
 							<View style={AppStyles.tableRowInformationStyle}>
-								<Text style={AppStyles.tableTextStyle}>
-									SUN: {info.SUN_FirstBus} hrs
-								</Text>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										SUN
+									</Text>
+								</View>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										{info.SUN_FirstBus} hrs
+									</Text>
+								</View>
 							</View>
 							<View style={AppStyles.tableRowInformationStyle}>
-								<Text style={AppStyles.tableTextStyle}>
-									SUN: {info.SUN_LastBus} hrs
-								</Text>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										SUN
+									</Text>
+								</View>
+								<View style={AppStyles.tableRowColumnStyle}>
+									<Text style={AppStyles.tableTextStyle}>
+										{info.SUN_LastBus} hrs
+									</Text>
+								</View>
 							</View>
 						</View>
 					</View>

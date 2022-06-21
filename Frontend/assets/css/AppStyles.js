@@ -120,7 +120,7 @@ export default StyleSheet.create({
 	},
 	buttonGroupTextStyle: {},
 	buttonGroupStyle: {
-		backgroundColor: ColourScheme.link
+		backgroundColor: ColourScheme.link,
 	},
 	tableInformationStyle: {
 		display: "flex",
@@ -130,16 +130,20 @@ export default StyleSheet.create({
 	tableRowInformationStyle: {
 		display: "flex",
 		flex: 1,
-		justifyContent: "flex-start",
+		flexDirection: "row",
+		justifyContent: "space-between",
 		borderColor: "#ffbaba",
 		borderWidth: 1,
 		padding: 5,
 	},
+	tableRowColumnStyle: {
+		display: "flex",
+		flex: 0.5,
+	},
 	tableTextStyle: {
-		margin: 2,
-		fontSize: 12
+		fontSize: 12,
 	},
 	dark: {
-		backgroundColor: "#ffbaba"
-	}
+		backgroundColor: "#ffbaba",
+	},
 });
