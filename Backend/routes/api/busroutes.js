@@ -30,7 +30,7 @@ router.get("/:serviceNo/:busStopCode", async (req, res) => {
 		if (!req.params.serviceNo || !req.params.busStopCode) {
 			return res
 				.status(422)
-				.json({ msg: "No serviceNo nor busStopCode param found" });
+				.json({ msg: "No serviceNo nor busStopCode param provided" });
 		}
 
 		const routes = await BusRoutes.find({
@@ -40,7 +40,7 @@ router.get("/:serviceNo/:busStopCode", async (req, res) => {
 		if (!routes) {
 			return res
 				.status(404)
-				.json({ msg: "No routes or information found" });
+				.json({ msg: "No routes or information provided" });
 		}
 
 		// Note: May return 2
@@ -57,7 +57,7 @@ router.get("/:serviceNo/:busStopCode", async (req, res) => {
 router.get("/:serviceNo", async (req, res) => {
 	try {
 		if (!req.params.serviceNo) {
-			return res.status(422).json({ msg: "No serviceNo param found" });
+			return res.status(422).json({ msg: "No serviceNo param provided" });
 		}
 
 		// const routes = await BusRoutes.find({
@@ -73,7 +73,7 @@ router.get("/:serviceNo", async (req, res) => {
 		]);
 
 		if (!routes) {
-			return res.status(404).json({ msg: "No routes found" });
+			return res.status(404).json({ msg: "No routes provided" });
 		}
 
 		return res.status(200).json({ routes: routes });
@@ -261,7 +261,7 @@ router.get("/", async (req, res) => {
 	try {
 		const routes = await BusRoutes.find({});
 		if (!routes) {
-			return res.status(404).json({ msg: "No routes found" });
+			return res.status(404).json({ msg: "No routes provided" });
 		}
 
 		return res.status(200).json({ routes: routes });

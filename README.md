@@ -68,6 +68,7 @@ Backend\config\default.json
 }
 ```
 Backend\config\test.json
+Note: This is for running yarn test
 ```
 {}
 ```
