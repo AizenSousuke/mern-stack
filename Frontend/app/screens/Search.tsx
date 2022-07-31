@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FlatList, ToastAndroid } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { SearchBusStop } from "../api/api";
@@ -22,6 +22,7 @@ const Search = () => {
 	const [busStops, setBusStops] = useState([]);
 	const searchLength = 1;
 	const limitResultsPerPage = 5;
+	const searchBarRef = useRef();
 
 	const searchForBusStops = () => {
 		console.log("Searching for bus stops");
@@ -57,6 +58,13 @@ const Search = () => {
 		minimumViewTime: 1000,
 	};
 
+	useEffect(() => {
+		console.log("UseEffect has been executed");
+		setTimeout(() => {
+			searchBarRef.current?.focus();
+		}, 500);
+	}, []);
+
 	return (
 		<FlatList
 			windowSize={2}
@@ -71,6 +79,7 @@ const Search = () => {
 						searchForBusStops();
 					}}
 					value={search.toString()}
+					ref={searchBarRef}
 				/>
 			}
 			stickyHeaderIndices={[0]}
