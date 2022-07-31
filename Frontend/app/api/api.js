@@ -24,6 +24,13 @@ export const GetBusData = async (busNumber, busStopCode) => {
 	return response.data;
 };
 
+export const GetBusRouteData = async (busNumber) => {
+	const response = await axios.get(
+		`${api}/busroutes/${busNumber}`
+	);
+	return response.data;
+};
+
 export const GetBusStopList = async () => {
 	const response = await axios.get(`${api}/busstops`, data);
 	return response.data;
