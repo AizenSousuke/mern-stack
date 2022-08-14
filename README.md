@@ -76,19 +76,25 @@ Note: This is for running yarn test
 Frontend\app.config.json
 ```
 module.exports = () => {
+	const config = {
+		android: {
+			package: "com.lovepeacestudios.yasgba"
+		}
+	};
 	if (process.env.NODE_ENV === "production") {
 		// Production
-		return {
+		const production = {
 			extra: {
 				TOKEN: "TOKEN",
-				BACKEND_API: "",
+				BACKEND_API: "API_URL",
 				MAPBOX: "",
 				MAX_DISTANCE_IN_METRES: 300,
-			},
+			}
 		};
+		return Object.assign(config, production);
 	} else {
 		// Development
-		return {
+		const development = {
 			extra: {
 				TOKEN: "TOKEN",
 				BACKEND_API: "http://10.0.2.2:8080/api",
@@ -96,6 +102,7 @@ module.exports = () => {
 				MAX_DISTANCE_IN_METRES: 300,
 			},
 		};
+		return Object.assign(config, development);
 	}
 };
 ```
