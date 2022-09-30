@@ -1,6 +1,6 @@
 import axios from "axios";
 import Constants from "expo-constants";
-const api = process.env.BACKEND_API ?? Constants.manifest.extra.BACKEND_API;
+const api = process.env.BACKEND_API ?? Constants.manifest?.extra?.BACKEND_API;
 
 /**
  * Data to be set for the requests

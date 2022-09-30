@@ -90,6 +90,6 @@ describe("Going out", () => {
 
 	it("renders no bus stops", async () => {
 		const { container, getByText } = render(<BusStop busStopData={null} />);
-		expect(getByText("No bus stop data found")).toBeTruthy();
+		expect(getByText("No bus stop data found from LTA's API")).toBeTruthy();
 	});
 });
