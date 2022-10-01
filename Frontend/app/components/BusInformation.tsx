@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, ScrollView, SectionList, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
-	Button,
 	ButtonGroup,
 	Card,
 	Header,
-	Overlay,
-	TabView,
 	Text,
 } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,7 +11,6 @@ import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
 import { GetBusData, GetBusRouteData } from "../api/api";
 import Table from "./Table";
-import StepIndicator from "react-native-step-indicator-v2";
 
 const BusInformation = ({
 	busNumber,
@@ -29,20 +25,20 @@ const BusInformation = ({
 
 	useEffect(() => {
 		(async () => {
-			await updatePageData();
+			await updatePageData(selectedIndex);
 		})();
 	}, []);
 
-	const updatePageData = async () => {
+	const updatePageData = async (index: number) => {
 		var data = null;
-		switch (selectedIndex) {
+		setSelectedIndex(index);
+		switch (index) {
 			case 1:
 				// Bus Routes
 				console.log("Getting bus route data for bus number", busNumber);
 				data = await GetBusRouteData(busNumber);
 				if (data) {
 					setRoute(data.routes);
-					console.log("Route length:", data.routes.length);
 				}
 				break;
 
@@ -78,8 +74,7 @@ const BusInformation = ({
 				buttons={["Information", "Route"]}
 				selectedIndex={selectedIndex}
 				onPress={(index) => {
-					setSelectedIndex(index);
-					updatePageData();
+					updatePageData(index);
 				}}
 			/>
 			<ScrollView style={{ flexGrow: 0 }}>
@@ -110,7 +105,7 @@ const BusInformation = ({
 						/> */}
 						{route.map(r => {
 							return <>
-							<View>
+							<View key={r.BusStopCode}>
 								<Text>{r.StopSequence}</Text>
 								<Text>{r.BusStopCode}</Text>
 								<Text>{JSON.stringify(r)}</Text>
