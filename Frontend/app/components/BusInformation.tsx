@@ -108,6 +108,15 @@ const BusInformation = ({
 							// 	<Text key={position}>Label: {position}{stepStatus}{label}</Text>
 							// }}
 						/> */}
+						{route.map(r => {
+							return <>
+							<View>
+								<Text>{r.StopSequence}</Text>
+								<Text>{r.BusStopCode}</Text>
+								<Text>{JSON.stringify(r)}</Text>
+							</View>
+							</>
+						})}
 					</Card>
 				)}
 			</ScrollView>
