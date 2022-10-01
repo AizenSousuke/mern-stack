@@ -76,7 +76,7 @@ router.get("/:serviceNo", async (req, res) => {
 			},
 		]);
 
-		if (!routes) {
+		if (!routesWithBusStopName) {
 			return res.status(404).json({ msg: "No routes provided" });
 		}
 
