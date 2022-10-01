@@ -13,7 +13,7 @@ const header = {
 };
 
 /**
- * 
+ *
  * @param {number} skip Number of results to skip as the API ony allows 500 results to be displayed at maximum
  * @returns List of routes
  */
@@ -60,14 +60,18 @@ router.get("/:serviceNo", async (req, res) => {
 			return res.status(422).json({ msg: "No serviceNo param provided" });
 		}
 
-		// const routes = await BusRoutes.find({
-		// 	ServiceNo: req.params.serviceNo,
-		// }).sort({ Distance: "asc" });
-
-		const routes = await BusRoutes.aggregate([
+		const routesWithBusStopName = await BusRoutes.aggregate([
 			{
 				$match: {
 					ServiceNo: req.params.serviceNo,
+				},
+			},
+			{
+				$lookup: {
+					from: "busstops",
+					localField: "BusStopCode",
+					foreignField: "BusStopCode",
+					as: "BusStopData",
 				},
 			},
 		]);
@@ -76,7 +80,7 @@ router.get("/:serviceNo", async (req, res) => {
 			return res.status(404).json({ msg: "No routes provided" });
 		}
 
-		return res.status(200).json({ routes: routes });
+		return res.status(200).json({ routes: routesWithBusStopName });
 	} catch (error) {
 		CatchError(error, res);
 	}
