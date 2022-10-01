@@ -49,7 +49,7 @@ const App = () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(
 				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
-				async (error, result) => {
+				async (error, result: any) => {
 					if (result) {
 						console.log("_loadToken: " + error + "|" + result);
 						if (!(await _checkTokenExpiry(result))) {
@@ -106,7 +106,7 @@ const App = () => {
 				// Get settings data
 				await _getData(token);
 			}
-		} catch (error) {
+		} catch (error: any) {
 			ToastAndroid.show(error, ToastAndroid.SHORT);
 		}
 	};
@@ -134,7 +134,7 @@ const App = () => {
 						ToastAndroid.SHORT
 					);
 				});
-		} catch (error) {
+		} catch (error: any) {
 			ToastAndroid.show("Failed to get data", ToastAndroid.SHORT);
 		}
 	};
@@ -145,7 +145,7 @@ const App = () => {
 		if (!token) {
 			await AsyncStorage.removeItem(
 				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
-				(error) => {
+				(error: any) => {
 					if (error) {
 						ToastAndroid.show(error, ToastAndroid.SHORT);
 					} else {
@@ -159,7 +159,7 @@ const App = () => {
 				}
 			);
 		} else {
-			await AsyncStorage.setItem(process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN, token, (error) => {
+			await AsyncStorage.setItem(process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN, token, (error: any) => {
 				if (error) {
 					ToastAndroid.show(error, ToastAndroid.SHORT);
 				} else {
