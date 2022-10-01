@@ -12675,10 +12675,10 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
-react-native-step-indicator@^1.0.3:
+react-native-step-indicator-v2@^1.0.3:
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-step-indicator/-/react-native-step-indicator-1.0.3.tgz#d136ec88639485a338c8ce281035aefd9d169f8f"
-  integrity sha512-WwTb6lpJl0T7MV59sus1utoEQuqbuWHq6V0R0iDWmlPRFjM0qirhTNTS5on1+V9Qmc9dsUCT380/mRgDF+U6zw==
+  resolved "https://registry.yarnpkg.com/react-native-step-indicator-v2/-/react-native-step-indicator-v2-1.0.3.tgz#62d3e286128c1dc62edf9012f215fc4f67fadede"
+  integrity sha512-PVuvh4KzYuqXUpBG+mCER2Rmq1OTmHQuApCaFFx9rEdGQ1FvVhwowGzq4LiX+dTBzvbC1MucWw9cu4kXzWe7pg==
 
 react-native-vector-icons@^7.1.0:
   version "7.1.0"

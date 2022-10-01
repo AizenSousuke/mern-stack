@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View } from "react-native";
+import { FlatList, ScrollView, SectionList, View } from "react-native";
 import {
 	Button,
 	ButtonGroup,
@@ -14,7 +14,7 @@ import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
 import { GetBusData, GetBusRouteData } from "../api/api";
 import Table from "./Table";
-import StepIndicator from "react-native-step-indicator";
+import StepIndicator from "react-native-step-indicator-v2";
 
 const BusInformation = ({
 	busNumber,
@@ -83,32 +83,33 @@ const BusInformation = ({
 				}}
 			/>
 			<ScrollView style={{ flexGrow: 0 }}>
-			{selectedIndex === 0 && (
-				<Card>
-					<Card.Title>Information</Card.Title>
-					<Card.Divider width={1} />
-					<Table information={information} />
-				</Card>
-			)}
-			{selectedIndex === 1 && (
-				<Card>
-					<Card.Title>Route</Card.Title>
-					<Card.Divider width={1} />
-					<StepIndicator
-						direction="vertical"
-						currentPosition={2}
-						labels={route.map(r => r.BusStopCode)}
-						// stepCount={3}
-						// labels={["Step 1", "Step 2", "Step 3"]}
-						// renderStepIndicator={(position, stepStatus) => {
-						// 	<Text key={position}>Indicator: {position}</Text>
-						// }}
-						// renderLabel={(position, stepStatus, label) => {
-						// 	<Text key={position}>Label: {position}{stepStatus}{label}</Text>
-						// }}
-					/>
-				</Card>
-			)}
+				{selectedIndex === 0 && (
+					<Card>
+						<Card.Title>Information</Card.Title>
+						<Card.Divider width={1} />
+						<Table information={information} />
+					</Card>
+				)}
+				{selectedIndex === 1 && (
+					<Card>
+						<Card.Title>Route</Card.Title>
+						<Card.Divider width={1} />
+						{/* <StepIndicator
+							direction="vertical"
+							currentPosition={1}
+							stepCount={route.length}
+							labels={route.map((r) => r.BusStopCode)}
+							// stepCount={3}
+							// labels={["Step 1", "Step 2", "Step 3"]}
+							// renderStepIndicator={(position, stepStatus) => {
+							// 	<Text key={position}>Indicator: {position}</Text>
+							// }}
+							// renderLabel={(position, stepStatus, label) => {
+							// 	<Text key={position}>Label: {position}{stepStatus}{label}</Text>
+							// }}
+						/> */}
+					</Card>
+				)}
 			</ScrollView>
 		</SafeAreaView>
 	);
