@@ -74,6 +74,11 @@ router.get("/:serviceNo", async (req, res) => {
 					as: "BusStopData",
 				},
 			},
+			{
+				$sort: {
+					Distance: 1,
+				}
+			}
 		]);
 
 		if (!routesWithBusStopName) {

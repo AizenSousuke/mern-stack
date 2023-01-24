@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, View } from "react-native";
-import {
-	ButtonGroup,
-	Card,
-	Header,
-	Text,
-} from "react-native-elements";
+import { ButtonGroup, Card, Header, Text } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
@@ -103,14 +98,14 @@ const BusInformation = ({
 							// 	<Text key={position}>Label: {position}{stepStatus}{label}</Text>
 							// }}
 						/> */}
-						{route.map(r => {
-							return <>
-							<View key={r.BusStopCode}>
-								<Text>{r.StopSequence}</Text>
-								<Text>{r.BusStopCode}</Text>
-								<Text>{JSON.stringify(r)}</Text>
-							</View>
-							</>
+						{route.map((r, index) => {
+							return (
+								<View key={index}>
+									<Text>{r.StopSequence}</Text>
+									<Text>{r.BusStopCode}</Text>
+									<Text>{JSON.stringify(r, null, "\t")}</Text>
+								</View>
+							);
 						})}
 					</Card>
 				)}
