@@ -32,11 +32,8 @@ const Search = () => {
 			SearchBusStop(search)
 				.then(
 					(res) => {
-						if (res.details?.length > 0) {
-							setBusStops(res.details);
-						} else {
-							ToastAndroid.show(res.msg, ToastAndroid.SHORT);
-						}
+						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+						setBusStops(res.details);
 					},
 					(rej) => {
 						ToastAndroid.show("Search failed", ToastAndroid.SHORT);
