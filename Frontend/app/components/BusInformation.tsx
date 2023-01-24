@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, View } from "react-native";
-import { ButtonGroup, Card, Chip, Header, Icon, Text } from "react-native-elements";
+import {
+	ButtonGroup,
+	Card,
+	Chip,
+	Header,
+	Icon,
+	ListItem,
+	Text,
+} from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
 import { GetBusData, GetBusRouteData } from "../api/api";
 import Table from "./Table";
+import { block } from "react-native-reanimated";
 
 const BusInformation = ({
 	busNumber,
@@ -17,6 +26,7 @@ const BusInformation = ({
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [information, setInformation] = useState([{}]);
 	const [route, setRoute] = useState([{}]);
+	const [expanded, setExpanded] = useState(null);
 
 	useEffect(() => {
 		(async () => {
@@ -101,18 +111,54 @@ const BusInformation = ({
 						{route.map((r, index) => {
 							return (
 								<View key={index}>
-									<Chip
-										key={index}
-										title={
-											r.BusStopData[0].Description +
-											" (" +
-											r.BusStopCode +
-											")"
+									<ListItem.Accordion
+										content={
+											<ListItem.Content
+												style={{
+													backgroundColor: "firebrick",
+													padding: 10,
+													borderRadius: 5,
+												}}
+											>
+												<ListItem.Title
+													style={{
+														color: "white",
+														fontSize: 12
+													}}
+												>
+													{(r.BusStopData != null
+														? r.BusStopData[0]
+																.Description
+														: "No description") +
+														" (" +
+														r.BusStopCode +
+														")"}
+												</ListItem.Title>
+											</ListItem.Content>
 										}
-										onPress={() => {}}
-									></Chip>
-									{index != route.length - 1 ? <Icon name="caret-down" type="font-awesome" /> : <></>}
-									
+										isExpanded={expanded == index}
+										noIcon
+										onPress={() => {
+											setExpanded(
+												expanded == index ? null : index
+											);
+										}}
+									>
+										<ListItem>
+											<ListItem.Content>
+												<Text>Expanded</Text>
+											</ListItem.Content>
+										</ListItem>
+									</ListItem.Accordion>
+
+									{index != route.length - 1 ? (
+										<Icon
+											name="caret-down"
+											type="font-awesome"
+										/>
+									) : (
+										<></>
+									)}
 								</View>
 							);
 						})}
