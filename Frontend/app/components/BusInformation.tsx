@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, View } from "react-native";
-import { ButtonGroup, Card, Header, Text } from "react-native-elements";
+import { ButtonGroup, Card, Chip, Header, Icon, Text } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
@@ -101,9 +101,18 @@ const BusInformation = ({
 						{route.map((r, index) => {
 							return (
 								<View key={index}>
-									<Text>{r.StopSequence}</Text>
-									<Text>{r.BusStopCode}</Text>
-									<Text>{JSON.stringify(r, null, "\t")}</Text>
+									<Chip
+										key={index}
+										title={
+											r.BusStopData[0].Description +
+											" (" +
+											r.BusStopCode +
+											")"
+										}
+										onPress={() => {}}
+									></Chip>
+									{index != route.length - 1 ? <Icon name="caret-down" type="font-awesome" /> : <></>}
+									
 								</View>
 							);
 						})}
