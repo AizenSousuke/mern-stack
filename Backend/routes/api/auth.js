@@ -47,10 +47,13 @@ router.get(
 				req.isAuthenticated()
 		);
 		req.session.save((error) => {
+			const redirectURL =
+				(process.env.FRONTEND_LINK ?? config.FRONTEND_LINK) +
+				`?token=${req.user.Token}`;
+			console.log("Redirecting to frontend link " + redirectURL);
 			return res.status(302).redirect(
 				// Redirect back to app
-				(process.env.FRONTEND_LINK ?? config.FRONTEND_LINK) +
-					`?token=${req.user.Token}`
+				redirectURL
 			);
 		});
 	}

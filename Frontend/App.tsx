@@ -17,10 +17,20 @@ const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
 	useEffect(() => {
+		console.log(`Linking URI: ${Constants.linkingUri}`)
 		Linking.addEventListener("url", _handleURL);
 		console.log("added event listener");
-		console.log("Looking for token");
-		_loadToken();
+
+		console.log("Looking for token - authToken: " + authToken);
+		const useEffectLoadTokenFunc = async () => {
+			console.log("Running useEffectLoadTokenFunc");
+			await _loadToken();
+		};
+
+		useEffectLoadTokenFunc().catch((error) => {
+			console.error(error);
+		});
+
 		return () => {
 			// Cleanup
 			Linking.removeAllListeners("url");
@@ -50,6 +60,7 @@ const App = () => {
 			await AsyncStorage.getItem(
 				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
 				async (error, result: any) => {
+					console.log("Result:", result);
 					if (result) {
 						console.log("_loadToken: " + error + "|" + result);
 						if (!(await _checkTokenExpiry(result))) {
@@ -87,6 +98,7 @@ const App = () => {
 			console.log("event" + JSON.stringify(event));
 			console.log("Handling URL into app: " + event.url);
 			const token = event.url.split("token=")[1].split("#_=_")[0];
+			console.log("Token from url:", token);
 			if (token) {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
@@ -94,9 +106,7 @@ const App = () => {
 					process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
 					token.toString(),
 					(error) => {
-						console.log(
-							"Saving new token: " + error + "|" + token
-						);
+						console.log("Saving new token: " + error + "|" + token);
 					}
 				);
 
@@ -159,20 +169,24 @@ const App = () => {
 				}
 			);
 		} else {
-			await AsyncStorage.setItem(process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN, token, (error: any) => {
-				if (error) {
-					ToastAndroid.show(error, ToastAndroid.SHORT);
-				} else {
-					// Update state
-					setAuthToken(token);
-					if (token != "") {
-						ToastAndroid.show(
-							"Successfully updated token",
-							ToastAndroid.SHORT
-						);
+			await AsyncStorage.setItem(
+				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
+				token,
+				(error: any) => {
+					if (error) {
+						ToastAndroid.show(error, ToastAndroid.SHORT);
+					} else {
+						// Update state
+						setAuthToken(token);
+						if (token != "") {
+							ToastAndroid.show(
+								"Successfully updated token",
+								ToastAndroid.SHORT
+							);
+						}
 					}
 				}
-			});
+			);
 		}
 	};
 
@@ -215,6 +229,6 @@ const App = () => {
 			</SettingsProvider>
 		</AuthProvider>
 	);
-}
+};
 
 export default App;
