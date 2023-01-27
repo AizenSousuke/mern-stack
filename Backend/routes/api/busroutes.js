@@ -76,9 +76,37 @@ router.get("/:serviceNo", async (req, res) => {
 			},
 			{
 				$sort: {
-					Distance: 1,
-				}
-			}
+					Direction: 1,
+					StopSequence: 1,
+				},
+			},
+			{
+				$group: {
+					_id: "$Direction",
+					towards: {
+						$last: "$BusStopData.Description"
+					},
+					direction: {
+						$addToSet: {
+							_id: "$_id",
+							BusStopCode: "$BusStopCode",
+							Direction: "$Direction",
+							Distance: "$Distance",
+							Operator: "$Operator",
+							ServiceNo: "$ServiceNo",
+							StopSequence: "$StopSequence",
+							SAT_FirstBus: "$SAT_FirstBus",
+							SAT_LastBus: "$SAT_LastBus",
+							SUN_FirstBus: "$SUN_FirstBus",
+							SUN_LastBus: "$SUN_LastBus",
+							WD_FirstBus: "$WD_FirstBus",
+							WD_LastBus: "$WD_LastBus",
+							__v: "$__v",
+							BusStopData: "$BusStopData",
+						},
+					},
+				},
+			},
 		]);
 
 		if (!routesWithBusStopName) {

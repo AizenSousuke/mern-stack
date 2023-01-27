@@ -94,20 +94,6 @@ const BusInformation = ({
 					<Card>
 						<Card.Title>Route</Card.Title>
 						<Card.Divider width={1} />
-						{/* <StepIndicator
-							direction="vertical"
-							currentPosition={1}
-							stepCount={route.length}
-							labels={route.map((r) => r.BusStopCode)}
-							// stepCount={3}
-							// labels={["Step 1", "Step 2", "Step 3"]}
-							// renderStepIndicator={(position, stepStatus) => {
-							// 	<Text key={position}>Indicator: {position}</Text>
-							// }}
-							// renderLabel={(position, stepStatus, label) => {
-							// 	<Text key={position}>Label: {position}{stepStatus}{label}</Text>
-							// }}
-						/> */}
 						{route.map((r, index) => {
 							return (
 								<View key={index}>
