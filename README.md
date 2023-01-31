@@ -10,9 +10,9 @@
 
 # *Disclaimer*
 ```
-All the data are derived from the LTA DataMall API. We apologize if there any  discrepancies in the data provided and we will try our best to fix it on our end or through a data patch as soon as possible. Live data is purely dependent on LTA's backend and we are not responsible for the accuracy or availability of the data. This
+All the data are derived from the LTA DataMall API. We apologize if there any discrepancies in the data provided and we will try our best to fix it on our end or through a data patch as soon as possible. Live data is purely dependent on LTA's backend and we are not responsible for the accuracy or availability of the data.
 
-By using this application you agree to not held us responsible for your bus not arriving on time.
+By using this application you agree to not hold us responsible for your bus not arriving on time or any other matters related to the accuracy or availability of the bus data provided.
 ```
 
 ---
@@ -20,7 +20,8 @@ By using this application you agree to not held us responsible for your bus not 
 ## Features
 - Ads free application
 - Easy to use GUI
-
+- Location based sorting
+- 
 ---
 
 ## Screenshots
@@ -30,7 +31,7 @@ By using this application you agree to not held us responsible for your bus not 
 
 ## Running the App
 
-Config files to create:
+Config files to create in the following folders:
 
 Backend\db.js
 ```
@@ -52,8 +53,9 @@ const connectDB = async () => {
 module.exports = connectDB;
 
 ```
-\config\default.json <-- This file is for heroku to make sure that the application does not error out. It doesn't do anything as you get the settings from process.env.xxx in heroku config.
-Backend\config\default.json
+~~\config\default.json <-- This file is for heroku to make sure that the application does not error out. It doesn't do anything as you get the settings from process.env.xxx in heroku config.
+Backend\config\default.json~~
+<strike>
 ```
 {
     "mongoURI" : "mongodb+srv://username:password@database01cluster.pqete.mongodb.net/database?retryWrites=true&w=majority",
@@ -67,6 +69,8 @@ Backend\config\default.json
     "MAX_DISTANCE_IN_METRES": 300
 }
 ```
+</strike>
+
 Backend\config\test.json
 Note: This is for running yarn test
 ```
@@ -185,7 +189,7 @@ and save it as a batch file.
 - Clean code and set up unit tests
 
 ## Todo:
-- Change backend api hosting from heroku to something else
+- Change backend api hosting from heroku to AWS
 - Bus Information page with First Bus, Last Bus and Bus Route 
   - Bus Route modal 
   - Information modal
