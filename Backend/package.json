@@ -28,6 +28,6 @@
   },
   "scripts": {
     "test": "jest --watch --all --detectOpenHandles",
-    "build": "nodemon server.js"
+    "start": "nodemon server.js"
   }
 }
