@@ -20,7 +20,7 @@ const BusLocation = ({
 		longitudeDelta: 0.01,
 	});
 
-	const map = React.createRef();
+	const map = React.createRef<MapView>();
 
 	useEffect(() => {
 		(async () => {})();
