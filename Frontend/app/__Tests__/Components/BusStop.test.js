@@ -6,12 +6,69 @@ import BusStop from "../../components/BusStop";
 // See: https://github.com/react-native-maps/react-native-maps/issues/2918
 jest.mock("react-native-maps", () => {
 	const { View } = require("react-native");
-	const MockMapView = (props) => {
-		return <View>{props.children}</View>;
-	};
-	const MockMarker = (props) => {
-		return <View>{props.children}</View>;
-	};
+	const importedReact = require("react");
+	// const MockMapView = (props) => {
+	// 	return <View>{props.children}</View>;
+	// };
+
+	var mockReact = importedReact;
+
+	const MockMapView = mockReact.forwardRef(
+		({ testID, children, ...props }, ref) => {
+			if (ref?.current) {
+				ref.current = {
+					getMapBoundaries: async () => ({
+						northEast: {
+							latitude: 2,
+							longitude: 2,
+						},
+						southWest: {
+							latitude: 1,
+							longitude: 1,
+						},
+					}),
+					getCamera: async () => ({
+						center: {
+							latitude: 2,
+							longitude: 2,
+						},
+						heading: 1,
+						pitch: 1,
+						zoom: 1,
+						altitude: 1,
+					}),
+					animateCamera: () => {},
+				};
+			}
+
+			return (
+				<View testID={testID} {...props}>
+					{children}
+				</View>
+			);
+		}
+	);
+
+	// const MockMarker = (props) => {
+	// 	return <View>{props.children}</View>;
+	// };
+
+	const MockMarker = mockReact.forwardRef(
+		({ testID, children, ...props }, ref) => {
+			if (ref?.current) {
+				ref.current = {
+					redraw: () => {},
+				};
+			}
+
+			return (
+				<View testID={testID} {...props}>
+					{children}
+				</View>
+			);
+		}
+	);
+
 	return {
 		__esModule: true,
 		default: MockMapView,

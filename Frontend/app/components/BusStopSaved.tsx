@@ -13,7 +13,13 @@ import AuthConsumer from "../context/AuthContext";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
 
-export const BusStopSaved = ({ code, GoingOut }:{ code: any, GoingOut: boolean }) => {
+export const BusStopSaved = ({
+	code,
+	GoingOut,
+}: {
+	code: any;
+	GoingOut: boolean;
+}) => {
 	const [busStop, setBusStop] = useState(null);
 	const [busStopData, setBusStopData] = useState(null);
 	const [isCollapsed, setIsCollapsed] = useState(true);

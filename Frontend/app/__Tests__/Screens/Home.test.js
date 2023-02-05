@@ -1,5 +1,4 @@
-import ReactTestRenderer, { create } from "react-test-renderer";
-import { render } from "@testing-library/react-native";
+import { create } from "react-test-renderer";
 import React from "react";
 import GoingHome from "../../screens/GoingHome";
 import { GetBusStopByCode, GetBusStop } from "../../api/api";
@@ -37,9 +36,10 @@ jest.mock("react-native-gesture-handler", () => {
 		FlatList: View,
 		gestureHandlerRootHOC: jest.fn(),
 		Directions: {},
-		Icon: View
 	};
 });
+
+jest.mock('react-native-elements', () => jest.genMockFromModule('react-native-elements'));
 
 jest.mock("../../api/api.js", () => ({
 	GetBusStopByCode: jest.fn(),
@@ -56,18 +56,15 @@ GetBusStop.mockImplementation((code) => {
 
 describe("Home", () => {
 	it("renders properly", () => {
-		// const testRenderer = ReactTestRenderer.create(<GoingHome />);
-		// expect(testRenderer.toJSON()).toMatchSnapshot();
-
-		// expect(render(<GoingHome />).toJSON()).toMatchSnapshot();
-
 		let root = create(<GoingHome />);
 		expect(root.toJSON()).toMatchSnapshot();
 	});
 
 	it("renders list of bus stops properly", () => {
 		const settings = {
-			GoingHome: [44229],
+			settings: {
+				GoingHome: [44229],
+			}
 		};
 		let root = create(<GoingHome settings={settings} />);
 		expect(root.toJSON()).toMatchSnapshot();

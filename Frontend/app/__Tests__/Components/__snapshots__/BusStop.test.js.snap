@@ -1059,8 +1059,32 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                   />
                 </RNCSafeAreaView>
               </View>
-              <View>
-                <View>
+              <View
+                region={
+                  Object {
+                    "latitude": 1.3184713333333333,
+                    "latitudeDelta": 0.01,
+                    "longitude": 103.89202066666667,
+                    "longitudeDelta": 0.01,
+                  }
+                }
+                style={
+                  Object {
+                    "height": 250,
+                    "width": 400,
+                  }
+                }
+              >
+                <View
+                  coordinate={
+                    Object {
+                      "latitude": 1.3184713333333333,
+                      "latitudeDelta": 0.01,
+                      "longitude": 103.89202066666667,
+                      "longitudeDelta": 0.01,
+                    }
+                  }
+                >
                   <View
                     accessibilityIgnoresInvertColors={true}
                     style={
@@ -1198,7 +1222,14 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                     />
                   </View>
                 </View>
-                <View>
+                <View
+                  coordinate={
+                    Object {
+                      "latitude": 0,
+                      "longitude": 0,
+                    }
+                  }
+                >
                   <View
                     accessibilityIgnoresInvertColors={true}
                     style={
@@ -2616,8 +2647,32 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                   />
                 </RNCSafeAreaView>
               </View>
-              <View>
-                <View>
+              <View
+                region={
+                  Object {
+                    "latitude": 1.3184713333333333,
+                    "latitudeDelta": 0.01,
+                    "longitude": 103.89202066666667,
+                    "longitudeDelta": 0.01,
+                  }
+                }
+                style={
+                  Object {
+                    "height": 250,
+                    "width": 400,
+                  }
+                }
+              >
+                <View
+                  coordinate={
+                    Object {
+                      "latitude": 1.3184713333333333,
+                      "latitudeDelta": 0.01,
+                      "longitude": 103.89202066666667,
+                      "longitudeDelta": 0.01,
+                    }
+                  }
+                >
                   <View
                     accessibilityIgnoresInvertColors={true}
                     style={
@@ -2755,7 +2810,14 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                     />
                   </View>
                 </View>
-                <View>
+                <View
+                  coordinate={
+                    Object {
+                      "latitude": 0,
+                      "longitude": 0,
+                    }
+                  }
+                >
                   <View
                     accessibilityIgnoresInvertColors={true}
                     style={
