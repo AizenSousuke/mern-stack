@@ -19,23 +19,6 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
     }
   >
     <View
-      accessibilityState={
-        Object {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
-        }
-      }
-      accessibilityValue={
-        Object {
-          "max": undefined,
-          "min": undefined,
-          "now": undefined,
-          "text": undefined,
-        }
-      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -146,23 +129,6 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
       </View>
     </View>
     <View
-      accessibilityState={
-        Object {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
-        }
-      }
-      accessibilityValue={
-        Object {
-          "max": undefined,
-          "min": undefined,
-          "now": undefined,
-          "text": undefined,
-        }
-      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -482,23 +448,6 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
     }
   >
     <View
-      accessibilityState={
-        Object {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
-        }
-      }
-      accessibilityValue={
-        Object {
-          "max": undefined,
-          "min": undefined,
-          "now": undefined,
-          "text": undefined,
-        }
-      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -609,23 +558,6 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
       </View>
     </View>
     <View
-      accessibilityState={
-        Object {
-          "busy": undefined,
-          "checked": undefined,
-          "disabled": undefined,
-          "expanded": undefined,
-          "selected": undefined,
-        }
-      }
-      accessibilityValue={
-        Object {
-          "max": undefined,
-          "min": undefined,
-          "now": undefined,
-          "text": undefined,
-        }
-      }
       accessible={true}
       collapsable={false}
       focusable={true}
