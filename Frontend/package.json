@@ -20,6 +20,7 @@
 		"axios": "^0.21.1",
 		"expo": "^47.0.13",
 		"expo-cli": "^6.2.1",
+		"expo-dev-client": "~2.0.1",
 		"expo-location": "~15.0.1",
 		"expo-modules-core": "~1.1.1",
 		"expo-sqlite": "~11.0.0",
