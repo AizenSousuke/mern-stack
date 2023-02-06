@@ -1098,11 +1098,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                     <Image
                       height={30}
                       onLoad={[Function]}
-                      source={
-                        Object {
-                          "testUri": "../../../assets/bus.png",
-                        }
-                      }
+                      source={1}
                       style={
                         Object {
                           "bottom": 0,
@@ -1243,11 +1239,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                     <Image
                       height={30}
                       onLoad={[Function]}
-                      source={
-                        Object {
-                          "testUri": "../../../assets/person.png",
-                        }
-                      }
+                      source={1}
                       style={
                         Object {
                           "bottom": 0,
@@ -2686,11 +2678,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                     <Image
                       height={30}
                       onLoad={[Function]}
-                      source={
-                        Object {
-                          "testUri": "../../../assets/bus.png",
-                        }
-                      }
+                      source={1}
                       style={
                         Object {
                           "bottom": 0,
@@ -2831,11 +2819,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
                     <Image
                       height={30}
                       onLoad={[Function]}
-                      source={
-                        Object {
-                          "testUri": "../../../assets/person.png",
-                        }
-                      }
+                      source={1}
                       style={
                         Object {
                           "bottom": 0,
