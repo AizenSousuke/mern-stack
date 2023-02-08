@@ -82,8 +82,8 @@ Frontend\app.config.json
 module.exports = () => {
 	const config = {
 		android: {
-			package: "com.lovepeacestudios.yasgba"
-		}
+			package: "com.onemanstudio.yasgba"
+		},
 	};
 	if (process.env.NODE_ENV === "production") {
 		// Production
