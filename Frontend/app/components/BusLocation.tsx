@@ -58,7 +58,7 @@ const BusLocation = ({
 			></Header>
 			{busRegion.latitude == 0 && busRegion.longitude == 0 ? (
 				<Text style={{ alignSelf: "center" }}>
-					No data found from LTA's API. Please check another time.
+					No data found from LTA's API. Complain to them ok?
 				</Text>
 			) : (
 				<MapView

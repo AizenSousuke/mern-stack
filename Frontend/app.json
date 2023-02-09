@@ -30,5 +30,12 @@
 		},
 		"description": "Yet Another SG Bus App for Singapore Buses",
 		"scheme": "yasgba"
+	},
+	"android": {
+		"config": {
+			"googleMaps": {
+				"apiKey": "AIzaSyBggU4Zo3KvXPUfiLFYRWrRUQc_-b6KGHs"
+			}
+		}
 	}
 }

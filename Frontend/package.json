@@ -5,7 +5,8 @@
 		"production": "cross-env NODE_ENV=production && expo start --android",
 		"ios": "expo run:ios",
 		"web": "expo start --web",
-		"build": "expo build:android -t apk",
+		"build": "eas build -p android",
+		"build-old": "expo build:android -t apk",
 		"eject": "expo eject",
 		"test": "jest --watch --all --detectOpenHandles"
 	},

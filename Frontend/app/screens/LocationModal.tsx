@@ -1,6 +1,12 @@
 import * as Location from "expo-location";
 import React, { useEffect, useRef, useState } from "react";
-import { FlatList, RefreshControl, Text, ToastAndroid } from "react-native";
+import {
+	FlatList,
+	RefreshControl,
+	StyleSheet,
+	Text,
+	ToastAndroid,
+} from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as API from "../api/api";
@@ -74,16 +80,23 @@ export const LocationModal = () => {
 		});
 	};
 
+	const mapStyles = StyleSheet.create({
+		container: {
+			flex: 1,
+		},
+		map: {
+			height: 250,
+			width: 400,
+		},
+	});
+
 	return (
-		<SafeAreaView edges={[]} style={{ flex: 1 }}>
+		<SafeAreaView edges={[]} style={mapStyles.container}>
 			{location ? (
 				<MapView
 					ref={mapRef}
 					provider={PROVIDER_GOOGLE}
-					style={{
-						height: 250,
-						width: 400,
-					}}
+					style={mapStyles.map}
 					region={location}
 					showsUserLocation={true}
 					maxZoomLevel={17}
