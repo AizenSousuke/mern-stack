@@ -70,6 +70,6 @@
 	"resolutions": {
 		"react-native/@jest/create-cache-key-function": "^27.0.2"
 	},
-	"name": "com.onemanstudios.yasgba",
+	"name": "yasgba",
 	"version": "1.0.0"
 }
