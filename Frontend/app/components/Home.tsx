@@ -33,7 +33,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								},
 							}}
 							centerComponent={{
-								text: "Yet Another SG Bus App",
+								text: process.env.NODE_ENV == "Production" ? "Yet Another SG Bus App" : "Yet Another SG Bus App (Dev)",
 								style: { color: "white", fontSize: 18 },
 							}}
 							rightComponent={{
