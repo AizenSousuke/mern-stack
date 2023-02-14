@@ -1,0 +1,833 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BusInformation renders according to snapshot 1`] = `
+<RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#DC2F02",
+        "borderBottomColor": "#f2f2f2",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingHorizontal": 10,
+        "paddingVertical": 10,
+      }
+    }
+    testID="headerContainer"
+  >
+    <RNCSafeAreaView
+      edges={
+        Array [
+          "left",
+          "top",
+          "right",
+        ]
+      }
+      style={
+        Object {
+          "flexDirection": "row",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 3,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Bus 
+          966
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "flex": 1,
+          }
+        }
+      />
+    </RNCSafeAreaView>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 0,
+        "marginHorizontal": 10,
+        "marginVertical": 5,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderRightColor": "#bdc6cf",
+          "borderRightWidth": 1,
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+        testID="buttonGroupItem"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#370617",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#fff",
+                "fontSize": 16.714285714285715,
+                "fontWeight": "500",
+              }
+            }
+            testID="buttonGroupItemText"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 3,
+                    "overflow": "hidden",
+                  },
+                  Object {
+                    "borderRadius": 3,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#2089dc",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Information
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+        testID="buttonGroupItem"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#5e6977",
+                "fontSize": 16.714285714285715,
+                "fontWeight": "500",
+              }
+            }
+            testID="buttonGroupItemText"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 3,
+                    "overflow": "hidden",
+                  },
+                  Object {
+                    "borderRadius": 3,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+                testID="RouteButton"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#2089dc",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Route
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <RCTScrollView
+    style={
+      Object {
+        "flexGrow": 0,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#e1e8ee",
+            "borderWidth": 1,
+            "margin": 15,
+            "marginBottom": 0,
+            "padding": 15,
+            "shadowColor": "rgba(0,0,0, .2)",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#43484d",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "marginBottom": 15,
+                "textAlign": "center",
+              }
+            }
+            testID="cardTitle"
+          >
+            Information
+          </Text>
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#bcbbc1",
+                "borderBottomWidth": 1,
+                "marginBottom": 15,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "display": "flex",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "backgroundColor": "#ffbaba",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#242424",
+                        "fontSize": 12,
+                      }
+                    }
+                  >
+                    First Bus
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#242424",
+                        "fontSize": 12,
+                      }
+                    }
+                  >
+                    Last Bus
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      WEEKDAY
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      WEEKDAY
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SAT
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SAT
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SUN
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SUN
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</RNCSafeAreaView>
+`;

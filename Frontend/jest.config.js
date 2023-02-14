@@ -15,4 +15,5 @@ module.exports = {
 	],
 	testEnvironment: "node",
 	testEnvironmentOptions: {},
+	setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
 };

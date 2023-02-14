@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, View } from "react-native";
 import {
+	Button,
 	ButtonGroup,
 	Card,
-	Chip,
 	Header,
 	Icon,
 	ListItem,
@@ -14,7 +14,6 @@ import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/ColourScheme.json";
 import { GetBusData, GetBusRouteData } from "../api/api";
 import Table from "./Table";
-import { block } from "react-native-reanimated";
 
 const BusInformation = ({
 	busNumber,
@@ -76,7 +75,8 @@ const BusInformation = ({
 			<ButtonGroup
 				containerStyle={{ marginBottom: 0 }}
 				selectedButtonStyle={AppStyles.buttonGroupStyle}
-				buttons={["Information", "Route"]}
+				// buttons={["Information", "Route"]}
+				buttons={[<Button title={"Information"} />, <Button title={"Route"} testID={"RouteButton"} />]}
 				selectedIndex={selectedIndex}
 				onPress={(index) => {
 					updatePageData(index);
@@ -92,7 +92,7 @@ const BusInformation = ({
 				)}
 				{selectedIndex === 1 && (
 					<Card>
-						<Card.Title>Route</Card.Title>
+						<Card.Title testID="RoutePage">Route</Card.Title>
 						<Card.Divider width={1} />
 						{route.map((r, index) => {
 							return (
@@ -101,7 +101,8 @@ const BusInformation = ({
 										content={
 											<ListItem.Content
 												style={{
-													backgroundColor: "firebrick",
+													backgroundColor:
+														"firebrick",
 													padding: 10,
 													borderRadius: 5,
 												}}
@@ -109,7 +110,7 @@ const BusInformation = ({
 												<ListItem.Title
 													style={{
 														color: "white",
-														fontSize: 12
+														fontSize: 12,
 													}}
 												>
 													{(r.BusStopData != null
