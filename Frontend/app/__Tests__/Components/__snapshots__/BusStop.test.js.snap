@@ -372,67 +372,11 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
         <Text
           style={
             Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        />
-        <View
-          animated={true}
-          animationConfig={
-            Object {
-              "bounciness": 0,
-            }
-          }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.9}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "red",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "red",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -2.3999999999999986,
-                  },
-                  Object {
-                    "scaleX": 0.90001,
-                  },
-                ],
-              }
-            }
-          />
-        </View>
-        <Text
-          style={
-            Object {
-              "textAlign": "center",
+              "paddingTop": 8,
             }
           }
         >
-          Arrived
+          No Data
         </Text>
       </View>
     </View>
@@ -801,67 +745,11 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
         <Text
           style={
             Object {
-              "fontSize": 10,
-              "textAlign": "center",
-            }
-          }
-        />
-        <View
-          animated={true}
-          animationConfig={
-            Object {
-              "bounciness": 0,
-            }
-          }
-          animationType="spring"
-          indeterminate={false}
-          indeterminateAnimationDuration={1000}
-          onLayout={[Function]}
-          progress={0.9}
-          style={
-            Array [
-              Object {
-                "backgroundColor": undefined,
-                "borderColor": "red",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "overflow": "hidden",
-                "width": 50,
-              },
-              undefined,
-            ]
-          }
-          useNativeDriver={false}
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "red",
-                "height": 6,
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                  Object {
-                    "translateX": -2.3999999999999986,
-                  },
-                  Object {
-                    "scaleX": 0.90001,
-                  },
-                ],
-              }
-            }
-          />
-        </View>
-        <Text
-          style={
-            Object {
-              "textAlign": "center",
+              "paddingTop": 8,
             }
           }
         >
-          Arrived
+          No Data
         </Text>
       </View>
     </View>

@@ -92,7 +92,7 @@ const BusDetails = ({
 				style={AppStyles.modal}
 			>
 				<View style={{ flexDirection: "column" }}>
-					{data?.NextBus?.Load !== "" ? (
+					{data?.NextBus?.Load ? (
 						<>
 							<Text style={AppStyles.busType}>
 								{data?.NextBus?.Type == "DD" ? "Double" : ""}
@@ -113,7 +113,7 @@ const BusDetails = ({
 					)}
 				</View>
 				<View style={{ flexDirection: "column" }}>
-					{data?.NextBus2?.Load !== "" ? (
+					{data?.NextBus2?.Load ? (
 						<>
 							<Text style={AppStyles.busType}>
 								{data?.NextBus2?.Type == "DD" ? "Double" : ""}
@@ -134,7 +134,7 @@ const BusDetails = ({
 					)}
 				</View>
 				<View style={{ flexDirection: "column" }}>
-					{data?.NextBus3?.Load !== "" ? (
+					{data?.NextBus3?.Load ? (
 						<>
 							<Text style={AppStyles.busType}>
 								{data?.NextBus2?.Type == "DD" ? "Double" : ""}
