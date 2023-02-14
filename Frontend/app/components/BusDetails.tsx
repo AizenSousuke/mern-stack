@@ -5,7 +5,7 @@ import * as Progress from "react-native-progress";
 import AppStyles from "../../assets/css/AppStyles";
 import BusLocation from "./BusLocation";
 import BusInformation from "./BusInformation";
-import ModalAdder from "./ModalAdder";
+import ModalAdder from "./common/ModalAdder";
 
 const GetValueForLoad = (load: string) => {
 	switch (load) {

@@ -36,6 +36,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
           "flex": 0.2,
         }
       }
+      testID="Pressable"
     >
       <Modal
         hardwareAccelerated={false}
@@ -148,6 +149,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
           "justifyContent": "space-evenly",
         }
       }
+      testID="Pressable"
     >
       <Modal
         hardwareAccelerated={false}
@@ -409,6 +411,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
           "flex": 0.2,
         }
       }
+      testID="Pressable"
     >
       <Modal
         hardwareAccelerated={false}
@@ -521,6 +524,7 @@ exports[`Going out renders bus details properly as per the snapshot 1`] = `
           "justifyContent": "space-evenly",
         }
       }
+      testID="Pressable"
     >
       <Modal
         hardwareAccelerated={false}

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Modal, Pressable } from "react-native";
-import { Overlay, Text } from "react-native-elements";
+import { Pressable } from "react-native";
+import { Overlay } from "react-native-elements";
 
 /**
- * This component, on press will pop out a modal */
+ * This component, on press will pop out a modal 
+ * */
 const ModalAdder = ({
 	children,
 	modalElement,
@@ -20,6 +21,7 @@ const ModalAdder = ({
 				setModalOpened(true);
 			}}
 			style={style}
+			testID={"Pressable"}
 		>
 			<Overlay
 				isVisible={modalOpened}

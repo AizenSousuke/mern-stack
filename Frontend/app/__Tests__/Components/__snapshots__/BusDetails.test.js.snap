@@ -29,6 +29,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
         "flex": 0.2,
       }
     }
+    testID="Pressable"
   >
     <Modal
       hardwareAccelerated={false}
@@ -141,6 +142,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
         "justifyContent": "space-evenly",
       }
     }
+    testID="Pressable"
   >
     <Modal
       hardwareAccelerated={false}
