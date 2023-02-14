@@ -1,20 +1,20 @@
-import { create } from "react-test-renderer";
 import React from "react";
 import GoingHome from "../../screens/GoingHome";
-import { GetBusStopByCode, GetBusStop } from "../../api/api";
+import { render } from "@testing-library/react-native";
 
 jest.mock("react-native-gesture-handler", () => {
 	// eslint-disable-next-line global-require
 	const View = require("react-native/Libraries/Components/View/View");
+	const ScrollViewMock = require("react-native/Libraries/Components/ScrollView/ScrollView");
 	return {
 		Swipeable: View,
 		DrawerLayout: View,
 		State: {},
 		// This is needed to not error out below in the tests
-		ScrollView: View,
+		ScrollView: ScrollViewMock,
 		Slider: View,
 		Switch: View,
-		TextInput: View,
+		// TextInput: View,
 		ToolbarAndroid: View,
 		ViewPagerAndroid: View,
 		DrawerLayoutAndroid: View,
@@ -39,34 +39,27 @@ jest.mock("react-native-gesture-handler", () => {
 	};
 });
 
-jest.mock('react-native-elements', () => jest.genMockFromModule('react-native-elements'));
-
-jest.mock("../../api/api.js", () => ({
-	GetBusStopByCode: jest.fn(),
-	GetBusStop: jest.fn()
+jest.mock("../../api/api.ts", () => ({
+	GetBusStopByCode: jest.fn().mockImplementation((code) => {
+		Promise.resolve({ Description: "", RoadName: "", Code: code });
+	}),
+	GetBusStop: jest.fn().mockImplementation((code) => {
+		Promise.resolve(null);
+	}),
 }));
-
-GetBusStopByCode.mockImplementation((code) => {
-	Promise.resolve({ Description: "", RoadName: "", Code: code });
-});
-
-GetBusStop.mockImplementation((code) => {
-	Promise.resolve(null);
-})
 
 describe("Home", () => {
 	it("renders properly", () => {
-		let root = create(<GoingHome />);
-		expect(root.toJSON()).toMatchSnapshot();
+		const screen = render(<GoingHome />).toJSON();
+		expect(screen).toMatchSnapshot();
 	});
 
 	it("renders list of bus stops properly", () => {
 		const settings = {
-			settings: {
-				GoingHome: [44229],
-			}
+			GoingHome: [44221],
 		};
-		let root = create(<GoingHome settings={settings} />);
-		expect(root.toJSON()).toMatchSnapshot();
+
+		const screen = render(<GoingHome settings={settings} />).toJSON();
+		expect(screen).toMatchSnapshot();
 	});
 });

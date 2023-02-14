@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Constants from "expo-constants";
 const api = process.env.BACKEND_API ?? Constants.manifest?.extra?.BACKEND_API;
 
@@ -17,14 +17,14 @@ var data = {
 	},
 };
 
-export const GetBusData = async (busNumber, busStopCode) => {
+export const GetBusData = async (busNumber: string, busStopCode: string) => {
 	const response = await axios.get(
 		`${api}/busroutes/${busNumber}/${busStopCode}`
 	);
 	return response.data;
 };
 
-export const GetBusRouteData = async (busNumber) => {
+export const GetBusRouteData = async (busNumber: string) => {
 	const response = await axios.get(
 		`${api}/busroutes/${busNumber}`
 	);
@@ -36,20 +36,20 @@ export const GetBusStopList = async () => {
 	return response.data;
 };
 
-export const GetBusStop = async (code) => {
+export const GetBusStop = async (code: string) => {
 	const response = await axios.get(`${api}/busstops/${code}`, data);
 	return response.data;
 };
 
-export const GetBusStopByCode = async (code) => {
+export const GetBusStopByCode = async (code: string) => {
 	const response = await axios.get(`${api}/busstops?code=${code}`, data);
 	return response.data;
 };
 
 export const GetNearbyBusStop = async (
-	longitude,
-	latitude,
-	maxDistance = process.env.MAX_DISTANCE_IN_METRES ?? Constants.manifest.extra.MAX_DISTANCE_IN_METRES ?? 100
+	longitude: number,
+	latitude: number,
+	maxDistance = process.env.MAX_DISTANCE_IN_METRES ?? Constants.manifest?.extra?.MAX_DISTANCE_IN_METRES ?? 100
 ) => {
 	if (!longitude || !latitude) {
 		console.error("Latitude or longitude not provided");
@@ -69,7 +69,7 @@ export const GetNearbyBusStop = async (
 	return response.data;
 };
 
-export const SearchBusStop = async (term) => {
+export const SearchBusStop = async (term: string) => {
 	const response = await axios
 		.get(`${api}/busstops/search?term=${term}`, data)
 		.catch((error) => {
@@ -79,12 +79,12 @@ export const SearchBusStop = async (term) => {
 	return response.data;
 };
 
-export const GetBus = async (number) => {
+export const GetBus = async (number: string) => {
 	const response = await axios.get(`${api}/bus?number=${number}`);
 	return response.data;
 };
 
-export const GetSettings = async (token) => {
+export const GetSettings = async (token: null) => {
 	console.log("Token is: " + token);
 	data.headers["X-Auth-Token"] = token;
 	console.log("Api is: " + api);
@@ -100,7 +100,7 @@ export const GetSettings = async (token) => {
 		});
 };
 
-export const SaveSettings = async (token, code, GoingOut = true) => {
+export const SaveSettings = async (token: null, code: string, GoingOut = true) => {
 	try {
 		if (!token) {
 			console.error("No token provided");
@@ -136,7 +136,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 		if (GoingOut) {
 			const newSettings = Object.assign({}, prevSettings, {
 				GoingOut: [
-					...prevSettings.GoingOut.filter((c) => c !== code),
+					...prevSettings.GoingOut.filter((c: string) => c !== code),
 					code,
 				],
 			});
@@ -175,7 +175,7 @@ export const SaveSettings = async (token, code, GoingOut = true) => {
 	}
 };
 
-export const RemoveCodeFromSettings = async (token, code, GoingOut = true) => {
+export const RemoveCodeFromSettings = async (token: null, code: string, GoingOut = true) => {
 	try {
 		if (!token) {
 			console.error("No token provided");
@@ -212,7 +212,7 @@ export const LogOut = async () => {
 	return result.data;
 };
 
-export const CheckTokenExpiry = async (token) => {
+export const CheckTokenExpiry = async (token: null) => {
 	console.log("Checking token expiry:" + token);
 	data.headers["X-Auth-Token"] = token;
 	if (!token) {
