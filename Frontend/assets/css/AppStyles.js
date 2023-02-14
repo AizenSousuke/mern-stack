@@ -146,4 +146,9 @@ export default StyleSheet.create({
 	dark: {
 		backgroundColor: "#ffbaba",
 	},
+	modal: {
+		flex: 0.8,
+		flexDirection: "row",
+		justifyContent: "space-evenly",
+	}
 });
