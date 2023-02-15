@@ -76,7 +76,7 @@ jest.mock("react-native-maps", () => {
 	};
 });
 
-describe("Going out", () => {
+describe("BusStop", () => {
 	const data = {
 		BusStopCode: "83139",
 		Services: [

@@ -22,17 +22,19 @@ const BusStopSaved = ({ code, GoingOut }: { code: any; GoingOut: boolean }) => {
 
 	useEffect(() => {
 		console.log("Getting data for " + code);
-		getBusStopData();
+		(async () => await getBusStopData())();
 	}, [code]);
 
 	const getBusStopData = async () => {
-		await GetBusStopByCode(code)
+		GetBusStopByCode(code)
 			.then((res) => {
+				// console.log("GetBusStopByCode: " + JSON.stringify(res.busStop));
 				setBusStop(res.busStop);
 			})
 			.catch((error) => console.error(error));
-		await GetBusStop(code)
+		GetBusStop(code)
 			.then((res) => {
+				// console.log("GetBusStop: " + JSON.stringify(res.data));
 				setBusStopData(res.data);
 			})
 			.catch((error) => console.error(error));
@@ -57,13 +59,15 @@ const BusStopSaved = ({ code, GoingOut }: { code: any; GoingOut: boolean }) => {
 				<ListItem.Content>
 					<ListItem.Title>
 						<Text style={AppStyles.busStopName}>
-							{busStop ? busStop.Description : "Bus Stop Name"}
+							{busStop
+								? busStop.Description
+								: "No Bus Stop Name provided"}
 						</Text>
 					</ListItem.Title>
 					<ListItem.Subtitle>
 						<Text style={AppStyles.busStopRoadName}>
-							{busStop ? busStop.RoadName : "Address"} (
-							{code ?? "Bus Stop Code"})
+							{busStop ? busStop.RoadName : "No Address provided"}{" "}
+							({code ?? "No Bus Stop Code provided"})
 						</Text>
 					</ListItem.Subtitle>
 				</ListItem.Content>

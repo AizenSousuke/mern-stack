@@ -1,0 +1,3809 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GoingHome renders list of bus stops properly according to snapshot 1`] = `
+<RCTScrollView
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fcd5ce",
+              "borderBottomWidth": 0.5,
+              "borderColor": "#bcbbc1",
+              "borderTopWidth": 0.5,
+              "flexDirection": "row",
+              "padding": 14,
+            }
+          }
+          testID="padView"
+        >
+          <View
+            style={
+              Object {
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingLeft": 16,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "flex-start",
+                  "flex": 1,
+                  "justifyContent": "center",
+                },
+                undefined,
+              ]
+            }
+            theme={
+              Object {
+                "colors": Object {
+                  "black": "#242424",
+                  "disabled": "hsl(208, 8%, 90%)",
+                  "divider": "#bcbbc1",
+                  "error": "#ff190c",
+                  "grey0": "#393e42",
+                  "grey1": "#43484d",
+                  "grey2": "#5e6977",
+                  "grey3": "#86939e",
+                  "grey4": "#bdc6cf",
+                  "grey5": "#e1e8ee",
+                  "greyOutline": "#bbb",
+                  "platform": Object {
+                    "android": Object {
+                      "error": "#f44336",
+                      "grey": "rgba(0, 0, 0, 0.54)",
+                      "primary": "#2196f3",
+                      "searchBg": "#dcdce1",
+                      "secondary": "#9C27B0",
+                      "success": "#4caf50",
+                      "warning": "#ffeb3b",
+                    },
+                    "default": Object {
+                      "error": "#ff3b30",
+                      "grey": "#7d7d7d",
+                      "primary": "#007aff",
+                      "searchBg": "#dcdce1",
+                      "secondary": "#5856d6",
+                      "success": "#4cd964",
+                      "warning": "#ffcc00",
+                    },
+                    "ios": Object {
+                      "error": "#ff3b30",
+                      "grey": "#7d7d7d",
+                      "primary": "#007aff",
+                      "searchBg": "#dcdce1",
+                      "secondary": "#5856d6",
+                      "success": "#4cd964",
+                      "warning": "#ffcc00",
+                    },
+                    "web": Object {
+                      "error": "#ff190c",
+                      "grey": "#393e42",
+                      "primary": "#2089dc",
+                      "searchBg": "#303337",
+                      "secondary": "#ca71eb",
+                      "success": "#52c41a",
+                      "warning": "#faad14",
+                    },
+                  },
+                  "primary": "#2089dc",
+                  "searchBg": "#303337",
+                  "secondary": "#ca71eb",
+                  "success": "#52c41a",
+                  "warning": "#faad14",
+                  "white": "#ffffff",
+                },
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#242424",
+                  "fontSize": 17,
+                }
+              }
+              testID="listItemTitle"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#03071E",
+                  }
+                }
+              >
+                Sample Description
+              </Text>
+            </Text>
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#242424",
+                  "fontSize": 15,
+                }
+              }
+              testID="listItemTitle"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#414833",
+                  }
+                }
+              >
+                Sample Road Name
+                 
+                (
+                44221
+                )
+              </Text>
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingLeft": 16,
+              }
+            }
+          />
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View>
+              <View
+                style={
+                  Object {
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text />
+                  </View>
+                </View>
+              </View>
+              <Modal
+                hardwareAccelerated={false}
+                onRequestClose={[Function]}
+                theme={
+                  Object {
+                    "colors": Object {
+                      "black": "#242424",
+                      "disabled": "hsl(208, 8%, 90%)",
+                      "divider": "#bcbbc1",
+                      "error": "#ff190c",
+                      "grey0": "#393e42",
+                      "grey1": "#43484d",
+                      "grey2": "#5e6977",
+                      "grey3": "#86939e",
+                      "grey4": "#bdc6cf",
+                      "grey5": "#e1e8ee",
+                      "greyOutline": "#bbb",
+                      "platform": Object {
+                        "android": Object {
+                          "error": "#f44336",
+                          "grey": "rgba(0, 0, 0, 0.54)",
+                          "primary": "#2196f3",
+                          "searchBg": "#dcdce1",
+                          "secondary": "#9C27B0",
+                          "success": "#4caf50",
+                          "warning": "#ffeb3b",
+                        },
+                        "default": Object {
+                          "error": "#ff3b30",
+                          "grey": "#7d7d7d",
+                          "primary": "#007aff",
+                          "searchBg": "#dcdce1",
+                          "secondary": "#5856d6",
+                          "success": "#4cd964",
+                          "warning": "#ffcc00",
+                        },
+                        "ios": Object {
+                          "error": "#ff3b30",
+                          "grey": "#7d7d7d",
+                          "primary": "#007aff",
+                          "searchBg": "#dcdce1",
+                          "secondary": "#5856d6",
+                          "success": "#4cd964",
+                          "warning": "#ffcc00",
+                        },
+                        "web": Object {
+                          "error": "#ff190c",
+                          "grey": "#393e42",
+                          "primary": "#2089dc",
+                          "searchBg": "#303337",
+                          "secondary": "#ca71eb",
+                          "success": "#52c41a",
+                          "warning": "#faad14",
+                        },
+                      },
+                      "primary": "#2089dc",
+                      "searchBg": "#303337",
+                      "secondary": "#ca71eb",
+                      "success": "#52c41a",
+                      "warning": "#faad14",
+                      "white": "#ffffff",
+                    },
+                  }
+                }
+                transparent={true}
+                visible={false}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        collapsable={false}
+        pointerEvents="none"
+        style={
+          Object {
+            "height": 0,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View
+          collapsable={false}
+          forwardedRef={[Function]}
+          onLayout={[Function]}
+          style={Object {}}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": undefined,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    171
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    184
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    960
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    963
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    966
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.6}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "orange",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "orange",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -9.600000000000001,
+                            },
+                            Object {
+                              "scaleX": 0.60004,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    972M
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Double
+                  </Text>
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    973
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "justifyContent": "space-around",
+                  "padding": 5,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.2,
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#370617",
+                          "fontSize": 20,
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                        },
+                      ]
+                    }
+                  >
+                    976
+                  </Text>
+                </View>
+              </View>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "flex": 0.8,
+                    "flexDirection": "row",
+                    "justifyContent": "space-evenly",
+                  }
+                }
+                testID="Pressable"
+              >
+                <Modal
+                  hardwareAccelerated={false}
+                  onRequestClose={[Function]}
+                  theme={
+                    Object {
+                      "colors": Object {
+                        "black": "#242424",
+                        "disabled": "hsl(208, 8%, 90%)",
+                        "divider": "#bcbbc1",
+                        "error": "#ff190c",
+                        "grey0": "#393e42",
+                        "grey1": "#43484d",
+                        "grey2": "#5e6977",
+                        "grey3": "#86939e",
+                        "grey4": "#bdc6cf",
+                        "grey5": "#e1e8ee",
+                        "greyOutline": "#bbb",
+                        "platform": Object {
+                          "android": Object {
+                            "error": "#f44336",
+                            "grey": "rgba(0, 0, 0, 0.54)",
+                            "primary": "#2196f3",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#9C27B0",
+                            "success": "#4caf50",
+                            "warning": "#ffeb3b",
+                          },
+                          "default": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "ios": Object {
+                            "error": "#ff3b30",
+                            "grey": "#7d7d7d",
+                            "primary": "#007aff",
+                            "searchBg": "#dcdce1",
+                            "secondary": "#5856d6",
+                            "success": "#4cd964",
+                            "warning": "#ffcc00",
+                          },
+                          "web": Object {
+                            "error": "#ff190c",
+                            "grey": "#393e42",
+                            "primary": "#2089dc",
+                            "searchBg": "#303337",
+                            "secondary": "#ca71eb",
+                            "success": "#52c41a",
+                            "warning": "#faad14",
+                          },
+                        },
+                        "primary": "#2089dc",
+                        "searchBg": "#303337",
+                        "secondary": "#ca71eb",
+                        "success": "#52c41a",
+                        "warning": "#faad14",
+                        "white": "#ffffff",
+                      },
+                    }
+                  }
+                  transparent={true}
+                  visible={false}
+                />
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "column",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontSize": 10,
+                        "textAlign": "center",
+                      }
+                    }
+                  />
+                  <View
+                    animated={true}
+                    animationConfig={
+                      Object {
+                        "bounciness": 0,
+                      }
+                    }
+                    animationType="spring"
+                    indeterminate={false}
+                    indeterminateAnimationDuration={1000}
+                    onLayout={[Function]}
+                    progress={0.2}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": undefined,
+                          "borderColor": "green",
+                          "borderRadius": 4,
+                          "borderWidth": 1,
+                          "overflow": "hidden",
+                          "width": 50,
+                        },
+                        undefined,
+                      ]
+                    }
+                    useNativeDriver={false}
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "backgroundColor": "green",
+                          "height": 6,
+                          "transform": Array [
+                            Object {
+                              "translateX": 0,
+                            },
+                            Object {
+                              "translateX": -19.2,
+                            },
+                            Object {
+                              "scaleX": 0.20008,
+                            },
+                          ],
+                        }
+                      }
+                    />
+                  </View>
+                  <Text
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Arrived
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`GoingHome renders properly according to snapshot 1`] = `
+<RCTScrollView
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+>
+  <RCTRefreshControl />
+  <View />
+</RCTScrollView>
+`;

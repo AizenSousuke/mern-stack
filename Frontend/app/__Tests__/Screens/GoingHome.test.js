@@ -1,6 +1,7 @@
 import React from "react";
 import GoingHome from "../../screens/GoingHome";
-import { render } from "@testing-library/react-native";
+import { act, render } from "@testing-library/react-native";
+import { create } from "react-test-renderer";
 
 jest.mock("react-native-gesture-handler", () => {
 	// eslint-disable-next-line global-require
@@ -39,27 +40,24 @@ jest.mock("react-native-gesture-handler", () => {
 	};
 });
 
-jest.mock("../../api/api.ts", () => ({
-	GetBusStopByCode: jest.fn().mockImplementation((code) => {
-		Promise.resolve({ Description: "", RoadName: "", Code: code });
-	}),
-	GetBusStop: jest.fn().mockImplementation((code) => {
-		Promise.resolve(null);
-	}),
-}));
+jest.mock("../../api/api.ts");
 
-describe("Home", () => {
-	it("renders properly", () => {
+describe("GoingHome", () => {
+	it("renders properly according to snapshot", () => {
 		const screen = render(<GoingHome />).toJSON();
 		expect(screen).toMatchSnapshot();
 	});
 
-	it("renders list of bus stops properly", () => {
+	it("renders list of bus stops properly according to snapshot", async () => {
 		const settings = {
 			GoingHome: [44221],
 		};
 
-		const screen = render(<GoingHome settings={settings} />).toJSON();
-		expect(screen).toMatchSnapshot();
+		await act(async () => {
+			const screen = (
+				await create(<GoingHome settings={settings} />)
+			).toJSON();
+			expect(screen).toMatchSnapshot();
+		});
 	});
 });
