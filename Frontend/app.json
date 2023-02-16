@@ -29,7 +29,8 @@
 			"favicon": "./assets/favicon.png"
 		},
 		"description": "Yet Another SG Bus App for Singapore Buses",
-		"scheme": "yasgba"
+		"scheme": "yasgba",
+		"plugins": ["@config-plugins/detox"]
 	},
 	"android": {
 		"config": {
