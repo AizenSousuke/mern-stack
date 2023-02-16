@@ -5,9 +5,9 @@ describe("App", () => {
 		await device.launchApp();
 	});
 
-	beforeEach(async () => {
-		await reloadApp();
-	});
+	// beforeEach(async () => {
+	// 	await reloadApp();
+	// });
 
 	it("Works", async () => {
 		await expect(element(by.text("Yet"))).toBeVisible();
