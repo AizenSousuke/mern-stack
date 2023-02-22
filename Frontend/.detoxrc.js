@@ -57,7 +57,10 @@ module.exports = {
   configurations: {
     'ios.sim.debug': {
       device: 'simulator',
-      app: 'ios.debug'
+      app: 'ios.debug',
+      binaryPath: 'bin/Exponent.app',
+      type: 'ios.simulator',
+      name: 'iPhone 14'
     },
     'ios.sim.release': {
       device: 'simulator',

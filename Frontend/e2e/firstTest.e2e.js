@@ -12,4 +12,8 @@ describe("App", () => {
 	it("Works", async () => {
 		await expect(element(by.text("Yet"))).toBeVisible();
 	});
+
+	it("passes", () => {
+		expect(true).toBe(true);
+	})
 });

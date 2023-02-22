@@ -9,6 +9,7 @@
     "build-old": "expo build:android -t apk",
     "eject": "expo eject",
     "test": "jest --watch --all --detectOpenHandles",
+    "e2e": "node_modules/.bin/jest **/*.e2e.js",
     "eas-build-pre-install": "./eas-hooks/eas-build-pre-install.sh",
     "eas-build-on-success": "./eas-hooks/eas-build-on-success.sh"
   },
