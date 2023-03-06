@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "react-native-elements";
 import { FloatingAction } from "react-native-floating-action";
-import ColourScheme from "../settings/ColourScheme.json";
+import ColourScheme from "../settings/colourScheme.json";
 
 export const LocationButton = ({ onPress }: { onPress: () => void }) => {
 	return (

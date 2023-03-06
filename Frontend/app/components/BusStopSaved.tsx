@@ -11,7 +11,7 @@ import { Pressable } from "react-native";
 import BusStop from "./BusStop";
 import AuthConsumer from "../context/AuthContext";
 import AppStyles from "../../assets/css/AppStyles";
-import ColourScheme from "../settings/ColourScheme.json";
+import ColourScheme from "../settings/colourScheme.json";
 
 const BusStopSaved = ({ code, GoingOut }: { code: any; GoingOut: boolean }) => {
 	const [busStop, setBusStop] = useState(null);

@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar, Platform } from "react-native";
-import ColourScheme from "../../app/settings/ColourScheme.json";
+import ColourScheme from "../../app/settings/colourScheme.json";
 
 export default StyleSheet.create({
 	background: {

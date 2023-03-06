@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Header, Image, Text } from "react-native-elements";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ColourScheme from "../settings/ColourScheme.json";
+import ColourScheme from "../settings/colourScheme.json";
 
 const BusLocation = ({
 	busNumber,

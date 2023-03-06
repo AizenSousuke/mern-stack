@@ -9,7 +9,7 @@ import TabNavigator from "./TabNavigator";
 import AuthConsumer from "../context/AuthContext";
 import { CheckTokenExpiry } from "../api/api";
 import LocationButton from "./LocationButton";
-import ColourScheme from "../settings/ColourScheme.json";
+import ColourScheme from "../settings/colourScheme.json";
 import Constants from "expo-constants";
 
 export const Home = ({ navigation }: { navigation: any }) => {

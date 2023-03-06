@@ -148,6 +148,11 @@ yarn frontend
 yarn backend
 ```
 
+## To start in IOS simulator
+```
+npx expo run:ios
+```
+
 ---
 
 # Deploying

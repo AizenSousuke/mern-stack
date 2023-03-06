@@ -11,7 +11,7 @@ import {
 } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppStyles from "../../assets/css/AppStyles";
-import ColourScheme from "../settings/ColourScheme.json";
+import ColourScheme from "../settings/colourScheme.json";
 import { GetBusData, GetBusRouteData } from "../api/api";
 import Table from "./Table";
 
