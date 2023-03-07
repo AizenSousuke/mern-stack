@@ -11,5 +11,6 @@
     "textSecondary": "#414833",
     "link": "#370617",
     "black": "#000000",
-    "header": "#DC2F02"
+    "header": "#DC2F02",
+    "subheader": "#DC2F02"
 }
