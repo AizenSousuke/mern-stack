@@ -153,6 +153,10 @@ yarn backend
 npx expo run:ios
 ```
 
+```
+# Android
+cd android && .\gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd -
+```
 ---
 
 # Deploying
