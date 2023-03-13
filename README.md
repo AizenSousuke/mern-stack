@@ -152,10 +152,17 @@ yarn backend
 ```
 npx expo run:ios
 ```
+---
 
+## Testing
 ```
 # Android
+# Build
 cd android && .\gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd -
+
+# Run app and run detox
+npx expo run:android && detox test
+
 ```
 ---
 
