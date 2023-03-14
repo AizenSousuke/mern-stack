@@ -1,8 +1,9 @@
 import { reloadApp } from "detox-expo-helpers";
+const { device } = require("detox");
 
 describe("App", () => {
 	beforeAll(async () => {
-		await device.launchApp();
+		await device.launchApp({ newInstance: true });
 	});
 
 	// beforeEach(async () => {
@@ -15,5 +16,5 @@ describe("App", () => {
 
 	it("passes", () => {
 		expect(true).toBe(true);
-	})
+	});
 });

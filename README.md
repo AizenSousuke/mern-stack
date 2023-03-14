@@ -157,11 +157,15 @@ npx expo run:ios
 ## Testing
 ```
 # Android
+# Start emulator
+
 # Build
-cd android && .\gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd -
+detox build -c android.emu.debug
+or
+~~cd android && .\gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd -~~
 
 # Run app and run detox
-npx expo run:android && detox test
+npx detox test -c android.emu.debug
 
 ```
 ---
