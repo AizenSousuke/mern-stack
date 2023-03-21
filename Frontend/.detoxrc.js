@@ -20,7 +20,7 @@ module.exports = {
       binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/yasgba.app',
       build: 'xcodebuild -workspace ios/yasgba.xcworkspace -scheme yasgba -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
     },
-    'android.debug.ios': {
+    'android.debug.mac': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
       build: 'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd ..',
@@ -36,10 +36,21 @@ module.exports = {
         8081
       ]
     },
+    'android.release.mac': {
+      type: 'android.apk',
+      binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
+      build: 'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release --warning-mode all && cd ..',
+      reversePorts: [
+        8081
+      ]
+    },
     'android.release': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
-      build: 'cd android && .\\gradlew assembleRelease assembleAndroidTest -DtestBuildType=release --warning-mode all && cd ..'
+      build: 'cd android && .\\gradlew assembleRelease assembleAndroidTest -DtestBuildType=release --warning-mode all && cd ..',
+      reversePorts: [
+        8081
+      ]
     }
   },
   devices: {
@@ -58,7 +69,8 @@ module.exports = {
     emulator: {
       type: 'android.emulator',
       device: {
-        avdName: 'Pixel_4_API_30'
+        // avdName: 'Pixel_4_API_30'
+        avdName: 'Pixel_6_Pro_API_33'
       }
     }
   },
