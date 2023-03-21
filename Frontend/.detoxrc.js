@@ -20,6 +20,14 @@ module.exports = {
       binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/yasgba.app',
       build: 'xcodebuild -workspace ios/yasgba.xcworkspace -scheme yasgba -configuration Release -sdk iphonesimulator -derivedDataPath ios/build'
     },
+    'android.debug.ios': {
+      type: 'android.apk',
+      binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
+      build: 'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd ..',
+      reversePorts: [
+        8081
+      ]
+    },
     'android.debug': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
