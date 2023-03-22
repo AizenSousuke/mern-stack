@@ -1,47 +1,43 @@
 {
-  "expo": {
-    "name": "Yet Another SG Bus App",
-    "slug": "yasgba",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "com.onemanstudio.yasgba"
-    },
-    "android": {
-      "package": "com.onemanstudio.yasgba",
-      "versionCode": 1,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "description": "Yet Another SG Bus App for Singapore Buses",
-    "scheme": "yasgba",
-    "plugins": [
-      "@config-plugins/detox"
-    ]
-  },
-  "android": {
-    "config": {
-      "googleMaps": {
-        "apiKey": "AIzaSyBggU4Zo3KvXPUfiLFYRWrRUQc_-b6KGHs"
-      }
-    }
-  }
+	"expo": {
+		"name": "Yet Another SG Bus App",
+		"slug": "yasgba",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": false,
+			"bundleIdentifier": "com.onemanstudio.yasgba"
+		},
+		"android": {
+			"package": "com.onemanstudio.yasgba",
+			"versionCode": 1,
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#FFFFFF"
+			}
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"description": "Yet Another SG Bus App for Singapore Buses",
+		"scheme": "yasgba",
+		"plugins": ["@config-plugins/detox"]
+	},
+	"android": {
+		"config": {
+			"googleMaps": {
+				"apiKey": "AIzaSyBggU4Zo3KvXPUfiLFYRWrRUQc_-b6KGHs"
+			}
+		}
+	}
 }

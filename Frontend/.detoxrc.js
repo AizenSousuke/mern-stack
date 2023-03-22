@@ -39,6 +39,7 @@ module.exports = {
     'android.release.mac': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
+      testBinaryPath: 'android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk',
       build: 'cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release --warning-mode all && cd ..',
       reversePorts: [
         8081
@@ -47,6 +48,7 @@ module.exports = {
     'android.release': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
+      // testBinaryPath: 'android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk',
       build: 'cd android && .\\gradlew assembleRelease assembleAndroidTest -DtestBuildType=release --warning-mode all && cd ..',
       reversePorts: [
         8081
@@ -69,8 +71,8 @@ module.exports = {
     emulator: {
       type: 'android.emulator',
       device: {
-        // avdName: 'Pixel_4_API_30'
-        avdName: 'Pixel_6_Pro_API_33'
+        avdName: 'Pixel_4_API_30'
+        // avdName: 'Pixel_6_Pro_API_33'
       }
     }
   },
