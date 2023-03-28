@@ -12,5 +12,3 @@
 -keep class com.facebook.react.turbomodule.** { *; }
 
 # Add any project specific keep options here:
--keep class com.facebook.** { *; }
--keep class androidx.paging.** { *; }

@@ -48,7 +48,6 @@ module.exports = {
     'android.release': {
       type: 'android.apk',
       binaryPath: 'android/app/build/outputs/apk/release/app-release.apk',
-      // testBinaryPath: 'android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk',
       build: 'cd android && .\\gradlew assembleRelease assembleAndroidTest -DtestBuildType=release --warning-mode all && cd ..',
       reversePorts: [
         8081
