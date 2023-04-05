@@ -8,6 +8,6 @@ describe("Home screen", () => {
 	});
 
     it("should work", async () => {
-        await expect(element(by.text('Yet'))).toBeVisible();
+        await expect(element(by.text('Yet Another SG Bus App'))).toBeVisible();
     })
 });
