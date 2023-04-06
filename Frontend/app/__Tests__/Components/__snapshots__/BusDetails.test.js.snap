@@ -3,7 +3,7 @@
 exports[`Bus Details renders BusDetails according to snapshot 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "white",
       "flexDirection": "row",
       "justifyContent": "space-around",
@@ -12,6 +12,23 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
   }
 >
   <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -25,7 +42,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "flex": 0.2,
       }
     }
@@ -35,8 +52,8 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
       hardwareAccelerated={false}
       onRequestClose={[Function]}
       theme={
-        Object {
-          "colors": Object {
+        {
+          "colors": {
             "black": "#242424",
             "disabled": "hsl(208, 8%, 90%)",
             "divider": "#bcbbc1",
@@ -48,8 +65,8 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
             "grey4": "#bdc6cf",
             "grey5": "#e1e8ee",
             "greyOutline": "#bbb",
-            "platform": Object {
-              "android": Object {
+            "platform": {
+              "android": {
                 "error": "#f44336",
                 "grey": "rgba(0, 0, 0, 0.54)",
                 "primary": "#2196f3",
@@ -58,7 +75,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
                 "success": "#4caf50",
                 "warning": "#ffeb3b",
               },
-              "default": Object {
+              "default": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -67,7 +84,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "ios": Object {
+              "ios": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -76,7 +93,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "web": Object {
+              "web": {
                 "error": "#ff190c",
                 "grey": "#393e42",
                 "primary": "#2089dc",
@@ -100,15 +117,15 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "flexDirection": "column",
         }
       }
     >
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "alignSelf": "center",
               "color": "#370617",
               "fontSize": 20,
@@ -123,6 +140,23 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     </View>
   </View>
   <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -136,7 +170,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "flex": 0.8,
         "flexDirection": "row",
         "justifyContent": "space-evenly",
@@ -148,8 +182,8 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
       hardwareAccelerated={false}
       onRequestClose={[Function]}
       theme={
-        Object {
-          "colors": Object {
+        {
+          "colors": {
             "black": "#242424",
             "disabled": "hsl(208, 8%, 90%)",
             "divider": "#bcbbc1",
@@ -161,8 +195,8 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
             "grey4": "#bdc6cf",
             "grey5": "#e1e8ee",
             "greyOutline": "#bbb",
-            "platform": Object {
-              "android": Object {
+            "platform": {
+              "android": {
                 "error": "#f44336",
                 "grey": "rgba(0, 0, 0, 0.54)",
                 "primary": "#2196f3",
@@ -171,7 +205,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
                 "success": "#4caf50",
                 "warning": "#ffeb3b",
               },
-              "default": Object {
+              "default": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -180,7 +214,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "ios": Object {
+              "ios": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -189,7 +223,7 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "web": Object {
+              "web": {
                 "error": "#ff190c",
                 "grey": "#393e42",
                 "primary": "#2089dc",
@@ -213,14 +247,14 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "flexDirection": "column",
         }
       }
     >
       <Text
         style={
-          Object {
+          {
             "paddingTop": 8,
           }
         }
@@ -230,14 +264,14 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flexDirection": "column",
         }
       }
     >
       <Text
         style={
-          Object {
+          {
             "paddingTop": 8,
           }
         }
@@ -247,14 +281,14 @@ exports[`Bus Details renders BusDetails according to snapshot 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flexDirection": "column",
         }
       }
     >
       <Text
         style={
-          Object {
+          {
             "paddingTop": 8,
           }
         }
