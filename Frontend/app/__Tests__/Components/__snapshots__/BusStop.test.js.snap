@@ -3,14 +3,14 @@
 exports[`BusStop renders bus details properly as per the snapshot 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": undefined,
     }
   }
 >
   <View
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "flexDirection": "row",
         "justifyContent": "space-around",
@@ -19,6 +19,23 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
     }
   >
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -32,7 +49,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "flex": 0.2,
         }
       }
@@ -42,8 +59,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         hardwareAccelerated={false}
         onRequestClose={[Function]}
         theme={
-          Object {
-            "colors": Object {
+          {
+            "colors": {
               "black": "#242424",
               "disabled": "hsl(208, 8%, 90%)",
               "divider": "#bcbbc1",
@@ -55,8 +72,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
               "grey4": "#bdc6cf",
               "grey5": "#e1e8ee",
               "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
+              "platform": {
+                "android": {
                   "error": "#f44336",
                   "grey": "rgba(0, 0, 0, 0.54)",
                   "primary": "#2196f3",
@@ -65,7 +82,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4caf50",
                   "warning": "#ffeb3b",
                 },
-                "default": Object {
+                "default": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -74,7 +91,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "ios": Object {
+                "ios": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -83,7 +100,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "web": Object {
+                "web": {
                   "error": "#ff190c",
                   "grey": "#393e42",
                   "primary": "#2089dc",
@@ -107,15 +124,15 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       />
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "center",
                 "color": "#370617",
                 "fontSize": 20,
@@ -130,6 +147,23 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       </View>
     </View>
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -143,7 +177,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "flex": 0.8,
           "flexDirection": "row",
           "justifyContent": "space-evenly",
@@ -155,8 +189,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         hardwareAccelerated={false}
         onRequestClose={[Function]}
         theme={
-          Object {
-            "colors": Object {
+          {
+            "colors": {
               "black": "#242424",
               "disabled": "hsl(208, 8%, 90%)",
               "divider": "#bcbbc1",
@@ -168,8 +202,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
               "grey4": "#bdc6cf",
               "grey5": "#e1e8ee",
               "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
+              "platform": {
+                "android": {
                   "error": "#f44336",
                   "grey": "rgba(0, 0, 0, 0.54)",
                   "primary": "#2196f3",
@@ -178,7 +212,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4caf50",
                   "warning": "#ffeb3b",
                 },
-                "default": Object {
+                "default": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -187,7 +221,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "ios": Object {
+                "ios": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -196,7 +230,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "web": Object {
+                "web": {
                   "error": "#ff190c",
                   "grey": "#393e42",
                   "primary": "#2089dc",
@@ -220,14 +254,14 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       />
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Object {
+            {
               "fontSize": 10,
               "textAlign": "center",
             }
@@ -236,7 +270,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         <View
           animated={true}
           animationConfig={
-            Object {
+            {
               "bounciness": 0,
             }
           }
@@ -246,8 +280,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           onLayout={[Function]}
           progress={0.2}
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": undefined,
                 "borderColor": "green",
                 "borderRadius": 4,
@@ -263,17 +297,17 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
+              {
                 "backgroundColor": "green",
                 "height": 6,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "translateX": 0,
                   },
-                  Object {
+                  {
                     "translateX": -19.2,
                   },
-                  Object {
+                  {
                     "scaleX": 0.20008,
                   },
                 ],
@@ -283,7 +317,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         </View>
         <Text
           style={
-            Object {
+            {
               "textAlign": "center",
             }
           }
@@ -293,14 +327,14 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Object {
+            {
               "fontSize": 10,
               "textAlign": "center",
             }
@@ -309,7 +343,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         <View
           animated={true}
           animationConfig={
-            Object {
+            {
               "bounciness": 0,
             }
           }
@@ -319,8 +353,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           onLayout={[Function]}
           progress={0.2}
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": undefined,
                 "borderColor": "green",
                 "borderRadius": 4,
@@ -336,17 +370,17 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
+              {
                 "backgroundColor": "green",
                 "height": 6,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "translateX": 0,
                   },
-                  Object {
+                  {
                     "translateX": -19.2,
                   },
-                  Object {
+                  {
                     "scaleX": 0.20008,
                   },
                 ],
@@ -356,7 +390,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         </View>
         <Text
           style={
-            Object {
+            {
               "textAlign": "center",
             }
           }
@@ -366,14 +400,14 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Object {
+            {
               "paddingTop": 8,
             }
           }
@@ -385,7 +419,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "flexDirection": "row",
         "justifyContent": "space-around",
@@ -394,6 +428,23 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
     }
   >
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -407,7 +458,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "flex": 0.2,
         }
       }
@@ -417,8 +468,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         hardwareAccelerated={false}
         onRequestClose={[Function]}
         theme={
-          Object {
-            "colors": Object {
+          {
+            "colors": {
               "black": "#242424",
               "disabled": "hsl(208, 8%, 90%)",
               "divider": "#bcbbc1",
@@ -430,8 +481,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
               "grey4": "#bdc6cf",
               "grey5": "#e1e8ee",
               "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
+              "platform": {
+                "android": {
                   "error": "#f44336",
                   "grey": "rgba(0, 0, 0, 0.54)",
                   "primary": "#2196f3",
@@ -440,7 +491,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4caf50",
                   "warning": "#ffeb3b",
                 },
-                "default": Object {
+                "default": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -449,7 +500,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "ios": Object {
+                "ios": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -458,7 +509,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "web": Object {
+                "web": {
                   "error": "#ff190c",
                   "grey": "#393e42",
                   "primary": "#2089dc",
@@ -482,15 +533,15 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       />
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "center",
                 "color": "#370617",
                 "fontSize": 20,
@@ -505,6 +556,23 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       </View>
     </View>
     <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -518,7 +586,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "flex": 0.8,
           "flexDirection": "row",
           "justifyContent": "space-evenly",
@@ -530,8 +598,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         hardwareAccelerated={false}
         onRequestClose={[Function]}
         theme={
-          Object {
-            "colors": Object {
+          {
+            "colors": {
               "black": "#242424",
               "disabled": "hsl(208, 8%, 90%)",
               "divider": "#bcbbc1",
@@ -543,8 +611,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
               "grey4": "#bdc6cf",
               "grey5": "#e1e8ee",
               "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
+              "platform": {
+                "android": {
                   "error": "#f44336",
                   "grey": "rgba(0, 0, 0, 0.54)",
                   "primary": "#2196f3",
@@ -553,7 +621,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4caf50",
                   "warning": "#ffeb3b",
                 },
-                "default": Object {
+                "default": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -562,7 +630,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "ios": Object {
+                "ios": {
                   "error": "#ff3b30",
                   "grey": "#7d7d7d",
                   "primary": "#007aff",
@@ -571,7 +639,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
                   "success": "#4cd964",
                   "warning": "#ffcc00",
                 },
-                "web": Object {
+                "web": {
                   "error": "#ff190c",
                   "grey": "#393e42",
                   "primary": "#2089dc",
@@ -595,14 +663,14 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       />
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Object {
+            {
               "fontSize": 10,
               "textAlign": "center",
             }
@@ -611,7 +679,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         <View
           animated={true}
           animationConfig={
-            Object {
+            {
               "bounciness": 0,
             }
           }
@@ -621,8 +689,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           onLayout={[Function]}
           progress={0.2}
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": undefined,
                 "borderColor": "green",
                 "borderRadius": 4,
@@ -638,17 +706,17 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
+              {
                 "backgroundColor": "green",
                 "height": 6,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "translateX": 0,
                   },
-                  Object {
+                  {
                     "translateX": -19.2,
                   },
-                  Object {
+                  {
                     "scaleX": 0.20008,
                   },
                 ],
@@ -658,7 +726,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         </View>
         <Text
           style={
-            Object {
+            {
               "textAlign": "center",
             }
           }
@@ -668,14 +736,14 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Object {
+            {
               "fontSize": 10,
               "textAlign": "center",
             }
@@ -684,7 +752,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         <View
           animated={true}
           animationConfig={
-            Object {
+            {
               "bounciness": 0,
             }
           }
@@ -694,8 +762,8 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           onLayout={[Function]}
           progress={0.2}
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": undefined,
                 "borderColor": "green",
                 "borderRadius": 4,
@@ -711,17 +779,17 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
+              {
                 "backgroundColor": "green",
                 "height": 6,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "translateX": 0,
                   },
-                  Object {
+                  {
                     "translateX": -19.2,
                   },
-                  Object {
+                  {
                     "scaleX": 0.20008,
                   },
                 ],
@@ -731,7 +799,7 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
         </View>
         <Text
           style={
-            Object {
+            {
               "textAlign": "center",
             }
           }
@@ -741,14 +809,14 @@ exports[`BusStop renders bus details properly as per the snapshot 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "flexDirection": "column",
           }
         }
       >
         <Text
           style={
-            Object {
+            {
               "paddingTop": 8,
             }
           }
