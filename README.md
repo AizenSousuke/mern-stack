@@ -160,13 +160,18 @@ npx expo run:ios
 # Start emulator
 
 # Build
-detox build -c android.emu.debug
+detox build -c android.emu.release
 or
-~~cd android && .\gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug --warning-mode all && cd -~~
+~~cd android && .\gradlew assembleDebug assembleAndroidTest -DtestBuildType=release --warning-mode all && cd -~~
 
 # Run app and run detox
-npx detox test -c android.emu.debug
+npx detox test -c android.emu.release
 
+```
+
+Any issues can use the following commands to resolve it:
+```
+gradlew --stop
 ```
 ---
 
