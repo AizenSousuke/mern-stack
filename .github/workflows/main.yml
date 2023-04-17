@@ -12,8 +12,8 @@ jobs:
               with:
                   node-version: "18.15"
             - name: Setup Dependencies
-              working-directory: .\Frontend
               run: |
+                  cd frontend
                   yarn install
                   pwd
                   npx detox build -c android.emu.release
