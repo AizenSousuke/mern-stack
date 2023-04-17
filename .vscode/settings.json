@@ -1,0 +1,7 @@
+{
+    "jest.jestCommandLine": "yarn test",
+    "jest.rootPath": ".",
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-action.json": "file:///c%3A/Users/Accelerator/source/repos/mern-stack/.github/workflows/main.yml"
+    }
+}

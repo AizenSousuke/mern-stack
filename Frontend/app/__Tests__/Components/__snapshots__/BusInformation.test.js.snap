@@ -1,0 +1,879 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BusInformation renders according to snapshot 1`] = `
+<RNCSafeAreaView
+  edges={
+    [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#DC2F02",
+        "borderBottomColor": "#f2f2f2",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingHorizontal": 10,
+        "paddingVertical": 10,
+      }
+    }
+    testID="headerContainer"
+  >
+    <RNCSafeAreaView
+      edges={
+        [
+          "left",
+          "top",
+          "right",
+        ]
+      }
+      style={
+        {
+          "flexDirection": "row",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "flex-start",
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flex": 3,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "alignSelf": "center",
+              "color": "white",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Bus 
+          966
+        </Text>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "flex-end",
+            "flex": 1,
+          }
+        }
+      />
+    </RNCSafeAreaView>
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "#fff",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 0,
+        "marginHorizontal": 10,
+        "marginVertical": 5,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "borderRightColor": "#bdc6cf",
+          "borderRightWidth": 1,
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+        testID="buttonGroupItem"
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#370617",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#fff",
+                "fontSize": 16.714285714285715,
+                "fontWeight": "500",
+              }
+            }
+            testID="buttonGroupItemText"
+          >
+            <View
+              style={
+                [
+                  {
+                    "borderRadius": 3,
+                    "overflow": "hidden",
+                  },
+                  {
+                    "borderRadius": 3,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  {
+                    "busy": false,
+                    "checked": undefined,
+                    "disabled": false,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#2089dc",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Information
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": false,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+        testID="buttonGroupItem"
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#5e6977",
+                "fontSize": 16.714285714285715,
+                "fontWeight": "500",
+              }
+            }
+            testID="buttonGroupItemText"
+          >
+            <View
+              style={
+                [
+                  {
+                    "borderRadius": 3,
+                    "overflow": "hidden",
+                  },
+                  {
+                    "borderRadius": 3,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  {
+                    "busy": false,
+                    "checked": undefined,
+                    "disabled": false,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "opacity": 1,
+                  }
+                }
+                testID="RouteButton"
+              >
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#2089dc",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Route
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <RCTScrollView
+    style={
+      {
+        "flexGrow": 0,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#e1e8ee",
+            "borderWidth": 1,
+            "margin": 15,
+            "marginBottom": 0,
+            "padding": 15,
+            "shadowColor": "rgba(0,0,0, .2)",
+            "shadowOffset": {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 1,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "transparent",
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#43484d",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "marginBottom": 15,
+                "textAlign": "center",
+              }
+            }
+            testID="cardTitle"
+          >
+            Information
+          </Text>
+          <View
+            style={
+              {
+                "borderBottomColor": "#bcbbc1",
+                "borderBottomWidth": 1,
+                "marginBottom": 15,
+              }
+            }
+          />
+          <View
+            style={
+              {
+                "display": "flex",
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "display": "flex",
+                }
+              }
+            >
+              <View
+                style={
+                  [
+                    {
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    },
+                    {
+                      "backgroundColor": "#ffbaba",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "#242424",
+                        "fontSize": 12,
+                      }
+                    }
+                  >
+                    First Bus
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "#242424",
+                        "fontSize": 12,
+                      }
+                    }
+                  >
+                    Last Bus
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      WEEKDAY
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      WEEKDAY
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SAT
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SAT
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SUN
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    {
+                      "borderColor": "#ffbaba",
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "padding": 5,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                      SUN
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      {
+                        "display": "flex",
+                        "flex": 0.5,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#242424",
+                          "fontSize": 12,
+                        }
+                      }
+                    >
+                       hrs
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</RNCSafeAreaView>
+`;

@@ -1,0 +1,22 @@
+name: detox-e2e-test
+on:
+    push:
+        branches:
+            - dev-nik/feature/deploy-to-android
+jobs:
+    run-detox-e2e-test:
+        runs-on: self-hosted
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "18.15"
+            - name: Setup Dependencies
+              run: |
+                  cd frontend
+                  yarn install
+                  pwd
+                  npx detox build -c android.emu.release
+                  npx detox test -c android.emu.release
