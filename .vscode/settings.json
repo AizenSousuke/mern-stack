@@ -1,4 +1,11 @@
 {
     "jest.jestCommandLine": "yarn test",
-    "jest.rootPath": "."
+    "jest.rootPath": ".",
+    "yaml.schemas": {
+        "file:///z%3A/Nik/Files/Downloads/Programs/VSCode-win32-x64/data/extensions/me-dutour-mathieu.vscode-github-actions-2.2.7/schemas/workflow.schema.json": [
+            "/.github/workflows/*.yml",
+            "file:///c%3A/Users/Accelerator/source/repos/mern-stack/.github/workflows/main.yml"
+        ],
+        "file:///z%3A/Nik/Files/Downloads/Programs/VSCode-win32-x64/data/extensions/me-dutour-mathieu.vscode-github-actions-2.2.7/schemas/action.schema.json": "/action.yml"
+    }
 }
