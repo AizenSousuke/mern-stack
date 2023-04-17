@@ -4,11 +4,11 @@ jobs:
     run-detox-e2e-test:
         runs-on: self-hosted
         steps:
+            - uses: actions/checkout
             - uses: actions/setup-node@v3
               with:
                   node-version: "18"
             - run: git clone https://github.com/AizenSousuke/mern-stack.git
-            - run: cd mern-stack
             - run: cd mern-stack
             - run: cd Frontend
             - run: yarn install
