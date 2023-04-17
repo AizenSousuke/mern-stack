@@ -9,6 +9,7 @@ jobs:
                   node-version: "18"
             - run: git clone https://github.com/AizenSousuke/mern-stack.git
             - run: cd mern-stack
+            - run: cd mern-stack
             - run: cd Frontend
             - run: yarn install
             - run: npx detox build -c android.emu.release
