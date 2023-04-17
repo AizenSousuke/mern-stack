@@ -8,6 +8,8 @@ jobs:
               with:
                   node-version: "18"
             - run: dir
+            - run: cd ..
+            - run: dir
             - run: cd frontend
             - run: yarn install
             - run: npx detox build -c android.emu.release
