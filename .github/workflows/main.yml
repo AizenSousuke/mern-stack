@@ -7,13 +7,14 @@ jobs:
     run-detox-e2e-test:
         runs-on: self-hosted
         steps:
+            - name: Install dependencies
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
                   node-version: "18.15"
-            - run: dir
-            - run: cd "Frontend"
+            - run: pwd
+            - run: cd Frontend
             - run: yarn install
-            - run: dir
+            - run: pwd
             - run: npx detox build -c android.emu.release
             - run: npx detox test -c android.emu.release
