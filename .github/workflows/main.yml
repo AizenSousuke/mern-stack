@@ -13,5 +13,6 @@ jobs:
             - run: cd mern-stack
             - run: cd Frontend
             - run: yarn install
+            - run: dir
             - run: npx detox build -c android.emu.release
             - run: npx detox test -c android.emu.release
