@@ -12,10 +12,7 @@ jobs:
               with:
                   node-version: "18.15"
             - run: dir
-            #- run: git clone https://github.com/AizenSousuke/mern-stack.git
-            #- run: git checkout dev-nik/feature/deploy-to-android
-            #- run: cd mern-stack
-            - run: cd Frontend
+            - run: cd "Frontend"
             - run: yarn install
             - run: dir
             - run: npx detox build -c android.emu.release
