@@ -99,6 +99,9 @@ router.get("/logout", (req, res) => {
 	res.status(200).json(true);
 });
 
+/**
+ * Sign in with email and password then returns jwt_token
+ */
 router.post(
 	"/signin",
 	[
@@ -139,12 +142,33 @@ router.post(
 				},
 			};
 
+			const tokenExpiresIn = 36000000;
+
 			jwt.sign(
 				payload,
 				process.env.jwtSecret ?? config.get("jwtSecret"),
-				{ expiresIn: 36000000 },
-				(error, token) => {
+				{ expiresIn: tokenExpiresIn },
+				async (error, token) => {
 					if (error) throw err;
+
+					// Calculate the token expiration date
+					const expirationDate = new Date();
+					expirationDate.setSeconds(
+						expirationDate.getSeconds() + tokenExpiresIn
+					);
+
+					// Save token to user entity in db
+					await UserModel.updateOne(
+						{
+							Email: Email,
+						},
+						{
+							Token: token,
+							TokenExpiryDate: expirationDate,
+							// No refresh token (TODO: Need to generate it above when creating the jwt token)
+						}
+					);
+
 					return res.json({ token });
 				}
 			);
