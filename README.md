@@ -18,10 +18,9 @@ By using this application you agree to not hold us responsible for your bus not 
 ---
 
 ## Features
-- Ads free application
+- Ad-free application - say no to advertisements
 - Easy to use GUI
-- Location based sorting
-- 
+- Location based sorting - gets the nearest bus stop from your location
 ---
 
 ## Screenshots
