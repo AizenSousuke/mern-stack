@@ -143,11 +143,21 @@ router.post(
 				payload,
 				process.env.jwtSecret ?? config.get("jwtSecret"),
 				{ expiresIn: 36000000 },
-				(error, token) => {
+				async (error, token) => {
 					if (error) throw err;
+
+					// Update token in user
+					await User.updateOne({
+						Email: Email
+					}, {
+						Token: token
+					});
+
 					return res.json({ token });
 				}
 			);
+
+			console.log("Done signing in");
 		} catch (error) {
 			console.log(error);
 			return res.status(500).json({ msg: "Server error" });
