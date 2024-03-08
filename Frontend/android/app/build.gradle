@@ -257,6 +257,8 @@ android {
 
         }
     }
+
+    namespace 'com.android.build.api.variant.impl.ApplicationVariantImpl'
 }
 
 // Apply static values from `gradle.properties` to the `android.packagingOptions`
