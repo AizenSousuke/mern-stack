@@ -259,6 +259,7 @@ android {
     }
 
     namespace 'com.android.build.api.variant.impl.ApplicationVariantImpl'
+    namespace 'com.onemanstudio.yasgba'
 }
 
 // Apply static values from `gradle.properties` to the `android.packagingOptions`

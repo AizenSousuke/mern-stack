@@ -42,8 +42,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
-										process.env.TOKEN ??
-											Constants?.manifest?.extra?.TOKEN
+										process.env.TOKEN ?? "TOKEN", // Constants?.manifest?.extra?.TOKEN
 									);
 
 									console.log(
