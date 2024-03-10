@@ -99,12 +99,9 @@ router.get("/logout", (req, res) => {
 	res.status(200).json(true);
 });
 
-<<<<<<< HEAD
 /**
  * Sign in with email and password then returns jwt_token
  */
-=======
->>>>>>> dev-nik/feature/docker-react-native
 router.post(
 	"/signin",
 	[
@@ -145,7 +142,6 @@ router.post(
 				},
 			};
 
-<<<<<<< HEAD
 			const tokenExpiresIn = 36000000;
 
 			jwt.sign(
@@ -172,30 +168,12 @@ router.post(
 							// No refresh token (TODO: Need to generate it above when creating the jwt token)
 						}
 					);
-=======
-			jwt.sign(
-				payload,
-				process.env.jwtSecret ?? config.get("jwtSecret"),
-				{ expiresIn: 36000000 },
-				async (error, token) => {
-					if (error) throw err;
-
-					// Update token in user
-					await User.updateOne({
-						Email: Email
-					}, {
-						Token: token
-					});
->>>>>>> dev-nik/feature/docker-react-native
 
 					return res.json({ token });
 				}
 			);
-<<<<<<< HEAD
-=======
 
 			console.log("Done signing in");
->>>>>>> dev-nik/feature/docker-react-native
 		} catch (error) {
 			console.log(error);
 			return res.status(500).json({ msg: "Server error" });
