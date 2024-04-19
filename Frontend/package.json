@@ -23,7 +23,7 @@
 		"@react-navigation/native": "^5.8.10",
 		"@react-navigation/stack": "^5.12.8",
 		"axios": "^0.21.1",
-		"expo": "~50.0.15",
+		"expo": "~50.0.17",
 		"expo-dev-client": "~3.3.11",
 		"expo-location": "~16.5.5",
 		"expo-splash-screen": "~0.26.4",
