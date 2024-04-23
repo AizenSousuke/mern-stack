@@ -42,7 +42,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
-										process.env.TOKEN ?? "TOKEN", // Constants?.manifest?.extra?.TOKEN
+										process.env.TOKEN ?? "TOKEN", // Constants?.expoConfig?.extra?.TOKEN
 									);
 
 									console.log(
@@ -69,7 +69,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 										console.log("Signing in");
 										const URL = `${
 											process.env.BACKEND_API ??
-											Constants?.manifest?.extra?.BACKEND_API
+											Constants?.expoConfig?.extra?.BACKEND_API
 										}/auth/facebook`;
 										console.log("URL: " + URL);
 										const fblogin =
