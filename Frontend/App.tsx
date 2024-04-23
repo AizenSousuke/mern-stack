@@ -17,6 +17,7 @@ const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
 	useEffect(() => {
+		console.log(JSON.stringify(Constants.expoConfig?.extra));
 		console.log(`Linking URI: ${Constants.linkingUri}`)
 		Linking.addEventListener("url", _handleURL);
 		console.log("added event listener");

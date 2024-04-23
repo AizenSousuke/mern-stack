@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import Constants from "expo-constants";
-const api = process.env.BACKEND_API ?? Constants.manifest?.extra?.BACKEND_API;
+const api = process.env.BACKEND_API ?? Constants.expoConfig?.extra?.BACKEND_API;
 
 /**
  * Data to be set for the requests
@@ -49,7 +49,7 @@ export const GetBusStopByCode = async (code: string) => {
 export const GetNearbyBusStop = async (
 	longitude: number,
 	latitude: number,
-	maxDistance = process.env.MAX_DISTANCE_IN_METRES ?? Constants.manifest?.extra?.MAX_DISTANCE_IN_METRES ?? 100
+	maxDistance = process.env.MAX_DISTANCE_IN_METRES ?? Constants.expoConfig?.extra?.MAX_DISTANCE_IN_METRES ?? 100
 ) => {
 	if (!longitude || !latitude) {
 		console.error("Latitude or longitude not provided");
