@@ -147,6 +147,12 @@ yarn frontend
 yarn backend
 ```
 
+## To start in Android simulator
+```
+# In frontend folder run the following command:
+npx react-native run-android
+```
+
 ## To start in IOS simulator
 ```
 npx expo run:ios
@@ -173,6 +179,11 @@ Any issues can use the following commands to resolve it:
 gradlew --stop
 ```
 ---
+
+# Building
+```
+npx react-native build-android [--mode=release]
+```
 
 # Deploying
 ```
