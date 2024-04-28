@@ -150,7 +150,11 @@ yarn backend
 ## To start in Android simulator
 ```
 # In frontend folder run the following command:
-npx react-native run-android
+adb reverse tcp:8080 tcp:8080 && expo start --dev-client
+
+or 
+
+yarn start
 ```
 
 ## To start in IOS simulator
