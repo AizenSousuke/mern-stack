@@ -26,7 +26,8 @@ const Search = () => {
 	const searchBarRef = useRef();
 
 	const searchForBusStops = () => {
-		console.log("Searching for bus stops at " + JSON.stringify(Constants.expoConfig));
+		console.log("Searching for bus stops");
+		console.log("Constants expoConfig: " + JSON.stringify(Constants.expoConfig));
 		// Search for bus stops
 		if (search.length >= searchLength) {
 			// Check if there's data in the db table
