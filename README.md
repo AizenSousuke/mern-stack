@@ -202,7 +202,7 @@ react-devtools
 
 # If error
 ```
-Uninstall react-native-elements and reinstalling them.
+Uninstall react-native-elements and reinstalling it.
 ```
 
 ## Notes
