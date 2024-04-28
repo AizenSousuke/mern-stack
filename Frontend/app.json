@@ -26,6 +26,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBggU4Zo3KvXPUfiLFYRWrRUQc_-b6KGHs"
+        }
       }
     },
     "web": {
@@ -39,13 +44,6 @@
     "extra": {
       "eas": {
         "projectId": "cb64d949-0638-4eb3-8c12-dbb8ab93abee"
-      }
-    }
-  },
-  "android": {
-    "config": {
-      "googleMaps": {
-        "apiKey": "AIzaSyBggU4Zo3KvXPUfiLFYRWrRUQc_-b6KGHs"
       }
     }
   }
