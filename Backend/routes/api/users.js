@@ -11,7 +11,7 @@ const UserModel = require("../../models/User");
 
 router.get("/", async (req, res) => {
 	try {
-		const user = await UserModel.findOne({}).catch((error) => {
+		const user = await UserModel.find({}).catch((error) => {
 			return res.status(404).json({ msg: "No user found", error: error });
 		});
 		return res
