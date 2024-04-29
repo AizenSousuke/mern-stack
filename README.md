@@ -184,7 +184,7 @@ gradlew --stop
 ```
 ---
 
-# Building
+# Building for app store (.aab)
 ```
 npx react-native build-android [--mode=release]
 ```
