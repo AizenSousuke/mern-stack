@@ -17,6 +17,7 @@ const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
 	useEffect(() => {
+		console.log("Constants expoConfig extra: " + JSON.stringify(Constants.expoConfig?.extra, null, "\t"));
 		console.log(`Linking URI: ${Constants.linkingUri}`)
 		Linking.addEventListener("url", _handleURL);
 		console.log("added event listener");
@@ -58,7 +59,7 @@ const App = () => {
 	const _loadToken = async () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(
-				process.env.TOKEN ?? "TOKEN", // Constants?.manifest?.extra?.TOKEN,
+				process.env.TOKEN ?? "TOKEN", // Constants?.expoConfig?.extra?.TOKEN,
 				async (error, result: any) => {
 					console.log("Result:", result);
 					if (result) {
@@ -103,7 +104,7 @@ const App = () => {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
 				await AsyncStorage.setItem(
-					process.env.TOKEN ?? "TOKEN", // Constants?.manifest?.extra?.TOKEN,
+					process.env.TOKEN ?? "TOKEN", // Constants?.expoConfig?.extra?.TOKEN,
 					token.toString(),
 					(error) => {
 						console.log("Saving new token: " + error + "|" + token);
@@ -154,7 +155,7 @@ const App = () => {
 		// Remove
 		if (!token) {
 			await AsyncStorage.removeItem(
-				process.env.TOKEN ?? Constants?.manifest?.extra?.TOKEN,
+				process.env.TOKEN ?? Constants?.expoConfig?.extra?.TOKEN,
 				(error: any) => {
 					if (error) {
 						ToastAndroid.show(error, ToastAndroid.SHORT);
@@ -170,7 +171,7 @@ const App = () => {
 			);
 		} else {
 			await AsyncStorage.setItem(
-				process.env.TOKEN ??"TOKEN", // Constants?.manifest?.extra?.TOKEN,
+				process.env.TOKEN ??"TOKEN", // Constants?.expoConfig?.extra?.TOKEN,
 				token,
 				(error: any) => {
 					if (error) {

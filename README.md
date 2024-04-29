@@ -147,6 +147,16 @@ yarn frontend
 yarn backend
 ```
 
+## To start in Android simulator
+```
+# In frontend folder run the following command:
+adb reverse tcp:8080 tcp:8080 && expo start --dev-client
+
+or 
+
+yarn start
+```
+
 ## To start in IOS simulator
 ```
 npx expo run:ios
@@ -174,6 +184,11 @@ gradlew --stop
 ```
 ---
 
+# Building
+```
+npx react-native build-android [--mode=release]
+```
+
 # Deploying
 ```
 To be updated once the architecture has been set up
@@ -187,7 +202,7 @@ react-devtools
 
 # If error
 ```
-Uninstall react-native-elements and reinstalling them.
+Uninstall react-native-elements and reinstalling it.
 ```
 
 ## Notes

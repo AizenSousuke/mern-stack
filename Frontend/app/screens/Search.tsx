@@ -3,6 +3,7 @@ import { FlatList, ToastAndroid } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { SearchBusStop } from "../api/api";
 import BusStopListPureComponent from "../components/BusStopListPureComponent";
+import Constants from "expo-constants";
 
 const options = {
 	keys: ["BusStopCode", "RoadName"],
@@ -26,6 +27,7 @@ const Search = () => {
 
 	const searchForBusStops = () => {
 		console.log("Searching for bus stops");
+		console.log("Constants expoConfig: " + JSON.stringify(Constants.expoConfig));
 		// Search for bus stops
 		if (search.length >= searchLength) {
 			// Check if there's data in the db table

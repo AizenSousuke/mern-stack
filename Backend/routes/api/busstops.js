@@ -71,7 +71,9 @@ router.get("/search", async (req, res) => {
 			});
 		}
 
-		return res.status(404).json({ msg: "No bus stops found", details: null });
+		return res
+			.status(404)
+			.json({ msg: "No bus stops found", details: null });
 	} catch (error) {
 		console.error(error.message);
 		return res.status(500).json({ msg: "Server Error" });

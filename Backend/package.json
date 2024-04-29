@@ -28,6 +28,7 @@
   },
   "scripts": {
     "test": "jest --watch --all --detectOpenHandles",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "start-online": "node server.js"
   }
 }
