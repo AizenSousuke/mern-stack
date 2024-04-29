@@ -59,7 +59,7 @@ const App = () => {
 	const _loadToken = async () => {
 		if (authToken === null) {
 			await AsyncStorage.getItem(
-				process.env.TOKEN ?? "TOKEN", // Constants?.expoConfig?.extra?.TOKEN,
+				process.env.TOKEN ?? Constants?.expoConfig?.extra?.TOKEN,
 				async (error, result: any) => {
 					console.log("Result:", result);
 					if (result) {
@@ -104,7 +104,7 @@ const App = () => {
 				console.log("Going to save the token: " + token);
 				console.log("Saving token to async storage");
 				await AsyncStorage.setItem(
-					process.env.TOKEN ?? "TOKEN", // Constants?.expoConfig?.extra?.TOKEN,
+					process.env.TOKEN ?? Constants?.expoConfig?.extra?.TOKEN,
 					token.toString(),
 					(error) => {
 						console.log("Saving new token: " + error + "|" + token);

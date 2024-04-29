@@ -30,6 +30,7 @@ const Search = () => {
 		console.log("Constants expoConfig: " + JSON.stringify(Constants.expoConfig));
 		// Search for bus stops
 		if (search.length >= searchLength) {
+			ToastAndroid.show("Searching " + Constants.expoConfig?.extra?.BACKEND_API, ToastAndroid.SHORT);
 			// Check if there's data in the db table
 			SearchBusStop(search)
 				.then(
