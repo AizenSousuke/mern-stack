@@ -212,6 +212,9 @@ const App = () => {
 								// headerTintColor: ColourScheme.secondary,
 								// headerStyle: { backgroundColor: "black" },
 							}}
+							listeners={{
+								beforeRemove: () => _getData(authToken)
+							}}
 						/>
 						<Stack.Screen
 							name="Location"

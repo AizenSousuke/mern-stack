@@ -13,7 +13,7 @@ import AuthConsumer from "../context/AuthContext";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/colourScheme.json";
 
-const BusStopSaved = ({ code, GoingOut }: { code: any; GoingOut: boolean }) => {
+const BusStopSaved = ({ code, GoingOut, settingsUpdaterFunc }: { code: any; GoingOut: boolean, settingsUpdaterFunc: Function }) => {
 	const [busStop, setBusStop] = useState(null);
 	const [busStopData, setBusStopData] = useState(null);
 	const [isCollapsed, setIsCollapsed] = useState(true);
@@ -103,8 +103,9 @@ const BusStopSaved = ({ code, GoingOut }: { code: any; GoingOut: boolean }) => {
 															code,
 															GoingOut
 														)
-															.then((res) => {
+															.then(async (res) => {
 																// Refresh state
+																await settingsUpdaterFunc();
 															})
 															.catch((error) => {
 																ToastAndroid.show(
