@@ -12,7 +12,7 @@ router.get("/", authMiddleware, async (req, res) => {
 		UserId: req.user.UserId,
 	});
 
-	if (!settings) {
+	if (!settings || !settings.Settings) {
 		console.log("No settings");
 		return res
 			.status(200)

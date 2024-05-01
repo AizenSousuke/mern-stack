@@ -8,7 +8,6 @@ const config = require("config");
 const UserModel = require("./models/User");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const mongoose = require("mongoose");
 
 // Add self signed key for https
 // const https = require("https");
@@ -63,8 +62,11 @@ passport.use(
 	new FacebookStrategy(
 		{
 			clientID: process.env.FACEBOOK_APP_ID ?? config.FACEBOOK_APP_ID,
-			clientSecret: process.env.FACEBOOK_APP_SECRET ?? config.FACEBOOK_APP_SECRET,
-			callbackURL: process.env.FACEBOOK_CALLBACK_URL ?? config.FACEBOOK_CALLBACK_URL,
+			clientSecret:
+				process.env.FACEBOOK_APP_SECRET ?? config.FACEBOOK_APP_SECRET,
+			callbackURL:
+				process.env.FACEBOOK_CALLBACK_URL ??
+				config.FACEBOOK_CALLBACK_URL,
 			profileFields: ["id", "emails", "name"],
 		},
 		async (accessToken, refreshToken, profile, cb) => {
@@ -80,7 +82,9 @@ passport.use(
 			if (!user) {
 				var date = new Date(Date.now());
 				var expiryDate = date.setDate(
-					date.getDate() + (process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS"))
+					date.getDate() +
+						(process.env.TOKEN_EXPIRY_DAYS ??
+							config.get("TOKEN_EXPIRY_DAYS"))
 				);
 				const newUser = new User({
 					// Add social id
@@ -104,7 +108,9 @@ passport.use(
 				user.RefreshToken = refreshToken;
 				var date = new Date(Date.now());
 				var expiryDate = date.setDate(
-					date.getDate() + (process.env.TOKEN_EXPIRY_DAYS ?? config.get("TOKEN_EXPIRY_DAYS"))
+					date.getDate() +
+						(process.env.TOKEN_EXPIRY_DAYS ??
+							config.get("TOKEN_EXPIRY_DAYS"))
 				);
 				user.TokenExpiryDate = expiryDate;
 				await user.save();
