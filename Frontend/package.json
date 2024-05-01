@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "adb reverse tcp:8080 tcp:8080 && expo start --dev-client",
+		"start": "adb reverse tcp:8080 tcp:8080 && expo start --dev-client --android",
 		"android": "npx expo run:android",
 		"production": "cross-env NODE_ENV=production && expo start --android",
 		"ios": "npx expo run:ios",
