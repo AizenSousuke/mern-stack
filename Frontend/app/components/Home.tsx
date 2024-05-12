@@ -33,16 +33,25 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								},
 							}}
 							centerComponent={{
-								text: process.env.NODE_ENV == "Production" ? "Yet Another SG Bus App" : "Yet Another SG Bus App (Dev)",
-								style: { color: "white", fontSize: 18 },
-								testID: "header"
+								text:
+									process.env.NODE_ENV === "production"
+										? "Yet Another SG Bus App"
+										: "Yet Another SG Bus App (Dev)",
+								style: {
+									color:
+										process.env.NODE_ENV === "production"
+											? "white"
+											: "lightgreen",
+									fontSize: 18,
+								},
+								testID: "header",
 							}}
 							rightComponent={{
 								icon: auth.token ? "person" : "login",
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
-										process.env.TOKEN ?? "TOKEN", // Constants?.expoConfig?.extra?.TOKEN
+										process.env.TOKEN ?? Constants?.expoConfig?.extra?.TOKEN
 									);
 
 									console.log(
@@ -69,7 +78,8 @@ export const Home = ({ navigation }: { navigation: any }) => {
 										console.log("Signing in");
 										const URL = `${
 											process.env.BACKEND_API ??
-											Constants?.expoConfig?.extra?.BACKEND_API
+											Constants?.expoConfig?.extra
+												?.BACKEND_API
 										}/auth/facebook`;
 										console.log("URL: " + URL);
 										const fblogin =

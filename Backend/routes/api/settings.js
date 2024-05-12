@@ -11,16 +11,15 @@ router.get("/", authMiddleware, async (req, res) => {
 	const settings = await Settings.findOne({
 		UserId: req.user.UserId,
 	});
-	console.log("Settings: " + JSON.stringify(settings));
 
-	if (!settings) {
+	if (!settings || !settings.Settings) {
 		console.log("No settings");
 		return res
 			.status(200)
 			.json({ msg: "There are no settings for this user." });
 	}
 
-	console.log("Successfully loaded settings");
+	console.log("Successfully loaded settings: " + JSON.stringify(settings));
 	return res.status(200).json({
 		msg: "Successfully loaded settings",
 		settings: settings,
@@ -29,7 +28,7 @@ router.get("/", authMiddleware, async (req, res) => {
 
 // router.put("/", authMiddleware, async (req, res) => {
 // 	try {
-		
+
 // 	} catch (error) {
 // 		console.error(error);
 // 		return res.status(500).json({ msg: "Server error" });
@@ -80,19 +79,22 @@ router.put(
 	authMiddleware,
 	async (req, res) => {
 		try {
+			console.log("Updating settings");
 			const errors = validationResult(req);
+			console.log(JSON.stringify(errors));
 			if (!errors.isEmpty()) {
 				res.status(422).json({ errors: errors.array() });
 			}
 
 			const code = req.body.code;
 			const GoingOut = req.body.GoingOut;
+			console.log(`Code: ${code}, GoingOut: ${GoingOut}`);
 			if (!code) {
 				return res.status(422).json({
 					msg: "There is no code provided. Settings not updated. ",
 				});
 			}
-			if (!GoingOut) {
+			if (GoingOut == null) {
 				return res.status(422).json({
 					msg: "There is no GoingOut boolean property provided. Settings not updated. ",
 				});
@@ -113,13 +115,30 @@ router.put(
 			// Delete items from settings
 			let newSettings = null;
 			if (GoingOut) {
-				newSettings = Object.assign({}, {
-					GoingOut: settings.Settings.GoingOut.filter((c) => c !== code),
-					GoingHome: settings.Settings.GoingHome,
-				});
+				newSettings = Object.assign(
+					{},
+					{
+						GoingOut: settings.Settings?.GoingOut?.filter(
+							(c) => c !== code
+						),
+						GoingHome: settings.Settings?.GoingHome,
+					}
+				);
+			} else if (GoingOut == false) {
+				newSettings = Object.assign(
+					{},
+					{
+						GoingOut: settings.Settings?.GoingOut,
+						GoingHome: settings.Settings?.GoingHome?.filter(
+							(c) => c !== code
+						),
+					}
+				);
 			}
 
-			console.log("New Settings after deleting: " + JSON.stringify(newSettings));
+			console.log(
+				"New Settings after deleting: " + JSON.stringify(newSettings)
+			);
 
 			let UpdatedSettings = await Settings.findOneAndUpdate(
 				{ UserId: req.user.UserId },

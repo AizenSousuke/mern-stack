@@ -114,11 +114,24 @@ export const SaveSettings = async (token: null, code: string, GoingOut = true) =
 			.get(`${api}/settings`, data)
 			.then((response) => {
 				// If there is a setting
-				if (response.data?.settings) {
+				var settings = response.data?.settings;
+
+				if (settings) {
 					console.log(
 						"Settings found: " +
-							JSON.stringify(response.data?.settings)
+						JSON.stringify(settings)
 					);
+
+					console.log("settings.Settings.GoingOut:" + settings.Settings.GoingOut);
+					console.log("settings.Settings.GoingHome:" + settings.Settings.GoingHome);
+					if (settings.Settings.GoingOut == null) {
+						settings.Settings.GoingOut = [];
+					}
+
+					if (settings.Settings.GoingHome == null) {
+						settings.Settings.GoingHome = [];
+					}
+
 					return response.data.settings.Settings;
 				} else {
 					console.log("No settings. Creating new ones.");
@@ -184,6 +197,7 @@ export const RemoveCodeFromSettings = async (token: null, code: string, GoingOut
 
 		console.log("Token in RemoveCodeFromSettings is: " + token);
 		data.headers["X-Auth-Token"] = token;
+		console.log("Data: " + data);
 		return await axios
 			.put(
 				`${api}/settings/update`,

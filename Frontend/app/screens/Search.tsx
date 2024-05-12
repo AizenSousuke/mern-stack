@@ -1,5 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FlatList, ToastAndroid } from "react-native";
+import {
+	FlatList,
+	ToastAndroid,
+	ActivityIndicator,
+	View,
+	Text,
+} from "react-native";
 import { SearchBar } from "react-native-elements";
 import { SearchBusStop } from "../api/api";
 import BusStopListPureComponent from "../components/BusStopListPureComponent";
@@ -23,13 +29,20 @@ const Search = () => {
 	const [busStops, setBusStops] = useState([]);
 	const searchLength = 1;
 	const limitResultsPerPage = 5;
+	const [loading, setLoading] = useState(false);
 	const searchBarRef = useRef();
 
-	const searchForBusStops = () => {
+	const searchForBusStops = async () => {
 		console.log("Searching for bus stops");
-		console.log("Constants expoConfig: " + JSON.stringify(Constants.expoConfig));
+		console.log(
+			"Constants expoConfig: " + JSON.stringify(Constants.expoConfig)
+		);
 		// Search for bus stops
 		if (search.length >= searchLength) {
+			ToastAndroid.show("Searching", ToastAndroid.SHORT);
+			setLoading(true);
+
+			// ToastAndroid.show("Searching " + Constants.expoConfig?.extra?.BACKEND_API, ToastAndroid.SHORT);
 			// Check if there's data in the db table
 			SearchBusStop(search)
 				.then(
@@ -43,7 +56,13 @@ const Search = () => {
 				)
 				.catch((error) => {
 					console.error(error);
-					ToastAndroid.show("Error in SearchBusStop: " + error, ToastAndroid.SHORT);
+					ToastAndroid.show(
+						"Error in SearchBusStop: " + error,
+						ToastAndroid.SHORT
+					);
+				})
+				.finally(() => {
+					setLoading(false);
 				});
 		} else {
 			ToastAndroid.show(
@@ -65,30 +84,39 @@ const Search = () => {
 	}, []);
 
 	return (
-		<FlatList
-			windowSize={2}
-			ListHeaderComponent={
-				<SearchBar
-					placeholder={"Search for a bus stop"}
-					onChangeText={(value) => {
-						updateSearch(value);
-					}}
-					onSubmitEditing={() => {
-						console.log("Searching for: " + search);
-						searchForBusStops();
-					}}
-					value={search.toString()}
-					ref={searchBarRef}
-				/>
-			}
-			stickyHeaderIndices={[0]}
-			initialNumToRender={limitResultsPerPage}
-			maxToRenderPerBatch={limitResultsPerPage}
-			data={busStops}
-			renderItem={renderItem}
-			keyExtractor={(item) => item.BusStopCode}
-			viewabilityConfig={viewabilityConfig}
-		/>
+		<>
+			<FlatList
+				windowSize={2}
+				ListHeaderComponent={
+					<SearchBar
+						placeholder={"Search for a bus stop"}
+						onChangeText={(value) => {
+							updateSearch(value);
+						}}
+						onSubmitEditing={() => {
+							console.log("Searching for: " + search);
+							searchForBusStops();
+						}}
+						value={search.toString()}
+						ref={searchBarRef}
+					/>
+				}
+				stickyHeaderIndices={[0]}
+				initialNumToRender={limitResultsPerPage}
+				maxToRenderPerBatch={limitResultsPerPage}
+				data={busStops}
+				renderItem={renderItem}
+				keyExtractor={(item) => item.BusStopCode}
+				viewabilityConfig={viewabilityConfig}
+				ListEmptyComponent={
+					loading ? (
+						<ActivityIndicator animating={loading} size={"large"} />
+					) : (
+						<View></View>
+					)
+				}
+			/>
+		</>
 	);
 };
 
