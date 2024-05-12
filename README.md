@@ -157,6 +157,16 @@ or
 yarn start
 ```
 
+## To start in Android simulator
+```
+# In frontend folder run the following command:
+adb reverse tcp:8080 tcp:8080 && expo start --dev-client
+
+or 
+
+yarn start
+```
+
 ## To start in IOS simulator
 ```
 npx expo run:ios
