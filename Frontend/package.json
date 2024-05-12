@@ -1,11 +1,12 @@
 {
 	"scripts": {
 		"start": "adb reverse tcp:8080 tcp:8080 && expo start --dev-client --android",
-		"android": "npx expo run:android",
+		"build-development": "npx expo run:android",
 		"production": "cross-env NODE_ENV=production && expo start --android",
 		"ios": "npx expo run:ios",
 		"web": "npx expo start --web",
-		"build": "set NODE_ENV=production && npx react-native build-android --mode=release",
+		"build-debug": "npx react-native build-android",
+		"build-release": "set NODE_ENV=production && npx react-native build-android --mode=release",
 		"build-eas": "eas build -p android",
 		"build-old": "expo build:android -t apk",
 		"eject": "expo eject",
