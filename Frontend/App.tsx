@@ -96,6 +96,7 @@ const App = () => {
 
 	const _handleURL = async (event: any) => {
 		try {
+			console.log("TOKEN: " + Constants?.expoConfig?.extra?.TOKEN);
 			console.log("event" + JSON.stringify(event));
 			console.log("Handling URL into app: " + event.url);
 			const token = event.url.split("token=")[1].split("#_=_")[0];
