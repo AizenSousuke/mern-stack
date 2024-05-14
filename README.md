@@ -238,7 +238,7 @@ and save it as a batch file.
 - Clean code and set up unit tests
 
 ## Todo:
-- Change backend api hosting from heroku to AWS
+- Change backend api hosting from heroku to render.com [Done]
 - Bus Information page with First Bus, Last Bus and Bus Route 
   - Bus Route modal 
   - Information modal
