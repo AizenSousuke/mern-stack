@@ -147,6 +147,15 @@ yarn frontend
 yarn backend
 ```
 
+## NOTE: Build and install development build first in the Frontend folder
+```
+// Build
+npx react-native build-android
+
+// Install development build on android and run it
+npx expo run:android
+```
+
 ## To start in Android simulator
 ```
 # In frontend folder run the following command:
