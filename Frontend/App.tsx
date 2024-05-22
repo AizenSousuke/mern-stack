@@ -11,7 +11,7 @@ import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import Constants from "expo-constants";
 import { Provider } from "react-redux";
-import { Store } from "./app/redux/store";
+import { store } from "./app/redux/store";
 
 const Stack = createStackNavigator();
 
@@ -198,7 +198,7 @@ const App = () => {
 	};
 
 	return (
-		<Provider store={Store}>
+		<Provider store={store}>
 			<AuthProvider
 				value={authToken}
 				updateToken={() => updateToken(null)}

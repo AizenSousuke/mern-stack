@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { useReducer } from "react";
 import { settingsReducer } from "./settingsReducer";
 import { busStopReducer } from "./busStopReducer";
+import { userReducer } from "./userReducer";
 
 // Optional root Reducer
 export const rootReducer = combineReducers({
-    useReducer,
-    settingsReducer,
-    busStopReducer
+    user: userReducer,
+    settings: settingsReducer,
+    busStop: busStopReducer
 });
