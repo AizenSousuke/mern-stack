@@ -1,5 +1,10 @@
 const initialState = {
+    userId: null,
     userName: null,
+    userEmail: null,
+    userAvatar: null,
+    userIsAdmin: false,
+    socialId: null,
     userIsLoggedIn: false,
     token: null,
     refreshToken: null,
