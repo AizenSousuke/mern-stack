@@ -1,16 +1,20 @@
-const USER_LOGGED_IN = 'USER_LOGGED_IN';
-const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
+/**
+ * Use the actions below in dispatch
+ */
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from "./userActionTypes"
 
-const userLogin = () => {
+const userLogin = (userData: object) => {
     return {
         type: USER_LOGGED_IN,
-        payload: {}
+        payload: userData
     }
 }
 
 const userLogout = () => {
     return {
         type: USER_LOGGED_OUT,
-        payload: {}
+        payload: null
     }
 }
+
+export { userLogin, userLogout }
