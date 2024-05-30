@@ -2,6 +2,14 @@ import axios, { AxiosResponse } from "axios";
 import Constants from "expo-constants";
 const api = process.env.BACKEND_API ?? Constants.expoConfig?.extra?.BACKEND_API;
 
+interface Headers {
+	Accept: string;
+	"Content-Type": string;
+	"X-Auth-Token": string | null;
+	"Access-Control-Allow-Origin": string;
+	"Access-Control-Allow-Headers": string;
+}
+
 /**
  * Data to be set for the requests
  */
@@ -11,10 +19,10 @@ var data = {
 	headers: {
 		Accept: "application/json",
 		"Content-Type": "application/json",
-		"X-Auth-Token": null,
+		"X-Auth-Token": null as string | null,
 		"Access-Control-Allow-Origin": "*",
 		"Access-Control-Allow-Headers": "*",
-	},
+	} as Headers,
 };
 
 export const GetBusData = async (busNumber: string, busStopCode: string) => {
@@ -84,7 +92,7 @@ export const GetBus = async (number: string) => {
 	return response.data;
 };
 
-export const GetSettings = async (token: null) => {
+export const GetSettings = async (token: string | null) => {
 	console.log("Token is: " + token);
 	data.headers["X-Auth-Token"] = token;
 	console.log("Api is: " + api);
@@ -100,7 +108,7 @@ export const GetSettings = async (token: null) => {
 		});
 };
 
-export const SaveSettings = async (token: null, code: string, GoingOut = true) => {
+export const SaveSettings = async (token: string | null, code: string, GoingOut = true) => {
 	try {
 		if (!token) {
 			console.error("No token provided");
@@ -188,7 +196,7 @@ export const SaveSettings = async (token: null, code: string, GoingOut = true) =
 	}
 };
 
-export const RemoveCodeFromSettings = async (token: null, code: string, GoingOut = true) => {
+export const RemoveCodeFromSettings = async (token: string | null, code: string, GoingOut = true) => {
 	try {
 		if (!token) {
 			console.error("No token provided");
@@ -226,7 +234,7 @@ export const LogOut = async () => {
 	return result.data;
 };
 
-export const CheckTokenExpiry = async (token: null) => {
+export const CheckTokenExpiry = async (token: string | null) => {
 	console.log("Checking token expiry:" + token);
 	data.headers["X-Auth-Token"] = token;
 	if (!token) {
