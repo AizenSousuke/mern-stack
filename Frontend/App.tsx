@@ -19,7 +19,7 @@ const App = () => {
 	const [settings, setSettings] = useState(null);
 	const state = useSelector((state) => state);
 	console.log("Testing Redux state:", state);
-	
+
 	useEffect(() => {
 		console.log(
 			"Constants expoConfig extra: " +

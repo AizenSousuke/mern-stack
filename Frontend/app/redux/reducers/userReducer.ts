@@ -1,4 +1,4 @@
-import { USER_LOGGED_IN, USER_LOGGED_OUT } from "../actions/userActions";
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from "../actions/userActionTypes";
 
 const initialState = {
     userId: null,
