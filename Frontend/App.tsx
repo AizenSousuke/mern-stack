@@ -10,14 +10,16 @@ import { SettingsProvider } from "./app/context/SettingsContext";
 import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import Constants from "expo-constants";
-import { Provider } from "react-redux";
-import { store } from "./app/redux/store";
+import { useSelector } from "react-redux";
 
 const Stack = createStackNavigator();
 
 const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
+	const state = useSelector((state) => state);
+	console.log("Testing Redux state:", state);
+	
 	useEffect(() => {
 		console.log(
 			"Constants expoConfig extra: " +
@@ -198,51 +200,46 @@ const App = () => {
 	};
 
 	return (
-		<Provider store={store}>
-			<AuthProvider
-				value={authToken}
-				updateToken={() => updateToken(null)}
+		<AuthProvider value={authToken} updateToken={() => updateToken(null)}>
+			<SettingsProvider
+				value={settings}
+				updateSettings={() => _getData(authToken)}
 			>
-				<SettingsProvider
-					value={settings}
-					updateSettings={() => _getData(authToken)}
-				>
-					<NavigationContainer>
-						<Stack.Navigator>
-							<Stack.Screen
-								name="Home"
-								component={Home}
-								options={{ headerShown: false }}
-							/>
-							<Stack.Screen
-								name="Search"
-								component={Search}
-								options={{
-									headerShown: true,
-									// headerTintColor: ColourScheme.secondary,
-									// headerStyle: { backgroundColor: "black" },
-								}}
-								listeners={{
-									beforeRemove: () => _getData(authToken),
-								}}
-							/>
-							<Stack.Screen
-								name="Location"
-								component={LocationModal}
-								options={{
-									// headerShown: true,
-									// headerTintColor: "white",
-									// headerStyle: { backgroundColor: "black" },
-									cardStyle: {
-										backgroundColor: "transparent",
-									},
-								}}
-							/>
-						</Stack.Navigator>
-					</NavigationContainer>
-				</SettingsProvider>
-			</AuthProvider>
-		</Provider>
+				<NavigationContainer>
+					<Stack.Navigator>
+						<Stack.Screen
+							name="Home"
+							component={Home}
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name="Search"
+							component={Search}
+							options={{
+								headerShown: true,
+								// headerTintColor: ColourScheme.secondary,
+								// headerStyle: { backgroundColor: "black" },
+							}}
+							listeners={{
+								beforeRemove: () => _getData(authToken),
+							}}
+						/>
+						<Stack.Screen
+							name="Location"
+							component={LocationModal}
+							options={{
+								// headerShown: true,
+								// headerTintColor: "white",
+								// headerStyle: { backgroundColor: "black" },
+								cardStyle: {
+									backgroundColor: "transparent",
+								},
+							}}
+						/>
+					</Stack.Navigator>
+				</NavigationContainer>
+			</SettingsProvider>
+		</AuthProvider>
 	);
 };
 
