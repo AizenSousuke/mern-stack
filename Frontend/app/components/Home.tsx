@@ -1,9 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import { ToastAndroid, View } from "react-native";
 import { Header } from "react-native-elements";
-import { LogOut } from "../api/api";
+import { LogOut, SignIn } from "../api/api";
 import SearchButton from "./SearchButton";
 import TabNavigator from "./TabNavigator";
 import AuthConsumer from "../context/AuthContext";
@@ -51,7 +50,8 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(
-										process.env.TOKEN ?? Constants?.expoConfig?.extra?.TOKEN
+										process.env.TOKEN ??
+											Constants?.expoConfig?.extra?.TOKEN
 									);
 
 									console.log(
@@ -75,24 +75,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 										tokenExpiry?.expired == true
 									) {
 										// Get new token
-										console.log("Signing in");
-										const URL = `${
-											process.env.BACKEND_API ??
-											Constants?.expoConfig?.extra
-												?.BACKEND_API
-										}/auth/facebook`;
-										console.log("URL: " + URL);
-										const fblogin =
-											await WebBrowser.openBrowserAsync(
-												URL
-											);
-
-										if (fblogin) {
-											console.log(
-												"Logged in with FACEBOOK: " +
-													JSON.stringify(fblogin)
-											);
-										}
+										await SignIn();
 									} else {
 										ToastAndroid.show(
 											"You have already logged in",

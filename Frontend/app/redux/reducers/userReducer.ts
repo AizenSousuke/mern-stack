@@ -1,6 +1,7 @@
+import { UserData } from "../../classes/UserData";
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from "../actions/userActionTypes";
 
-const initialState = {
+const initialState: UserData = {
     userId: null,
     userName: null,
     userEmail: null,

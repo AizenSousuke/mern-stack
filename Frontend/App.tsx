@@ -10,15 +10,18 @@ import { SettingsProvider } from "./app/context/SettingsContext";
 import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import Constants from "expo-constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "./app/redux/actions/userActions";
+import { UserData } from "./app/classes/UserData";
 
 const Stack = createStackNavigator();
 
 const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
-	const state = useSelector((state) => state);
-	console.log("Testing Redux state:", state);
+	// const state = useSelector((state) => state);
+	// console.log("Testing Redux state:", state);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		console.log(
@@ -28,7 +31,6 @@ const App = () => {
 		console.log(`Linking URI: ${Constants.linkingUri}`);
 		Linking.addEventListener("url", _handleURL);
 		console.log("added event listener");
-
 		console.log("Looking for token - authToken: " + authToken);
 		const useEffectLoadTokenFunc = async () => {
 			console.log("Running useEffectLoadTokenFunc");
@@ -106,7 +108,7 @@ const App = () => {
 			console.log("TOKEN: " + Constants?.expoConfig?.extra?.TOKEN);
 			console.log("event" + JSON.stringify(event));
 			console.log("Handling URL into app: " + event.url);
-			const token = event.url.split("token=")[1].split("#_=_")[0];
+			const token: string = event.url.split("token=")[1].split("#_=_")[0];
 			console.log("Token from url:", token);
 			if (token) {
 				console.log("Going to save the token: " + token);
@@ -121,6 +123,12 @@ const App = () => {
 
 				// Save token
 				setAuthToken(token);
+				dispatch(
+					userLogin(
+						new UserData({ token: token, userIsLoggedIn: true })
+					)
+				);
+				// console.log("New store: ", store.getState());
 
 				// Get settings data
 				await _getData(token);

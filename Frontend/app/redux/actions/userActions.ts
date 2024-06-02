@@ -1,12 +1,13 @@
 /**
  * Use the actions below in dispatch
  */
+import { UserData } from "../../classes/UserData"
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from "./userActionTypes"
 
-const userLogin = (userData: object) => {
+const userLogin = (userData: UserData) => {
     return {
         type: USER_LOGGED_IN,
-        payload: userData
+        payload: userData.toPlainObject()
     }
 }
 

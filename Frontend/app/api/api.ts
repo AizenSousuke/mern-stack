@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import Constants from "expo-constants";
+import * as WebBrowser from "expo-web-browser";
 const api = process.env.BACKEND_API ?? Constants.expoConfig?.extra?.BACKEND_API;
 
 interface Headers {
@@ -224,13 +225,27 @@ export const RemoveCodeFromSettings = async (token: string | null, code: string,
 };
 
 export const SignIn = async () => {
-	const result = await axios.get(`${api}/auth/facebook`, data);
-	return result.data;
+	// const result = await axios.get(`${api}/auth/facebook`, data);
+	// return result.data;
+
+	console.log("Signing in with facebook");
+	const fblogin =
+		await WebBrowser.openBrowserAsync(
+			`${api}/auth/facebook`
+		);
+
+	// If browser is opened
+	if (fblogin) {
+		console.log(
+			"Logged in with FACEBOOK: " +
+			JSON.stringify(fblogin)
+		);
+	}
 };
 
 export const LogOut = async () => {
 	const result = await axios.get(`${api}/auth/logout`, data);
-	// bool
+	// returns true if logged out successfully
 	return result.data;
 };
 
