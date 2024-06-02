@@ -1,10 +1,10 @@
 const initialState = {
-    GoingOut: [],
-    GoingHome: [],
-    Theme: {
-        DarkMode: false,
+    goingOut: [],
+    goingHome: [],
+    theme: {
+        darkMode: false,
     },
-    DateUpdated: null
+    dateUpdated: null
 }
 
 export const settingsReducer = (state = initialState, action: any) => {

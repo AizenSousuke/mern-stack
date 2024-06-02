@@ -1,5 +1,6 @@
 const initialState = {
-
+    busStopCode: null,
+    services: []
 }
 
 export const busStopReducer = (state = initialState, action: any) => {
