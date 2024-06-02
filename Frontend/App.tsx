@@ -19,8 +19,6 @@ const Stack = createStackNavigator();
 const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
-	// const state = useSelector((state) => state);
-	// console.log("Testing Redux state:", state);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
