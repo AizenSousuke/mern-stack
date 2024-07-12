@@ -15,4 +15,4 @@ const settingsLoaded = (settings: object) => {
 }
 
 
-export { settingsSaved }
+export { settingsSaved, settingsLoaded }
