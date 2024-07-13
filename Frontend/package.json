@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "emulator @Pixel_7_API_34 && adb reverse tcp:8080 tcp:8080 && npx expo start --dev-client --android",
+		"start": "concurrently \"emulator @Pixel_7_API_34\" \"adb wait-for-device && adb reverse tcp:8080 tcp:8080 && npx expo start --dev-client --android\"",
 		"build-development": "npx expo run:android",
 		"production": "cross-env NODE_ENV=production && npx expo start --android",
 		"ios": "npx expo run:ios",
@@ -67,6 +67,7 @@
 		"@types/react": "~18.2.45",
 		"@types/react-test-renderer": "^17.0.1",
 		"@types/redux-logger": "^3.0.13",
+		"concurrently": "^6.4.0",
 		"cross-env": "^7.0.3",
 		"detox": "^20.17.0",
 		"detox-expo-helpers": "^0.6.0",
