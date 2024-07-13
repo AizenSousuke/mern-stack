@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "concurrently \"emulator @Pixel_7_API_34\" \"adb wait-for-device && adb reverse tcp:8080 tcp:8080 && npx expo start --dev-client --android\"",
+		"start": "concurrently \"emulator @Medium_Phone_API_34\" \"adb wait-for-device && adb reverse tcp:8080 tcp:8080 && npx expo start --dev-client --android\"",
 		"build-development": "npx expo run:android",
 		"production": "cross-env NODE_ENV=production && npx expo start --android",
 		"ios": "npx expo run:ios",
