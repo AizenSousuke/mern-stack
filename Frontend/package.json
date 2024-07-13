@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "adb reverse tcp:8080 tcp:8080 && npx expo start --dev-client --android",
+		"start": "emulator @Pixel_7_API_34 && adb reverse tcp:8080 tcp:8080 && npx expo start --dev-client --android",
 		"build-development": "npx expo run:android",
 		"production": "cross-env NODE_ENV=production && npx expo start --android",
 		"ios": "npx expo run:ios",
