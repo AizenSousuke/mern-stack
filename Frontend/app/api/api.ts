@@ -259,3 +259,20 @@ export const CheckTokenExpiry = async (token: string | null) => {
 	const result = await axios.get(`${api}/auth/checkTokenExpiry`, data);
 	return result.data;
 };
+
+export default {
+	GetBusData,
+	GetBusRouteData,
+	GetBusStopList,
+	GetBusStop,
+	GetBusStopByCode,
+	GetNearbyBusStop,
+	SearchBusStop,
+	GetBus,
+	GetSettings,
+	SaveSettings,
+	RemoveCodeFromSettings,
+	SignIn,
+	LogOut,
+	CheckTokenExpiry,
+};
