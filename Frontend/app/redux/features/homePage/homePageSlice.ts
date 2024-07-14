@@ -22,3 +22,5 @@ export const homePageSlice = createSlice({
         })
     }
 })
+
+export const { loggedIn } = homePageSlice.actions;
