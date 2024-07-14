@@ -14,7 +14,7 @@ export const homePageSlice = createSlice({
     initialState: initialState,
     reducers: {
         loggedIn: (state, action) => {
-            state.isLoggedIn == action.payload;
+            state.isLoggedIn = action.payload;
         }
     },
     extraReducers: (builder) => {

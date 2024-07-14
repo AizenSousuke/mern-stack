@@ -11,9 +11,11 @@ import LocationButton from "./LocationButton";
 import ColourScheme from "../settings/colourScheme.json";
 import Constants from "expo-constants";
 import { store } from "../redux/store";
-import { signIn } from "../redux/features/homePage/homePageSlice";
+import { loggedIn, signIn } from "../redux/features/homePage/homePageSlice";
+import { useSelector } from "react-redux";
 
 export const Home = ({ navigation }: { navigation: any }) => {
+	const isLoggedIn = useSelector((state: any) => state.home.isLoggedIn);
 	return (
 		<View style={{ flex: 1 }}>
 			<AuthConsumer>
@@ -29,6 +31,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 									await auth.updateToken();
 
 									await LogOut().then((res) => {
+										store.dispatch(loggedIn(false));
 										console.log("Logged out");
 									});
 								},
@@ -48,7 +51,8 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								testID: "header",
 							}}
 							rightComponent={{
-								icon: auth.token ? "person" : "login",
+								icon: isLoggedIn ? "person" : "login",
+								// icon: auth.token ? "person" : "login",
 								color: "white",
 								onPress: async () => {
 									let result = await AsyncStorage.getItem(

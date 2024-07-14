@@ -10,16 +10,14 @@ import { SettingsProvider } from "./app/context/SettingsContext";
 import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import Constants from "expo-constants";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "./app/redux/actions/userActions";
-import { UserData } from "./app/classes/UserData";
+import { store } from "./app/redux/store";
+import { loggedIn } from "./app/redux/features/homePage/homePageSlice";
 
 const Stack = createStackNavigator();
 
 const App = () => {
 	const [authToken, setAuthToken] = useState(null);
 	const [settings, setSettings] = useState(null);
-	const dispatch = useDispatch();
 
 	useEffect(() => {
 		console.log(
@@ -121,11 +119,7 @@ const App = () => {
 
 				// Save token
 				setAuthToken(token);
-				dispatch(
-					userLogin(
-						new UserData({ token: token, userIsLoggedIn: true })
-					)
-				);
+				store.dispatch(loggedIn(true));
 				// console.log("New store: ", store.getState());
 
 				// Get settings data
@@ -176,6 +170,7 @@ const App = () => {
 					} else {
 						// Update state
 						setAuthToken(null);
+						store.dispatch(loggedIn(false));
 						ToastAndroid.show(
 							"You have been logged out.",
 							ToastAndroid.SHORT
@@ -194,6 +189,7 @@ const App = () => {
 						// Update state
 						setAuthToken(token);
 						if (token != "") {
+							store.dispatch(loggedIn(true));
 							ToastAndroid.show(
 								"Successfully updated token",
 								ToastAndroid.SHORT
