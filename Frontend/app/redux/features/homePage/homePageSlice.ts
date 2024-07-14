@@ -1,18 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import api from "../../../api/api"
 
 const initialState = {
     isLoggedIn: false
 }
 
-const homePageSlice = createSlice({
+export const signIn = createAsyncThunk('Home/signIn', async () => {
+    return await api.SignIn();
+})
+
+export const homePageSlice = createSlice({
     name: 'Home',
     initialState: initialState,
     reducers: {
         loggedIn: (state, action) => {
             state.isLoggedIn == action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(signIn.fulfilled, (state, action) => {
+        })
     }
 })
-
-module.exports = homePageSlice.reducer;
-module.exports.homeActions = homePageSlice.actions;

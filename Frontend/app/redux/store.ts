@@ -11,16 +11,9 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const StoreSetup = () => {
-    let store = configureStore({
-        reducer: persistedReducer,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
-    });
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+});
 
-    let persistedStore = persistStore(store);
-
-    return { store, persistedStore }
-}
-
-module.exports = StoreSetup().store;
-module.exports.persistedStore = StoreSetup().persistedStore;
+export const persistedStore = persistStore(store);

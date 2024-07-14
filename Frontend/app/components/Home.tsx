@@ -10,6 +10,8 @@ import { CheckTokenExpiry } from "../api/api";
 import LocationButton from "./LocationButton";
 import ColourScheme from "../settings/colourScheme.json";
 import Constants from "expo-constants";
+import { store } from "../redux/store";
+import { signIn } from "../redux/features/homePage/homePageSlice";
 
 export const Home = ({ navigation }: { navigation: any }) => {
 	return (
@@ -74,8 +76,8 @@ export const Home = ({ navigation }: { navigation: any }) => {
 										!result ||
 										tokenExpiry?.expired == true
 									) {
-										// Get new token
-										await SignIn();
+										// Sign in and Get new token
+										store.dispatch(signIn());
 									} else {
 										ToastAndroid.show(
 											"You have already logged in",
