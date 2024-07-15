@@ -11,7 +11,11 @@ import LocationModal from "./app/screens/LocationModal";
 import Search from "./app/screens/Search";
 import Constants from "expo-constants";
 import { store } from "./app/redux/store";
-import { loggedIn } from "./app/redux/features/homePage/homePageSlice";
+import {
+	getSettings,
+	loggedIn,
+	setToken,
+} from "./app/redux/features/homePage/homePageSlice";
 
 const Stack = createStackNavigator();
 
@@ -120,6 +124,7 @@ const App = () => {
 				// Save token
 				setAuthToken(token);
 				store.dispatch(loggedIn(true));
+				store.dispatch(setToken(token));
 				// console.log("New store: ", store.getState());
 
 				// Get settings data
@@ -132,6 +137,7 @@ const App = () => {
 
 	const _getData = async (token: string | null = null) => {
 		try {
+			store.dispatch(getSettings(token));
 			console.log("Token in _getData: " + token);
 			await GetSettings(token ?? authToken)
 				.then((res) => {

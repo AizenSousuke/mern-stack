@@ -3,6 +3,7 @@ import api from "../../../api/api"
 
 const initialState = {
     isLoggedIn: false,
+    isLoading: false,
     token: null,
     goingOut: [],
     goingHome: []
@@ -36,11 +37,18 @@ export const homePageSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(signIn.fulfilled, (state, action) => {
         });
+        builder.addCase(getSettings.pending, (state, action) => {
+            state.isLoading = true;
+        });
         builder.addCase(getSettings.fulfilled, (state, action) => {
+            state.isLoading = false;
             state.goingOut = action.payload.settings?.Settings?.GoingOut;
             state.goingHome = action.payload.settings?.Settings?.GoingHome;
+        });
+        builder.addCase(getSettings.rejected, (state, action) => {
+            state.isLoading = false;
         });
     }
 })
 
-export const { loggedIn, goingOut, goingHome } = homePageSlice.actions;
+export const { loggedIn, setToken, goingOut, goingHome } = homePageSlice.actions;
