@@ -20,8 +20,9 @@ import {
 const Stack = createStackNavigator();
 
 const App = () => {
-	const [authToken, setAuthToken] = useState(null);
-	const [settings, setSettings] = useState(null);
+	let authToken = store.getState().home.token;
+	let goingOut = store.getState().home.goingOut;
+	let goingHome = store.getState().home.goingHome;
 
 	useEffect(() => {
 		console.log(
@@ -74,15 +75,15 @@ const App = () => {
 					if (result) {
 						console.log("_loadToken: " + error + "|" + result);
 						if (!(await _checkTokenExpiry(result))) {
-							setAuthToken(result);
+							store.dispatch(setToken(result));
 							console.log("Attempting to load settings");
 							// Passing token instead of authToken because setAuthToken is async and updates according to react
-							_loadSettings(result);
+							await _loadSettings(result);
 							return;
 						}
 
 						console.warn("Token has expired");
-						updateToken(null);
+						await updateToken(null);
 						// Ask to re-login to renew token and reload settings
 						ToastAndroid.show(
 							"Please re-login.",
@@ -97,7 +98,7 @@ const App = () => {
 	};
 
 	const _loadSettings = async (token: string) => {
-		if (settings === null) {
+		if (goingHome === null || goingOut === null) {
 			console.log("Loading settings");
 			await _getData(token);
 		}
@@ -122,7 +123,6 @@ const App = () => {
 				);
 
 				// Save token
-				setAuthToken(token);
 				store.dispatch(loggedIn(true));
 				store.dispatch(setToken(token));
 				// console.log("New store: ", store.getState());
@@ -136,32 +136,8 @@ const App = () => {
 	};
 
 	const _getData = async (token: string | null = null) => {
-		try {
-			store.dispatch(getSettings(token));
-			console.log("Token in _getData: " + token);
-			await GetSettings(token ?? authToken)
-				.then((res) => {
-					console.log(
-						"Settings res in _getData: " + JSON.stringify(res)
-					);
-					// Save settings here
-					if (res.settings?.Settings) {
-						setSettings(res.settings?.Settings);
-						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
-					} else {
-						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
-					}
-				})
-				.catch((error) => {
-					console.error(error.msg);
-					ToastAndroid.show(
-						"Failed to get settings",
-						ToastAndroid.SHORT
-					);
-				});
-		} catch (error: any) {
-			ToastAndroid.show("Failed to get data", ToastAndroid.SHORT);
-		}
+		console.log("Token in _getData: " + token);
+		await store.dispatch(getSettings(token));
 	};
 
 	const updateToken = async (token = null) => {
@@ -175,7 +151,7 @@ const App = () => {
 						ToastAndroid.show(error, ToastAndroid.SHORT);
 					} else {
 						// Update state
-						setAuthToken(null);
+						store.dispatch(setToken(null));
 						store.dispatch(loggedIn(false));
 						ToastAndroid.show(
 							"You have been logged out.",
@@ -193,7 +169,7 @@ const App = () => {
 						ToastAndroid.show(error, ToastAndroid.SHORT);
 					} else {
 						// Update state
-						setAuthToken(token);
+						store.dispatch(setToken(token));
 						if (token != "") {
 							store.dispatch(loggedIn(true));
 							ToastAndroid.show(
@@ -208,10 +184,16 @@ const App = () => {
 	};
 
 	return (
-		<AuthProvider value={authToken} updateToken={() => updateToken(null)}>
+		<AuthProvider
+			value={authToken}
+			updateToken={async () => await updateToken(null)}
+		>
 			<SettingsProvider
-				value={settings}
-				updateSettings={() => _getData(authToken)}
+				value={{
+					GoingOut: goingOut,
+					GoingHome: goingHome,
+				}}
+				updateSettings={async () => await _getData(authToken)}
 			>
 				<NavigationContainer>
 					<Stack.Navigator>
@@ -229,7 +211,8 @@ const App = () => {
 								// headerStyle: { backgroundColor: "black" },
 							}}
 							listeners={{
-								beforeRemove: () => _getData(authToken),
+								beforeRemove: async () =>
+									await _getData(authToken),
 							}}
 						/>
 						<Stack.Screen

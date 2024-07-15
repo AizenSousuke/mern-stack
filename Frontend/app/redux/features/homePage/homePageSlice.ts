@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../../api/api"
+import { ToastAndroid } from "react-native";
 
 const initialState = {
     isLoggedIn: false,
@@ -44,9 +45,14 @@ export const homePageSlice = createSlice({
             state.isLoading = false;
             state.goingOut = action.payload.settings?.Settings?.GoingOut;
             state.goingHome = action.payload.settings?.Settings?.GoingHome;
+            ToastAndroid.show("Successfully get settings", ToastAndroid.SHORT);
         });
         builder.addCase(getSettings.rejected, (state, action) => {
             state.isLoading = false;
+            ToastAndroid.show(
+                "Failed to get settings",
+                ToastAndroid.SHORT
+            );
         });
     }
 })

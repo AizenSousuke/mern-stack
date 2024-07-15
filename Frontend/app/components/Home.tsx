@@ -10,7 +10,7 @@ import { CheckTokenExpiry } from "../api/api";
 import LocationButton from "./LocationButton";
 import ColourScheme from "../settings/colourScheme.json";
 import Constants from "expo-constants";
-import { store } from "../redux/store";
+import { persistedStore, store } from "../redux/store";
 import { loggedIn, signIn } from "../redux/features/homePage/homePageSlice";
 import { useSelector } from "react-redux";
 
@@ -30,8 +30,9 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								onPress: async () => {
 									await auth.updateToken();
 
-									await LogOut().then((res) => {
+									await LogOut().then(async (res) => {
 										store.dispatch(loggedIn(false));
+										await persistedStore.purge();
 										console.log("Logged out");
 									});
 								},
