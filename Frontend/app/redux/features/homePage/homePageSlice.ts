@@ -24,7 +24,7 @@ export const getSettings = createAsyncThunk('Home/getSettings', async (token: st
     return await api.GetSettings(token);
 })
 
-export const homePageSlice = createSlice({
+export const HomePageSlice = createSlice({
     name: 'Home',
     initialState: initialState,
     reducers: {
@@ -64,4 +64,4 @@ export const homePageSlice = createSlice({
     }
 })
 
-export const { loggedIn, setToken, goingOut, goingHome } = homePageSlice.actions;
+export const { loggedIn, setToken, goingOut, goingHome } = HomePageSlice.actions;

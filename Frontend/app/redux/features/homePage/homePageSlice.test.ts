@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { homePageSlice, signIn, getSettings } from './homePageSlice';
+import { HomePageSlice, signIn, getSettings } from './homePageSlice';
 import api from '../../../api/api';
 
 jest.mock('../../../api/api', () => ({
@@ -7,19 +7,15 @@ jest.mock('../../../api/api', () => ({
     GetSettings: jest.fn()
 }));
 
-describe('homePageSlice', () => {
+describe('HomePageSlice', () => {
     let store: any;
 
     beforeEach(() => {
         store = configureStore({
             reducer: {
-                Home: homePageSlice.reducer
+                Home: HomePageSlice.reducer
             }
         });
-        store.dispatch(homePageSlice.actions.loggedIn(false));
-        store.dispatch(homePageSlice.actions.setToken(null));
-        store.dispatch(homePageSlice.actions.goingOut([]));
-        store.dispatch(homePageSlice.actions.goingHome([]));
     });
 
     test('should handle initial state', () => {
@@ -34,34 +30,34 @@ describe('homePageSlice', () => {
     });
 
     test('should handle loggedIn', () => {
-        store.dispatch(homePageSlice.actions.loggedIn(true));
+        store.dispatch(HomePageSlice.actions.loggedIn(true));
         const state = store.getState().Home;
         expect(state.isLoggedIn).toBe(true);
     });
 
     test('should handle setToken', () => {
         const token = 'test-token';
-        store.dispatch(homePageSlice.actions.setToken(token));
+        store.dispatch(HomePageSlice.actions.setToken(token));
         const state = store.getState().Home;
         expect(state.token).toBe(token);
     });
 
     test('should handle goingOut', () => {
         const goingOut = ['task1', 'task2'];
-        store.dispatch(homePageSlice.actions.goingOut(goingOut));
+        store.dispatch(HomePageSlice.actions.goingOut(goingOut));
         const state = store.getState().Home;
         expect(state.goingOut).toEqual(goingOut);
     });
 
     test('should handle goingHome', () => {
         const goingHome = ['task3', 'task4'];
-        store.dispatch(homePageSlice.actions.goingHome(goingHome));
+        store.dispatch(HomePageSlice.actions.goingHome(goingHome));
         const state = store.getState().Home;
         expect(state.goingHome).toEqual(goingHome);
     });
 
     test('should handle signIn thunk', async () => {
-        (api.SignIn as jest.Mock).mockResolvedValueOnce({ token: 'mockToken' });
+        api.SignIn.mockResolvedValueOnce({ token: 'mockToken' });
         await store.dispatch(signIn());
         expect(api.SignIn).toHaveBeenCalledTimes(1);
         const state = store.getState();
