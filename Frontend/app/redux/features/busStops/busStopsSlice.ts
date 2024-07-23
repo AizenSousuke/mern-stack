@@ -20,7 +20,8 @@ const initialState: IBusStopSlice = {
 }
 
 /**
- * This slice takes care of saving which buses are shown (saved) for each bus stops
+ * This slice takes care of saving which bus stops and 
+ * buses are shown (saved) for each bus stops
  */
 export const BusStopsSlice = createSlice({
     name: 'BusStops',

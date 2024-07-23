@@ -2,7 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../../api/api"
 import { ToastAndroid } from "react-native";
 
-const initialState = {
+interface IHomeSettings {
+    isLoggedIn: boolean;
+    isLoading: boolean;
+    token: string | null;
+}
+
+const initialState: IHomeSettings = {
     isLoggedIn: false,
     isLoading: false,
     token: null,
@@ -37,6 +43,7 @@ export const homePageSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(signIn.fulfilled, (state, action) => {
+            state.token = action.payload.token;
         });
         builder.addCase(getSettings.pending, (state, action) => {
             state.isLoading = true;
