@@ -19,14 +19,14 @@ const GoingHome = (props: any) => {
 				></RefreshControl>
 			}
 		>
-			{props?.settings?.GoingHome?.map((busStop: any, index: number) => (
+			{/* {props?.settings?.GoingHome?.map((busStop: any, index: number) => (
 				<BusStopSaved
 					key={index}
 					code={busStop}
 					GoingOut={false}
 					settingsUpdaterFunc={() => props.updateSettings()}
 				/>
-			))}
+			))} */}
 		</ScrollView>
 	);
 };

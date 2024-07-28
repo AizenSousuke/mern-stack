@@ -19,14 +19,14 @@ const GoingOut = (props: any) => {
 				></RefreshControl>
 			}
 		>
-			{props.settings?.GoingOut?.map((busStop: any, index: any) => (
+			{/* {props.settings?.GoingOut?.map((busStop: any, index: any) => (
 				<BusStopSaved
 					key={index}
 					code={busStop}
 					GoingOut={true}
 					settingsUpdaterFunc={() => props.updateSettings()}
 				/>
-			))}
+			))} */}
 		</ScrollView>
 	);
 };

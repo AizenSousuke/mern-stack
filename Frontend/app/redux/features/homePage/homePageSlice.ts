@@ -29,9 +29,6 @@ export const HomePageSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(signIn.fulfilled, (state, action) => {
-            state.token = action.payload.token;
-        });
     }
 })
 

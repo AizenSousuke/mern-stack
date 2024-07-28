@@ -12,7 +12,6 @@ import Search from "./app/screens/Search";
 import Constants from "expo-constants";
 import { store } from "./app/redux/store";
 import {
-	getSettings,
 	loggedIn,
 	setToken,
 } from "./app/redux/features/homePage/homePageSlice";
@@ -21,8 +20,8 @@ const Stack = createStackNavigator();
 
 const App = () => {
 	let authToken = store.getState().home.token;
-	let goingOut = store.getState().home.goingOut;
-	let goingHome = store.getState().home.goingHome;
+	let goingOut = store.getState().busStop.GoingOut;
+	let goingHome = store.getState().busStop.GoingHome;
 
 	useEffect(() => {
 		console.log(
@@ -39,7 +38,7 @@ const App = () => {
 		};
 
 		useEffectLoadTokenFunc().catch((error) => {
-			console.error(error);
+			console.error("useEffectLoadTokenFunc:", error);
 		});
 
 		return () => {
@@ -67,11 +66,13 @@ const App = () => {
 	};
 
 	const _loadToken = async () => {
-		if (authToken === null) {
+		console.log("Running _loadToken");
+		if (!authToken) {
+			console.log("AuthToken is null");
 			await AsyncStorage.getItem(
 				process.env.TOKEN ?? Constants?.expoConfig?.extra?.TOKEN,
 				async (error, result: any) => {
-					console.log("Result:", result);
+					console.log("Token Result:", result);
 					if (result) {
 						console.log("_loadToken: " + error + "|" + result);
 						if (!(await _checkTokenExpiry(result))) {
@@ -137,7 +138,34 @@ const App = () => {
 
 	const _getData = async (token: string | null = null) => {
 		console.log("Token in _getData: " + token);
-		await store.dispatch(getSettings(token));
+		try {
+			console.log("Token in _getData: " + token);
+			await GetSettings(token ?? authToken)
+				.then((res) => {
+					console.log(
+						"Settings res in _getData: " + JSON.stringify(res)
+					);
+					// Save settings here
+					if (res.settings?.Settings) {
+						// setSettings(res.settings?.Settings);
+						const goingHome = res.settings?.Settings?.GoingHome;
+						const goingOut = res.settings?.Settings?.GoingHome;
+						console.log(goingHome, goingOut);
+						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+					} else {
+						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
+					}
+				})
+				.catch((error) => {
+					console.error(error.msg);
+					ToastAndroid.show(
+						"Failed to get settings",
+						ToastAndroid.SHORT
+					);
+				});
+		} catch (error: any) {
+			ToastAndroid.show("Failed to get data", ToastAndroid.SHORT);
+		}
 	};
 
 	const updateToken = async (token = null) => {

@@ -65,7 +65,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 									let result = store.getState().home.token;
 
 									console.log(
-										"Result: " + JSON.stringify(result)
+										"Token Result: " + JSON.stringify(result)
 									);
 
 									// Check if the token has expired on the server end
