@@ -147,10 +147,11 @@ const App = () => {
 					);
 					// Save settings here
 					if (res.settings?.Settings) {
+						console.log("Saving settings");
 						// setSettings(res.settings?.Settings);
 						const goingHome = res.settings?.Settings?.GoingHome;
 						const goingOut = res.settings?.Settings?.GoingHome;
-						console.log(goingHome, goingOut);
+						console.log("Going home: ", goingHome, "Going out: ", goingOut);
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					} else {
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
