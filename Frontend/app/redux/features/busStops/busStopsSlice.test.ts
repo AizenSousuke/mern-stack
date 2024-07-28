@@ -1,7 +1,15 @@
-import { BusStopsSlice, addBusStopBus, removeBusStopBus } from './busStopsSlice';
+import { BusStopsSlice, addBusStopBus, removeBusStopBus, getSettings } from './busStopsSlice';
 import { configureStore } from '@reduxjs/toolkit';
+import api from '../../../api/api';
+import Home from '../../../components/Home';
+import { HomePageSlice } from '../homePage/homePageSlice';
+
+jest.mock('../../../api/api', () => ({
+    GetSettings: jest.fn()
+}));
 
 const initialState = {
+    isLoading: false,
     GoingOut: {},
     GoingHome: {}
 };
@@ -12,7 +20,8 @@ describe('BusStopsSlice', () => {
     beforeEach(() => {
         store = configureStore({
             reducer: {
-                BusStops: BusStopsSlice.reducer
+                BusStops: BusStopsSlice.reducer,
+                Home: HomePageSlice.reducer
             },
             preloadedState: {
                 BusStops: initialState
@@ -66,4 +75,50 @@ describe('BusStopsSlice', () => {
 
         expect(state.GoingOut[111]?.Buses[911]).toBeUndefined();
     })
+
+    test('should handle goingOut', () => {
+        const goingOut = ['task1', 'task2'];
+        store.dispatch(BusStopsSlice.actions.goingOut(goingOut));
+        const state = store.getState().BusStops;
+        expect(state.GoingOut).toEqual(goingOut);
+    });
+
+    test('should handle goingHome', () => {
+        const goingHome = ['task3', 'task4'];
+        store.dispatch(BusStopsSlice.actions.goingHome(goingHome));
+        const state = store.getState().BusStops;
+        expect(state.GoingHome).toEqual(goingHome);
+    });
+
+    test('should handle getSettings pending and fulfilled', async () => {
+        const mockSettings = {
+            settings: {
+                Settings: {
+                    GoingOut: ['out1', 'out2'],
+                    GoingHome: ['home1', 'home2']
+                }
+            }
+        };
+        api.GetSettings.mockResolvedValueOnce(mockSettings);
+
+        const token = 'test-token';
+        await store.dispatch(getSettings(token));
+        const state = store.getState().BusStops;
+
+        expect(api.GetSettings).toHaveBeenCalledWith(token);
+        expect(state.GoingOut).toEqual(mockSettings.settings.Settings.GoingOut);
+        expect(state.GoingHome).toEqual(mockSettings.settings.Settings.GoingHome);
+    });
+
+    test('should handle getSettings rejected', async () => {
+        api.GetSettings.mockRejectedValueOnce(new Error('Failed to fetch settings'));
+
+        const token = 'test-token';
+        await store.dispatch(getSettings(token));
+        const state = store.getState().Home;
+
+        expect(api.GetSettings).toHaveBeenCalledWith(token);
+        // Check if state changes as expected
+        expect(state.isLoading).toBe(false);
+    });
 });

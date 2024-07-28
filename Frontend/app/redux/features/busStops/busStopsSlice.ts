@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../../api/api"
+import { ToastAndroid } from "react-native";
 
 enum Direction {
     GoingOut,
@@ -18,6 +20,10 @@ const initialState: IBusStopSlice = {
     GoingOut: {},
     GoingHome: {}
 }
+
+export const getSettings = createAsyncThunk('Home/getSettings', async (token: string) => {
+    return await api.GetSettings(token);
+})
 
 /**
  * This slice takes care of saving which bus stops and 
@@ -49,7 +55,28 @@ export const BusStopsSlice = createSlice({
             }
 
             delete busStop.Buses[busNumber];
+        },
+        goingOut: (state, action) => {
+            state.GoingOut = action.payload;
+        },
+        goingHome: (state, action) => {
+            state.GoingHome = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getSettings.pending, (state, action) => {
+        });
+        builder.addCase(getSettings.fulfilled, (state, action) => {
+            state.GoingOut = action.payload.settings?.Settings?.GoingOut;
+            state.GoingHome = action.payload.settings?.Settings?.GoingHome;
+            ToastAndroid.show("Successfully get settings", ToastAndroid.SHORT);
+        });
+        builder.addCase(getSettings.rejected, (state, action) => {
+            ToastAndroid.show(
+                "Failed to get settings",
+                ToastAndroid.SHORT
+            );
+        });
     }
 })
 
