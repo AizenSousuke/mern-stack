@@ -29,6 +29,7 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="yasgba"/>
         <data android:scheme="com.onemanstudio.yasgba"/>
+        <data android:scheme="exp" />
         <data android:scheme="exp+yasgba"/>
       </intent-filter>
     </activity>
