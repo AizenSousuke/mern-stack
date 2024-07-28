@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import BusStopSaved from "../components/BusStopSaved";
+import { store } from "../redux/store";
 
 const GoingOut = (props: any) => {
-	const [refreshing, setRefreshing] = useState(false);
+	const storeState = store.getState();
 
 	return (
 		<ScrollView
 			refreshControl={
 				<RefreshControl
-					refreshing={refreshing}
+					refreshing={storeState.home.isLoading}
 					onRefresh={() => {
 						console.log("Refreshing");
 						props.updateSettings();

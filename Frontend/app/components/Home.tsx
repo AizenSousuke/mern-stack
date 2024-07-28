@@ -56,10 +56,13 @@ export const Home = ({ navigation }: { navigation: any }) => {
 								// icon: auth.token ? "person" : "login",
 								color: "white",
 								onPress: async () => {
-									let result = await AsyncStorage.getItem(
-										process.env.TOKEN ??
-											Constants?.expoConfig?.extra?.TOKEN
-									);
+									// let result = await AsyncStorage.getItem(
+									// 	process.env.TOKEN ??
+									// 		Constants?.expoConfig?.extra?.TOKEN
+									// );
+
+									// Get token from persisted store instead
+									let result = store.getState().home.token;
 
 									console.log(
 										"Result: " + JSON.stringify(result)
