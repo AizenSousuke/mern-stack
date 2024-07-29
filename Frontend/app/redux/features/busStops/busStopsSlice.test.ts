@@ -42,6 +42,19 @@ describe('BusStopsSlice', () => {
         expect(state.GoingOut[123].Buses[456]).toBe(456);
     });
 
+    test('should handle addBusStopBus action without busNumber provided', () => {
+        const action = addBusStopBus({
+            direction: 0, // Direction.GoingOut
+            busStopCode: 123
+        });
+
+        store.dispatch(action);
+        const state = store.getState().BusStops;
+
+        expect(state.GoingOut[123]).toStrictEqual({ Buses: {} });
+        expect(state.GoingOut[123].Buses[456]).toBe(undefined);
+    });
+
     test('should handle removeBusStopBus action', () => {
         const addAction = addBusStopBus({
             direction: 0, // Direction.GoingOut

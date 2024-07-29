@@ -1,20 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../api/api"
 import { ToastAndroid } from "react-native";
-
-enum Direction {
-    GoingOut,
-    GoingHome
-}
-
-interface IBusStopSlice {
-    GoingOut: { [key: number]: ISavedBusStopBuses };
-    GoingHome: { [key: number]: ISavedBusStopBuses };
-}
-
-interface ISavedBusStopBuses {
-    Buses: { [key: number]: number };
-}
+import { Direction } from "../../../classes/Enums";
+import { IBusStopSlice } from "../../../interfaces/IBusStopSlice";
 
 const initialState: IBusStopSlice = {
     GoingOut: {},
@@ -34,7 +22,7 @@ export const BusStopsSlice = createSlice({
     initialState: initialState,
     reducers: {
         addBusStopBus: (state, action) => {
-            const { direction, busStopCode, busNumber }: { direction: Direction, busStopCode: number, busNumber: number } = action.payload;
+            const { direction, busStopCode, busNumber }: { direction: Direction, busStopCode: number, busNumber?: number } = action.payload;
 
             const currentDirection = direction == Direction.GoingOut ? "GoingOut" : "GoingHome";
 
@@ -42,7 +30,9 @@ export const BusStopsSlice = createSlice({
                 state[currentDirection][busStopCode] = { Buses: {} };
             }
 
-            state[currentDirection][busStopCode].Buses[busNumber] = busNumber;
+            if (busNumber) {
+                state[currentDirection][busStopCode].Buses[busNumber] = busNumber;
+            }
         },
         removeBusStopBus: (state, action) => {
             const { direction, busStopCode, busNumber }: { direction: Direction, busStopCode: number, busNumber: number } = action.payload;
