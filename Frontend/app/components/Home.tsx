@@ -33,6 +33,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 									await LogOut().then(async (res) => {
 										store.dispatch(loggedIn(false));
 										await persistedStore.purge();
+										console.log("Successfully purged persistedStore");
 										console.log("Logged out");
 									});
 								},

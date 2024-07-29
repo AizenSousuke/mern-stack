@@ -3,6 +3,7 @@ import { RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import BusStopSaved from "../components/BusStopSaved";
 import { store } from "../redux/store";
+import { ISavedBusStopBuses } from "../interfaces/IBusStopSlice";
 
 const GoingOut = (props: any) => {
 	const storeState = store.getState();
@@ -19,14 +20,17 @@ const GoingOut = (props: any) => {
 				></RefreshControl>
 			}
 		>
-			{/* {props.settings?.GoingOut?.map((busStop: any, index: any) => (
-				<BusStopSaved
-					key={index}
-					code={busStop}
-					GoingOut={true}
-					settingsUpdaterFunc={() => props.updateSettings()}
-				/>
-			))} */}
+			{Object.keys(storeState.busStop.GoingOut).map((key, index) => {
+				// const savedBusStopBuses: ISavedBusStopBuses = storeState.busStop.GoingOut[Number(key)];
+				return (
+					<BusStopSaved
+						key={index}
+						code={key}
+						GoingOut={true}
+						settingsUpdaterFunc={() => props.updateSettings()}
+					/>
+				);
+			})}
 		</ScrollView>
 	);
 };

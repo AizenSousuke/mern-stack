@@ -15,6 +15,8 @@ import {
 	loggedIn,
 	setToken,
 } from "./app/redux/features/homePage/homePageSlice";
+import { addBusStopBus } from "./app/redux/features/busStops/busStopsSlice";
+import { Direction } from "./app/classes/Enums";
 
 const Stack = createStackNavigator();
 
@@ -149,9 +151,15 @@ const App = () => {
 					if (res.settings?.Settings) {
 						console.log("Saving settings");
 						// setSettings(res.settings?.Settings);
-						const goingHome = res.settings?.Settings?.GoingHome;
-						const goingOut = res.settings?.Settings?.GoingHome;
+						const goingHome: Array<string> = res.settings?.Settings?.GoingHome;
+						const goingOut: Array<string> = res.settings?.Settings?.GoingOut;
 						console.log("Going home: ", goingHome, "Going out: ", goingOut);
+						goingOut.forEach(busStop => {
+							store.dispatch(addBusStopBus({direction: Direction.GoingOut, busStopCode: busStop }));
+						});
+						goingHome.forEach(busStop => {
+							store.dispatch(addBusStopBus({direction: Direction.GoingHome, busStopCode: busStop }));
+						});
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					} else {
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
