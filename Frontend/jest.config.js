@@ -16,5 +16,8 @@ module.exports = {
 	],
 	testEnvironment: "node",
 	testEnvironmentOptions: {},
-	setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+	setupFilesAfterEnv: [
+		"@testing-library/jest-dom/extend-expect",
+		"./__mocks__/@react-native-async-storage/async-storage.js",
+	],
 };
