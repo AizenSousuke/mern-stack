@@ -14,8 +14,9 @@ const appReducer = combineReducers({
 export const RESET = 'RESET';
 export const resetStore = createAction(RESET);
 
-const rootReducer = (state: any, action: UnknownAction) => {
-    if (state === RESET) {
+const rootReducer = (state: any, action: any) => {
+    if (action.type === RESET) {
+        console.log("Setting undefined to state");
         state = undefined;
     }
 
