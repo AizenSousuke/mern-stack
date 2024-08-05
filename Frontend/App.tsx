@@ -21,9 +21,10 @@ import { Direction } from "./app/classes/Enums";
 const Stack = createStackNavigator();
 
 const App = () => {
-	let authToken = store.getState().home.token;
-	let goingOut = store.getState().busStop.GoingOut;
-	let goingHome = store.getState().busStop.GoingHome;
+	let reduxState = store.getState();
+	let authToken = reduxState.home.token;
+	let goingOut = reduxState.busStop.GoingOut;
+	let goingHome = reduxState.busStop.GoingHome;
 
 	useEffect(() => {
 		console.log(
