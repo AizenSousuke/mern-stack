@@ -248,7 +248,7 @@ const App = () => {
 					GoingHome: goingHome,
 				}}
 				updateSettings={async () => {
-					console.log("Settings provider updateSettings");
+					console.log("Settings provider updateSettings with token: " + authToken);
 					await _getData(authToken);
 				}}
 			>
