@@ -13,6 +13,7 @@ import Constants from "expo-constants";
 import { persistedStore, store } from "../redux/store";
 import { loggedIn, signIn } from "../redux/features/homePage/homePageSlice";
 import { useSelector } from "react-redux";
+import { resetStore } from "../redux/reducers/rootReducer";
 
 export const Home = ({ navigation }: { navigation: any }) => {
 	const isLoggedIn = useSelector((state: any) => state.home.isLoggedIn);
@@ -31,7 +32,8 @@ export const Home = ({ navigation }: { navigation: any }) => {
 									await auth.updateToken();
 
 									await LogOut().then(async (res) => {
-										store.dispatch(loggedIn(false));
+										// store.dispatch(loggedIn(false));
+										store.dispatch(resetStore());
 										await persistedStore.purge();
 										console.log("Successfully purged persistedStore");
 										console.log("Logged out");
