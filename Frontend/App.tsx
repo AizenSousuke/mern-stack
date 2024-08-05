@@ -139,7 +139,6 @@ const App = () => {
 	};
 
 	const _getData = async (token: string | null = null) => {
-		console.log("Token in _getData: " + token);
 		try {
 			console.log("Token in _getData: " + token);
 			await GetSettings(token ?? authToken)
@@ -151,14 +150,31 @@ const App = () => {
 					if (res.settings?.Settings) {
 						console.log("Saving settings");
 						// setSettings(res.settings?.Settings);
-						const goingHome: Array<string> = res.settings?.Settings?.GoingHome;
-						const goingOut: Array<string> = res.settings?.Settings?.GoingOut;
-						console.log("Going home: ", goingHome, "Going out: ", goingOut);
-						goingOut.forEach(busStop => {
-							store.dispatch(addBusStopBus({direction: Direction.GoingOut, busStopCode: busStop }));
+						const goingHome: Array<string> =
+							res.settings?.Settings?.GoingHome;
+						const goingOut: Array<string> =
+							res.settings?.Settings?.GoingOut;
+						console.log(
+							"Going home: ",
+							goingHome,
+							"Going out: ",
+							goingOut
+						);
+						goingOut.forEach((busStop) => {
+							store.dispatch(
+								addBusStopBus({
+									direction: Direction.GoingOut,
+									busStopCode: busStop,
+								})
+							);
 						});
-						goingHome.forEach(busStop => {
-							store.dispatch(addBusStopBus({direction: Direction.GoingHome, busStopCode: busStop }));
+						goingHome.forEach((busStop) => {
+							store.dispatch(
+								addBusStopBus({
+									direction: Direction.GoingHome,
+									busStopCode: busStop,
+								})
+							);
 						});
 						ToastAndroid.show(res.msg, ToastAndroid.SHORT);
 					} else {
@@ -230,7 +246,10 @@ const App = () => {
 					GoingOut: goingOut,
 					GoingHome: goingHome,
 				}}
-				updateSettings={async () => await _getData(authToken)}
+				updateSettings={async () => {
+					console.log("Settings provider updateSettings");
+					await _getData(authToken);
+				}}
 			>
 				<NavigationContainer>
 					<Stack.Navigator>
