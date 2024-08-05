@@ -64,7 +64,7 @@ export const Home = ({ navigation }: { navigation: any }) => {
 									// 		Constants?.expoConfig?.extra?.TOKEN
 									// );
 
-									// Get token from persisted store instead
+									// Get token from the store 
 									let result = store.getState().home.token;
 
 									console.log(
