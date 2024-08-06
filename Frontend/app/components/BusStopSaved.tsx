@@ -12,6 +12,9 @@ import BusStop from "./BusStop";
 import AuthConsumer from "../context/AuthContext";
 import AppStyles from "../../assets/css/AppStyles";
 import ColourScheme from "../settings/colourScheme.json";
+import { store } from "../redux/store";
+import { removeBusStopBus } from "../redux/features/busStops/busStopsSlice";
+import { Direction } from "../classes/Enums";
 
 const BusStopSaved = ({ code, GoingOut, settingsUpdaterFunc }: { code: any; GoingOut: boolean, settingsUpdaterFunc: Function }) => {
 	const [busStop, setBusStop] = useState(null);
@@ -98,6 +101,12 @@ const BusStopSaved = ({ code, GoingOut, settingsUpdaterFunc }: { code: any; Goin
 														setOverlayVisible(
 															!overlayVisible
 														);
+														
+														store.dispatch(removeBusStopBus({
+															direction: GoingOut ? Direction.GoingOut : Direction.GoingHome,
+															busStopCode: code
+														}));
+
 														await RemoveCodeFromSettings(
 															auth.token,
 															code,

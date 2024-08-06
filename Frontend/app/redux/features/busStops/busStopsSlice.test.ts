@@ -76,6 +76,26 @@ describe('BusStopsSlice', () => {
         expect(state.GoingOut[123].Buses[456]).toBeUndefined();
     });
 
+    test('should handle removeBusStopBus action without busNumber', () => {
+        const addAction = addBusStopBus({
+            direction: 0, // Direction.GoingOut
+            busStopCode: 123,
+            busNumber: 456
+        });
+
+        store.dispatch(addAction);
+
+        const removeAction = removeBusStopBus({
+            direction: 0, // Direction.GoingOut
+            busStopCode: 123
+        });
+
+        store.dispatch(removeAction);
+        const state = store.getState().BusStops;
+
+        expect(state.GoingOut[123]).toBeUndefined();
+    });
+
     test('should delete undefined without errors', () => {
         const removeAction = removeBusStopBus({
             direction: 0,
