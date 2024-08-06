@@ -2,17 +2,16 @@ import React from "react";
 import { RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import BusStopSaved from "../components/BusStopSaved";
-import { store } from "../redux/store";
-import { ISavedBusStopBuses } from "../interfaces/IBusStopSlice";
+import { useSelector } from "react-redux";
 
 const GoingOut = (props: any) => {
-	const storeState = store.getState();
-
+	const isLoading = useSelector(state => state.home.isLoading);
+	const goingOut = useSelector(state => state.busStop.GoingOut);
 	return (
 		<ScrollView
 			refreshControl={
 				<RefreshControl
-					refreshing={storeState.home.isLoading}
+					refreshing={isLoading}
 					onRefresh={() => {
 						console.log("Refreshing");
 						props.updateSettings();
@@ -20,7 +19,7 @@ const GoingOut = (props: any) => {
 				></RefreshControl>
 			}
 		>
-			{Object.keys(storeState.busStop.GoingOut).map((key, index) => {
+			{Object.keys(goingOut).map((key, index) => {
 				// const savedBusStopBuses: ISavedBusStopBuses = storeState.busStop.GoingOut[Number(key)];
 				return (
 					<BusStopSaved
