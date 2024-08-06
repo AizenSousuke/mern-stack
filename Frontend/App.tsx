@@ -17,14 +17,14 @@ import {
 } from "./app/redux/features/homePage/homePageSlice";
 import { addBusStopBus } from "./app/redux/features/busStops/busStopsSlice";
 import { Direction } from "./app/classes/Enums";
+import { useSelector } from "react-redux";
 
 const Stack = createStackNavigator();
 
 const App = () => {
-	let reduxState = store.getState();
-	let authToken = reduxState.home.token;
-	let goingOut = reduxState.busStop.GoingOut;
-	let goingHome = reduxState.busStop.GoingHome;
+	let authToken = useSelector((state) => state.home.token);
+	let goingOut = useSelector((state) => state.busStop.GoingOut);
+	let goingHome = useSelector((state) => state.busStop.GoingHome);
 
 	useEffect(() => {
 		console.log(
@@ -248,7 +248,10 @@ const App = () => {
 					GoingHome: goingHome,
 				}}
 				updateSettings={async () => {
-					console.log("Settings provider updateSettings with token: " + authToken);
+					console.log(
+						"Settings provider updateSettings with token: " +
+							authToken
+					);
 					await _getData(authToken);
 				}}
 			>
