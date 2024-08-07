@@ -44,7 +44,12 @@ export const BusStopsSlice = createSlice({
                 busStop = { Buses: {} };
             }
 
-            delete busStop.Buses[busNumber];
+            if (busNumber) {
+                delete busStop.Buses[busNumber];
+            } else {
+                // Delete the whole busStop
+                delete state[currentDirection][busStopCode];
+            }
         },
         goingOut: (state, action) => {
             state.GoingOut = action.payload;
