@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+/**
+ * Bus Stops from DataMall
+ */
 const BusStopSchema = mongoose.Schema({
 	BusStopCode: {
 		type: String,
