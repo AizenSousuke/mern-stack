@@ -15,23 +15,13 @@ const BusStopSettingsSchema = new mongoose.Schema({
 	},
 });
 
-/**
- * Bus Stops for Settings use
- */
-const BusStopsSettingsSchema = new mongoose.Schema({
-	BusStops: {
-		type: BusStopSettingsSchema,
-		default: null,
-	},
-});
-
 const SettingsSettingsSchema = new mongoose.Schema({
 	GoingHome: {
-		type: [BusStopsSettingsSchema],
+		type: [BusStopSettingsSchema],
 		default: [],
 	},
 	GoingOut: {
-		type: [BusStopsSettingsSchema],
+		type: [BusStopSettingsSchema],
 		default: [],
 	},
 });
@@ -41,6 +31,7 @@ const SettingsSchema = new mongoose.Schema({
 		// Connect to an Id in another Model
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "user",
+		required: true,
 	},
 	Settings: {
 		type: SettingsSettingsSchema,
