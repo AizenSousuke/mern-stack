@@ -133,4 +133,31 @@ describe("Settings Model Test", () => {
 			initialUpdatedTime.getTime()
 		);
 	});
+
+	it("should remove all tracked busses when an empty array is passed to the bus stop", async () => {
+		const validSettings = new Settings({
+			UserId: new mongoose.Types.ObjectId(),
+			Settings: {
+				GoingHome: [
+					{
+						BusStopCode: 12345,
+						BussesTracked: [23, 45, 67],
+					},
+				],
+				GoingOut: [
+					{
+						BusStopCode: 54321,
+						BussesTracked: [78, 89, 90],
+					},
+				],
+			},
+		});
+
+		var busStopWithCode = validSettings.Settings.GoingHome.filter(src => src.BusStopCode === 12345)[0];
+		console.log(busStopWithCode);
+		busStopWithCode.BussesTracked = [];
+		await validSettings.save();
+
+		expect(validSettings.Settings.GoingHome.filter(src => src.BusStopCode === 12345)[0].BussesTracked).toEqual([]);
+	});
 });
