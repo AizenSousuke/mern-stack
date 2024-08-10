@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8080;
 import { connectDB } from "./db";
 import cors from "cors";
 import config from "config";
-import UserModel from "./models/User.js";
+import UserModel from "./models/User";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 
