@@ -1,13 +1,13 @@
 // The express server
-const express = require("express");
+import express from "express";
 const app = express();
 const PORT = process.env.PORT || 8080;
-const connectDB = require("./db");
-const cors = require("cors");
-const config = require("config");
-const UserModel = require("./models/User.js");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
+import { connectDB } from "./db";
+import cors from "cors";
+import config from "config";
+import UserModel from "./models/User.js";
+import session from "express-session";
+import cookieParser from "cookie-parser";
 
 // Add self signed key for https
 // const https = require("https");
@@ -20,7 +20,7 @@ const cookieParser = require("cookie-parser");
 // };
 
 // Passport
-const passport = require("passport");
+import passport from "passport";
 const FacebookStrategy = require("passport-facebook").Strategy;
 
 if (process.env.NODE_ENV !== "test") {
@@ -41,7 +41,7 @@ connectDB();
 
 // Adds middlewares
 // Add body-parser middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 app.use(
 	session({
 		secret: process.env.jwtSecret ?? config.get("jwtSecret"),
