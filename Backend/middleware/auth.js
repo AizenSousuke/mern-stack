@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const User = require("../models/User");
+const User = require("../models/User").default;
 
 module.exports = async (req, res, next) => {
 	console.log("Running middleware");
