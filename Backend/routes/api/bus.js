@@ -9,6 +9,12 @@ const header = {
 	AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
 };
 
+/**
+ * Gets the bus arrival timing from the LTA DataMall API
+ * @param {string} busStopCode 
+ * @param {string | null} serviceNo 
+ * @returns 
+ */
 const details = async (busStopCode, serviceNo = null) => {
 	const res = await axios.get(
 		"http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2",
@@ -21,6 +27,12 @@ const details = async (busStopCode, serviceNo = null) => {
 	return res.data;
 };
 
+/**
+ * Gets the bus arrival time from the LTA DataMall API
+ * 
+ * If no serviceNo is provided, it will return all the buses for the 
+ * bus stop
+ */
 router.get("/details/:busStopCode/:serviceNo", async (req, res) => {
 	try {
 		console.log(req.params.busStopCode);

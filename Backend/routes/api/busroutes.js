@@ -307,5 +307,7 @@ router.get("/", async (req, res) => {
 	}
 });
 
-// Export the module to be used in the main server js
+/**
+ * Bus Routes
+ */
 module.exports = router;
