@@ -11,7 +11,9 @@ const https = require("https");
 const auth = require("../../middleware/auth");
 const User = require("../../models/User");
 
-// Using the auth middleware to check the json web token
+/**
+ * Using the auth middleware to check the json web token
+ */
 router.get("/", authMiddleware, async (req, res) => {
 	try {
 		const user = await UserModel.findById(req.user.UserId).select(
@@ -28,11 +30,17 @@ router.get("/", authMiddleware, async (req, res) => {
 	}
 });
 
+/**
+ * Authentication endpoint for facebook login
+ */
 router.get(
 	"/facebook",
 	passport.authenticate("facebook", { scope: ["email"] })
 );
 
+/**
+ * Callback url for facebook login
+ */
 router.get(
 	"/facebook/callback",
 	passport.authenticate("facebook", {
@@ -59,6 +67,9 @@ router.get(
 	}
 );
 
+/**
+ * Check token expiry endpoint
+ */
 router.get("/checkTokenExpiry", async (req, res) => {
 	console.log(
 		"Checking Token Expiry for X-Auth-Token: " + req.header("X-Auth-Token")
@@ -94,6 +105,9 @@ router.get("/checkTokenExpiry", async (req, res) => {
 		.json({ msg: "Token has not expired", expired: false });
 });
 
+/**
+ * Logs the current user out
+ */
 router.get("/logout", (req, res) => {
 	req.logout();
 	res.status(200).json(true);

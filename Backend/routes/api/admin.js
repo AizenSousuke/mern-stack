@@ -12,6 +12,9 @@ router.get("/", (req, res) => {
 	return res.status(200);
 });
 
+/**
+ * Admin endpoint for updating bus stop list
+ */
 router.put("/UpdateBusStopList", auth, async (req, res) => {
 	// Check if logged in user is an admin
 	// Note that auth does not update when admin flag is set in db manually
@@ -95,6 +98,9 @@ router.put("/UpdateBusStopList", auth, async (req, res) => {
 	}
 });
 
+/**
+ * Admin endpoint to set a user as admin using an email address
+ */
 router.patch(
 	"/setAdmin",
 	[

@@ -1,8 +1,8 @@
 export interface IBusStopSlice {
-    GoingOut: { [key: number]: ISavedBusStopBuses };
-    GoingHome: { [key: number]: ISavedBusStopBuses };
+    GoingOut: { [BusStopCode: number]: ISavedBusStopBuses };
+    GoingHome: { [BusStopCode: number]: ISavedBusStopBuses };
 }
 
 export interface ISavedBusStopBuses {
-    Buses: { [key: number]: number };
+    BusesTracked: number[];
 }

@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+/**
+ * YASGBA Users
+ */
 const UserSchema = new mongoose.Schema({
 	UserId: {
 		type: mongoose.Types.ObjectId,
