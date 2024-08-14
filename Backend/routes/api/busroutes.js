@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require("config");
 const auth = require("../../middleware/auth");
-const BusRoutes = require("../../models/BusRoutes");
+const BusRoutes = require("../../models/DataMall/BusRoutes");
 const mongoose = require("mongoose");
 const { CatchError } = require("../../util/ErrorUtil");
 
