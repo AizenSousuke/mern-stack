@@ -1,7 +1,6 @@
 import request from "supertest";
-import express from "express";
-import jwt from "jsonwebtoken";
-const UserModel = require("./../../models/User").default;
+import express from "express"; 
+import UserModel from "./../../models/User";
 import authRouter from "./auth"; // Adjust the path if needed
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
