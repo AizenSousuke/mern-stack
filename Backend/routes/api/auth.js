@@ -15,9 +15,12 @@ const auth = require("../../middleware/auth");
  */
 router.get("/", authMiddleware, async (req, res) => {
 	try {
-		const user = await UserModel.findById(req.user.UserId).select(
-			"-Password"
-		);
+		// console.log("Getting auth");
+		// console.log("Type of UserId: ", typeof req.user.UserId);
+		// console.log("User: ", await UserModel.findOne({UserId: req.user.UserId}));
+		const user = await UserModel.findOne({
+			UserId: req.user.UserId,
+		}).select("-Password");
 		if (!user) {
 			return res.status(401).json({ msg: "No user is logged in" });
 		}
