@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../../middleware/auth");
-const UserModel = require("../../models/User");
+const UserModel = require("./../../models/User").default;
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
@@ -9,7 +9,6 @@ const { check, validationResult } = require("express-validator");
 const passport = require("passport");
 const https = require("https");
 const auth = require("../../middleware/auth");
-const User = require("../../models/User");
 
 /**
  * Using the auth middleware to check the json web token
