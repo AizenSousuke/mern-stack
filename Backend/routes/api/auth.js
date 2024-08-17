@@ -82,7 +82,7 @@ router.get("/checkTokenExpiry", async (req, res) => {
 			.json({ msg: "Token has expired", expired: true });
 	}
 
-	const user = await User.findOne({
+	const user = await UserModel.findOne({
 		Token: req.header("X-Auth-Token"),
 	}).select("-Password");
 	if (!user) {
