@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from "mongodb-memory-server";
 import busStopRouter from "../busstops"
+import BusStop from "../../../models/DataMall/BusStop";
 // Note: Remember to use {} in test.json in config folder
 
 // Initialize express app
@@ -24,6 +25,34 @@ afterAll(async () => {
 });
 
 describe("/BusStops Test", () => {
+
+	beforeEach(async () => {
+		await BusStop.insertMany([
+			{
+				BusStopCode: "44229",
+				RoadName: "Pending Rd",
+				Description: "Pending Rd - Blk 201",
+				Location: {
+					type: "Point",
+					coordinates: [103.7699767, 1.377725]
+				}
+			},
+			{
+				BusStopCode: "44230",
+				RoadName: "Pending Rd",
+				Description: "Pending Rd - Blk 202",
+				Location: {
+					type: "Point",
+					coordinates: [103.770000, 1.377900]
+				}
+			},
+		])
+	})
+
+	afterEach(async () => {
+		await BusStop.deleteMany();
+	})
+
 	it("should return a Bus Stop data with provided with a code query string", (done) => {
 		request(app).get("/api/BusStops")
 			.query({ code: 44229 })
