@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 /**
  * Schema from LTA DataMall API
  */
-const BusServicesSchema = mongoose.Schema({
+const BusServicesSchema = new mongoose.Schema({
 	ServiceNo: {
 		type: String,
 		required: true,
