@@ -2,8 +2,8 @@ import request from "supertest";
 import express from "express";
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from "mongodb-memory-server";
-import busStopRouter from "../busstops"
-import BusStop from "../../../models/DataMall/BusStop";
+import busStopRouter from "./busstops"
+import BusStop from "../../models/DataMall/BusStop";
 // Note: Remember to use {} in test.json in config folder
 
 // Initialize express app
