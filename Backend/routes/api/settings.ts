@@ -48,7 +48,7 @@ router.put(
 			console.log("Body:" + JSON.stringify(req.body));
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
-				res.status(422).json({ errors: errors.array() });
+				return res.status(422).json({ errors: errors.array() });
 			}
 
 			const { settings } = req.body;

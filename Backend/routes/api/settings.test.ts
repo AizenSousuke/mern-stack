@@ -81,7 +81,15 @@ describe('Settings API', () => {
     });
 
     it('should update bus stop settings', async () => {
-        const settings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [44229] } });
+        const settings = new SettingsModel({
+            UserId: userId, Settings: {
+                GoingHome: [], GoingOut: [
+                    {
+                        BusStopCode: 44229,
+                        BussesTracked: [],
+                    }]
+            }
+        });
         await settings.save();
 
         const res = await request(app)
