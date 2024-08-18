@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const BusStop = require("../../models/DataMall/BusStop");
+const BusStop = require("../../models/DataMall/BusStop").default;
 const { check, validationResult } = require("express-validator");
 const axios = require("axios");
 const config = require("config");

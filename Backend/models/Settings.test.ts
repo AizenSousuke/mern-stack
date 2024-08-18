@@ -1,16 +1,13 @@
-const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
-const Settings = require("./Settings");
+import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import Settings from "./Settings";
 
 let mongoServer;
 
 beforeAll(async () => {
 	mongoServer = await MongoMemoryServer.create();
 	const uri = mongoServer.getUri();
-	await mongoose.connect(uri, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	});
+	await mongoose.connect(uri);
 });
 
 afterAll(async () => {

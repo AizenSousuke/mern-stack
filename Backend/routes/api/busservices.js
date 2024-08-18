@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const axios = require("axios");
 const express = require("express");
-const { CatchError } = require("../../util/ErrorUtil");
-const BusServices = require("../../models/DataMall/BusServices");
+const { CatchError } = require("../../util/ErrorUtil").default;
+const BusServices = require("../../models/DataMall/BusServices").default;
 const router = express.Router();
 const config = require("config");
 const auth = require("../../middleware/auth");

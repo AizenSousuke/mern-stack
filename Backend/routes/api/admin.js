@@ -3,8 +3,8 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const axios = require("axios");
 const config = require("config");
-const BusStop = require("../../models/DataMall/BusStop");
-const User = require("../../models/User");
+const BusStop = require("../../models/DataMall/BusStop").default;
+const User = require("../../models/User").default;
 const mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator");
 

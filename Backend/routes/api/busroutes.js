@@ -3,9 +3,9 @@ const router = express.Router();
 const axios = require("axios");
 const config = require("config");
 const auth = require("../../middleware/auth");
-const BusRoutes = require("../../models/DataMall/BusRoutes");
+const BusRoutes = require("../../models/DataMall/BusRoutes").default;
 const mongoose = require("mongoose");
-const { CatchError } = require("../../util/ErrorUtil");
+const { CatchError } = require("../../util/ErrorUtil").default;
 
 const header = {
 	Accept: "application/json",

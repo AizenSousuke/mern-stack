@@ -24,4 +24,6 @@ const BusStopSchema = mongoose.Schema({
 
 BusStopSchema.index({ Location: "2dsphere" });
 
-module.exports = BusStop = mongoose.model("busstop", BusStopSchema);
+const BusStop = mongoose.model("busstop", BusStopSchema);
+
+export default BusStop;

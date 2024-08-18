@@ -49,4 +49,6 @@ const BusServicesSchema = mongoose.Schema({
     },
 });
 
-module.exports = BusServices = mongoose.model("BusServices", BusServicesSchema);
+const BusServices = mongoose.model("BusServices", BusServicesSchema);
+
+export default BusServices;

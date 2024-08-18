@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require("config");
-const { CatchError } = require("../../util/ErrorUtil");
+const { CatchError } = require("../../util/ErrorUtil").default;
 
 const header = {
 	Accept: "application/json",

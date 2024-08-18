@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../../middleware/auth");
-const Settings = require("../../models/Settings");
+const Settings = require("../../models/Settings").default;
 const { check, validationResult } = require("express-validator");
 
 router.get("/", authMiddleware, async (req, res) => {

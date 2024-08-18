@@ -54,4 +54,6 @@ const BusRoutesSchema = mongoose.Schema({
     }
 });
 
-module.exports = BusRoute = mongoose.model("busroutes", BusRoutesSchema);
+const BusRoutes = mongoose.model("busroutes", BusRoutesSchema);
+
+export default BusRoutes;
