@@ -13,10 +13,10 @@ export const teardownMongoTestDB = async (mongoServer: MongoMemoryServer) => {
     await mongoServer.stop();
 }
 
-type RouteConfig = {
+export type RouteConfig = {
     path: string;
     router: Router;
-};
+}
 
 export const createTestAppWithRoutes = (routers: RouteConfig[]) => {
     const app = express();
