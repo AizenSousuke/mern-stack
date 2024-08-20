@@ -6,6 +6,7 @@ const Auth = async (req, res, next) => {
 	console.log("Running middleware");
 	try {
 		// Get token from headers
+		console.log(req.headers);
 		const token = req.header("X-Auth-Token");
 		console.log("Token in req header: " + JSON.stringify(token));
 
