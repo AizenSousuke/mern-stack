@@ -131,4 +131,6 @@ router.delete("/", async (req, res) => {
 	}
 });
 
+router.get('/test', (req, res) => res.status(200).json({ msg: 'Test route working' }));
+
 export default router;

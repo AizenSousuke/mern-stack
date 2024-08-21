@@ -33,7 +33,7 @@ const Auth = async (req, res, next) => {
 			// Check token has not expired
 			console.log("Date today: " + Date.now());
 			if (user.TokenExpiryDate > Date.now()) {
-				console.log("Setting request user: " + user);
+				console.log("Setting request user: " + JSON.stringify(user));
 				req.user = user;
 				return next();
 			}
