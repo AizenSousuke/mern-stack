@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import express, { Router } from 'express';
+import express, { Router, Express } from 'express';
 import { MongoMemoryServer } from "mongodb-memory-server";
 import Auth from "../middleware/auth";
 
@@ -19,7 +19,7 @@ export type RouteConfig = {
     router: Router;
 }
 
-export const createTestAppWithRoutes = (routers: RouteConfig[]) => {
+export const createTestAppWithRoutes = (routers: RouteConfig[]): Express => {
     const app = express();
     app.use(express.json());
     app.use(Auth);

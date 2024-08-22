@@ -2,10 +2,11 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { createTestAppWithRoutes, RouteConfig, setupMongoTestDB, teardownMongoTestDB } from "../../util/TestUtility"
 import adminRouter from "../api/admin";
 import request from "supertest";
+import { Express } from "express";
 
 var routers: RouteConfig[] = [{ path: "/api/admin", router: adminRouter }]
 
-let app;
+let app: Express;
 let mongoMemoryServer: MongoMemoryServer;
 
 jest.mock("../../middleware/auth", () => jest.fn((req, res, next) => {
@@ -22,7 +23,7 @@ afterAll(async () => {
 })
 
 describe("Admin", () => {
-    it("should get admin /", async () => {
+    it("should get admin / method", async () => {
         const response = await request(app)
             .get("/api/admin");
 

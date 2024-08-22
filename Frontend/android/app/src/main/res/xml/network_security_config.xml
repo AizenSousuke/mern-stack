@@ -6,6 +6,7 @@
     <domain includeSubdomains="true">localhost</domain>
     <domain includeSubdomains="true">192.168.33.9</domain>
     <domain includeSubdomains="true">192.168.68.126</domain>
+    <domain includeSubdomains="true">192.168.68.120</domain>
   </domain-config>
 
 </network-security-config>
