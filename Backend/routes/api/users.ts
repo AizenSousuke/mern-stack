@@ -11,9 +11,12 @@ import UserModel from "../../models/User";
 
 router.get("/", async (req, res) => {
 	try {
-		const user = await UserModel.find({}).catch((error) => {
-			return res.status(404).json({ msg: "No user found", error: error });
-		});
+		const user = await UserModel.find({});
+
+		if (!user || user.length === 0) {
+			return res.status(404).json({ msg: "No user found" });
+		}
+		
 		return res
 			.status(200)
 			.json({ msg: "Successfully got the user", user: user });
@@ -130,7 +133,5 @@ router.delete("/", async (req, res) => {
 		return res.status(500).json({ msg: "Server error" });
 	}
 });
-
-router.get('/test', (req, res) => res.status(200).json({ msg: 'Test route working' }));
 
 export default router;
