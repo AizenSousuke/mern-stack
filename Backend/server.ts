@@ -21,6 +21,7 @@ import cookieParser from "cookie-parser";
 
 // Passport
 import passport from "passport";
+import Auth from "./middleware/auth";
 const FacebookStrategy = require("passport-facebook").Strategy;
 
 if (process.env.NODE_ENV !== "test") {

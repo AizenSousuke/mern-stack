@@ -48,6 +48,7 @@ const Auth = async (req, res, next) => {
 			.status(500)
 			.json({ msg: "There is some issue with the request." });
 	} catch (error) {
+		console.error(error);
 		return res.status(401).json({ msg: error.message });
 	}
 

@@ -15,7 +15,6 @@ jest.mock('../models/User');
 
 beforeAll(async () => {
     app = createTestAppWithRoutes(routers);
-    app.use(Auth);
     mongoMemoryServer = await setupMongoTestDB();
 })
 
@@ -26,9 +25,29 @@ afterAll(async () => {
 describe("Auth Middleware", () => {
     it("should return 401 when no token is provided", async () => {
         var response = await request(app)
-            .get("/api/test");
+            .get("/api/user/test");
 
         expect(response.status).toBe(401);
+    })
+
+    it("should return 401 expired when token has expired", async () => {
+        // Mock User.findOne to return a user object
+        User.findOne.mockImplementation((query) => {
+            return {
+                select: jest.fn().mockReturnValue({
+                    _id: '123',
+                    Token: 'valid-token',
+                    TokenExpiryDate:  Date.now() - 3600000,  // Token expiry in the past
+                }),
+            };
+        });
+
+        const response = await request(app)
+            .get('/api/user')
+            .set('X-Auth-Token', 'valid-token');  // Set the token in the header
+
+        expect(response.status).toBe(401);
+        expect(response.body.msg).not.toBeNull();
     })
 
     it('should return 200 when a valid token is provided', async () => {
@@ -45,8 +64,8 @@ describe("Auth Middleware", () => {
         });
 
         const response = await request(app)
-            .get('/api/user/test')
-            .set('X-Auth-Token', 'valid-token');  // Set the token in the header
+            .get('/api/user')
+            .set('X-Auth-Token', 'valid-token');   // Set the token in the header
 
         expect(response.status).toBe(200);
         expect(response.body.msg).not.toBeNull();
