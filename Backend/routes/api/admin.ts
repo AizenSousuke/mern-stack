@@ -8,8 +8,8 @@ const User = require("../../models/User").default;
 import mongoose from "mongoose";
 import { check, validationResult } from "express-validator";
 
-router.get("/", (req: any, res) => {
-	return res.status(200);
+router.get("/", async (req: any, res) => {
+	return res.status(200).json({ msg: "Ok" });
 });
 
 /**
