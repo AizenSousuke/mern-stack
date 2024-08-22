@@ -3,7 +3,6 @@ import authRouter from "../routes/api/auth";
 import userRouter from "../routes/api/users";
 import request from "supertest";
 import { createTestAppWithRoutes, RouteConfig, setupMongoTestDB, teardownMongoTestDB } from "../util/TestUtility";
-import Auth from "./auth";
 import User from "../models/User";
 
 const routers: RouteConfig[] = [{ path: "/api/auth", router: authRouter }, { path: "/api/user", router: userRouter }];
@@ -37,7 +36,7 @@ describe("Auth Middleware", () => {
                 select: jest.fn().mockReturnValue({
                     _id: '123',
                     Token: 'valid-token',
-                    TokenExpiryDate:  Date.now() - 3600000,  // Token expiry in the past
+                    TokenExpiryDate: Date.now() - 3600000,  // Token expiry in the past
                 }),
             };
         });
@@ -60,6 +59,12 @@ describe("Auth Middleware", () => {
                     Token: 'valid-token',
                     TokenExpiryDate: Date.now() + 3600000,  // Token expiry in the future
                 }),
+            };
+        });
+        User.find.mockImplementation((query) => {
+            console.log('Mocked User.find called with query:', query);
+            return {
+                select: jest.fn().mockReturnValue([new User(), new User()]),
             };
         });
 

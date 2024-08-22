@@ -11,15 +11,15 @@ import UserModel from "../../models/User";
 
 router.get("/", async (req, res) => {
 	try {
-		const user = await UserModel.find({});
+		const users = await UserModel.find({});
 
-		if (!user || user.length === 0) {
-			return res.status(404).json({ msg: "No user found" });
+		if (!users || users.length === 0) {
+			return res.status(404).json({ msg: "No user(s) found" });
 		}
 		
 		return res
 			.status(200)
-			.json({ msg: "Successfully got the user", user: user });
+			.json({ msg: "Successfully got the user", users: users });
 	} catch (error) {
 		console.log(error.message);
 		return res.status(500).json({ msg: "Server error" });
