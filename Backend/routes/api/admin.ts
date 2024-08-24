@@ -132,7 +132,7 @@ router.patch(
 				return res.status(404).json({ msg: "No user found" });
 			}
 
-			return res.status(200).json({ msg: "Successfully set admin" });
+			return res.status(200).json({ msg: "Successfully set admin to " + IsAdmin });
 		} catch (error) { }
 	}
 );
