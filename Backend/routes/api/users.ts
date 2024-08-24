@@ -100,10 +100,10 @@ router.post(
 );
 
 router.delete("/", async (req, res) => {
-	const email = req.query.Email;
+	const email = req.query.email;
 
 	if (!email) {
-		res.status(422).json({ err: "Invalid email address" });
+		return res.status(422).json({ err: "Invalid email address" });
 	}
 
 	// Session
