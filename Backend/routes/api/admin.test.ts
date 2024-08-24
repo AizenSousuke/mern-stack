@@ -29,4 +29,15 @@ describe("Admin", () => {
 
         expect(response.status).toBe(200);
     })
+
+    it("should not be able to set admin because user is not admin", async () => {
+        const response = await request(app)
+        .patch("/api/admin/setadmin")
+        .send({
+            Email: "test@test.com",
+            IsAdmin: true
+        });
+
+        expect(response.status).toBe(403);
+    })
 })
