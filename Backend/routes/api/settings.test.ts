@@ -101,6 +101,34 @@ describe('Settings API', () => {
         expect(res.body.msg).toMatch(/updated/);
     });
 
+    it('should update bus stop settings with 1 bus tracked', async () => {
+        const settings = new SettingsModel({
+            UserId: userId, Settings: {
+                GoingHome: [], GoingOut: [
+                    {
+                        BusStopCode: 44229,
+                        BussesTracked: [],
+                    }]
+            }
+        });
+        await settings.save();
+
+        const res = await request(app)
+            .put('/api/settings/update')
+            .set("x-auth-token", token)
+            .send({ code: 44229, GoingOut: true, busesTracked: [123] })
+            .expect(200);
+
+        expect(res.body.msg).toMatch(/updated/);
+
+        const updatedResponse = await request(app)
+            .get("/api/settings")
+            .set("x-auth-token", token);
+
+        expect(updatedResponse.body.settings.Settings.GoingOut[0].BussesTracked).toEqual(
+            [123]);
+    })
+
     it('should delete user settings', async () => {
         const settings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [] } });
         await settings.save();
