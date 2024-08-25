@@ -75,11 +75,28 @@ router.put(
 	[
 		check("code", "Code is required").notEmpty(),
 		check("GoingOut", "GoingOut boolean property is required").notEmpty(),
+		check("busesTracked", "busesTracked boolean property is required").notEmpty(),
 	],
 	authMiddleware,
 	async (req: any, res) => {
 		try {
-			console.log("Updating settings");
+			return res.status(200).json({ msg: "Successfully updated settings." });
+		} catch (error) {
+			return res.status(500).json({ msg: "Something went wrong." });
+		}
+	}
+)
+
+router.delete(
+	"/delete",
+	[
+		check("code", "Code is required").notEmpty(),
+		check("GoingOut", "GoingOut boolean property is required").notEmpty(),
+	],
+	authMiddleware,
+	async (req: any, res) => {
+		try {
+			console.log("Deleting settings");
 			const errors = validationResult(req);
 			console.log(JSON.stringify(errors));
 			if (!errors.isEmpty()) {
@@ -91,12 +108,12 @@ router.put(
 			console.log(`Code: ${code}, GoingOut: ${GoingOut}`);
 			if (!code) {
 				return res.status(422).json({
-					msg: "There is no code provided. Settings not updated. ",
+					msg: "There is no code provided. Bus stop not deleted.",
 				});
 			}
 			if (GoingOut == null) {
 				return res.status(422).json({
-					msg: "There is no GoingOut boolean property provided. Settings not updated. ",
+					msg: "There is no GoingOut boolean property provided. Bus stop not deleted.",
 				});
 			}
 
@@ -122,7 +139,7 @@ router.put(
 							(c) => c !== code
 						),
 						GoingHome: settings.Settings?.GoingHome,
-					}
+					},
 				);
 			} else if (GoingOut == false) {
 				newSettings = Object.assign(
@@ -147,7 +164,7 @@ router.put(
 			);
 
 			return res.status(200).json({
-				msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.`,
+				msg: `User settings has been deleted at ${UpdatedSettings.DateUpdated}.`,
 			});
 		} catch (error) {
 			console.error(error);

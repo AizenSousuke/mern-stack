@@ -70,7 +70,7 @@ describe('Settings API', () => {
     });
 
     it('should update user settings', async () => {
-        const settings = { GoingHome: [], GoingOut: [{ BusStopCode: 12345, BussesTracked: [12, 34] }] };
+        const settings = { GoingHome: [], GoingOut: [{ BusStopCode: 12345, BusesTracked: [12, 34] }] };
         const res = await request(app)
             .put('/api/settings')
             .set("x-auth-token", token)
@@ -80,25 +80,25 @@ describe('Settings API', () => {
         expect(res.body.msg).toMatch(/updated/);
     });
 
-    it('should update bus stop settings', async () => {
+    it('should delete bus stop settings', async () => {
         const settings = new SettingsModel({
             UserId: userId, Settings: {
                 GoingHome: [], GoingOut: [
                     {
                         BusStopCode: 44229,
-                        BussesTracked: [],
+                        BusesTracked: [],
                     }]
             }
         });
         await settings.save();
 
         const res = await request(app)
-            .put('/api/settings/update')
+            .delete('/api/settings/delete')
             .set("x-auth-token", token)
             .send({ code: 44229, GoingOut: true })
             .expect(200);
 
-        expect(res.body.msg).toMatch(/updated/);
+        expect(res.body.msg).toMatch(/deleted/);
     });
 
     it('should update bus stop settings with 1 bus tracked', async () => {
@@ -107,7 +107,7 @@ describe('Settings API', () => {
                 GoingHome: [], GoingOut: [
                     {
                         BusStopCode: 44229,
-                        BussesTracked: [],
+                        BusesTracked: [],
                     }]
             }
         });
@@ -125,7 +125,7 @@ describe('Settings API', () => {
             .get("/api/settings")
             .set("x-auth-token", token);
 
-        expect(updatedResponse.body.settings.Settings.GoingOut[0].BussesTracked).toEqual(
+        expect(updatedResponse.body.settings.Settings.GoingOut[0].BusesTracked).toEqual(
             [123]);
     })
 

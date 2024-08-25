@@ -8,7 +8,7 @@ const BusStopSettingsSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	BussesTracked: {
+	BusesTracked: {
 		type: [Number],
 		required: true,
 		default: [],
