@@ -134,6 +134,7 @@ router.patch(
 
 			return res.status(200).json({ msg: "Successfully set admin to " + IsAdmin });
 		} catch (error) {
+			console.error(error);
 			return res.status(500).json({ msg: "Something went wrong." });
 		}
 	}

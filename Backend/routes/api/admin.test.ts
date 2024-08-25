@@ -3,15 +3,12 @@ import { createTestAppWithRoutes, RouteConfig, setupMongoTestDB, teardownMongoTe
 import adminRouter from "../api/admin";
 import request from "supertest";
 import { Express } from "express";
+import Auth from "../../middleware/auth";
 
 var routers: RouteConfig[] = [{ path: "/api/admin", router: adminRouter }]
 
 let app: Express;
 let mongoMemoryServer: MongoMemoryServer;
-
-jest.mock("../../middleware/auth", () => jest.fn((req, res, next) => {
-    next();
-}));
 
 beforeAll(async () => {
     app = createTestAppWithRoutes(routers);
@@ -21,6 +18,11 @@ beforeAll(async () => {
 afterAll(async () => {
     await teardownMongoTestDB(mongoMemoryServer);
 })
+
+jest.mock("../../middleware/auth", () => jest.fn((req, res, next) => {
+    req.user = { id: '1', email: 'test@test.com', isAdmin: false };
+    next();
+}));
 
 describe("Admin", () => {
     it("should get admin / method", async () => {
@@ -32,12 +34,13 @@ describe("Admin", () => {
 
     it("should not be able to set admin because user is not admin", async () => {
         const response = await request(app)
-        .patch("/api/admin/setadmin")
-        .send({
-            Email: "test@test.com",
-            IsAdmin: true
-        });
+            .patch("/api/admin/setAdmin")
+            .send({
+                Email: "test@test.com",
+                IsAdmin: true
+            });
 
         expect(response.status).toBe(403);
+        expect(response.body.msg).toBe("You must be an admin to do this");
     })
 })
