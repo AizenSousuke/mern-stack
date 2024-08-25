@@ -29,12 +29,17 @@ afterAll(async () => {
 describe('Settings API', () => {
     let token: string;
     let userId: mongoose.Types.ObjectId;
+    let settings: any;
 
     beforeEach(async () => {
         // Create a sample user
         const user = new UserModel({ Email: 'test@example.com', Password: await bcrypt.hash("password", 10) });
         await user.save();
         userId = user.UserId;
+
+        // Create empty settings
+        settings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [] } });
+        settings.save();
 
         jest.mock('../../middleware/auth', () => jest.fn((req, res, next) => {
             req.user = { UserId: userId };
@@ -56,9 +61,6 @@ describe('Settings API', () => {
     });
 
     it('should get user settings', async () => {
-        const settings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [] } });
-        await settings.save();
-
         const res = await request(app)
             .get('/api/settings')
             .set("x-auth-token", token)
@@ -70,9 +72,6 @@ describe('Settings API', () => {
     });
 
     it('should update all user settings', async () => {
-        const oldSettings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [] } });
-        oldSettings.save();
-
         const oldSettingsResponse = await request(app)
             .get("/api/settings")
             .set("x-auth-token", token);
@@ -80,11 +79,11 @@ describe('Settings API', () => {
         expect(oldSettingsResponse.body.settings.Settings.GoingOut).toEqual(
             []);
 
-        const settings = { GoingHome: [], GoingOut: [{ BusStopCode: 12345, BusesTracked: [12, 34] }] };
+        const newSettings = { GoingHome: [], GoingOut: [{ BusStopCode: 12345, BusesTracked: [12, 34] }] };
         const updateNewSettingsResponse = await request(app)
             .put('/api/settings')
             .set("x-auth-token", token)
-            .send({ settings })
+            .send({ settings: newSettings })
             .expect(200);
 
         expect(updateNewSettingsResponse.body.msg).toMatch(/updated/);
@@ -119,16 +118,20 @@ describe('Settings API', () => {
     });
 
     it('should update bus stop settings with 1 bus tracked', async () => {
-        const settings = new SettingsModel({
-            UserId: userId, Settings: {
-                GoingHome: [], GoingOut: [
-                    {
-                        BusStopCode: 44229,
-                        BusesTracked: [],
-                    }]
-            }
-        });
-        await settings.save();
+        // Use new settings
+        const settings = {
+            GoingHome: [], GoingOut: [
+                {
+                    BusStopCode: 44229,
+                    BusesTracked: [],
+                }]
+        };
+
+        await request(app)
+            .put('/api/settings')
+            .set("x-auth-token", token)
+            .send({ settings: settings })
+            .expect(200);
 
         const res = await request(app)
             .put('/api/settings/update')
@@ -147,9 +150,6 @@ describe('Settings API', () => {
     })
 
     it('should delete user settings', async () => {
-        const settings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [] } });
-        await settings.save();
-
         const res = await request(app)
             .delete('/api/settings')
             .set("x-auth-token", token)
@@ -159,6 +159,12 @@ describe('Settings API', () => {
     });
 
     it('should return 404 if no settings are found', async () => {
+        // Remove settings first
+        await request(app)
+            .delete("/api/settings")
+            .set("x-auth-token", token)
+            .expect(200);
+
         const res = await request(app)
             .get('/api/settings')
             .set("x-auth-token", token)
