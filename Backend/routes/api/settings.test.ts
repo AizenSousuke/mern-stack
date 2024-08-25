@@ -69,15 +69,32 @@ describe('Settings API', () => {
         expect(res.body.settings).toBeTruthy();
     });
 
-    it('should update user settings', async () => {
+    it('should update all user settings', async () => {
+        const oldSettings = new SettingsModel({ UserId: userId, Settings: { GoingHome: [], GoingOut: [] } });
+        oldSettings.save();
+
+        const oldSettingsResponse = await request(app)
+            .get("/api/settings")
+            .set("x-auth-token", token);
+
+        expect(oldSettingsResponse.body.settings.Settings.GoingOut).toEqual(
+            []);
+
         const settings = { GoingHome: [], GoingOut: [{ BusStopCode: 12345, BusesTracked: [12, 34] }] };
-        const res = await request(app)
+        const updateNewSettingsResponse = await request(app)
             .put('/api/settings')
             .set("x-auth-token", token)
             .send({ settings })
             .expect(200);
 
-        expect(res.body.msg).toMatch(/updated/);
+        expect(updateNewSettingsResponse.body.msg).toMatch(/updated/);
+
+        const updatedSettings = await request(app)
+            .get("/api/settings")
+            .set("x-auth-token", token);
+
+        expect(updatedSettings.body.settings.Settings.GoingOut[0].BusesTracked).toEqual(
+            [12, 34]);
     });
 
     it('should delete bus stop settings', async () => {
