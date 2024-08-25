@@ -80,8 +80,30 @@ router.put(
 	authMiddleware,
 	async (req: any, res) => {
 		try {
+			console.log("Updating settings to add busesTracked");
+			const fieldToUpdate = !req.body.GoingOut ? "Settings.GoingHome" : "Settings.GoingOut";
+			const userId = req.user.UserId;
+			const busStopCode = req.body.code;
+			const busesTracked = req.body.busesTracked;
+			const oldBusStopTrackedBuses = await Settings.findOneAndUpdate(
+				{
+					UserId: userId,
+					[`${fieldToUpdate}.BusStopCode`]: busStopCode,
+				},
+				{
+					$set: {
+						[`${fieldToUpdate}.$.BusesTracked`]: busesTracked,
+						DateUpdated: Date.now()
+					}
+				},
+				{ upsert: true, new: true, setDefaultsOnInsert: true },
+			);
+
+			console.log("oldBusStopTrackedBuses", oldBusStopTrackedBuses);
+
 			return res.status(200).json({ msg: "Successfully updated settings." });
 		} catch (error) {
+			console.error(error);
 			return res.status(500).json({ msg: "Something went wrong." });
 		}
 	}
