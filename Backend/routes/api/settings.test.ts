@@ -160,7 +160,7 @@ describe('Settings API', () => {
         })
         .expect(200);
 
-        expect(response.msg).toContain(/updated/);
+        expect(response.body.msg).toMatch(/updated/);
     })
 
     it('should delete user settings', async () => {

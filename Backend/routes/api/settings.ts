@@ -81,23 +81,54 @@ router.put(
 	async (req: any, res) => {
 		try {
 			console.log("Updating settings to add busesTracked");
-			const fieldToUpdate = !req.body.GoingOut ? "Settings.GoingHome" : "Settings.GoingOut";
+			const fieldToUpdate = !req.body.GoingOut ? "GoingHome" : "GoingOut";
 			const userId = req.user.UserId;
 			const busStopCode = req.body.code;
 			const busesTracked = req.body.busesTracked;
-			const oldBusStopTrackedBuses = await Settings.findOneAndUpdate(
-				{
-					UserId: userId,
-					[`${fieldToUpdate}.BusStopCode`]: busStopCode,
-				},
-				{
-					$set: {
-						[`${fieldToUpdate}.$.BusesTracked`]: busesTracked,
-						DateUpdated: Date.now()
-					}
-				},
-				{ upsert: true, new: true, setDefaultsOnInsert: true },
+			
+			const existingSettings = await Settings.findOne({
+				UserId: userId
+			});
+
+			console.log("existingSettings:", existingSettings);
+
+			const existingBusStop = existingSettings.Settings[fieldToUpdate].some(
+			  (stop) => stop.BusStopCode === busStopCode
 			);
+
+			let oldBusStopTrackedBuses;
+			console.log("Existing bus stop: ", existingBusStop);
+
+			if (existingBusStop) {
+				console.log("Updating");
+				// Update the existing BusStopCode's BusesTracked array
+				oldBusStopTrackedBuses = await Settings.findOneAndUpdate(
+					{
+						UserId: userId,
+						[`Settings.${fieldToUpdate}.BusStopCode`]: busStopCode,
+					},
+					{
+						$set: {
+							[`Settings.${fieldToUpdate}.$.BusesTracked`]: busesTracked,
+							DateUpdated: Date.now(),
+						},
+					},
+					{ new: true }
+				);
+			} else {
+				console.log("Adding");
+				// Add a new BusStopCode object to the array
+				oldBusStopTrackedBuses = await Settings.findOneAndUpdate(
+					{ UserId: userId },
+					{
+						$push: {
+							[`Settings.${fieldToUpdate}`]: { BusStopCode: busStopCode, BusesTracked: busesTracked },
+						},
+						$set: { DateUpdated: Date.now() }
+					},
+					{ new: true, upsert: true }
+				);
+			}
 
 			console.log("oldBusStopTrackedBuses", oldBusStopTrackedBuses);
 
