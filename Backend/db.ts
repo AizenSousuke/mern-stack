@@ -5,7 +5,7 @@ const db = process.env.mongoURI ?? configuration.get("mongoURI");
 export const connectDB = async () => {
 	try {
 		await mongoose.connect(db);
-		console.log("MongoDB Connected...");
+		console.log("MongoDB connected to", process.env.NODE_ENV, "servers with token expiry days:", configuration.TOKEN_EXPIRY_DAYS);
 	} catch (err) {
 		console.error(err.message);
 		// Exit process with failure
