@@ -149,6 +149,20 @@ describe('Settings API', () => {
             [123]);
     })
 
+    it('should update settings with multiple tracked buses when no bus stops were provided at first', async () => {
+        const response = await request(app)
+        .put('/api/settings/update')
+        .set('x-auth-token', token)
+        .send({
+            code: 44229,
+            GoingOut: true,
+            busesTracked: [123, 456]
+        })
+        .expect(200);
+
+        expect(response.msg).toContain(/updated/);
+    })
+
     it('should delete user settings', async () => {
         const res = await request(app)
             .delete('/api/settings')
