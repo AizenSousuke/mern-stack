@@ -20,6 +20,7 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 	// Note that auth does not update when admin flag is set in db manually
 	console.log("User is admin: " + req.user.IsAdmin);
 	if (req.user.IsAdmin) {
+		console.log("Getting all bus stops from LTA");
 		// Get all the bus stops from LTA
 		let allBusStops = [];
 		let arrayOfPromises = [];
@@ -39,11 +40,13 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 						}
 					)
 					.then((response) => {
+						console.log("Got response!");
 						response.data.value.map((stops) => {
 							allBusStops.push(stops);
 						});
 					})
 					.catch((error) => {
+						console.error(error);
 						return res.status(500).json({ error: error.message });
 					})
 			);
@@ -51,6 +54,7 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 
 		Promise.all(arrayOfPromises)
 			.then(async (data) => {
+				console.log("Updating data in MongoDB");
 				// Update Mongoose DB with the data
 				const session = await mongoose.startSession();
 				try {
