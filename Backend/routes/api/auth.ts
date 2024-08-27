@@ -7,8 +7,10 @@ import config from "config";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 import passport from "passport";
-import https from "https";
-import auth from "../../middleware/auth";
+
+router.get('/test', async (req: any, res) => {
+	return res.status(200).json("OK");
+})
 
 /**
  * Using the auth middleware to check the json web token
