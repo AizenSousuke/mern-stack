@@ -163,6 +163,39 @@ describe('Settings API', () => {
         expect(response.body.msg).toMatch(/updated/);
     })
 
+    it('should update settings with multiple tracked buses after updating settings', async () => {
+        await request(app)
+        .put('/api/settings/update')
+        .set('x-auth-token', token)
+        .send({
+            code: 44229,
+            GoingOut: true,
+            busesTracked: [123]
+        })
+        .expect(200);
+
+        const response = await request(app)
+        .put('/api/settings/update')
+        .set('x-auth-token', token)
+        .send({
+            code: 44229,
+            GoingOut: true,
+            busesTracked: [123, 456]
+        })
+        .expect(200);
+
+        expect(response.body.msg).toMatch(/updated/);
+
+        const newSettings = await request(app)
+        .get('/api/settings')
+        .set('x-auth-token', token);
+        
+        const settings = newSettings.body.settings.Settings;
+        console.log(settings.GoingOut.filter(src => src.BusStopCode == 44229)[0]);
+
+        expect(settings.GoingOut.filter(src => src.BusStopCode == 44229)[0].BusesTracked).toEqual([123, 456]);
+    })
+
     it('should delete user settings', async () => {
         const res = await request(app)
             .delete('/api/settings')
