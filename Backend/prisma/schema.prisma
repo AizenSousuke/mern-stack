@@ -27,12 +27,21 @@ model User {
   tokenExpiryDate DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+
+  settingsId String?   @unique @db.ObjectId
+  Settings   Settings?
 }
 
 model BusStop {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  busStopCode String  @unique
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  busStopCode String @unique
   roadName    String
   description String
-  location    Float[]
+  location    Json // Store GeoJSON data
+}
+
+model Settings {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
 }
