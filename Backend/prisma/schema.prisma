@@ -54,28 +54,14 @@ model Settings {
 }
 
 model SettingsSchema {
-  id                String           @id @default(auto()) @map("_id") @db.ObjectId
-  goingOutSchemaId  String?          @db.ObjectId
-  goingOut          GoingOutSchema?  @relation(fields: [goingOutSchemaId], references: [id])
-  goingHomeSchemaId String?          @db.ObjectId
-  goingHome         GoingHomeSchema? @relation(fields: [goingHomeSchemaId], references: [id])
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  goingOut  BusStops[] @relation("SettingsGoingOut")
+  goingHome BusStops[] @relation("SettingsGoingHome")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   settingsId String   @unique @db.ObjectId
   settings   Settings @relation(fields: [settingsId], references: [id])
-}
-
-model GoingOutSchema {
-  id             String           @id @default(auto()) @map("_id") @db.ObjectId
-  SettingsSchema SettingsSchema[]
-  busStops       BusStops[]
-}
-
-model GoingHomeSchema {
-  id             String           @id @default(auto()) @map("_id") @db.ObjectId
-  SettingsSchema SettingsSchema[]
-  busStops       BusStops[]
 }
 
 model BusStops {
@@ -87,10 +73,10 @@ model BusStops {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  GoingOutSchema    GoingOutSchema?  @relation(fields: [goingOutSchemaId], references: [id])
-  goingOutSchemaId  String?          @db.ObjectId
-  GoingHomeSchema   GoingHomeSchema? @relation(fields: [goingHomeSchemaId], references: [id])
-  goingHomeSchemaId String?          @db.ObjectId
+  settingsSchemaGoingOut    SettingsSchema? @relation("SettingsGoingOut", fields: [settingsSchemaGoingOutId], references: [id])
+  settingsSchemaGoingHome   SettingsSchema? @relation("SettingsGoingHome", fields: [settingsSchemaGoingHomeId], references: [id])
+  settingsSchemaGoingOutId  String?         @db.ObjectId
+  settingsSchemaGoingHomeId String?         @db.ObjectId
 }
 
 model BusRoutes {
