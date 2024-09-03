@@ -54,14 +54,28 @@ model Settings {
 }
 
 model SettingsSchema {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  goingOutId String   @db.ObjectId
-  goingOut   BusStops @relation(fields: [goingOutId], references: [id])
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id                String           @id @default(auto()) @map("_id") @db.ObjectId
+  goingOutSchemaId  String?          @db.ObjectId
+  goingOut          GoingOutSchema?  @relation(fields: [goingOutSchemaId], references: [id])
+  goingHomeSchemaId String?          @db.ObjectId
+  goingHome         GoingHomeSchema? @relation(fields: [goingHomeSchemaId], references: [id])
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
 
   settingsId String   @unique @db.ObjectId
   settings   Settings @relation(fields: [settingsId], references: [id])
+}
+
+model GoingOutSchema {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  SettingsSchema SettingsSchema[]
+  busStops       BusStops[]
+}
+
+model GoingHomeSchema {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  SettingsSchema SettingsSchema[]
+  busStops       BusStops[]
 }
 
 model BusStops {
@@ -73,7 +87,10 @@ model BusStops {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  SettingsSchema SettingsSchema[]
+  GoingOutSchema    GoingOutSchema?  @relation(fields: [goingOutSchemaId], references: [id])
+  goingOutSchemaId  String?          @db.ObjectId
+  GoingHomeSchema   GoingHomeSchema? @relation(fields: [goingHomeSchemaId], references: [id])
+  goingHomeSchemaId String?          @db.ObjectId
 }
 
 model BusRoutes {
