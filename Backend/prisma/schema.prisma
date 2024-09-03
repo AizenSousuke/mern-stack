@@ -33,15 +33,47 @@ model User {
 }
 
 model BusStop {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  busStopCode String @unique
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  busStopCode String   @unique
   roadName    String
   description String
   location    Json // Store GeoJSON data
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Settings {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @unique @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id])
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @unique @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  darkMode  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  settingsId String         @db.ObjectId
+  settings   SettingsSchema @relation(fields: [settingsId], references: [id])
 }
+
+model SettingsSchema {
+  id         String        @id @default(auto()) @map("_id") @db.ObjectId
+  goingOutId String        @db.ObjectId
+  goingOut   BusStopSchema @relation(fields: [goingOutId], references: [id])
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  Settings Settings[]
+}
+
+model BusStopSchema {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  busStopCode String   @unique
+  roadName    String
+  description String
+  location    Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  SettingsSchema SettingsSchema[]
+}
+
+
