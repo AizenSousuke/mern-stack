@@ -1,37 +1,40 @@
 {
-  "dependencies": {
-    "@prisma/client": "^5.19.0",
-    "axios": "^0.24.0",
-    "bcryptjs": "^2.4.3",
-    "config": "^3.3.6",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "express-validator": "^6.13.0",
-    "gravatar": "^1.8.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12",
-    "passport": "^0.5.0",
-    "passport-facebook": "^3.0.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/jest": "^29.5.0",
-    "@types/node": "^22.1.0",
-    "cross-env": "^7.0.3",
-    "jest": "^29.2.1",
-    "mongodb-memory-server": "^10.0.0",
-    "nodemon": "^3.1.4",
-    "prisma": "^5.19.0",
-    "supertest": "^6.2.1",
-    "ts-jest": "^29.0.5",
-    "ts-node": "^10.7.0",
-    "typescript": "^5.3.0"
-  },
-  "scripts": {
-    "test": "jest --watch --all --detectOpenHandles",
-    "start": "cross-env NODE_ENV=development nodemon server.ts",
-    "start-online": "node server.js"
-  }
+	"dependencies": {
+		"@prisma/client": "^5.19.0",
+		"axios": "^0.24.0",
+		"bcryptjs": "^2.4.3",
+		"config": "^3.3.6",
+		"cookie-parser": "^1.4.6",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"express-session": "^1.17.2",
+		"express-validator": "^6.13.0",
+		"gravatar": "^1.8.2",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.0.12",
+		"passport": "^0.5.0",
+		"passport-facebook": "^3.0.0"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.21",
+		"@types/jest": "^29.5.0",
+		"@types/node": "^22.1.0",
+		"cross-env": "^7.0.3",
+		"jest": "^29.2.1",
+		"mongodb-memory-server": "^10.0.0",
+		"nodemon": "^3.1.4",
+		"prisma": "^5.19.0",
+		"supertest": "^6.2.1",
+		"ts-jest": "^29.0.5",
+		"ts-node": "^10.7.0",
+		"typescript": "^5.3.0"
+	},
+	"scripts": {
+		"test": "jest --watch --all --detectOpenHandles",
+		"start": "cross-env NODE_ENV=development nodemon server.ts",
+		"start-online": "node server.js"
+	},
+	"prisma": {
+		"seed": "ts-node prisma/seed.ts"
+	}
 }

@@ -22,35 +22,7 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 	if (req.user.IsAdmin) {
 		console.log("Getting all bus stops from LTA");
 		// Get all the bus stops from LTA
-		let allBusStops = [];
-		let arrayOfPromises = [];
-
-		for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
-			arrayOfPromises.push(
-				await axios
-					.get(
-						"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
-						{
-							headers: {
-								AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
-							},
-							params: {
-								$skip: pageSearched * 500,
-							},
-						}
-					)
-					.then((response) => {
-						console.log("Got response!");
-						response.data.value.map((stops) => {
-							allBusStops.push(stops);
-						});
-					})
-					.catch((error) => {
-						console.error(error);
-						return res.status(500).json({ error: error.message });
-					})
-			);
-		}
+		let { arrayOfPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(res);
 
 		Promise.all(arrayOfPromises)
 			.then(async (data) => {
@@ -145,3 +117,39 @@ router.patch(
 );
 
 export default router;
+
+export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
+	let allBusStops = [];
+	let arrayOfPromises = [];
+
+	for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
+		arrayOfPromises.push(
+			await axios
+				.get(
+					"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
+					{
+						headers: {
+							AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
+						},
+						params: {
+							$skip: pageSearched * 500,
+						},
+					}
+				)
+				.then((response) => {
+					console.log("Got response!");
+					// console.log(response.data);
+					response.data.value.map((stops) => {
+						allBusStops.push(stops);
+					});
+				})
+				.catch((error) => {
+					console.error(error);
+					return res.status(500).json({ error: error.message });
+				})
+		);
+	}
+
+	return { arrayOfPromises, allBusStops };
+}
+
