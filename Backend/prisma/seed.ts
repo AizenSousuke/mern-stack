@@ -13,26 +13,41 @@ import { getPromisesForAllBusStopsFromLTADataMallAPI } from "../routes/api/admin
         .then(async response => {
             console.log("Seeding data in MongoDB");
             const prisma = PrismaSingleton.getPrisma();
-            const data = allBusStops.map(busStop => {
-                return prisma.busStops.upsert({
-                    where: {
-                        busStopCode: busStop.BusStopCode
-                    },
-                    update: {
-                        location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
-                        description: busStop.Description,
-                        roadName: busStop.RoadName
-                    },
-                    create: {
-                        busStopCode: busStop.BusStopCode,
-                        location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
-                        description: busStop.Description,
-                        roadName: busStop.RoadName
-                    }
-                });
-            });
+            // const data = allBusStops.map(busStop => {
+            //     return prisma.busStops.upsert({
+            //         where: {
+            //             busStopCode: busStop.BusStopCode
+            //         },
+            //         update: {
+            //             location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
+            //             description: busStop.Description,
+            //             roadName: busStop.RoadName
+            //         },
+            //         create: {
+            //             busStopCode: busStop.BusStopCode,
+            //             location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
+            //             description: busStop.Description,
+            //             roadName: busStop.RoadName
+            //         }
+            //     });
+            // });
 
-            await prisma.$transaction(data);
+            // await prisma.$transaction(data);
+
+            await prisma.busStops.deleteMany({});
+
+            // Prepare the data for `createMany`
+            const busStopsData = allBusStops.map(busStop => ({
+                busStopCode: busStop.BusStopCode,
+                location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
+                description: busStop.Description,
+                roadName: busStop.RoadName
+            }));
+
+            // Use createMany to insert the bus stops in bulk
+            await prisma.busStops.createMany({
+                data: busStopsData
+            });
 
             console.log("Seeding completed");
         });
