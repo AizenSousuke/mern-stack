@@ -145,4 +145,4 @@ app.get("/", (req, res) => {
 	res.send(`Server is on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;
