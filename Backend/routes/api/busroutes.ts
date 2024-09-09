@@ -170,6 +170,7 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 		arrayOfBusRoutesPromises.push(
 			await getBusRoutes(skip)
 				.then(async (data) => {
+					console.log("Data value length:", data.value.length);
 					// If there are no more data, break out
 					if (data.value.length == 0) {
 						anyMoreDataToParse = false;
