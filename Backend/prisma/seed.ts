@@ -6,6 +6,7 @@
 
 import PrismaSingleton from "../classes/PrismaSingleton";
 import { getPromisesForAllBusStopsFromLTADataMallAPI } from "../routes/api/admin";
+import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busroutes";
 
 (async () => {
     // Using prisma.$transaction to do all db operations in 1 call
@@ -13,10 +14,12 @@ import { getPromisesForAllBusStopsFromLTADataMallAPI } from "../routes/api/admin
     const prisma = PrismaSingleton.getPrisma();
 
     await prisma.$transaction(async transaction => {
-        let { arrayOfPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
-        Promise.all(arrayOfPromises)
+        let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
+        let { arrayOfBusRoutesPromises, allBusRoutes } = await getPromisesForAllBusRoutesFromLTADataMallAPI(null);
+        Promise.all([arrayOfBusStopsPromises, arrayOfBusRoutesPromises])
             .then(async response => {
                 await transaction.busStops.deleteMany({});
+                await transaction.busRoutes.deleteMany({});
 
                 // Prepare the data for `createMany`
                 const busStopsData = allBusStops.map(busStop => ({
@@ -26,9 +29,28 @@ import { getPromisesForAllBusStopsFromLTADataMallAPI } from "../routes/api/admin
                     roadName: busStop.RoadName
                 }));
 
+                const busRoutesData = allBusRoutes.map(busRoutes => ({
+                    serviceNo: busRoutes.ServiceNo,
+                    operator: busRoutes.Operator,
+                    direction: busRoutes.Direction,
+                    stopSequence: busRoutes.StopSequence,
+                    busStopCode: busRoutes.BusStopCode,
+                    distance: busRoutes.Distance,
+                    wd_firstBus: busRoutes.WD_FirstBus,
+                    wd_lastBus: busRoutes.WD_LastBus,
+                    sat_firstBus: busRoutes.SAT_FirstBus,
+                    sat_lastBus: busRoutes.SAT_LastBus,
+                    sun_firstBus: busRoutes.SUN_FirstBus,
+                    sun_lastBus: busRoutes.SUN_LastBus
+                }));
+
                 // Use createMany to insert the bus stops in bulk
                 await transaction.busStops.createMany({
                     data: busStopsData
+                });
+
+                await transaction.busRoutes.createMany({
+                    data: busRoutesData
                 });
 
                 console.log("Seeding completed");

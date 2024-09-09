@@ -22,9 +22,9 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 	if (req.user.IsAdmin) {
 		console.log("Getting all bus stops from LTA");
 		// Get all the bus stops from LTA
-		let { arrayOfPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(res);
+		let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(res);
 
-		Promise.all(arrayOfPromises)
+		Promise.all(arrayOfBusStopsPromises)
 			.then(async (data) => {
 				console.log("Updating data in MongoDB");
 				// Update Mongoose DB with the data
@@ -120,10 +120,10 @@ export default router;
 
 export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 	let allBusStops = [];
-	let arrayOfPromises = [];
+	let arrayOfBusStopsPromises = [];
 
 	for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
-		arrayOfPromises.push(
+		arrayOfBusStopsPromises.push(
 			await axios
 				.get(
 					"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
@@ -150,6 +150,6 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 		);
 	}
 
-	return { arrayOfPromises, allBusStops };
+	return { arrayOfBusStopsPromises, allBusStops };
 }
 

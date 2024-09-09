@@ -32,7 +32,8 @@
 	"scripts": {
 		"test": "jest --watch --all --detectOpenHandles",
 		"start": "cross-env NODE_ENV=development nodemon server.ts",
-		"start-online": "node server.js"
+		"start-online": "node server.js",
+		"seed": "npx prisma db seed"
 	},
 	"prisma": {
 		"seed": "ts-node prisma/seed.ts"
