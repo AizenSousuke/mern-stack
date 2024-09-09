@@ -13,11 +13,14 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
     console.log("Seeding data in MongoDB");
     const prisma = PrismaSingleton.getPrisma();
 
+    let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
+    let { arrayOfBusRoutesPromises, allBusRoutes } = await getPromisesForAllBusRoutesFromLTADataMallAPI(null);
+
     await prisma.$transaction(async transaction => {
-        let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
-        let { arrayOfBusRoutesPromises, allBusRoutes } = await getPromisesForAllBusRoutesFromLTADataMallAPI(null);
-        Promise.all([arrayOfBusStopsPromises, arrayOfBusRoutesPromises])
+        await Promise.all([arrayOfBusStopsPromises, arrayOfBusRoutesPromises])
             .then(async response => {
+                console.log("All promises has ran");
+
                 await transaction.busStops.deleteMany({});
                 await transaction.busRoutes.deleteMany({});
 
@@ -55,5 +58,7 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
 
                 console.log("Seeding completed");
             });
+    }, {
+        timeout: 100000
     });
 })();

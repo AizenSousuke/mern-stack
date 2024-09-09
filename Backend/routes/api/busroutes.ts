@@ -182,34 +182,6 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 
 					skip += skipBy;
 
-					// for (const service of data.value) {
-					// 	// Only update\add if there are missing items
-					// 	await BusRoutes.findOneAndUpdate(
-					// 		{
-					// 			ServiceNo: service.ServiceNo,
-					// 			Operator: service.Operator,
-					// 			Direction: service.Direction,
-					// 			StopSequence: service.StopSequence,
-					// 			BusStopCode: service.BusStopCode,
-					// 			Distance: service.Distance,
-					// 		},
-					// 		{
-					// 			ServiceNo: service.ServiceNo,
-					// 			Operator: service.Operator,
-					// 			Direction: service.Direction,
-					// 			StopSequence: service.StopSequence,
-					// 			BusStopCode: service.BusStopCode,
-					// 			Distance: service.Distance,
-					// 			WD_FirstBus: service.WD_FirstBus,
-					// 			WD_LastBus: service.WD_LastBus,
-					// 			SAT_FirstBus: service.SAT_FirstBus,
-					// 			SAT_LastBus: service.SAT_LastBus,
-					// 			SUN_FirstBus: service.SUN_FirstBus,
-					// 			SUN_LastBus: service.SUN_LastBus,
-					// 		},
-					// 		{ upsert: true }
-					// 	)
-					// }
 				})
 				.catch((error) => {
 					console.error("Error in getBusRoutes: " + error);
