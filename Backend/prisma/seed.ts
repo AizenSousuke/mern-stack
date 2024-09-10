@@ -16,12 +16,14 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
     let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
     let { arrayOfBusRoutesPromises, allBusRoutes } = await getPromisesForAllBusRoutesFromLTADataMallAPI(null);
 
+    const mergedArray = [...arrayOfBusRoutesPromises];
+
     await prisma.$transaction(async transaction => {
-        await Promise.all([arrayOfBusStopsPromises, arrayOfBusRoutesPromises])
+        await Promise.all(mergedArray)
             .then(async response => {
                 console.log("All promises has ran");
 
-                await transaction.busStops.deleteMany({});
+                // await transaction.busStops.deleteMany({});
                 await transaction.busRoutes.deleteMany({});
 
                 // Prepare the data for `createMany`
@@ -32,7 +34,7 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
                     roadName: busStop.RoadName
                 }));
 
-                const busRoutesData = allBusRoutes.map(busRoutes => ({
+                const busRoutesData = response.flat().map(busRoutes => ({
                     serviceNo: busRoutes.ServiceNo,
                     operator: busRoutes.Operator,
                     direction: busRoutes.Direction,

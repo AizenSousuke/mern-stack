@@ -164,11 +164,11 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 	let anyMoreDataToParse = true;
 	let skip = 0;
 	let skipBy = 500;
-	while (anyMoreDataToParse) {
+	while (skip <= 500 && anyMoreDataToParse) {
 		console.log("Getting bus routes at skip: " + skip);
 		// Check if there are bus routes in the next step
 		arrayOfBusRoutesPromises.push(
-			await getBusRoutes(skip)
+			getBusRoutes(skip)
 				.then(async (data) => {
 					console.log("Data value length:", data.value.length);
 					// If there are no more data, break out
@@ -177,12 +177,13 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 						console.log("Finish getting data at skip: " + skip);
 					}
 
-					data.value.map((services) => {
-						allBusRoutes.push(services);
-					});
+					// data.value.map((services) => {
+					// 	allBusRoutes.push(services);
+					// });
 
-					skip += skipBy;
+					// console.log(data.value);
 
+					return data.value;
 				})
 				.catch((error) => {
 					console.error("Error in getBusRoutes: " + error);
@@ -191,6 +192,8 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 						.json({ msg: "Server error", error: error.message });
 				})
 		);
+
+		skip += skipBy;
 	}
 
 	return { arrayOfBusRoutesPromises, allBusRoutes }
