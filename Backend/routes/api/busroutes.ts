@@ -3,6 +3,7 @@ const router = express.Router();
 import axios from "axios";
 import config from "config";
 import auth from "../../middleware/auth";
+import Util from "../../util/Util";
 const BusRoutes = require("../../models/DataMall/BusRoutes").default;
 const { CatchError } = require("../../util/ErrorUtil").default;
 
@@ -145,38 +146,42 @@ router.get("/", async (req: any, res) => {
 export default router;
 
 export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
+	let arrayOfBusRoutes = [];
 	let allBusRoutesCount = 0;
-	let arrayOfBusRoutesPromises = [];
 	let anyMoreDataToParse = true;
 	let skip = 0;
 	let skipBy = 500;
 
-	while (skip <= 5000 && anyMoreDataToParse) {
-		arrayOfBusRoutesPromises.push(
-			axios.get(
+	while (anyMoreDataToParse) {
+		await Util.delay(1000);
+
+		await axios
+			.get(
 				"http://datamall2.mytransport.sg/ltaodataservice/BusRoutes",
 				{ headers: header, params: { $skip: skip } }
 			)
-				.then(async (response) => {
-					// If there are no more data, break out
-					if (response.data.value.length == 0) {
-						anyMoreDataToParse = false;
-						console.log("Finish getting data at skip: " + skip);
-					}
+			.then(async (response) => {
+				if (response.data.value.length == 0) {
+					anyMoreDataToParse = false;
+					console.log("Finish getting data at skip: " + skip);
+				}
 
-					allBusRoutesCount += response.data.value.length;
+				console.log("response length from datamall api: ", response.data.value.length, "skip:", skip);
+				allBusRoutesCount += response.data.value.length;
+				response.data.value.map(busRoutes => {
+					arrayOfBusRoutes.push(busRoutes);
+				});
 
-					return response.data.value;
-				})
-				.catch((error) => {
-					console.error("Error in getBusRoutes: " + error.message);
-					return [];
-				})
-		);
+				return response.data.value;
+			})
+			.catch((error) => {
+				console.error(error.message);
+				return [];
+			});
 
 		skip += skipBy;
 	}
 
-	return { arrayOfBusRoutesPromises, allBusRoutesCount }
+	return { arrayOfBusRoutes, allBusRoutesCount };
 }
 
