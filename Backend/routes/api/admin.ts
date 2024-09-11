@@ -130,9 +130,9 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 	let skip = 0;
 	let skipBy = 500;
 
-	while (skip <= 5000 && anyMoreDataToParse) {
+	while (skip <= 0 && anyMoreDataToParse) {
 		arrayOfBusStopsPromises.push(
-			axios
+			() => axios
 				.get(
 					"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
 					{ headers: header, params: { $skip: skip } }

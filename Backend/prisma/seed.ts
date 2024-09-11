@@ -24,8 +24,10 @@ async function processInBatches(promises, batchSize) {
         await delay(500);
         console.log("Delay ended");
 
+        const batchPromises = batch.map(fn => fn());
+
         try {
-            const batchResults = await Promise.all(batch);
+            const batchResults = await Promise.all(batchPromises);
             console.log("Got results:", batchResults.length);
             results.push(...batchResults);
         } catch (error) {
