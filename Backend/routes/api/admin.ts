@@ -125,7 +125,7 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 	let skip = 0;
 	let skipBy = 500;
 
-	while (skip <= 5500 && anyMoreDataToParse) {
+	while (skip <= 4000 && anyMoreDataToParse) {
 		arrayOfBusStopsPromises.push(
 			axios
 				.get(

@@ -164,7 +164,8 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 	let anyMoreDataToParse = true;
 	let skip = 0;
 	let skipBy = 500;
-	while (skip <= 25000 && anyMoreDataToParse) {
+
+	while (skip <= 4000 && anyMoreDataToParse) {
 		// Check if there are bus routes in the next step
 		arrayOfBusRoutesPromises.push(
 			getBusRoutes(skip)
