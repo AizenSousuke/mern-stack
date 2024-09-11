@@ -121,8 +121,11 @@ export default router;
 export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 	let allBusStops = [];
 	let arrayOfBusStopsPromises = [];
+	let anyMoreDataToParse = true;
+	let skip = 0;
+	let skipBy = 500;
 
-	for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
+	while (skip <= 500 && anyMoreDataToParse) {
 		arrayOfBusStopsPromises.push(
 			await axios
 				.get(
@@ -132,23 +135,55 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 							AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
 						},
 						params: {
-							$skip: pageSearched * 500,
+							$skip: skip,
 						},
 					}
 				)
-				.then((response) => {
+				.then(async (response) => {
 					console.log("Got response!");
-					// console.log(response.data);
-					response.data.value.map((stops) => {
-						allBusStops.push(stops);
-					});
+					if (response.data.value.length == 0) {
+						anyMoreDataToParse = false;
+						console.log("Finish getting data at skip: " + skip);
+					}
+
+					return response.data.value;
 				})
 				.catch((error) => {
 					console.error(error);
 					return res.status(500).json({ error: error.message });
 				})
 		);
+
+		skip += skipBy;
 	}
+
+	// for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
+	// 	arrayOfBusStopsPromises.push(
+	// 		await axios
+	// 			.get(
+	// 				"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
+	// 				{
+	// 					headers: {
+	// 						AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
+	// 					},
+	// 					params: {
+	// 						$skip: pageSearched * 500,
+	// 					},
+	// 				}
+	// 			)
+	// 			.then((response) => {
+	// 				console.log("Got response!");
+	// 				// console.log(response.data);
+	// 				response.data.value.map((stops) => {
+	// 					allBusStops.push(stops);
+	// 				});
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error(error);
+	// 				return res.status(500).json({ error: error.message });
+	// 			})
+	// 	);
+	// }
 
 	return { arrayOfBusStopsPromises, allBusStops };
 }

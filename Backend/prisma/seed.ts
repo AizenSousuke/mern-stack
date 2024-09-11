@@ -23,16 +23,16 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
             .then(async response => {
                 console.log("All promises has ran");
 
-                await transaction.busStops.deleteMany({});
+                // await transaction.busStops.deleteMany({});
                 await transaction.busRoutes.deleteMany({});
 
                 // Prepare the data for `createMany`
-                const busStopsData = allBusStops.map(busStop => ({
-                    busStopCode: busStop.BusStopCode,
-                    location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
-                    description: busStop.Description,
-                    roadName: busStop.RoadName
-                }));
+                // const busStopsData = allBusStops.flat().map(busStop => ({
+                //     busStopCode: busStop.BusStopCode,
+                //     location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
+                //     description: busStop.Description,
+                //     roadName: busStop.RoadName
+                // }));
 
                 const busRoutesData = response.flat().map(busRoutes => ({
                     serviceNo: busRoutes.ServiceNo,
@@ -50,9 +50,9 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
                 }));
 
                 // Use createMany to insert the bus stops in bulk
-                await transaction.busStops.createMany({
-                    data: busStopsData
-                });
+                // await transaction.busStops.createMany({
+                //     data: busStopsData
+                // });
 
                 await transaction.busRoutes.createMany({
                     data: busRoutesData
