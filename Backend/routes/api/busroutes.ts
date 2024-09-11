@@ -4,25 +4,11 @@ import axios from "axios";
 import config from "config";
 import auth from "../../middleware/auth";
 const BusRoutes = require("../../models/DataMall/BusRoutes").default;
-import mongoose from "mongoose";
 const { CatchError } = require("../../util/ErrorUtil").default;
 
 const header = {
 	Accept: "application/json",
 	AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
-};
-
-/**
- *
- * @param {number} skip Number of results to skip as the API ony allows 500 results to be displayed at maximum
- * @returns List of routes
- */
-const getBusRoutes = async (skip = null) => {
-	const res = await axios.get(
-		"http://datamall2.mytransport.sg/ltaodataservice/BusRoutes",
-		{ headers: header, params: { $skip: skip } }
-	);
-	return res.data;
 };
 
 router.get("/:serviceNo/:busStopCode", async (req: any, res) => {
@@ -165,26 +151,26 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 	let skip = 0;
 	let skipBy = 500;
 
-	while (skip <= 4500 && anyMoreDataToParse) {
-		// Check if there are bus routes in the next step
+	while (skip <= 5000 && anyMoreDataToParse) {
 		arrayOfBusRoutesPromises.push(
-			getBusRoutes(skip)
-				.then(async (data) => {
+			axios.get(
+				"http://datamall2.mytransport.sg/ltaodataservice/BusRoutes",
+				{ headers: header, params: { $skip: skip } }
+			)
+				.then(async (response) => {
 					// If there are no more data, break out
-					if (data.value.length == 0) {
+					if (response.data.value.length == 0) {
 						anyMoreDataToParse = false;
 						console.log("Finish getting data at skip: " + skip);
 					}
 
-					allBusRoutesCount += data.value.length;
+					allBusRoutesCount += response.data.value.length;
 
-					return data.value;
+					return response.data.value;
 				})
 				.catch((error) => {
 					console.error("Error in getBusRoutes: " + error.message);
-					return res
-						.status(500)
-						.json({ msg: "Server error", error: error.message });
+					return [];
 				})
 		);
 

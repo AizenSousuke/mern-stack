@@ -8,6 +8,11 @@ const User = require("../../models/User").default;
 import mongoose from "mongoose";
 import { check, validationResult } from "express-validator";
 
+const header = {
+	Accept: "application/json",
+	AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
+};
+
 router.get("/", async (req: any, res) => {
 	return res.status(200).json({ msg: "Ok" });
 });
@@ -125,19 +130,12 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 	let skip = 0;
 	let skipBy = 500;
 
-	while (skip <= 4000 && anyMoreDataToParse) {
+	while (skip <= 5000 && anyMoreDataToParse) {
 		arrayOfBusStopsPromises.push(
 			axios
 				.get(
 					"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
-					{
-						headers: {
-							AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
-						},
-						params: {
-							$skip: skip,
-						},
-					}
+					{ headers: header, params: { $skip: skip } }
 				)
 				.then(async (response) => {
 					if (response.data.value.length == 0) {
@@ -145,13 +143,14 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 						console.log("Finish getting data at skip: " + skip);
 					}
 
+					console.log("response length from datamall api: ", response.data.value.length);
 					allBusStopsCount += response.data.value.length;
 
 					return response.data.value;
 				})
 				.catch((error) => {
 					console.error(error.message);
-					return res.status(500).json({ error: error.message });
+					return [];
 				})
 		);
 
