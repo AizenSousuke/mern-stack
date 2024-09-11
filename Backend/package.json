@@ -34,7 +34,7 @@
 		"start": "cross-env NODE_ENV=development nodemon server.ts",
 		"start-online": "node server.js",
 		"seed": "npx prisma db seed",
-		"db": "mkdir tmp && cat prisma/*.prisma > tmp/schemaCombined.prisma && npx prisma db push --schema=tmp/schemaCombined.prisma && rm tmp/schemaCombined.prisma && rm -rf tmp"
+		"db": " rm -rf tmp && mkdir tmp && cat prisma/*.prisma > tmp/schemaCombined.prisma && npx prisma db push --schema=tmp/schemaCombined.prisma && rm tmp/schemaCombined.prisma && rm -rf tmp"
 	},
 	"prisma": {
 		"seed": "ts-node prisma/seed.ts"
