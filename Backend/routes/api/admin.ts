@@ -22,7 +22,7 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 	if (req.user.IsAdmin) {
 		console.log("Getting all bus stops from LTA");
 		// Get all the bus stops from LTA
-		let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(res);
+		let { arrayOfBusStopsPromises, allBusStopsCount } = await getPromisesForAllBusStopsFromLTADataMallAPI(res);
 
 		Promise.all(arrayOfBusStopsPromises)
 			.then(async (data) => {
@@ -35,7 +35,7 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 					// Drop the whole table first
 					await BusStop.deleteMany({}).session(session);
 
-					for (const stop of allBusStops) {
+					for (const stop of arrayOfBusStopsPromises.flat(Infinity)) {
 						await BusStop.findOneAndUpdate(
 							{
 								BusStopCode: stop.BusStopCode,
@@ -54,7 +54,7 @@ router.put("/UpdateBusStopList", auth, async (req: any, res) => {
 
 					return res.status(200).json({
 						msg: "Successfully updated bus stop list",
-						length: allBusStops.length,
+						length: allBusStopsCount,
 					});
 				} catch (error) {
 					await session.abortTransaction();
@@ -119,15 +119,15 @@ router.patch(
 export default router;
 
 export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
-	let allBusStops = [];
+	let allBusStopsCount = 0;
 	let arrayOfBusStopsPromises = [];
 	let anyMoreDataToParse = true;
 	let skip = 0;
 	let skipBy = 500;
 
-	while (skip <= 500 && anyMoreDataToParse) {
+	while (skip <= 5500 && anyMoreDataToParse) {
 		arrayOfBusStopsPromises.push(
-			await axios
+			axios
 				.get(
 					"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
 					{
@@ -140,16 +140,17 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 					}
 				)
 				.then(async (response) => {
-					console.log("Got response!");
 					if (response.data.value.length == 0) {
 						anyMoreDataToParse = false;
 						console.log("Finish getting data at skip: " + skip);
 					}
 
+					allBusStopsCount += response.data.value.length;
+
 					return response.data.value;
 				})
 				.catch((error) => {
-					console.error(error);
+					console.error(error.message);
 					return res.status(500).json({ error: error.message });
 				})
 		);
@@ -157,34 +158,6 @@ export async function getPromisesForAllBusStopsFromLTADataMallAPI(res) {
 		skip += skipBy;
 	}
 
-	// for (var pageSearched = 0; pageSearched < 11; pageSearched++) {
-	// 	arrayOfBusStopsPromises.push(
-	// 		await axios
-	// 			.get(
-	// 				"http://datamall2.mytransport.sg/ltaodataservice/BusStops",
-	// 				{
-	// 					headers: {
-	// 						AccountKey: process.env.LTADataMallAPI ?? config.get("LTADataMallAPI"),
-	// 					},
-	// 					params: {
-	// 						$skip: pageSearched * 500,
-	// 					},
-	// 				}
-	// 			)
-	// 			.then((response) => {
-	// 				console.log("Got response!");
-	// 				// console.log(response.data);
-	// 				response.data.value.map((stops) => {
-	// 					allBusStops.push(stops);
-	// 				});
-	// 			})
-	// 			.catch((error) => {
-	// 				console.error(error);
-	// 				return res.status(500).json({ error: error.message });
-	// 			})
-	// 	);
-	// }
-
-	return { arrayOfBusStopsPromises, allBusStops };
+	return { arrayOfBusStopsPromises, allBusStopsCount };
 }
 

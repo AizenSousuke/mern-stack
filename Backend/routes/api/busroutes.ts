@@ -159,34 +159,28 @@ router.get("/", async (req: any, res) => {
 export default router;
 
 export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
-	let allBusRoutes = [];
+	let allBusRoutesCount = 0;
 	let arrayOfBusRoutesPromises = [];
 	let anyMoreDataToParse = true;
 	let skip = 0;
 	let skipBy = 500;
-	while (skip <= 500 && anyMoreDataToParse) {
-		console.log("Getting bus routes at skip: " + skip);
+	while (skip <= 25000 && anyMoreDataToParse) {
 		// Check if there are bus routes in the next step
 		arrayOfBusRoutesPromises.push(
 			getBusRoutes(skip)
 				.then(async (data) => {
-					console.log("Data value length:", data.value.length);
 					// If there are no more data, break out
 					if (data.value.length == 0) {
 						anyMoreDataToParse = false;
 						console.log("Finish getting data at skip: " + skip);
 					}
 
-					// data.value.map((services) => {
-					// 	allBusRoutes.push(services);
-					// });
-
-					// console.log(data.value);
+					allBusRoutesCount += data.value.length;
 
 					return data.value;
 				})
 				.catch((error) => {
-					console.error("Error in getBusRoutes: " + error);
+					console.error("Error in getBusRoutes: " + error.message);
 					return res
 						.status(500)
 						.json({ msg: "Server error", error: error.message });
@@ -196,6 +190,6 @@ export async function getPromisesForAllBusRoutesFromLTADataMallAPI(res) {
 		skip += skipBy;
 	}
 
-	return { arrayOfBusRoutesPromises, allBusRoutes }
+	return { arrayOfBusRoutesPromises, allBusRoutesCount }
 }
 

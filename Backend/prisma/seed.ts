@@ -13,28 +13,50 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
     console.log("Seeding data in MongoDB");
     const prisma = PrismaSingleton.getPrisma();
 
-    let { arrayOfBusStopsPromises, allBusStops } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
-    let { arrayOfBusRoutesPromises, allBusRoutes } = await getPromisesForAllBusRoutesFromLTADataMallAPI(null);
+    let { arrayOfBusStopsPromises } = await getPromisesForAllBusStopsFromLTADataMallAPI(null);
+    let { arrayOfBusRoutesPromises } = await getPromisesForAllBusRoutesFromLTADataMallAPI(null);
 
-    const mergedArray = [...arrayOfBusRoutesPromises];
+    // Group arrays and their names together
+    const promiseGroups = [
+        { name: 'Bus Stop Data', promises: arrayOfBusStopsPromises, count: 0 },
+        { name: 'Bus Route Data', promises: arrayOfBusRoutesPromises, count: 0 }
+    ];
+    const mergedArray = [...arrayOfBusStopsPromises, ...arrayOfBusRoutesPromises];
 
     await prisma.$transaction(async transaction => {
         await Promise.all(mergedArray)
             .then(async response => {
                 console.log("All promises has ran");
 
-                // await transaction.busStops.deleteMany({});
+                await transaction.busStops.deleteMany({});
                 await transaction.busRoutes.deleteMany({});
 
-                // Prepare the data for `createMany`
-                // const busStopsData = allBusStops.flat().map(busStop => ({
-                //     busStopCode: busStop.BusStopCode,
-                //     location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
-                //     description: busStop.Description,
-                //     roadName: busStop.RoadName
-                // }));
+                // Handle logging for each group
+                let offset = 0;
+                promiseGroups.forEach(group => {
+                    group.promises.forEach((_, index) => {
+                        console.log(`${group.name} (Promise ${index + 1}) length: `, response[offset].length);
+                        group.count += response[offset].length;
+                        offset++;
+                    });
+                });
+                const data = response.flat();
+                console.log("Data length: ", data.length);
+                console.log("allBusStopsCount Length: ", promiseGroups[0].count);
+                console.log("allBusRoutesCount Length: ", promiseGroups[1].count);
 
-                const busRoutesData = response.flat().map(busRoutes => ({
+                const allBusStopsCount = promiseGroups[0].count;
+                const allBusRoutesCount = promiseGroups[1].count;
+
+                // Prepare the data for `createMany`
+                const busStopsData = data.slice(0, allBusStopsCount).map((busStop, index) => ({
+                    busStopCode: busStop.BusStopCode,
+                    location: JSON.stringify([busStop.Latitude, busStop.Longitude]),
+                    description: busStop.Description,
+                    roadName: busStop.RoadName
+                }));
+
+                const busRoutesData = response.flat().slice(allBusStopsCount).map((busRoutes, index) => ({
                     serviceNo: busRoutes.ServiceNo,
                     operator: busRoutes.Operator,
                     direction: busRoutes.Direction,
@@ -50,9 +72,9 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
                 }));
 
                 // Use createMany to insert the bus stops in bulk
-                // await transaction.busStops.createMany({
-                //     data: busStopsData
-                // });
+                await transaction.busStops.createMany({
+                    data: busStopsData
+                });
 
                 await transaction.busRoutes.createMany({
                     data: busRoutesData
