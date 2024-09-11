@@ -1,0 +1,21 @@
+model Setting {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    userId    String   @unique @db.ObjectId
+    user      Users    @relation(fields: [userId], references: [id])
+    darkMode  Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    settingsSchema SettingSchema?
+}
+
+model SettingSchema {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    goingOut  BusStop[] @relation("SettingsGoingOut")
+    goingHome BusStop[] @relation("SettingsGoingHome")
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    settingsId String  @unique @db.ObjectId
+    settings   Setting @relation(fields: [settingsId], references: [id])
+}

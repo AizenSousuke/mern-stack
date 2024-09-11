@@ -106,26 +106,26 @@ router.get("/:serviceNo", async (req: any, res) => {
 	}
 });
 
-router.post("/update", auth, async (req: any, res) => {
-	try {
-		if (!req.user.IsAdmin) {
-			console.warn("Is not an admin");
-			res.status(401).json({
-				msg: "You are not allowed to access this endpoint. Please login as admin.",
-			});
-		}
+// router.post("/update", auth, async (req: any, res) => {
+// 	try {
+// 		if (!req.user.IsAdmin) {
+// 			console.warn("Is not an admin");
+// 			res.status(401).json({
+// 				msg: "You are not allowed to access this endpoint. Please login as admin.",
+// 			});
+// 		}
 
-		console.log("Is admin");
+// 		console.log("Is admin");
 
-		await getPromisesForAllBusRoutesFromLTADataMallAPI(res);
+// 		await getPromisesForAllBusRoutesFromLTADataMallAPI(res);
 
-		return res.status(200).json({
-			msg: "Successfully updated bus stop routes",
-		});
-	} catch (error) {
-		CatchError(error, res);
-	}
-});
+// 		return res.status(200).json({
+// 			msg: "Successfully updated bus stop routes",
+// 		});
+// 	} catch (error) {
+// 		CatchError(error, res);
+// 	}
+// });
 
 router.get("/", async (req: any, res) => {
 	try {

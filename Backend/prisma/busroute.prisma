@@ -1,0 +1,15 @@
+model BusRoute {
+    id           String @id @default(auto()) @map("_id") @db.ObjectId
+    serviceNo    String
+    operator     String
+    direction    Int
+    stopSequence Float
+    busStopCode  String
+    distance     Float
+    wd_firstBus  String
+    wd_lastBus   String
+    sat_firstBus String
+    sat_lastBus  String
+    sun_firstBus String
+    sun_lastBus  String
+}

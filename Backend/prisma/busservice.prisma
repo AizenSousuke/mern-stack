@@ -1,0 +1,14 @@
+model BusService {
+    id              String @id @default(auto()) @map("_id") @db.ObjectId
+    serviceNo       String
+    operator        String
+    direction       Int
+    category        String
+    originCode      String
+    destinationCode String
+    am_peak_freq    String
+    am_offpeak_freq String
+    pm_peak_freq    String
+    pm_offpeak_freq String
+    loopDesc        String
+}

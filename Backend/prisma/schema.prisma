@@ -5,107 +5,11 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
 }
 
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
-}
-
-model Users {
-  // Also userId
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  socialId        String?   @unique
-  email           String    @unique
-  password        String
-  avatar          String?
-  isAdmin         Boolean   @default(false)
-  token           String?
-  refreshToken    String?
-  tokenExpiryDate DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  settingsId String?   @unique @db.ObjectId
-  Settings   Settings?
-}
-
-// model BusStop {
-//   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-//   busStopCode String   @unique
-//   roadName    String
-//   description String
-//   location    Json // Store GeoJSON data
-//   createdAt   DateTime @default(now())
-//   updatedAt   DateTime @updatedAt
-// }
-
-model Settings {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @unique @db.ObjectId
-  user      Users    @relation(fields: [userId], references: [id])
-  darkMode  Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  settingsSchema SettingsSchema?
-}
-
-model SettingsSchema {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  goingOut  BusStops[] @relation("SettingsGoingOut")
-  goingHome BusStops[] @relation("SettingsGoingHome")
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-
-  settingsId String   @unique @db.ObjectId
-  settings   Settings @relation(fields: [settingsId], references: [id])
-}
-
-model BusStops {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  busStopCode String   @unique
-  roadName    String
-  description String
-  location    Json
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  settingsSchemaGoingOut    SettingsSchema? @relation("SettingsGoingOut", fields: [settingsSchemaGoingOutId], references: [id])
-  settingsSchemaGoingHome   SettingsSchema? @relation("SettingsGoingHome", fields: [settingsSchemaGoingHomeId], references: [id])
-  settingsSchemaGoingOutId  String?         @db.ObjectId
-  settingsSchemaGoingHomeId String?         @db.ObjectId
-}
-
-model BusRoutes {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  serviceNo    String
-  operator     String
-  direction    Int
-  stopSequence Float
-  busStopCode  String
-  distance     Float
-  wd_firstBus  String
-  wd_lastBus   String
-  sat_firstBus String
-  sat_lastBus  String
-  sun_firstBus String
-  sun_lastBus  String
-}
-
-model BusServices {
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
-  serviceNo       String
-  operator        String
-  direction       Int
-  category        String
-  originCode      String
-  destinationCode String
-  am_peak_freq    String
-  am_offpeak_freq String
-  pm_peak_freq    String
-  pm_offpeak_freq String
-  loopDesc        String
 }
