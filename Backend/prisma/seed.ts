@@ -23,7 +23,7 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
             .then(async response => {
                 console.log("All promises has ran");
 
-                // await transaction.busStops.deleteMany({});
+                await transaction.busStops.deleteMany({});
                 await transaction.busRoutes.deleteMany({});
 
                 // Prepare the data for `createMany`
@@ -61,6 +61,7 @@ import { getPromisesForAllBusRoutesFromLTADataMallAPI } from "../routes/api/busr
                 console.log("Seeding completed");
             });
     }, {
-        timeout: 100000
+        // In ms
+        timeout: 1000 * 60 * 5
     });
 })();
