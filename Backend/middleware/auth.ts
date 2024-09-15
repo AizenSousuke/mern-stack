@@ -1,5 +1,9 @@
 import jwt from "jsonwebtoken";
 import config from "config";
+import { PrismaClient } from "@prisma/client";
+import PrismaSingleton from "../classes/PrismaSingleton";
+
+const prisma: PrismaClient = PrismaSingleton.getPrisma();
 
 const Auth = async (req, res, next) => {
 	console.log("Running middleware");
@@ -19,7 +23,10 @@ const Auth = async (req, res, next) => {
 		}
 
 		// Get user whose token match in mongo
-		const user = await User.findOne({ Token: token }).select("-Password");
+		const user = await prisma.user.findUnique({
+			where: { token: token }
+		});
+
 		console.log("User: " + JSON.stringify(user));
 
 		if (!user) {
@@ -31,7 +38,7 @@ const Auth = async (req, res, next) => {
 		if (user) {
 			// Check token has not expired
 			console.log("Date today: " + Date.now());
-			if (user.TokenExpiryDate > Date.now()) {
+			if (user.tokenExpiryDate > new Date()) {
 				console.log("Setting request user: " + JSON.stringify(user));
 				req.user = user;
 				return next();

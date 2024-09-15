@@ -7,7 +7,7 @@ model User {
     password        String
     avatar          String?
     isAdmin         Boolean   @default(false)
-    token           String?
+    token           String?   @unique
     refreshToken    String?
     tokenExpiryDate DateTime?
     createdAt       DateTime  @default(now())
