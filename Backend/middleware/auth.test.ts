@@ -3,7 +3,6 @@ import authRouter from "../routes/api/auth";
 import userRouter from "../routes/api/users";
 import request from "supertest";
 import { createTestAppWithRoutes, RouteConfig, setupMongoTestDB, teardownMongoTestDB } from "../util/TestUtility";
-import User from "../models/User";
 
 const routers: RouteConfig[] = [{ path: "/api/auth", router: authRouter }, { path: "/api/user", router: userRouter }];
 

@@ -7,8 +7,6 @@ import bcrypt from "bcryptjs";
 import config from "config";
 import jwt from "jsonwebtoken";
 
-import UserModel from "../../models/User";
-
 router.get("/", async (req, res) => {
 	try {
 		const users = await UserModel.find({});

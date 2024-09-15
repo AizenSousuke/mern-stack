@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 8080;
 import { connectDB } from "./db";
 import cors from "cors";
 import config from "config";
-import UserModel from "./models/User";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 
@@ -21,7 +20,11 @@ import cookieParser from "cookie-parser";
 
 // Passport
 import passport from "passport";
+import PrismaSingleton from "./classes/PrismaSingleton";
+import { PrismaClient } from "@prisma/client";
 const FacebookStrategy = require("passport-facebook").Strategy;
+
+const prisma: PrismaClient = PrismaSingleton.getPrisma();
 
 if (process.env.NODE_ENV !== "test") {
 	// To get HTTPS
@@ -75,45 +78,61 @@ passport.use(
 			console.log("Access Token: " + accessToken);
 			// FB does not provide refresh token. So it should be undefined.
 			console.log("Refresh Token: " + refreshToken);
-			const user = await UserModel.findOne({
-				Email: profile.emails[0].value,
-				SocialId: profile.id,
-			}).select("-Password");
+			const user = await prisma.user.findFirst({
+				where: {
+					email: profile.emails[0].value,
+					socialId: profile.id,
+				}
+			});
+
 			if (!user) {
 				var date = new Date(Date.now());
-				var expiryDate = date.setDate(
+				var expiryDate = new Date(date.setDate(
 					date.getDate() +
 					(process.env.TOKEN_EXPIRY_DAYS ??
 						config.get("TOKEN_EXPIRY_DAYS"))
-				);
-				const newUser = new UserModel({
-					// Add social id
-					SocialId: profile.id,
-					Name: profile.name.givenName,
-					Email: profile.emails[0].value,
-					Token: accessToken,
-					RefreshToken: refreshToken,
-					TokenExpiryDate: expiryDate,
+				));
+
+				await prisma.user.create({
+					data: {
+						// Add social id
+						socialId: profile.id,
+						name: profile.name.givenName,
+						email: profile.emails[0].value,
+						token: accessToken,
+						refreshToken: refreshToken,
+						tokenExpiryDate: expiryDate,
+						password: ""
+					}
 				});
 
-				await newUser.save();
+				const user = await prisma.user.findFirstOrThrow({
+					select: {
+						email: profile.emails[0].value,
+					}
+				});
 
-				const user = await UserModel.findOne({
-					Email: profile.emails[0].value,
-				}).select("-Password");
 				return cb(null, user);
 			} else {
 				// Save new accessToken
-				user.Token = accessToken;
-				user.RefreshToken = refreshToken;
 				var date = new Date(Date.now());
-				var expiryDate = date.setDate(
+				var expiryDate = new Date(date.setDate(
 					date.getDate() +
 					(process.env.TOKEN_EXPIRY_DAYS ??
 						config.get("TOKEN_EXPIRY_DAYS"))
-				);
-				user.TokenExpiryDate = expiryDate;
-				await user.save();
+				));
+
+				await prisma.user.update({
+					where: {
+						id: user.id
+					},
+					data: {
+						token: accessToken,
+						refreshToken: refreshToken,
+						tokenExpiryDate: expiryDate
+					}
+				});
+
 				return cb(null, user);
 			}
 		}
@@ -124,22 +143,28 @@ passport.serializeUser((user, done) => {
 	done(null, user);
 });
 
-passport.deserializeUser((user, done) => {
-	// Return user from mongoose database
-	UserModel.findById(user.UserId, null, null, (error, user) => {
-		done(error, user);
-	});
+passport.deserializeUser(async (user, done) => {
+	try {
+		const prismaUser = await prisma.user.findUniqueOrThrow({
+			where: {
+				id: user.UserId
+			}
+		});
+		done(null, prismaUser);
+	} catch (error) {
+		done(error, null);
+	}
 });
 
 // Define routes
-app.use("/api/auth", require("./routes/api/auth").default);
-app.use("/api/users", require("./routes/api/users").default);
-app.use("/api/busstops", require("./routes/api/busstops").default);
-app.use("/api/busroutes", require("./routes/api/busroutes").default);
-app.use("/api/busservices", require("./routes/api/busservices").default);
-app.use("/api/bus", require("./routes/api/bus").default);
-app.use("/api/settings", require("./routes/api/settings").default);
-app.use("/api/admin", require("./routes/api/admin").default);
+// app.use("/api/auth", require("./routes/api/auth").default);
+// app.use("/api/users", require("./routes/api/users").default);
+// app.use("/api/busstops", require("./routes/api/busstops").default);
+// app.use("/api/busroutes", require("./routes/api/busroutes").default);
+// app.use("/api/busservices", require("./routes/api/busservices").default);
+// app.use("/api/bus", require("./routes/api/bus").default);
+// app.use("/api/settings", require("./routes/api/settings").default);
+// app.use("/api/admin", require("./routes/api/admin").default);
 
 app.get("/", (req, res) => {
 	res.send(`Server is on port ${PORT}`);

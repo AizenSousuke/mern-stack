@@ -1,6 +1,5 @@
 import request from "supertest";
 import express from "express"; 
-import UserModel from "./../../models/User";
 import authRouter from "./auth";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";

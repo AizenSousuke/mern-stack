@@ -4,8 +4,6 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import authRouter from '../../routes/api/auth';
 import settingsRouter from "../../routes/api/settings";
-import UserModel from '../../models/User';
-import SettingsModel from '../../models/Settings';
 import bcrypt from "bcryptjs";
 
 const app = express();

@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import config from "config";
-import User from "../models/User"
 
 const Auth = async (req, res, next) => {
 	console.log("Running middleware");
@@ -22,7 +21,7 @@ const Auth = async (req, res, next) => {
 		// Get user whose token match in mongo
 		const user = await User.findOne({ Token: token }).select("-Password");
 		console.log("User: " + JSON.stringify(user));
-		
+
 		if (!user) {
 			return res.status(401).json({
 				msg: "Token is not valid. It might have expired. Please relogin.",

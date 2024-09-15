@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 export default class PrismaSingleton {
     private static prisma: PrismaClient;
 
-    static getPrisma() {
+    static getPrisma(): PrismaClient {
         if (PrismaSingleton.prisma == null) {
             PrismaSingleton.prisma = new PrismaClient();
         }
