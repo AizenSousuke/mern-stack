@@ -1,9 +1,10 @@
 import express from "express";
 const router = express.Router();
-const BusStop = require("../../models/DataMall/BusStop").default;
 import { check, validationResult } from "express-validator";
 import axios from "axios";
 import config from "config";
+import PrismaSingleton from "../../classes/PrismaSingleton";
+const prisma = PrismaSingleton.getPrisma();
 
 const header = {
 	Accept: "application/json",
@@ -20,13 +21,13 @@ const getBusStopDetails = async (stop) => {
 
 router.get("/", async (req, res) => {
 	try {
-		let code = req.query.code;
+		let code = req.query.code.toString();
 		if (!code) {
 			return res.status(422).json({ msg: "Please add a query for code" });
 		}
 
 		let busStop;
-		busStop = await BusStop.findOne({ BusStopCode: code });
+		busStop = await prisma.busStop.findFirst({ where: { busStopCode: code } });
 		if (busStop == null) {
 			return res
 				.status(404)
@@ -55,13 +56,12 @@ router.get("/search", async (req, res) => {
 				.json({ msg: "Must include a term parameter" });
 		}
 
-		let busStops = [];
-		busStops = await BusStop.find({
-			$or: [
-				{ Description: { $regex: term, $options: "i" } },
-				{ RoadName: { $regex: term, $options: "i" } },
-				{ BusStopCode: { $regex: term, $options: "i" } },
-			],
+		const busStops = await prisma.busStop.findRaw({
+			filter: {
+				description: { $regex: term, $options: "i" },
+				roadName: { $regex: term, $options: "i" },
+				busStopCode: { $regex: term, $options: "i" }
+			}
 		});
 
 		if (busStops) {
@@ -94,19 +94,22 @@ router.get("/nearest", async (req, res) => {
 
 		// Search for bus stops nearby
 		// Reference: https://docs.mongodb.com/manual/reference/operator/query/near/#mongodb-query-op.-near
-		const busStopsNearby = await BusStop.find({
-			Location: {
-				$near: {
-					$geometry: {
-						type: "Point",
-						coordinates: [req.query.longitude, req.query.latitude],
+		// TODO: Fix issues
+		const busStopsNearby = await prisma.$runCommandRaw({
+			filter: {
+				location: {
+					$near: {
+						$geometry: {
+							type: "Point",
+							coordinates: [req.query.longitude, req.query.latitude],
+						},
+						$minDistance: 0,
+						$maxDistance: req.query.maxDistance
+							? req.query.maxDistance
+							: config.MAX_DISTANCE_IN_METRES,
 					},
-					$minDistance: 0,
-					$maxDistance: req.query.maxDistance
-						? req.query.maxDistance
-						: config.MAX_DISTANCE_IN_METRES,
 				},
-			},
+			}
 		});
 
 		// Nearest bus stop is the first one in the list
@@ -162,11 +165,14 @@ router.post(
 		} = req.body;
 
 		try {
-			const busStop = await BusStop.find({
-				BusStopCode: BusStopCode,
-			}).exec();
+			const busStop = await prisma.busStop.findFirst(
+				{
+					where: {
+						busStopCode: BusStopCode,
+					}
+				});
 
-			if (busStop.length > 0) {
+			if (busStop) {
 				return res.status(400).json({
 					errors: [
 						{
@@ -177,17 +183,20 @@ router.post(
 				});
 			}
 
-			let newBusStop = new BusStop({
-				BusStopCode,
-				RoadName,
-				Description,
-				Longitude,
-				Latitude,
-			});
+			let newBusStop = await prisma.busStop.create(
+				{
+					data: {
+						busStopCode: BusStopCode,
+						roadName: RoadName,
+						description: Description,
+						location: {
+							Longitude,
+							Latitude
+						},
+					}
+				});
 
-			await newBusStop.save();
-
-			res.send("Created Bus Stop");
+			res.status(200).json({ msg: "Created Bus Stop", busStop: newBusStop });
 		} catch (error) {
 			console.error(error.message);
 			return res.status(500).json({ msg: "Server Error" });
