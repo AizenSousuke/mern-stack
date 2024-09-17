@@ -4,8 +4,10 @@ import axios from "axios";
 import config from "config";
 import auth from "../../middleware/auth";
 import Util from "../../util/Util";
+import PrismaSingleton from "../../classes/PrismaSingleton";
 const BusRoutes = require("../../models/DataMall/BusRoutes").default;
 const { CatchError } = require("../../util/ErrorUtil").default;
+const prisma = PrismaSingleton.getPrisma();
 
 const header = {
 	Accept: "application/json",
@@ -20,9 +22,15 @@ router.get("/:serviceNo/:busStopCode", async (req: any, res) => {
 				.json({ msg: "No serviceNo nor busStopCode param provided" });
 		}
 
-		const routes = await BusRoutes.find({
-			ServiceNo: req.params.serviceNo,
-		}).sort({ Distance: "asc" });
+		const routes = await prisma.busRoute.findMany({
+			where: {
+
+				serviceNo: req.params.serviceNo,
+			},
+			orderBy: {
+				distance: "asc"
+			}
+		});
 
 		if (!routes) {
 			return res
@@ -33,7 +41,7 @@ router.get("/:serviceNo/:busStopCode", async (req: any, res) => {
 		// Note: May return 2
 		return res.status(200).json({
 			routes: routes.filter(
-				(service) => service.BusStopCode === req.params.busStopCode
+				(service) => service.busStopCode === req.params.busStopCode
 			),
 		});
 	} catch (error) {
@@ -47,11 +55,11 @@ router.get("/:serviceNo", async (req: any, res) => {
 			return res.status(422).json({ msg: "No serviceNo param provided" });
 		}
 
-		const routesWithBusStopName = await BusRoutes.aggregate([
+		const routesWithBusStopName = await prisma.busRoute.aggregate([
 			{
-				$match: {
-					ServiceNo: req.params.serviceNo,
-				},
+				where: {
+					serviceNo: req.params.serviceNo,
+				}
 			},
 			{
 				$lookup: {
@@ -129,7 +137,7 @@ router.get("/:serviceNo", async (req: any, res) => {
 
 router.get("/", async (req: any, res) => {
 	try {
-		const routes = await BusRoutes.find({});
+		const routes = await prisma.busRoute.findMany({});
 		if (!routes) {
 			return res.status(404).json({ msg: "No routes provided" });
 		}
