@@ -8,6 +8,8 @@ const User = require("../../models/User").default;
 import mongoose from "mongoose";
 import { check, validationResult } from "express-validator";
 import Util from "../../util/Util";
+import PrismaSingleton from "../../classes/PrismaSingleton";
+const prisma = PrismaSingleton.getPrisma();
 
 const header = {
 	Accept: "application/json",
@@ -106,10 +108,15 @@ router.patch(
 				return res.status(422).json({ msg: errors.array() });
 			}
 			const { Email, IsAdmin } = req.body;
-			const updatedUser = await User.findOneAndUpdate(
-				{ Email: Email },
-				{ IsAdmin: IsAdmin }
-			);
+			const updatedUser = await prisma.user.update({
+				where: {
+					email: Email,
+				},
+				data: {
+					isAdmin: IsAdmin
+				}
+			});
+
 			if (!updatedUser) {
 				return res.status(404).json({ msg: "No user found" });
 			}

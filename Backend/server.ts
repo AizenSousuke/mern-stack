@@ -162,9 +162,9 @@ app.use("/api/users", require("./routes/api/users").default);
 app.use("/api/busstops", require("./routes/api/busstops").default);
 app.use("/api/busroutes", require("./routes/api/busroutes").default);
 app.use("/api/busservices", require("./routes/api/busservices").default);
-// app.use("/api/bus", require("./routes/api/bus").default);
-// app.use("/api/settings", require("./routes/api/settings").default);
-// app.use("/api/admin", require("./routes/api/admin").default);
+app.use("/api/bus", require("./routes/api/bus").default);
+app.use("/api/settings", require("./routes/api/settings").default);
+app.use("/api/admin", require("./routes/api/admin").default);
 
 app.get("/", (req, res) => {
 	res.send(`Server is on port ${PORT}`);

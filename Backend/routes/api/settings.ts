@@ -3,16 +3,21 @@ const router = express.Router();
 import authMiddleware from "../../middleware/auth";
 const Settings = require("../../models/Settings").default;
 import { check, validationResult } from "express-validator";
+import PrismaSingleton from "../../classes/PrismaSingleton";
+const prisma = PrismaSingleton.getPrisma();
 
 router.get("/", authMiddleware, async (req: any, res) => {
 	console.log("Request headers: " + JSON.stringify(req.headers));
 	console.log("Request url: " + req.url);
 	console.log("Req user: " + JSON.stringify(req.user));
-	const settings = await Settings.findOne({
-		UserId: req.user.UserId,
-	});
+	const settings = await prisma.setting.findFirst
+		({
+			where: {
+				userId: req.user.UserId,
+			}
+		});
 
-	if (!settings || !settings.Settings) {
+	if (!settings) {
 		console.log("No settings");
 		return res
 			.status(404)
@@ -25,15 +30,6 @@ router.get("/", authMiddleware, async (req: any, res) => {
 		settings: settings,
 	});
 });
-
-// router.put("/", authMiddleware, async (req: any, res) => {
-// 	try {
-
-// 	} catch (error) {
-// 		console.error(error);
-// 		return res.status(500).json({ msg: "Server error" });
-// 	}
-// })
 
 // To refactor to handle business logic on backend instead of frontend
 router.put(
@@ -54,14 +50,19 @@ router.put(
 			const { settings } = req.body;
 
 			// Create if it does not exist
-			let UpdatedSettings = await Settings.findOneAndUpdate(
-				{ UserId: req.user.UserId },
-				{ Settings: settings, DateUpdated: Date.now() },
-				{ upsert: true, new: true, setDefaultsOnInsert: true }
-			);
+			const settingsUpdateTime = new Date(Date.now());
+			const updatedSettings = await prisma.setting.update({
+				where: {
+					userId: req.user.UserId
+				},
+				data: {
+					settingsSchema: settings,
+					updatedAt: settingsUpdateTime
+				}
+			});
 
 			return res.status(200).json({
-				msg: `User settings has been updated at ${UpdatedSettings.DateUpdated}.`,
+				msg: `User settings has been updated at ${updatedSettings.updatedAt}.`,
 			});
 		} catch (error) {
 			console.error(error);
@@ -85,16 +86,25 @@ router.put(
 			const userId = req.user.UserId;
 			const busStopCode = req.body.code;
 			const busesTracked = req.body.busesTracked;
-			
-			const existingSettings = await Settings.findOne({
-				UserId: userId
+
+			const existingSettings = await prisma.setting.findFirstOrThrow({
+				where: {
+					userId: userId
+				},
+				include: {
+					settingsSchema: true
+				}
 			});
+
+			const settingsSchema = existingSettings.settingsSchema;
 
 			console.log("existingSettings:", existingSettings);
 
-			const existingBusStop = existingSettings.Settings[fieldToUpdate].some(
-			  (stop) => stop.BusStopCode === busStopCode
-			);
+			// const existingBusStop = existingSettings.settingsSchema.Settings[fieldToUpdate].some(
+			// 	(stop) => stop.BusStopCode === busStopCode
+			// );
+
+			const existingBusStop = true;
 
 			let oldBusStopTrackedBuses;
 			console.log("Existing bus stop: ", existingBusStop);
