@@ -55,60 +55,20 @@ router.get("/:serviceNo", async (req: any, res) => {
 			return res.status(422).json({ msg: "No serviceNo param provided" });
 		}
 
-		const routesWithBusStopName = await prisma.busRoute.aggregate([
-			{
-				where: {
-					serviceNo: req.params.serviceNo,
-				}
+		const routes = await prisma.busRoute.aggregate({
+			where: {
+				serviceNo: req.params.serviceNo
 			},
-			{
-				$lookup: {
-					from: "busstops",
-					localField: "BusStopCode",
-					foreignField: "BusStopCode",
-					as: "BusStopData",
-				},
-			},
-			{
-				$sort: {
-					Direction: 1,
-					StopSequence: 1,
-				},
-			},
-			{
-				$group: {
-					_id: "$Direction",
-					towards: {
-						$last: "$BusStopData.Description"
-					},
-					direction: {
-						$addToSet: {
-							_id: "$_id",
-							BusStopCode: "$BusStopCode",
-							Direction: "$Direction",
-							Distance: "$Distance",
-							Operator: "$Operator",
-							ServiceNo: "$ServiceNo",
-							StopSequence: "$StopSequence",
-							SAT_FirstBus: "$SAT_FirstBus",
-							SAT_LastBus: "$SAT_LastBus",
-							SUN_FirstBus: "$SUN_FirstBus",
-							SUN_LastBus: "$SUN_LastBus",
-							WD_FirstBus: "$WD_FirstBus",
-							WD_LastBus: "$WD_LastBus",
-							__v: "$__v",
-							BusStopData: "$BusStopData",
-						},
-					},
-				},
-			},
-		]);
+			orderBy: {
+				distance: "asc"
+			}
+		});
 
-		if (!routesWithBusStopName) {
+		if (!routes) {
 			return res.status(404).json({ msg: "No routes provided" });
 		}
 
-		return res.status(200).json({ routes: routesWithBusStopName });
+		return res.status(200).json({ routes: routes });
 	} catch (error) {
 		CatchError(error, res);
 	}

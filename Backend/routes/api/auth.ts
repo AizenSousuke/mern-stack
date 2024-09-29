@@ -1,12 +1,14 @@
 import express from "express";
 const router = express.Router();
 import authMiddleware from "../../middleware/auth";
-const UserModel = require("./../../models/User").default;
 import bcrypt from "bcryptjs";
 import config from "config";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 import passport from "passport";
+import PrismaSingleton from "../../classes/PrismaSingleton";
+
+const prisma = PrismaSingleton.getPrisma();
 
 router.get('/test', async (req: any, res) => {
 	return res.status(200).json("OK");
@@ -20,9 +22,12 @@ router.get("/", authMiddleware, async (req: any, res) => {
 		// console.log("Getting auth");
 		// console.log("Type of UserId: ", typeof req.user.UserId);
 		// console.log("User: ", await UserModel.findOne({UserId: req.user.UserId}));
-		const user = await UserModel.findOne({
-			UserId: req.user.UserId,
-		}).select("-Password");
+		const user = await prisma.user.findFirst({
+			where: {
+				id: req.user.UserId,
+			}
+			// TODO: Hide password
+		});
 		if (!user) {
 			return res.status(401).json({ msg: "No user is logged in" });
 		}
@@ -56,7 +61,7 @@ router.get(
 		);
 		console.log(
 			"Req isAuthenticated from facebook callback: " +
-				req.isAuthenticated()
+			req.isAuthenticated()
 		);
 		req.session.save((error) => {
 			const redirectURL =
@@ -84,17 +89,20 @@ router.get("/checkTokenExpiry", async (req: any, res) => {
 			.json({ msg: "Token has expired", expired: true });
 	}
 
-	const user = await UserModel.findOne({
-		Token: req.header("X-Auth-Token"),
-	}).select("-Password");
+	const user = await prisma.user.findFirst({
+		where: {
+			token: req.header("X-Auth-Token"),
+		}
+	});
+
 	if (!user) {
 		return res.status(200).json({ msg: "Cannot find user", expired: true });
 	}
 
-	console.log("User with Token Expiry Date: " + user.TokenExpiryDate);
+	console.log("User with Token Expiry Date: " + user.tokenExpiryDate);
 	const DateToday = new Date(Date.now());
 	console.log("Date today: " + DateToday);
-	const ExpiryDate = new Date(user.TokenExpiryDate);
+	const ExpiryDate = new Date(user.tokenExpiryDate);
 	console.log("Expiry Date: " + ExpiryDate);
 	if (DateToday > ExpiryDate) {
 		console.log("Token has expired");
@@ -138,15 +146,18 @@ router.post(
 
 			const { Email, Password } = req.body;
 
-			const user = await UserModel.findOne({
-				Email: Email,
-			});
+			const user = await prisma.user.findFirst(
+				{
+					where: {
+						email: Email,
+					}
+				});
 
 			if (!user) {
 				return res.status(400).json({ msg: "Invalid Credentials" });
 			}
 
-			const isMatch = await bcrypt.compare(Password, user.Password);
+			const isMatch = await bcrypt.compare(Password, user.password);
 
 			if (!isMatch) {
 				return res.status(400).json({ msg: "Invalid Password" });
@@ -155,8 +166,8 @@ router.post(
 			// Return jsonwebtoken (so user can log in straightaway)
 			const payload = {
 				user: {
-					Id: user.UserId,
-					IsAdmin: user.IsAdmin,
+					Id: user.id,
+					IsAdmin: user.isAdmin,
 				},
 			};
 
@@ -176,15 +187,16 @@ router.post(
 					);
 
 					// Save token to user entity in db
-					await UserModel.updateOne(
-						{
-							Email: Email,
+					await prisma.user.update({
+						where: {
+							email: Email,
 						},
-						{
-							Token: token,
-							TokenExpiryDate: expirationDate,
+						data: {
+							token: token,
+							tokenExpiryDate: expirationDate,
 							// No refresh token (TODO: Need to generate it above when creating the jwt token)
 						}
+					}
 					);
 
 					return res.json({ token });

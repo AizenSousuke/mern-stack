@@ -2,7 +2,6 @@ import express from "express";
 const router = express.Router();
 import { check, validationResult } from "express-validator";
 import gravatar from "gravatar";
-const User = require("../../models/User").default;
 import bcrypt from "bcryptjs";
 import config from "config";
 import jwt from "jsonwebtoken";
@@ -59,19 +58,31 @@ router.post(
 			d: "mm",
 		});
 
-		user = new User({ Name, Email, Avatar, Password });
-
 		// Encrypt password
 		const salt = await bcrypt.genSalt(10);
 
-		await prisma.user.update({
-			where: {
-				id: user.id
-			},
-			data: {
-				password: await bcrypt.hash(Password, salt)
-			}
-		});
+		if (!user) {
+			user = await prisma.user.create({
+				data: {
+					name: Name,
+					email: Email,
+					avatar: Avatar,
+					password: await bcrypt.hash(Password, salt)
+				}
+			});
+		} else {
+			user = await prisma.user.update({
+				where: {
+					id: user.id
+				},
+				data: {
+					name: Name,
+					email: Email,
+					avatar: Avatar,
+					password: await bcrypt.hash(Password, salt)
+				}
+			});
+		}
 
 		// Return jsonwebtoken (so user can log in straightaway)
 		const payload = {
@@ -104,9 +115,15 @@ router.delete("/", async (req, res) => {
 		return res.status(404).json({ msg: "User not found" });
 	}
 
+	const deletedUser = await prisma.user.delete({
+		where: {
+			id: user.id
+		}
+	});
+
 	return res
 		.status(200)
-		.json({ msg: `Removed user with email: ${email}` });
+		.json({ msg: `Removed user with email: ${deletedUser.email}` });
 });
 
 export default router;
