@@ -99,7 +99,12 @@ router.put(
 					userId: userId
 				},
 				include: {
-					settingsSchema: true
+					settingsSchema: {
+						include: {
+							goingHome: true,
+							goingOut: true
+						}
+					}
 				}
 			});
 
@@ -112,6 +117,32 @@ router.put(
 					busStopCode: busStopCode
 				}
 			});
+
+			await prisma.setting.upsert({
+				where: {
+					userId: userId
+				},
+				create: {
+					userId: userId,
+					settingsSchema: {
+						create: {
+							goingHome: {
+								create: []
+							},
+							goingOut: {
+								create: []
+							},
+						}
+					}
+				},
+				update: {
+					settingsSchema: {
+						[fieldToUpdate]: {
+							push: 
+						}
+					}
+				}
+			})
 
 			// const existingBusStop = existingSettings.settingsSchema.Settings[fieldToUpdate].some(
 			// 	(stop) => stop.BusStopCode === busStopCode
