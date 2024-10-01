@@ -13,6 +13,14 @@ router.get("/", authMiddleware, async (req: any, res) => {
 		({
 			where: {
 				userId: req.user.UserId,
+			},
+			include: {
+				settingsSchema: {
+					include: {
+						goingHome: true,
+						goingOut: true
+					}
+				}
 			}
 		});
 
@@ -31,44 +39,44 @@ router.get("/", authMiddleware, async (req: any, res) => {
 });
 
 // To refactor to handle business logic on backend instead of frontend
-router.put(
-	"/",
-	[check("settings", "Settings data structure is required").notEmpty()],
-	authMiddleware,
-	async (req: any, res) => {
-		try {
-			console.log("Request headers: " + JSON.stringify(req.headers));
-			console.log("Request url: " + req.url);
-			console.log("Req user: " + JSON.stringify(req.user));
-			console.log("Body:" + JSON.stringify(req.body));
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				return res.status(422).json({ errors: errors.array() });
-			}
+// router.put(
+// 	"/",
+// 	[check("settings", "Settings data structure is required").notEmpty()],
+// 	authMiddleware,
+// 	async (req: any, res) => {
+// 		try {
+// 			console.log("Request headers: " + JSON.stringify(req.headers));
+// 			console.log("Request url: " + req.url);
+// 			console.log("Req user: " + JSON.stringify(req.user));
+// 			console.log("Body:" + JSON.stringify(req.body));
+// 			const errors = validationResult(req);
+// 			if (!errors.isEmpty()) {
+// 				return res.status(422).json({ errors: errors.array() });
+// 			}
 
-			const { settings } = req.body;
+// 			const { settings } = req.body;
 
-			// Create if it does not exist
-			const settingsUpdateTime = new Date(Date.now());
-			const updatedSettings = await prisma.setting.update({
-				where: {
-					userId: req.user.UserId
-				},
-				data: {
-					settingsSchema: settings,
-					updatedAt: settingsUpdateTime
-				}
-			});
+// 			// Create if it does not exist
+// 			const settingsUpdateTime = new Date(Date.now());
+// 			const updatedSettings = await prisma.setting.update({
+// 				where: {
+// 					userId: req.user.UserId
+// 				},
+// 				data: {
+// 					settingsSchema: settings,
+// 					updatedAt: settingsUpdateTime
+// 				}
+// 			});
 
-			return res.status(200).json({
-				msg: `User settings has been updated at ${updatedSettings.updatedAt}.`,
-			});
-		} catch (error) {
-			console.error(error);
-			return res.status(500).json({ msg: "Server error" });
-		}
-	}
-);
+// 			return res.status(200).json({
+// 				msg: `User settings has been updated at ${updatedSettings.updatedAt}.`,
+// 			});
+// 		} catch (error) {
+// 			console.error(error);
+// 			return res.status(500).json({ msg: "Server error" });
+// 		}
+// 	}
+// );
 
 router.put(
 	"/update",
@@ -125,7 +133,7 @@ router.put(
 						data: {
 							settingsSchema: {
 								update: {
-									
+
 									updatedAt: new Date(Date.now())
 								}
 							}
