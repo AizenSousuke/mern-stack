@@ -4,8 +4,8 @@ model BusStopSetting {
     busStop   BusStop @relation(fields: [busStopId], references: [id])
     busStopId String  @db.ObjectId
 
-    buseServicesIDs String[]     @db.ObjectId
-    busServices     BusService[] @relation(fields: [buseServicesIDs], references: [id])
+    busServicesIDs String[]     @db.ObjectId
+    busServices     BusService[] @relation(fields: [busServicesIDs], references: [id])
 
     settingSchemaGoingOut    SettingSchema? @relation("SettingsGoingOut", fields: [settingSchemaGoingOutId], references: [id])
     settingSchemaGoingHome   SettingSchema? @relation("SettingsGoingHome", fields: [settingSchemaGoingHomeId], references: [id])
