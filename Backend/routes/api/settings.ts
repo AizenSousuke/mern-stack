@@ -1,7 +1,6 @@
 import express from "express";
 const router = express.Router();
 import authMiddleware from "../../middleware/auth";
-const Settings = require("../../models/Settings").default;
 import { check, validationResult } from "express-validator";
 import PrismaSingleton from "../../classes/PrismaSingleton";
 const prisma = PrismaSingleton.getPrisma();
@@ -82,7 +81,7 @@ router.put(
 	async (req: any, res) => {
 		try {
 			console.log("Updating settings to add busesTracked");
-			const fieldToUpdate = !req.body.GoingOut ? "GoingHome" : "GoingOut";
+			const fieldToUpdate = !req.body.GoingOut ? "goingHome" : "goingOut";
 			const userId = req.user.UserId;
 			const busStopCode = req.body.code;
 			const busesTracked = req.body.busesTracked;
@@ -100,6 +99,12 @@ router.put(
 
 			console.log("existingSettings:", existingSettings);
 
+			const busStop = await prisma.busStop.findUniqueOrThrow({
+				where: {
+					busStopCode: busStopCode
+				}
+			});
+
 			// const existingBusStop = existingSettings.settingsSchema.Settings[fieldToUpdate].some(
 			// 	(stop) => stop.BusStopCode === busStopCode
 			// );
@@ -112,32 +117,39 @@ router.put(
 			if (existingBusStop) {
 				console.log("Updating");
 				// Update the existing BusStopCode's BusesTracked array
-				oldBusStopTrackedBuses = await Settings.findOneAndUpdate(
+				oldBusStopTrackedBuses = await prisma.setting.update(
 					{
-						UserId: userId,
-						[`Settings.${fieldToUpdate}.BusStopCode`]: busStopCode,
-					},
-					{
-						$set: {
-							[`Settings.${fieldToUpdate}.$.BusesTracked`]: busesTracked,
-							DateUpdated: Date.now(),
+						where: {
+							userId = req.userId
 						},
-					},
-					{ new: true }
-				);
+						data: {
+							settingsSchema: {
+								update: {
+									
+									updatedAt: new Date(Date.now())
+								}
+							}
+						}
+					});
 			} else {
 				console.log("Adding");
 				// Add a new BusStopCode object to the array
-				oldBusStopTrackedBuses = await Settings.findOneAndUpdate(
-					{ UserId: userId },
+				oldBusStopTrackedBuses = await prisma.setting.update(
 					{
-						$push: {
-							[`Settings.${fieldToUpdate}`]: { BusStopCode: busStopCode, BusesTracked: busesTracked },
+						where: {
+							userId: userId
 						},
-						$set: { DateUpdated: Date.now() }
-					},
-					{ new: true, upsert: true }
-				);
+						data: {
+							settingsSchema: {
+								update: {
+									[fieldToUpdate]: {
+										push: busStop
+									},
+									updatedAt: new Date(Date.now())
+								}
+							}
+						}
+					});
 			}
 
 			console.log("oldBusStopTrackedBuses", oldBusStopTrackedBuses);
@@ -180,7 +192,7 @@ router.delete(
 				});
 			}
 
-			let settings = await Settings.findOne({
+			let settings = await prisma.setting.findOne({
 				UserId: req.user.UserId,
 			});
 
