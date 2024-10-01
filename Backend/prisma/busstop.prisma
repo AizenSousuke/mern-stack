@@ -1,3 +1,4 @@
+// From LTA DataMall
 model BusStop {
     id          String   @id @default(auto()) @map("_id") @db.ObjectId
     busStopCode String   @unique
@@ -7,8 +8,5 @@ model BusStop {
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 
-    settingSchemaGoingOut    SettingSchema? @relation("SettingsGoingOut", fields: [settingSchemaGoingOutId], references: [id])
-    settingSchemaGoingHome   SettingSchema? @relation("SettingsGoingHome", fields: [settingSchemaGoingHomeId], references: [id])
-    settingSchemaGoingOutId  String?        @db.ObjectId
-    settingSchemaGoingHomeId String?        @db.ObjectId
+    BusStopSetting BusStopSetting[]
 }

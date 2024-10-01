@@ -1,0 +1,14 @@
+// For saving in settings
+model BusStopSetting {
+    id        String  @id @default(auto()) @map("_id") @db.ObjectId
+    busStop   BusStop @relation(fields: [busStopId], references: [id])
+    busStopId String  @db.ObjectId
+
+    buseServicesIDs String[]     @db.ObjectId
+    busServices     BusService[] @relation(fields: [buseServicesIDs], references: [id])
+
+    settingSchemaGoingOut    SettingSchema? @relation("SettingsGoingOut", fields: [settingSchemaGoingOutId], references: [id])
+    settingSchemaGoingHome   SettingSchema? @relation("SettingsGoingHome", fields: [settingSchemaGoingHomeId], references: [id])
+    settingSchemaGoingOutId  String?        @db.ObjectId
+    settingSchemaGoingHomeId String?        @db.ObjectId
+}
