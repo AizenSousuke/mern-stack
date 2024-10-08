@@ -101,8 +101,16 @@ router.put(
 				include: {
 					settingsSchema: {
 						include: {
-							goingHome: true,
-							goingOut: true
+							goingHome: {
+								include: {
+									busStop: true
+								}
+							},
+							goingOut: {
+								include: {
+									busStop: true
+								}
+							}
 						}
 					}
 				}
@@ -138,11 +146,20 @@ router.put(
 				update: {
 					settingsSchema: {
 						[fieldToUpdate]: {
-							push: 
+							update: {
+								where: {
+									busStop: {
+										busStopCode: busStopCode
+									}
+								},
+								data: {
+
+								}
+							}
 						}
 					}
 				}
-			})
+			});
 
 			// const existingBusStop = existingSettings.settingsSchema.Settings[fieldToUpdate].some(
 			// 	(stop) => stop.BusStopCode === busStopCode
