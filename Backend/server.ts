@@ -21,11 +21,9 @@ import cookieParser from "cookie-parser";
 // Passport
 import passport from "passport";
 import PrismaSingleton from "./classes/PrismaSingleton";
-import { PrismaClient } from "@prisma/client";
-import IUser from "./interfaces/IUser";
 const FacebookStrategy = require("passport-facebook").Strategy;
 
-const prisma: PrismaClient = PrismaSingleton.getPrisma();
+const prisma = PrismaSingleton.getPrisma();
 
 if (process.env.NODE_ENV !== "test") {
 	// To get HTTPS
@@ -107,7 +105,7 @@ passport.use(
 					}
 				});
 
-				const user: IUser = await prisma.user.findFirstOrThrow({
+				const user = await prisma.user.findFirstOrThrow({
 					select: {
 						email: profile.emails[0].value,
 					}

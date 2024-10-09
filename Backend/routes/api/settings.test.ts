@@ -229,13 +229,13 @@
 //     });
 // });
 
-const request = require('supertest');
-const app = require('../../server');
+// const request = require('supertest');
+// const app = require('../../server');
 
 describe('PUT /update', () => {
     let userId;
     let busStopCode;
-    const prisma = PrismaClient();
+    // const prisma = PrismaClient();
 
     beforeAll(async () => {
         // Seed the test database
