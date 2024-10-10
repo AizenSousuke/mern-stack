@@ -92,4 +92,4 @@ module.exports = async () => {
 };
 
 // Export prisma for use in tests
-module.exports.prisma = prisma;
+export { prisma };

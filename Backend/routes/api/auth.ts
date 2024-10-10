@@ -146,7 +146,7 @@ router.post(
 
 			const { Email, Password } = req.body;
 
-			console.log(prisma);
+			// console.log(prisma);
 
 			const allUser = await prisma.user.findMany({});
 			console.log("All users: " + JSON.stringify(allUser));
