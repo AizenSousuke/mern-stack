@@ -52,11 +52,8 @@ module.exports = async () => {
     await testConnection();
     console.log("Using DATABASE_URL:", process.env.DATABASE_URL);
 
-
     // Ensure Prisma Client is generated
     console.log("Running mongo memory server");
-
-
 
     // Create the tmp directory and run Prisma commands
     try {

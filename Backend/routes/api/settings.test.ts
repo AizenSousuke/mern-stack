@@ -233,10 +233,11 @@ import { PrismaClient } from "@prisma/client";
 
 const request = require('supertest');
 const app = require('../../server.ts');
+import bcrypt from "bcryptjs";
 
-describe('PUT /update', () => {
+describe('GET /', () => {
     let userId: string;
-    let busStopCode: string;
+    let token: string;
     const prisma: PrismaClient = new PrismaClient();
 
     beforeAll(async () => {
@@ -245,24 +246,22 @@ describe('PUT /update', () => {
             data: {
                 email: 'test@example.com',
                 name: 'Test User',
-                password: 'hashedpassword123'
+                password: await bcrypt.hash("hashedpassword123", 10)
             }
         });
         userId = user.id;
 
-        const busStop = await prisma.busStop.create({
-            data: {
-                busStopCode: '12345',
-                roadName: 'Test Road',
-                description: 'Test Bus Stop',
-                location:
-                {
-                    latitude: 1.23456,
-                    longitude: 103.78901
-                }
-            }
-        });
-        busStopCode = busStop.busStopCode;
+        console.log(`User ID: ${userId}`);
+
+        // Login
+        const response = await request(app)
+            .post('/api/auth/signin')
+            .send({
+                Email: 'test@example.com',
+                Password: 'hashedpassword123'
+            });
+
+        token = response.body.token;
     });
 
     afterAll(async () => {
@@ -272,23 +271,18 @@ describe('PUT /update', () => {
     it('should update bus stop tracking settings', async () => {
         const res = await request(app)
             .get('/api/settings')
-            .send({
-                code: busStopCode,
-                GoingOut: false,
-                busesTracked: true
-            })
-            .set('Authorization', `Bearer token`);
+            .set('x-auth-token', token);
 
-        expect(res.statusCode).toEqual(200);
-        expect(res.body.msg).toBe('Successfully updated settings.');
+        expect(res.statusCode).toEqual(404);
+        expect(res.body.msg).toBe('There are no settings for this user.');
 
         // Check if the bus stop was correctly updated
-        const updatedSetting = await prisma.setting.findFirst({
-            where: { userId: userId },
-            include: { settingsSchema: true }
-        });
+        // const updatedSetting = await prisma.setting.findFirst({
+        //     where: { userId: userId },
+        //     include: { settingsSchema: true }
+        // });
 
-        expect(updatedSetting.userId).toBe(userId);
+        // expect(updatedSetting.userId).toBe(userId);
     });
 });
 

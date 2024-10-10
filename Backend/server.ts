@@ -39,7 +39,7 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 // Connect Database
-connectDB();
+async () => await connectDB();
 
 // Adds middlewares
 // Add body-parser middleware
