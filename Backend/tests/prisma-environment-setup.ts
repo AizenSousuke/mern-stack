@@ -1,4 +1,4 @@
-const { MongoMemoryServer } = require('mongodb-memory-server');
+const { MongoMemoryServer, MongoMemoryReplSet } = require('mongodb-memory-server');
 const { PrismaClient } = require('@prisma/client');
 const { exec } = require('child_process');
 const prisma = new PrismaClient();
@@ -33,11 +33,14 @@ function runCommand(command) {
 
 // Start in-memory MongoDB server
 module.exports = async () => {
-    mongod = await MongoMemoryServer.create();
+    const databaseName = "yasgbadevelopment";
+    mongod = await MongoMemoryReplSet.create({
+        replSet: { count: 2 },
+        dbName: databaseName
+    });
     const uri = mongod.getUri();
 
     // Manually set the desired database name (e.g., "testDatabase")
-    const databaseName = "database01development";
     const modifiedUri = `${uri}${databaseName}`;
 
     // Log the modified URI for debugging
