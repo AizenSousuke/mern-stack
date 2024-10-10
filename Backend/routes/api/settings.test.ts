@@ -6,6 +6,8 @@
 // import settingsRouter from "../../routes/api/settings";
 // import bcrypt from "bcryptjs";
 
+import { PrismaClient } from "@prisma/client";
+
 // const app = express();
 // app.use(express.json());
 // app.use('/api/auth', authRouter);
@@ -233,17 +235,34 @@
 // const app = require('../../server');
 
 describe('PUT /update', () => {
-    let userId;
-    let busStopCode;
-    // const prisma = PrismaClient();
+    let userId: string;
+    let busStopCode: string;
+    const prisma: PrismaClient = new PrismaClient();
 
     beforeAll(async () => {
         // Seed the test database
-        // const user = await prisma.user.create({ data: { /* ...user data... */ } });
-        // userId = user.id;
+        const user = await prisma.user.create({
+            data: {
+                email: 'test@example.com',
+                name: 'Test User',
+                password: 'hashedpassword123'
+            }
+        });
+        userId = user.id;
 
-        // const busStop = await prisma.busStop.create({ data: { busStopCode: '12345' } });
-        // busStopCode = busStop.busStopCode;
+        const busStop = await prisma.busStop.create({
+            data: {
+                busStopCode: '12345',
+                roadName: 'Test Road',
+                description: 'Test Bus Stop',
+                location:
+                {
+                    latitude: 1.23456,
+                    longitude: 103.78901
+                }
+            }
+        });
+        busStopCode = busStop.busStopCode;
     });
 
     afterAll(async () => {
