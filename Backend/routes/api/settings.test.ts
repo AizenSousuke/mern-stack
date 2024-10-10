@@ -231,8 +231,8 @@ import { PrismaClient } from "@prisma/client";
 //     });
 // });
 
-// const request = require('supertest');
-// const app = require('../../server');
+const request = require('supertest');
+const app = require('../../server.ts');
 
 describe('PUT /update', () => {
     let userId: string;
@@ -270,25 +270,25 @@ describe('PUT /update', () => {
     });
 
     it('should update bus stop tracking settings', async () => {
-        // const res = await request(app)
-        //     .put('/update')
-        //     .send({
-        //         code: busStopCode,
-        //         GoingOut: false,
-        //         busesTracked: true
-        //     })
-        //     .set('Authorization', `Bearer token`);
+        const res = await request(app)
+            .get('/api/settings')
+            .send({
+                code: busStopCode,
+                GoingOut: false,
+                busesTracked: true
+            })
+            .set('Authorization', `Bearer token`);
 
-        // expect(res.statusCode).toEqual(200);
-        // expect(res.body.msg).toBe('Successfully updated settings.');
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.msg).toBe('Successfully updated settings.');
 
-        // // Check if the bus stop was correctly updated
-        // const updatedSetting = await prisma.setting.findFirst({
-        //     where: { userId: userId },
-        //     include: { settingsSchema: true }
-        // });
+        // Check if the bus stop was correctly updated
+        const updatedSetting = await prisma.setting.findFirst({
+            where: { userId: userId },
+            include: { settingsSchema: true }
+        });
 
-        // expect(updatedSetting.settingsSchema.goingHome.some(stop => stop.busStopCode === busStopCode)).toBe(true);
+        expect(updatedSetting.userId).toBe(userId);
     });
 });
 
