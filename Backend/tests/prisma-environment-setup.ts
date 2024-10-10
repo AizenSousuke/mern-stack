@@ -1,6 +1,6 @@
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { PrismaClient } = require('@prisma/client');
-const { execSync, exec } = require('child_process');
+const { exec } = require('child_process');
 const prisma = new PrismaClient();
 
 let mongod;
@@ -53,7 +53,7 @@ module.exports = async () => {
 
     // Ensure Prisma Client is generated
     console.log("Running mongo memory server");
-    // execSync('rm -rf tmp && mkdir tmp && cat prisma/*.prisma > tmp/schemaCombined.prisma && npx prisma db push --schema=tmp/schemaCombined.prisma && rm tmp/schemaCombined.prisma && rm -rf tmp');
+    // exec('rm -rf tmp && mkdir tmp && cat prisma/*.prisma > tmp/schemaCombined.prisma && npx prisma db push --schema=tmp/schemaCombined.prisma && rm tmp/schemaCombined.prisma && rm -rf tmp');
 
 
     // Create the tmp directory and run Prisma commands
@@ -66,8 +66,8 @@ module.exports = async () => {
     }
 
     console.log("Running npx prisma generate --schema=tmp/schemaCombined.prisma");
-    execSync('npx prisma generate --schema=tmp/schemaCombined.prisma');
+    exec('npx prisma generate --schema=tmp/schemaCombined.prisma');
     await runCommand('rm tmp/schemaCombined.prisma && rm -rf tmp');
 
-    return { prisma, mongod };
+    return { mongod };
 };
