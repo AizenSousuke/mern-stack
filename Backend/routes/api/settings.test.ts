@@ -231,23 +231,31 @@ import { PrismaClient } from "@prisma/client";
 //     });
 // });
 
-const request = require('supertest');
-const app = require('../../server.ts');
-
 describe('GET /', () => {
-    const prisma: PrismaClient = new PrismaClient();
     const request = require('supertest');
     const app = require('../../server.ts');
+    const bcrypt = require("bcryptjs");
+    const { prisma } = require('../../tests/prisma-environment-setup.ts');
     let token: string;
+    jest.mock('../../classes/PrismaSingleton', () => ({
+        getPrisma: jest.fn(() => prisma),  // Mock PrismaSingleton to return the prisma instance from setup
+    }));
 
     beforeAll(async () => {
+        // Set up the mock to return prisma after the setup
+        const PrismaSingleton = require('../../classes/PrismaSingleton');
+        PrismaSingleton.getPrisma.mockImplementation(() => prisma);  // Use mockImplementation to return the prisma instance
+
         // Login
+        console.log("Logging in...");
         const response = await request(app)
             .post('/api/auth/signin')
             .send({
                 Email: 'test@example.com',
-                Password: 'hashedpassword123'
+                Password: "hashedpassword123",
             });
+
+        console.log(response.body);
 
         token = response.body.token;
     });

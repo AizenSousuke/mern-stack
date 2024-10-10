@@ -70,7 +70,11 @@ module.exports = async () => {
     exec('npx prisma generate --schema=tmp/schemaCombined.prisma');
     await runCommand('rm tmp/schemaCombined.prisma && rm -rf tmp');
 
+    await prisma.$runCommandRaw({ dropDatabase: 1 });
+
     // Seed the test database
+    console.log("Creating user");
+
     const user = await prisma.user.create({
         data: {
             email: 'test@example.com',
@@ -80,7 +84,12 @@ module.exports = async () => {
     });
     userId = user.id;
 
+    console.log("Users:", await prisma.user.findMany({}));
+
     console.log(`User ID: ${userId}`);
 
-    return { mongod };
+    return { prisma, mongod };
 };
+
+// Export prisma for use in tests
+module.exports.prisma = prisma;
