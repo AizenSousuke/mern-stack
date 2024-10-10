@@ -2,8 +2,10 @@ const { MongoMemoryServer, MongoMemoryReplSet } = require('mongodb-memory-server
 const { PrismaClient } = require('@prisma/client');
 const { exec } = require('child_process');
 const prisma = new PrismaClient();
+import bcrypt from "bcryptjs";
 
 let mongod;
+let userId: string;
 
 async function testConnection() {
     try {
@@ -67,6 +69,18 @@ module.exports = async () => {
     console.log("Running npx prisma generate --schema=tmp/schemaCombined.prisma");
     exec('npx prisma generate --schema=tmp/schemaCombined.prisma');
     await runCommand('rm tmp/schemaCombined.prisma && rm -rf tmp');
+
+    // Seed the test database
+    const user = await prisma.user.create({
+        data: {
+            email: 'test@example.com',
+            name: 'Test User',
+            password: await bcrypt.hash("hashedpassword123", 10)
+        }
+    });
+    userId = user.id;
+
+    console.log(`User ID: ${userId}`);
 
     return { mongod };
 };

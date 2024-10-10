@@ -233,26 +233,14 @@ import { PrismaClient } from "@prisma/client";
 
 const request = require('supertest');
 const app = require('../../server.ts');
-import bcrypt from "bcryptjs";
 
 describe('GET /', () => {
-    let userId: string;
-    let token: string;
     const prisma: PrismaClient = new PrismaClient();
+    const request = require('supertest');
+    const app = require('../../server.ts');
+    let token: string;
 
     beforeAll(async () => {
-        // Seed the test database
-        const user = await prisma.user.create({
-            data: {
-                email: 'test@example.com',
-                name: 'Test User',
-                password: await bcrypt.hash("hashedpassword123", 10)
-            }
-        });
-        userId = user.id;
-
-        console.log(`User ID: ${userId}`);
-
         // Login
         const response = await request(app)
             .post('/api/auth/signin')
@@ -265,7 +253,6 @@ describe('GET /', () => {
     });
 
     afterAll(async () => {
-        // await prisma.$disconnect();
     });
 
     it('should update bus stop tracking settings', async () => {
@@ -275,14 +262,6 @@ describe('GET /', () => {
 
         expect(res.statusCode).toEqual(404);
         expect(res.body.msg).toBe('There are no settings for this user.');
-
-        // Check if the bus stop was correctly updated
-        // const updatedSetting = await prisma.setting.findFirst({
-        //     where: { userId: userId },
-        //     include: { settingsSchema: true }
-        // });
-
-        // expect(updatedSetting.userId).toBe(userId);
     });
 });
 
