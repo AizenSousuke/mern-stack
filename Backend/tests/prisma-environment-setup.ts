@@ -14,7 +14,6 @@ async function testConnection() {
     }
 }
 
-
 function runCommand(command) {
     return new Promise((resolve, reject) => {
         exec(command, (error, stdout, stderr) => {
@@ -30,21 +29,21 @@ function runCommand(command) {
     });
 }
 
-
 // Start in-memory MongoDB server
 module.exports = async () => {
     const databaseName = "yasgbadevelopment";
     mongod = await MongoMemoryReplSet.create({
         replSet: { count: 2 },
-        dbName: databaseName
     });
-    const uri = mongod.getUri();
+    await mongod.waitUntilRunning();
+    const uri = await mongod.getUri();
+    console.log("MongoDB Memory Server Default URI:", uri);
 
     // Manually set the desired database name (e.g., "testDatabase")
-    const modifiedUri = `${uri}${databaseName}`;
+    const modifiedUri = `${uri.split('?')[0]}${databaseName}?${uri.split('?')[1]}`;
 
     // Log the modified URI for debugging
-    console.log("MongoDB Memory Server URI:", modifiedUri);
+    console.log("MongoDB Memory Server Modified URI:", modifiedUri);
 
     // Override DATABASE_URL environment variable to use in-memory MongoDB
     process.env.DATABASE_URL = modifiedUri;
@@ -56,7 +55,7 @@ module.exports = async () => {
 
     // Ensure Prisma Client is generated
     console.log("Running mongo memory server");
-    // exec('rm -rf tmp && mkdir tmp && cat prisma/*.prisma > tmp/schemaCombined.prisma && npx prisma db push --schema=tmp/schemaCombined.prisma && rm tmp/schemaCombined.prisma && rm -rf tmp');
+
 
 
     // Create the tmp directory and run Prisma commands
