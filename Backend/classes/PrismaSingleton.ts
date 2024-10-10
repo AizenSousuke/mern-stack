@@ -4,6 +4,7 @@ export default class PrismaSingleton {
     private static prisma: PrismaClient;
 
     static getPrisma(): PrismaClient {
+        console.log("Getting prisma variable");
         if (PrismaSingleton.prisma == null) {
             console.log("Resetting prisma variable");
             PrismaSingleton.prisma = new PrismaClient();
