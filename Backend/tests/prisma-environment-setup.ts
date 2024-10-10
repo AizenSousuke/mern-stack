@@ -65,7 +65,7 @@ module.exports = async () => {
         console.error('Failed to execute command:', error);
     }
 
-    console.log("Running npx prisma generate");
+    console.log("Running npx prisma generate --schema=tmp/schemaCombined.prisma");
     execSync('npx prisma generate --schema=tmp/schemaCombined.prisma');
     await runCommand('rm tmp/schemaCombined.prisma && rm -rf tmp');
 
