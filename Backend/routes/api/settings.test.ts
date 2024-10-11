@@ -230,7 +230,8 @@ import { PrismaClient } from "@prisma/client";
 //         expect(res.body.errors).toBeTruthy();
 //     });
 // });
-import { prisma } from "../../tests/prisma-environment-setup"; 
+
+import { prisma } from "../../tests/prisma-environment-setup";
 jest.mock('../../classes/PrismaSingleton', () => ({
     getPrisma: jest.fn(() => prisma)
 }));

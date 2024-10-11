@@ -1,9 +1,9 @@
 const { MongoMemoryServer, MongoMemoryReplSet } = require('mongodb-memory-server');
 const { PrismaClient } = require('@prisma/client');
 const { exec } = require('child_process');
-const prisma = new PrismaClient();
 import bcrypt from "bcryptjs";
 
+let prisma;
 let mongod;
 let userId: string;
 
@@ -32,7 +32,7 @@ function runCommand(command) {
 }
 
 // Start in-memory MongoDB server
-module.exports = async () => {
+export default async () => {
     const databaseName = "yasgbadevelopment";
     mongod = await MongoMemoryReplSet.create({
         replSet: { count: 2 },
@@ -49,6 +49,8 @@ module.exports = async () => {
 
     // Override DATABASE_URL environment variable to use in-memory MongoDB
     process.env.DATABASE_URL = modifiedUri;
+
+    prisma = new PrismaClient();
 
     // Test the connection
     await testConnection();
@@ -82,6 +84,7 @@ module.exports = async () => {
             password: await bcrypt.hash("hashedpassword123", 10)
         }
     });
+
     userId = user.id;
 
     console.log("Users:", await prisma.user.findMany({}));
@@ -91,5 +94,8 @@ module.exports = async () => {
     return { prisma, mongod };
 };
 
-// Export prisma for use in tests
+
+// Named export for prisma, but wrapped in a promise that ensures prismaSetup has run
+// let setupPromise = prismaSetup();  // Ensure setup has run before prisma is used
+
 export { prisma };
