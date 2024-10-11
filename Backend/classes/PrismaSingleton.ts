@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 export default class PrismaSingleton {
-    private static prisma: PrismaClient;
+    private static prisma: PrismaClient | null = null;
 
     static getPrisma(): PrismaClient {
         console.log("Getting prisma variable");
