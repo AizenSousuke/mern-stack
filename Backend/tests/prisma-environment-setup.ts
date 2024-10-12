@@ -32,7 +32,7 @@ function runCommand(command) {
 }
 
 // Start in-memory MongoDB server
-export default async () => {
+const setupPrisma = async () => {
     const databaseName = "yasgbadevelopment";
     mongod = await MongoMemoryReplSet.create({
         replSet: { count: 2 },
@@ -91,11 +91,12 @@ export default async () => {
 
     console.log(`User ID: ${userId}`);
 
-    return { prisma, mongod };
+    // return { prisma, mongod };
+    console.log('Prisma setup complete.');
+    return prisma;
 };
 
-
-// Named export for prisma, but wrapped in a promise that ensures prismaSetup has run
-// let setupPromise = prismaSetup();  // Ensure setup has run before prisma is used
-
-export { prisma };
+export default async () => {
+    prisma = await setupPrisma().then(() => prisma);
+    return { prisma, mongod };
+}

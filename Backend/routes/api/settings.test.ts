@@ -231,9 +231,10 @@ import { PrismaClient } from "@prisma/client";
 //     });
 // });
 
-import { prisma } from "../../tests/prisma-environment-setup";
+import setupPrisma from "../../tests/prisma-environment-setup";
+
 jest.mock('../../classes/PrismaSingleton', () => ({
-    getPrisma: jest.fn(() => prisma)
+    getPrisma: jest.fn(() => setupPrisma), // Mock prisma with the initialized instance from setup
 }));
 
 describe('GET /', () => {
